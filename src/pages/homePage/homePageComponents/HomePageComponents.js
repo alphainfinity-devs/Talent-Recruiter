@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AdminPage = () => {
+const HomePageComponents = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const AdminPage = () => {
     );
 };
 
-export default AdminPage;
+export default HomePageComponents;
