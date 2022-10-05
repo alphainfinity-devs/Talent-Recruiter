@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className="flex justify-between py-3 items-center container mx-auto px-5">
         {/* Website Logo */}
         <div>
-          <h2 className="text-4xl font-bold text-primary">Telent</h2>
+          <h2 className="text-4xl font-bold text-accent">Telent</h2>
         </div>
 
         {/* md and lg navbar start */}
@@ -24,10 +24,10 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="flex gap-2">
-              <button className="bg-primary hover:bg-transparent hover:text-black font-bold px-4 py-2 border-2 hover:border-2">
+              <button className="bg-accent hover:bg-transparent text-white hover:border-accent hover:text-accent font-bold px-4 py-2 border-2 hover:border-2">
                 Login
               </button>
-              <button className="bg-primary hover:bg-transparent hover:text-black font-bold px-4 py-2 border-2 hover:border-2">
+              <button className="bg-accent hover:bg-transparent text-white hover:border-accent hover:text-accent font-bold px-4 py-2 border-2 hover:border-2">
                 Register
               </button>
             </div>
@@ -68,10 +68,10 @@ const Navbar = () => {
               <li className="font-bold">Contact</li>
 
               <div className="gap-2">
-                <button className="bg-primary hover:bg-transparent hover:text-black font-bold px-4 py-2 border-2 hover:border-2 w-full">
+                <button className="bg-accent hover:bg-transparent hover:border-accent text-white hover:text-accent font-bold px-4 py-2 border-2 hover:border-2 w-full">
                   Login
                 </button>
-                <button className="bg-primary hover:bg-transparent hover:text-black font-bold px-4 py-2 border-2 hover:border-2 w-full">
+                <button className="bg-accent hover:bg-transparent hover:border-accent text-white hover:text-accent font-bold px-4 py-2 border-2 hover:border-2 w-full">
                   Register
                 </button>
               </div>
