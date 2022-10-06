@@ -1,11 +1,25 @@
-import React from 'react';
-import HomePageComponents from './homePageComponents/HomePageComponents';
+import React from "react";
+import HomePageBlogSection from "./homePageComponents/HomePageBlogSection";
+import HomePageReviewSection from "./homePageComponents/HomePageReviewSection";
+import HowItWork from "./homePageComponents/HowItWork";
+import SeeAllJobs from "./homePageComponents/SeeAllJobs";
+import SearchComponent from "./homePageComponents/SearchComponent";
+import Banner from "./homePageComponents/Banner";
+import Newsletter from "./homePageComponents/Newsletter";
+import Categories from "./homePageComponents/Categories/Categories";
 
 const HomePage = () => {
   return (
-    <div>
-      <HomePageComponents />
-    </div>
+    <>
+      <Banner />
+      <SearchComponent />
+      <Categories />
+      <SeeAllJobs />
+      <HowItWork />
+      <HomePageBlogSection />
+      <HomePageReviewSection />
+      <Newsletter />
+    </>
   );
 };
 
