@@ -1,11 +1,12 @@
 import React from 'react';
+import Categories from './Categories/Categories';
 
 const HomePageComponents = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  return (
+    <div>
+      <Categories />
+    </div>
+  );
 };
 
 export default HomePageComponents;
