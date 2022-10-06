@@ -3,15 +3,16 @@ import React from "react";
 const SearchComponent = () => {
   return (
     <section>
-      <div className="m-[-100px] container mx-auto px-5">
-        <div className="bg-accent shadow-lg z-10 p-10">
+      <div className="m-[-100px] container mx-auto px-5 pb-32">
+        <div className="bg-primary shadow-lg z-10 p-10">
           <form class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {/*........keyword type input........*/}
             <input
               type="text"
               placeholder="Search Keyword"
               className="input w-full max-w-xs"
             />
-            {/* selecte location input */}
+            {/*........selecte location input........*/}
             <select className="select w-full max-w-xs">
               <option disabled selected>
                 Location
@@ -24,7 +25,7 @@ const SearchComponent = () => {
               <option>Singapur</option>
             </select>
 
-            {/* selecte category input */}
+            {/*.......selecte category input.......*/}
             <select className="select w-full max-w-xs">
               <option disabled selected>
                 Category
@@ -36,11 +37,11 @@ const SearchComponent = () => {
               <option>Content Writer</option>
               <option>Markating</option>
             </select>
-            {/* submit button */}
+            {/*........search button..........*/}
             <input
               type="submit"
               value="Search"
-              className="btn w-full max-w-xs"
+              className="w-full bg-secondary hover:bg-primary text-white border-white cursor-pointer hover:border-white font-bold border-2 hover:border-2"
             />
           </form>
         </div>

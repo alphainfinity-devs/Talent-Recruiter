@@ -7,13 +7,13 @@ import Navbar from "./globalComponents/Navbar";
 function App() {
   return (
     <>
-      <div className="mx-auto px-12">
+      <>
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
         </Routes>
         <Footer />
-      </div>
+      </>
       {/* for toastify popup */}
       <ToastContainer
         position="top-center"
