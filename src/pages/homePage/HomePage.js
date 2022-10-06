@@ -1,4 +1,7 @@
-import React from "react";
+
+import React from 'react';
+import HomePageBlogSection from './homePageComponents/HomePageBlogSection';
+import HomePageReviewSection from './homePageComponents/HomePageReviewSection';
 import HowItWork from "./homePageComponents/HowItWork";
 import SeeAllJobs from "./homePageComponents/SeeAllJobs";
 import Navbar from "../../utils/Navbar";
@@ -14,9 +17,12 @@ const HomePage = () => {
       <SearchComponent />
        <SeeAllJobs />
       <HowItWork />
+         <HomePageBlogSection/>
+            <HomePageReviewSection/>
     </div>
 
   );
+
 };
 
 export default HomePage;
