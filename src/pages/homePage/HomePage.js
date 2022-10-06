@@ -1,5 +1,6 @@
 
 import React from 'react';
+import HomePageComponents from './homePageComponents/HomePageComponents';
 import HomePageBlogSection from './homePageComponents/HomePageBlogSection';
 import HomePageReviewSection from './homePageComponents/HomePageReviewSection';
 import HowItWork from "./homePageComponents/HowItWork";
@@ -16,9 +17,9 @@ const HomePage = () => {
       <Banner />
       <SearchComponent />
        <SeeAllJobs />
-      <HowItWork />
-         <HomePageBlogSection/>
-            <HomePageReviewSection/>
+        <HowItWork />
+        <HomePageBlogSection/>
+        <HomePageReviewSection/>
     </div>
 
   );

@@ -5,6 +5,7 @@ function App() {
   return (
     <div className="ax-w-7xl mx-auto px-12">
       <HomePage/>
+
     </div>
   );
 }
