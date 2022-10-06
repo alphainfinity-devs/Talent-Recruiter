@@ -1,16 +1,16 @@
 import React from 'react';
 import Footer from '../../../utils/Footer';
 import Newsletter from '../../../utils/Newsletter';
+import Categories from './Categories/Categories';
 
 const HomePageComponents = () => {
-    return (
-        <div>
-
-            <Newsletter />
+  return (
+    <div>
+      <Categories />
+       <Newsletter />
             <Footer />
-        </div>
-
-    );
+    </div>
+  );
 };
 
 export default HomePageComponents;
