@@ -7,6 +7,7 @@ import SearchComponent from "./homePageComponents/SearchComponent";
 import Banner from "./homePageComponents/Banner";
 import Newsletter from "./homePageComponents/Newsletter";
 import Categories from "./homePageComponents/Categories/Categories";
+import FeatureJobs from "./homePageComponents/FeatureJobs/FeatureJobs"
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <Banner />
       <SearchComponent />
       <Categories />
+      <FeatureJobs />
       <SeeAllJobs />
       <HowItWork />
       <HomePageBlogSection />

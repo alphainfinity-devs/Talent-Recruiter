@@ -8,7 +8,7 @@ import { MdFoodBank } from 'react-icons/md';
 
 const Categories = () => {
   return (
-    <div className='py-44 bg-base-200'>
+    <div className='py-24 bg-base-200'>
       <h1 className='text-center font-bold pt-6 text-4xl'>Browse Categories</h1>
       <p className='text-center pt-2'>
         Most popular categories of portal, sorted by popularity
