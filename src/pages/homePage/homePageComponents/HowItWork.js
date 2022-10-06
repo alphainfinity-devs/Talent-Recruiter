@@ -70,8 +70,7 @@ const HowItWork = () => {
             </p>
             <div className="card-actions justify-center my-2">
               <button className="btn btn-primary rounded-full">
-                <TbBadge size={22} className="mr-1" /> Apply
-                Now
+                <TbBadge size={22} className="mr-1" /> Apply Now
               </button>
             </div>
           </div>

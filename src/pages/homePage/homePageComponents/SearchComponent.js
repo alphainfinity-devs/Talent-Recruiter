@@ -3,7 +3,7 @@ import React from "react";
 const SearchComponent = () => {
   return (
     <section>
-      <div className="  m-[-100px] container mx-auto px-5">
+      <div className="m-[-100px] container mx-auto px-5">
         <div className="bg-accent shadow-lg z-10 p-10">
           <form class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
             <input
