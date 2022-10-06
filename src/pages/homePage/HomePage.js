@@ -1,29 +1,26 @@
-
-import React from 'react';
-import HomePageComponents from './homePageComponents/HomePageComponents';
-import HomePageBlogSection from './homePageComponents/HomePageBlogSection';
-import HomePageReviewSection from './homePageComponents/HomePageReviewSection';
+import React from "react";
+import HomePageBlogSection from "./homePageComponents/HomePageBlogSection";
+import HomePageReviewSection from "./homePageComponents/HomePageReviewSection";
 import HowItWork from "./homePageComponents/HowItWork";
 import SeeAllJobs from "./homePageComponents/SeeAllJobs";
-import Navbar from "../../utils/Navbar";
-import SearchComponent from "../../utils/SearchComponent";
+import SearchComponent from "./homePageComponents/SearchComponent";
 import Banner from "./homePageComponents/Banner";
-
+import Newsletter from "./homePageComponents/Newsletter";
+import Categories from "./homePageComponents/Categories/Categories";
 
 const HomePage = () => {
   return (
-    <div>
-      <Navbar />
+    <>
       <Banner />
       <SearchComponent />
-       <SeeAllJobs />
-        <HowItWork />
-        <HomePageBlogSection/>
-        <HomePageReviewSection/>
-    </div>
-
+      <Categories />
+      <SeeAllJobs />
+      <HowItWork />
+      <HomePageBlogSection />
+      <HomePageReviewSection />
+      <Newsletter />
+    </>
   );
-
 };
 
 export default HomePage;
