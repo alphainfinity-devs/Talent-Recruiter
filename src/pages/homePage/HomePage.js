@@ -1,5 +1,8 @@
+
 import React from 'react';
 import HomePageComponents from './homePageComponents/HomePageComponents';
+import HomePageBlogSection from './homePageComponents/HomePageBlogSection';
+import HomePageReviewSection from './homePageComponents/HomePageReviewSection';
 import HowItWork from "./homePageComponents/HowItWork";
 import SeeAllJobs from "./homePageComponents/SeeAllJobs";
 import Navbar from "../../utils/Navbar";
@@ -14,11 +17,13 @@ const HomePage = () => {
       <Banner />
       <SearchComponent />
        <SeeAllJobs />
-      <HowItWork />
-      <HomePageComponents />
+        <HowItWork />
+        <HomePageBlogSection/>
+        <HomePageReviewSection/>
     </div>
 
   );
+
 };
 
 export default HomePage;
