@@ -1,5 +1,4 @@
 import React from 'react';
-import './FeatureJobs.css';
 import { GrLocation } from 'react-icons/gr';
 import { AiOutlineUser } from 'react-icons/ai';
 
