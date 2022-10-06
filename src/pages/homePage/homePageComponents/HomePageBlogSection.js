@@ -7,11 +7,11 @@ const HomePageBlogSection = () => {
                 <h3 className='text-primary  text-4xl font-bold uppercase py-3'>Blog Post</h3>
                 <h2 className='text-xl'>Proident aliquip sit amet culpa id.</h2>
             </div>
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
-            <div className="card lg:max-w-lg bg-base-100 shadow-xl mx-auto">
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-stretch'>
+            <div className="card lg:max-w-lg bg-base-100 shadow-xl mx-auto transform hover:scale-105 duration-500 cursor-pointer">
                 <div className="">
-                    <div className="block m-auto">
-                        <img className="" src="https://placeimg.com/400/225/arch" alt="Shoes" />             
+                    <div className="w-fit block m-auto">
+                        <img className="p-3" src="https://placeimg.com/400/225/arch" alt="Shoes" />             
                         </div>
                 </div>
                 <div className="card-body items-center text-center">
@@ -22,10 +22,10 @@ const HomePageBlogSection = () => {
                     </p>
                 </div>
                 </div>            
-                <div className="card lg:max-w-lg bg-base-100 shadow-xl mx-auto">
+                <div className="card lg:max-w-lg bg-base-100 shadow-xl m-auto  transform hover:scale-105 duration-500 cursor-pointer">
                 <div className="">
-                    <div className="block m-auto">
-                        <img className="" src="https://placeimg.com/400/225/arch" alt="Shoes" />             
+                    <div className="w-fit block m-auto">
+                        <img className="p-3" src="https://placeimg.com/400/225/arch" alt="Shoes" />             
                     </div>
                 </div>
                 <div className="card-body items-center text-center">
@@ -36,11 +36,11 @@ const HomePageBlogSection = () => {
                     </p>
                 </div>
                 </div>
-                <div className="card lg:max-w-lg bg-base-100 shadow-xl mx-auto">
+                <div className="card lg:max-w-lg bg-base-100 shadow-xl mx-auto transform hover:scale-105 duration-500 cursor-pointer">
                 <div className="">
                 {/* mask mask-circle */}
-                    <div className="block m-auto">
-                        <img className="" src="https://placeimg.com/400/225/arch" alt="Shoes" />             
+                    <div className="w-fit block m-auto">
+                        <img className="p-3" src="https://placeimg.com/400/225/arch" alt="Shoes" />             
                     </div>
        
                 </div>
