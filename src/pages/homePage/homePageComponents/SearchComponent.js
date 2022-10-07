@@ -3,9 +3,9 @@ import React from "react";
 const SearchComponent = () => {
   return (
     <section>
-      <div className="m-[-100px] container mx-auto px-5 pb-32">
+      <div className="m-[-100px] container mx-auto px-5 pb-40">
         <div className="bg-primary shadow-lg z-10 p-10">
-          <form class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <form className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
             {/*........keyword type input........*/}
             <input
               type="text"
@@ -41,7 +41,7 @@ const SearchComponent = () => {
             <input
               type="submit"
               value="Search"
-              className="w-full bg-secondary hover:bg-primary text-white border-white cursor-pointer hover:border-white font-bold border-2 hover:border-2"
+              className="w-full bg-secondary hover:bg-primary py-2 text-white border-white cursor-pointer hover:border-white font-bold border-2 hover:border-2"
             />
           </form>
         </div>

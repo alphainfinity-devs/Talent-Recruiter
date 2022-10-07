@@ -1,13 +1,13 @@
 import React from "react";
-import HomePageBlogSection from "./homePageComponents/HomePageBlogSection";
-import HomePageReviewSection from "./homePageComponents/HomePageReviewSection";
+import Reviews from "./homePageComponents/Reviews";
 import HowItWork from "./homePageComponents/HowItWork";
-import SeeAllJobs from "./homePageComponents/SeeAllJobs";
+import BrowseJobsBanner from "./homePageComponents/BrowseJobsBanner";
 import SearchComponent from "./homePageComponents/SearchComponent";
 import Banner from "./homePageComponents/Banner";
 import Newsletter from "./homePageComponents/Newsletter";
 import Categories from "./homePageComponents/Categories";
 import FeatureJobs from "./homePageComponents/FeatureJobs";
+import Blogs from "./homePageComponents/Blogs";
 
 const HomePage = () => {
   return (
@@ -16,10 +16,10 @@ const HomePage = () => {
       <SearchComponent />
       <Categories />
       <FeatureJobs />
-      <SeeAllJobs />
+      <BrowseJobsBanner />
       <HowItWork />
-      <HomePageBlogSection />
-      <HomePageReviewSection />
+      <Blogs />
+      <Reviews />
       <Newsletter />
     </>
   );

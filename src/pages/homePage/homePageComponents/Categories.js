@@ -1,137 +1,83 @@
-import React from 'react';
-import { BsFillHouseDoorFill } from 'react-icons/bs';
-import { TbWorld, TbBooks, TbTestPipe } from 'react-icons/tb';
-import { FiMonitor } from 'react-icons/fi';
-import { BiBrush } from 'react-icons/bi';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { MdFoodBank } from 'react-icons/md';
+import React from "react";
+import { CgWebsite } from "react-icons/cg";
+import { BsMicrosoft } from "react-icons/bs";
+import { FcManager } from "react-icons/fc";
+import { TbDatabaseOff } from "react-icons/tb";
+import { AiFillAndroid } from "react-icons/ai";
+import { FaDigitalTachograph } from "react-icons/fa";
+import { HiPhotograph, HiOutlineDesktopComputer } from "react-icons/hi";
+import CategorieCart from "./CategorieCart";
 
 const Categories = () => {
+  const categories = [
+    {
+      _id: 1,
+      name: "Web & Software Dev",
+      availableJob: 203,
+      icon: <BsMicrosoft />,
+    },
+    {
+      _id: 2,
+      name: "Sales & Marketing",
+      availableJob: 303,
+      icon: <HiOutlineDesktopComputer />,
+    },
+    {
+      _id: 3,
+      name: "Graphics",
+      availableJob: 120,
+      icon: <HiPhotograph />,
+    },
+    {
+      _id: 4,
+      name: "UI/UX Designer",
+      availableJob: 784,
+      icon: <CgWebsite />,
+    },
+    {
+      _id: 5,
+      name: "Senior Manager",
+      availableJob: 233,
+      icon: <FcManager />,
+    },
+    {
+      _id: 6,
+      name: "SEO",
+      availableJob: 78,
+      icon: <TbDatabaseOff />,
+    },
+    {
+      _id: 7,
+      name: "Android Developer",
+      availableJob: 70,
+      icon: <AiFillAndroid />,
+    },
+    {
+      _id: 8,
+      name: "Digital Marketer",
+      availableJob: 23,
+      icon: <FaDigitalTachograph />,
+    },
+  ];
   return (
-    <div className='py-24 bg-base-200'>
-      <h1 className='text-center font-bold pt-6 text-4xl'>Browse Categories</h1>
-      <p className='text-center pt-2'>
-        Most popular categories of portal, sorted by popularity
-      </p>
-      {/* ----------all cards-------------- */}
-      <div className='grid grid-cols-1 lg:grid-cols-4 justify-items-center mx-12 py-12 gap-3'>
-        {/* ------1st card------- */}
-        <div
-          onClick={() => alert('Hello')}
-          className='card w-96 bg-base-100 transform hover:scale-105 duration-500 cursor-pointer'
-        >
-          <figure className='px-10 pt-10'>
-            <BsFillHouseDoorFill size='56px' />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title hover:text-primary'>Finance</h2>
-            <p>(1000 Jobs)</p>
-          </div>
+    <section className="py-16 bg-[#F9FCFF]">
+      <div className="container mx-auto px-5">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl text-primary font-bold">Job Categories</h2>
+          <p className="text-natural">
+            Most popular categories of portal, sorted by popularity
+          </p>
         </div>
-        {/* ----------end------------ */}
-        {/* ------2nd card------- */}
-        <div
-          onClick={() => alert('Hello')}
-          className='card w-96 bg-base-100 transform hover:scale-105 duration-500 cursor-pointer'
-        >
-          <figure className='px-10 pt-10'>
-            <TbWorld size='56px' />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title hover:text-primary'>Sales/Marketing!</h2>
-            <p>(2002 Jobs)</p>
-          </div>
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+          {categories.map((categorie) => (
+            <CategorieCart
+              key={categorie._id}
+              categorie={categorie}
+            ></CategorieCart>
+          ))}
         </div>
-        {/* ----------end------------ */}
-        {/* ------3rd card------- */}
-        <div
-          onClick={() => alert('Hello')}
-          className='card w-96 bg-base-100 transform hover:scale-105 duration-500 cursor-pointer'
-        >
-          <figure className='px-10 pt-10'>
-            <TbBooks size='56px' />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title hover:text-primary'>
-              Education/Training
-            </h2>
-            <p>(2002 Jobs)</p>
-          </div>
-        </div>
-        {/* ----------end------------ */}
-        {/* ------4th card------- */}
-        <div
-          onClick={() => alert('Hello')}
-          className='card w-96 bg-base-100 transform hover:scale-105 duration-500 cursor-pointer'
-        >
-          <figure className='px-10 pt-10'>
-            <FiMonitor size='56px' />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title hover:text-primary'>Technologies</h2>
-            <p>(2002 Jobs)</p>
-          </div>
-        </div>
-        {/* ----------end------------ */}
-        {/* ------5th card------- */}
-        <div
-          onClick={() => alert('Hello')}
-          className='card w-96 bg-base-100 transform hover:scale-105 duration-500 cursor-pointer'
-        >
-          <figure className='px-10 pt-10'>
-            <BiBrush size='56px' />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title hover:text-primary'>Art/Design</h2>
-            <p>(1807 Jobs)</p>
-          </div>
-        </div>
-        {/* ----------end------------ */}
-        {/* ------6th card------- */}
-        <div
-          onClick={() => alert('Hello')}
-          className='card w-96 bg-base-100 transform hover:scale-105 duration-500 cursor-pointer'
-        >
-          <figure className='px-10 pt-10'>
-            <AiOutlineHeart size='56px' />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title hover:text-primary'>Healthcare</h2>
-            <p>(2002 Jobs)</p>
-          </div>
-        </div>
-        {/* ----------end------------ */}
-        {/* ------7th card------- */}
-        <div
-          onClick={() => alert('Hello')}
-          className='card w-96 bg-base-100 transform hover:scale-105 duration-500 cursor-pointer'
-        >
-          <figure className='px-10 pt-10'>
-            <TbTestPipe size='56px' />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title hover:text-primary'>Science</h2>
-            <p>(2002 Jobs)</p>
-          </div>
-        </div>
-        {/* ----------end------------ */}
-        {/* ------8th card------- */}
-        <div
-          onClick={() => alert('Hello')}
-          className='card w-96 bg-base-100 transform hover:scale-105 duration-500 cursor-pointer'
-        >
-          <figure className='px-10 pt-10'>
-            <MdFoodBank size='56px' />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title hover:text-primary'>Food Services</h2>
-            <p>(2002 Jobs)</p>
-          </div>
-        </div>
-        {/* ----------end------------ */}
       </div>
-      {/* -------end all cards-------- */}
-    </div>
+    </section>
   );
 };
 

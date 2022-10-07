@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className="flex justify-between py-3 items-center container mx-auto px-5">
         {/*.......Website Logo........*/}
         <div>
-          <h2 className="text-4xl font-bold text-primary">Telent</h2>
+          <h2 className="text-4xl font-bold text-primary">Telent.</h2>
         </div>
 
         {/*.......md and lg navbar start.......*/}
@@ -24,7 +24,7 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="flex gap-2">
-              <button className="hover:bg-secondary bg-transparent text-secondary border-secondary hover:border-secondary hover:text-white font-bold px-4 py-2 border-2 hover:border-2">
+              <button className="px-4 bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold border-2 hover:border-2">
                 Login
               </button>
               <button className="bg-primary hover:bg-white text-white border-primary hover:border-primary hover:text-primary font-bold px-4 py-2 border-2 hover:border-2">

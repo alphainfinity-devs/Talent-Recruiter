@@ -7,11 +7,11 @@ const Banner = () => {
         {/*.......Banner info data start........*/}
         <div className="flex justify-center items-center mb-4">
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-primary mb-3">
-              Find the job.
+            <h1 className="text-3xl md:text-4xl font-bold text-primary mb-3 uppercase">
+              Find the job
             </h1>
-            <h1 className="text-3xl md:text-4xl font-bold text-primary mb-3 md:mb-5 lg:mb-8">
-              And get the Preferred life
+            <h1 className="text-3xl md:text-4xl font-bold text-primary mb-3 uppercase md:mb-5 lg:mb-8">
+              And Make You Dream
             </h1>
             <p className="font-samibold text-neutral mb-3 md:mb-5">
               Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac

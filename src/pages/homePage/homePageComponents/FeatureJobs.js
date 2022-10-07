@@ -1,212 +1,155 @@
-import React from 'react';
-import { GrLocation } from 'react-icons/gr';
-import { AiOutlineUser } from 'react-icons/ai';
+import React from "react";
+import FeaturejobCart from "./FeaturejobCart";
+import { SiGoogletagmanager } from "react-icons/si";
 
-const FeatureJobs = () => {
+const Featurejobs = () => {
+  const featurejobs = [
+    {
+      _id: 1,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 2,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 3,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 4,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 5,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 6,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 7,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 8,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 9,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 10,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 11,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+    {
+      _id: 12,
+      title: "UI/UX Designer",
+      website: "Example.com",
+      type: "Full Time",
+      salery: "$79k-$85k",
+      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
+      icon: <SiGoogletagmanager />,
+    },
+  ];
   return (
-    <div className='min-h-[60vh] bg-base-300'>
-      <h1 className='text-center font-bold pt-12 text-4xl'>Featured Jobs</h1>
-      <p className='text-center pt-2'>
-        Hand-picked jobs featured depending on popularity and benefits
-      </p>
-      {/* ----------all cards-------------- */}
-      <div className='grid grid-cols-1 lg:grid-cols-3 justify-items-center mx-12 px-12 py-12 gap-3'>
-        {/* ------1st card------- */}
-        <div className='card w-96 bg-base-100 shadow-xl'>
-          <figure className='px-10 pt-10'>
-            {/* ----company logo section--------------- */}
-            <img
-              src='https://placeimg.com/400/225/arch'
-              alt='Shoes'
-              className='rounded-xl'
-            />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title font-bold'>Software Engineer</h2>
-            <p className='font-semibold'>Miztech</p>
-            {/* ----------other details section--------- */}
-            <div className='flex gap-3'>
-              <span className='badge badge-outline text-xs gap-2'>
-                <GrLocation /> New Work
-              </span>
-              <span className='badge badge-outline text-xs gap-2'>
-                <AiOutlineUser /> Jhon Smith
-              </span>
-            </div>
-            {/* ------------end----------------- */}
-            <div className='card-actions'>
-              <button className='px-4 py-1 border border-purple-200 rounded-full text-sm text-purple-600 font-semibold hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2'>
-                Full Time
-              </button>
-            </div>
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-5">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl text-primary font-bold">Feature Jobs</h2>
+          <p className="text-natural py-1">
+            Hand-picked jobs featured depending on popularity and benifits
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {featurejobs.map((job) => (
+            <FeaturejobCart key={job._id} job={job}></FeaturejobCart>
+          ))}
+        </div>
+
+        <div className="flex justify-center pt-16">
+          <div className="btn-group gap-1">
+            <button className="btn-primary border-2 border-secondary btn-md text-white">
+              Prev
+            </button>
+            <button className="btn-primary border-2 border-secondary btn-md text-white">
+              1
+            </button>
+            <button className="btn-primary border-2 border-secondary btn-md text-white">
+              2
+            </button>
+            <button className="btn-primary border-2 border-secondary btn-md text-white">
+              3
+            </button>
+            <button className="btn-primary border-2 border-secondary btn-md text-white">
+              Next
+            </button>
           </div>
         </div>
-        {/* ----------end------------ */}
-        {/* ------2nd card------- */}
-        <div className='card w-96 bg-base-100 shadow-xl'>
-          <figure className='px-10 pt-10'>
-            {/* ----company logo section--------------- */}
-            <img
-              src='https://placeimg.com/400/225/arch'
-              alt='Shoes'
-              className='rounded-xl'
-            />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title font-bold'>Software Engineer</h2>
-            <p className='font-semibold'>Miztech</p>
-            {/* ----------other details section--------- */}
-            <div className='flex gap-3'>
-              <span className='badge badge-outline text-xs gap-2'>
-                <GrLocation /> New Work
-              </span>
-              <span className='badge badge-outline text-xs gap-2'>
-                <AiOutlineUser /> Jhon Smith
-              </span>
-            </div>
-            {/* ------------end----------------- */}
-            <div className='card-actions'>
-              <button className='px-4 py-1 border border-purple-200 rounded-full text-sm text-purple-600 font-semibold hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2'>
-                Full Time
-              </button>
-            </div>
-          </div>
-        </div>
-        {/* ----------end------------ */}
-        {/* ------3rd card------- */}
-        <div className='card w-96 bg-base-100 shadow-xl'>
-          <figure className='px-10 pt-10'>
-            {/* ----company logo section--------------- */}
-            <img
-              src='https://placeimg.com/400/225/arch'
-              alt='Shoes'
-              className='rounded-xl'
-            />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title font-bold'>Software Engineer</h2>
-            <p className='font-semibold'>Miztech</p>
-            {/* ----------other details section--------- */}
-            <div className='flex gap-3'>
-              <span className='badge badge-outline text-xs gap-2'>
-                <GrLocation /> New Work
-              </span>
-              <span className='badge badge-outline text-xs gap-2'>
-                <AiOutlineUser /> Jhon Smith
-              </span>
-            </div>
-            {/* ------------end----------------- */}
-            <div className='card-actions'>
-              <button className='px-4 py-1 border border-purple-200 rounded-full text-sm text-purple-600 font-semibold hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2'>
-                Full Time
-              </button>
-            </div>
-          </div>
-        </div>
-        {/* ----------end------------ */}
-        {/* ------4th card------- */}
-        <div className='card w-96 bg-base-100 shadow-xl'>
-          <figure className='px-10 pt-10'>
-            {/* ----company logo section--------------- */}
-            <img
-              src='https://placeimg.com/400/225/arch'
-              alt='Shoes'
-              className='rounded-xl'
-            />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title font-bold'>Software Engineer</h2>
-            <p className='font-semibold'>Miztech</p>
-            {/* ----------other details section--------- */}
-            <div className='flex gap-3'>
-              <span className='badge badge-outline text-xs gap-2'>
-                <GrLocation /> New Work
-              </span>
-              <span className='badge badge-outline text-xs gap-2'>
-                <AiOutlineUser /> Jhon Smith
-              </span>
-            </div>
-            {/* ------------end----------------- */}
-            <div className='card-actions'>
-              <button className='px-4 py-1 border border-purple-200 rounded-full text-sm text-purple-600 font-semibold hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2'>
-                Full Time
-              </button>
-            </div>
-          </div>
-        </div>
-        {/* ----------end------------ */}
-        {/* ------5th card------- */}
-        <div className='card w-96 bg-base-100 shadow-xl'>
-          <figure className='px-10 pt-10'>
-            {/* ----company logo section--------------- */}
-            <img
-              src='https://placeimg.com/400/225/arch'
-              alt='Shoes'
-              className='rounded-xl'
-            />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title font-bold'>Software Engineer</h2>
-            <p className='font-semibold'>Miztech</p>
-            {/* ----------other details section--------- */}
-            <div className='flex gap-3'>
-              <span className='badge badge-outline text-xs gap-2'>
-                <GrLocation /> New Work
-              </span>
-              <span className='badge badge-outline text-xs gap-2'>
-                <AiOutlineUser /> Jhon Smith
-              </span>
-            </div>
-            {/* ------------end----------------- */}
-            <div className='card-actions'>
-              <button className='px-4 py-1 border border-purple-200 rounded-full text-sm text-purple-600 font-semibold hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2'>
-                Full Time
-              </button>
-            </div>
-          </div>
-        </div>
-        {/* ----------end------------ */}
-        {/* ------6th card------- */}
-        <div className='card w-96 bg-base-100 shadow-xl'>
-          <figure className='px-10 pt-10'>
-            {/* ----company logo section--------------- */}
-            <img
-              src='https://placeimg.com/400/225/arch'
-              alt='Shoes'
-              className='rounded-xl'
-            />
-          </figure>
-          <div className='card-body items-center text-center'>
-            <h2 className='card-title font-bold'>Software Engineer</h2>
-            <p className='font-semibold'>Miztech</p>
-            {/* ----------other details section--------- */}
-            <div className='flex gap-3'>
-              <span className='badge badge-outline text-xs gap-2'>
-                <GrLocation /> New Work
-              </span>
-              <span className='badge badge-outline text-xs gap-2'>
-                <AiOutlineUser /> Jhon Smith
-              </span>
-            </div>
-            {/* ------------end----------------- */}
-            <div className='card-actions'>
-              <button className='px-4 py-1 border border-purple-200 rounded-full text-sm text-purple-600 font-semibold hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2'>
-                Full Time
-              </button>
-            </div>
-          </div>
-        </div>
-        {/* ----------end------------ */}
       </div>
-      {/* -------end all cards-------- */}
-      {/* ----------all jobs button------------- */}
-      <div className='mt-3 pb-4 flex justify-center align-items-center'>
-        <button className='px-12 py-3 bg-primary hover:bg-secondary rounded-full text-white font-mediam tracking-wider transition'>
-          See All Jobs
-        </button>
-      </div>
-    </div>
+    </section>
   );
 };
 
-export default FeatureJobs;
+export default Featurejobs;
