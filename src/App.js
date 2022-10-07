@@ -8,7 +8,7 @@ import AdminPage from "./pages/adminPage/AdminPage";
 function App() {
   return (
     <>
-      <div className="mx-auto px-12">
+      <>
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -20,7 +20,7 @@ function App() {
           </Route>
         </Routes>
         <Footer />
-      </div>
+      </>
       {/* for toastify popup */}
       <ToastContainer
         position="top-center"

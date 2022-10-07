@@ -7,12 +7,12 @@ const Navbar = () => {
   return (
     <header>
       <div className="flex justify-between py-3 items-center container mx-auto px-5">
-        {/* Website Logo */}
+        {/*.......Website Logo........*/}
         <div>
-          <h2 className="text-4xl font-bold text-accent">Telent</h2>
+          <h2 className="text-4xl font-bold text-primary">Telent.</h2>
         </div>
 
-        {/* md and lg navbar start */}
+        {/*.......md and lg navbar start.......*/}
         <div className="hidden md:block">
           <div className="flex items-center justify-between sm:gap-10">
             <div>
@@ -27,18 +27,18 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="flex gap-2">
-              <button className="bg-accent hover:bg-transparent text-white hover:border-accent hover:text-accent font-bold px-4 py-2 border-2 hover:border-2">
+              <button className="px-4 bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold border-2 hover:border-2">
                 Login
               </button>
-              <button className="bg-accent hover:bg-transparent text-white hover:border-accent hover:text-accent font-bold px-4 py-2 border-2 hover:border-2">
+              <button className="bg-primary hover:bg-white text-white border-primary hover:border-primary hover:text-primary font-bold px-4 py-2 border-2 hover:border-2">
                 Register
               </button>
             </div>
           </div>
         </div>
-        {/* md and lg navbar start */}
+        {/*........md and lg navbar start.........*/}
 
-        {/* Mobile navbar start */}
+        {/*.........Mobile navbar start..........*/}
         <label className="btn bg-white hover:bg-white px-3 swap swap-rotate border-2 md:hidden">
           <input type="checkbox" onClick={() => setCheckbox(!checkbox)} />
           <svg
@@ -68,18 +68,14 @@ const Navbar = () => {
               <li className="font-bold">Blogs</li>
               <li className="font-bold">Contact</li>
 
-              <div className="gap-2">
-                <button className="bg-accent hover:bg-transparent hover:border-accent text-white hover:text-accent font-bold px-4 py-2 border-2 hover:border-2 w-full">
-                  Login
-                </button>
-                <button className="bg-accent hover:bg-transparent hover:border-accent text-white hover:text-accent font-bold px-4 py-2 border-2 hover:border-2 w-full">
-                  Register
-                </button>
+              <div className="flex gap-2">
+                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">Register</button>
               </div>
             </ul>
           </div>
         )}
-        {/* Mobile navbar end */}
+        {/*.........Mobile navbar end............*/}
       </div>
     </header>
   );
