@@ -79,7 +79,7 @@ function MultiType({ setFirst: setStateValue }) {
         </button>
       </div>
       <div className="w-10/12 mx-auto">
-        <h2 className={'absolute left-[35%] top-[16%] text-gray-300 z-0'}>
+        <h2 className={'absolute left-[35%] top-[16%] text-gray-300 z-0 md:block hidden'}>
           Rotate your mouse wheel for zoom & pen
         </h2>
         <Line className="z-10" data={data} options={options} />

@@ -2,14 +2,18 @@ import PageVisitsCard from "../adminPageComponents/PageVisitsCard";
 import StatusCard from "../adminPageComponents/StatusCard";
 import TrafficCard from "../adminPageComponents/TrafficCard";
 import LineChart from "../adminPageComponents/LineChart";
+import AllState from "../adminPageComponents/AllState";
 
 export default function Dashboard() {
   return (
     <>
-      <div className="bg-light-blue-500 px-3 md:px-8 h-40" />
-      <div className="px-3 md:px-8 -mt-24">
-        <div className="container mx-auto max-w-full my-7">
+      <div className="bg-light-blue-500 px-3 md:px-8 relative top-12" >
+      <div className="px-3 md:px-8">
+        <div className="container">
           <LineChart />
+        </div>
+        <div className="container mt-20">
+          <AllState />
         </div>
       </div>
       <div className="px-3 md:px-8">
@@ -70,7 +74,9 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+        </div>
+        
     </>
   );
 }
