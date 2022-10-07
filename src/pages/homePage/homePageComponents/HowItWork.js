@@ -7,8 +7,8 @@ import { TbBadge } from "react-icons/tb";
 
 const HowItWork = () => {
   return (
-    <div className="bg-[#F9FCFF]">
-      <div className="py-16 container mx-auto p-4">
+    <section>
+      <div className="py-10 container mx-auto p-4">
         <div className="text-center">
           <h1 className="text-3xl mb-3 font-bold text-primary">How It Works</h1>
           <p>
@@ -33,6 +33,7 @@ const HowItWork = () => {
               </div>
             </div>
           </div>
+
           <div className="card text-neutral-content">
             <div className="card-body items-center text-center">
               <FcSearch className="h-24 w-24" />
@@ -48,6 +49,7 @@ const HowItWork = () => {
               </div>
             </div>
           </div>
+
           <div className="card text-neutral-content">
             <div className="card-body items-center text-center">
               <HiOutlineBadgeCheck
@@ -68,7 +70,7 @@ const HowItWork = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

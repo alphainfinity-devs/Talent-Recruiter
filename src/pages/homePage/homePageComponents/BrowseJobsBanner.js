@@ -3,10 +3,10 @@ import { BsSearch } from "react-icons/bs";
 import searchImage from "../../../assets/images/search.png";
 const BrowseJobsBanner = () => {
   return (
-    <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center scroll-py-56 container mx-auto px-5">
+    <div className="bg-[#F9FCFF]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 py-16 items-center container mx-auto px-5">
         <div>
-          <h1 className="text-3xl text-start font-bold mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-accent mb-3 md:mb-5">
             <span className="text-primary">7,000+</span>
             Browse Jobs
           </h1>
@@ -26,7 +26,7 @@ const BrowseJobsBanner = () => {
           <img src={searchImage} alt="search people" />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
