@@ -130,19 +130,19 @@ const Featurejobs = () => {
 
         <div className="flex justify-center pt-16">
           <div className="btn-group gap-1">
-            <button className="btn-primary border-2 border-secondary btn-md text-white">
+            <button className="btn-primary border-2 hover:marker:border-secondary btn-md text-white">
               Prev
             </button>
-            <button className="btn-primary border-2 border-secondary btn-md text-white">
+            <button className="btn-primary border-2 hover:border-secondary btn-md text-white">
               1
             </button>
-            <button className="btn-primary border-2 border-secondary btn-md text-white">
+            <button className="btn-primary border-2 hover:border-secondary btn-md text-white">
               2
             </button>
-            <button className="btn-primary border-2 border-secondary btn-md text-white">
+            <button className="btn-primary border-2 hover:border-secondary btn-md text-white">
               3
             </button>
-            <button className="btn-primary border-2 border-secondary btn-md text-white">
+            <button className="btn-primary border-2 hover:border-secondary btn-md text-white">
               Next
             </button>
           </div>
