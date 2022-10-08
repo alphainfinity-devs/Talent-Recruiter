@@ -9,7 +9,7 @@ export default function LineChart() {
         <h4 className="bg-gradient-to-t from-primary to-secondary font-medium md:font-bold md:text-xl py-5 relative rounded-full text-center text-gray-200 text-xs top-[-55px] uppercase">
           Overview of Visitor
         </h4>
-        <h2 className="text-white text-3xl capitalize">{stateValue}</h2>
+        <h2 className="text-white text-3xl text-center capitalize">{stateValue}</h2>
       </div>
       <div>
         <div className="relative h-96">

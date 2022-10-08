@@ -19,9 +19,9 @@ const AllState = () => {
           <div className="stat-figure border-2 rounded-full p-5">
             <CgUserList size={28} className="text-success"/>
           </div>
-          <div className="stat-title">New Users</div>
+          <div className="stat-title">All Users</div>
           <div className="stat-value">4,200</div>
-          <div className="stat-desc">↗︎ 400 (22%)</div>
+          <div className="stat-desc"><i className="text-success text-3xl font-extrabold">↗︎</i> 400 (22%)</div>
         </div>
 
         <div className="stat">
@@ -30,7 +30,7 @@ const AllState = () => {
           </div>
           <div className="stat-title">New Registers</div>
           <div className="stat-value">1,200</div>
-          <div className="stat-desc">↘︎ 90 (14%)</div>
+          <div className="stat-desc"><i className="text-warning text-3xl font-extrabold">↘︎</i> 90 (14%)</div>
         </div>
       </div>
     </>
