@@ -12,6 +12,7 @@ import { MdLocationOn } from "react-icons/md";
 
 import { FiInstagram } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 const Footer = () => {
   return (
@@ -29,11 +30,9 @@ const Footer = () => {
           <div>
             <div>
               <div>
-                <Link to="#">
-                  <h2 className="text-4xl font-bold text-primary mb-5">
-                    Telent.
-                  </h2>
-                </Link>
+                <figure className="mb-4">
+                  <img src={logo} alt="logo" className="shrink-0 w-44" />
+                </figure>
                 <p className="mb-5 text-neutral">
                   Lorem Ipsum is simply dummy text of printing and type setting
                   industry. Lorem Ipsum been industry standard dummy text ever

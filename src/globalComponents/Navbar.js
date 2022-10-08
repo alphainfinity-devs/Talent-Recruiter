@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 const Navbar = () => {
   const [checkbox, setCheckbox] = useState(false);
@@ -9,9 +10,11 @@ const Navbar = () => {
       <div className="flex justify-between py-3 items-center container mx-auto px-5">
         {/*.......Website Logo........*/}
         <div>
-          <h2 className="text-4xl font-bold text-primary">
-            <Link to="/">Telent.</Link>
-          </h2>
+          <Link to="/">
+            <figure>
+              <img src={logo} alt="logo" className="shrink-0 w-44" />
+            </figure>
+          </Link>
         </div>
 
         {/*.......md and lg navbar start.......*/}
@@ -39,13 +42,13 @@ const Navbar = () => {
             <div className="flex gap-2">
               <Link
                 to="/login"
-                className="bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold px-4 py-2 border-2 hover:border-2"
+                className="btn rounded-none bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold px-4 py-2 border-2 hover:border-2"
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className="bg-primary hover:bg-white text-white border-primary hover:border-primary hover:text-primary font-bold px-4 py-2 border-2 hover:border-2"
+                className="btn rounded-none bg-primary hover:bg-white text-white border-primary hover:border-primary hover:text-primary font-bold px-4 py-2 border-2 hover:border-2"
               >
                 Register
               </Link>

@@ -19,10 +19,10 @@ const Register = () => {
         <div className="card-body">
           {/* ......social login button..... */}
           <div className="flex gap-2 mb-3">
-            <button className="btn rounded-none bg-white w-[49%] hover:bg-white hover:shadow-lg hover:border-primary hover:text-primary">
+            <button className="btn rounded-none border-primary border-2 text-primary bg-white w-[49%] hover:shadow-lg font-bold hover:bg-white hover:border-primary">
               Google
             </button>
-            <button className="btn rounded-none bg-white w-[49%] hover:bg-white hover:shadow-lg hover:border-primary hover:text-primary">
+            <button className="btn rounded-none border-primary border-2 text-primary bg-white w-[49%] hover:shadow-lg font-bold hover:bg-white hover:border-primary">
               Facebook
             </button>
           </div>
@@ -101,7 +101,7 @@ const Register = () => {
 
             {/* ..........Login Button.......... */}
             <input
-              className="btn btn-primary w-full max-w-xs text-white rounded-none hover:shadow-lg"
+              className="btn btn-primary font-bold w-full max-w-xs text-white rounded-none hover:shadow-lg"
               type="submit"
               value="Login"
             />

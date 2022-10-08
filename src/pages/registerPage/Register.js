@@ -19,14 +19,14 @@ const Register = () => {
         <div className="card-body">
           {/* ......social login button..... */}
           <div className="flex gap-2 mb-3">
-            <button className="btn rounded-none bg-white w-[49%] hover:bg-white hover:shadow-lg hover:border-primary hover:text-primary">
+            <button className="btn rounded-none border-primary border-2 text-primary bg-white w-[49%] hover:shadow-lg font-bold hover:bg-white hover:border-primary">
               Google
             </button>
-            <button className="btn rounded-none bg-white w-[49%] hover:bg-white hover:shadow-lg hover:border-primary hover:text-primary">
+            <button className="btn rounded-none border-primary border-2 text-primary bg-white w-[49%] hover:shadow-lg font-bold hover:bg-white hover:border-primary">
               Facebook
             </button>
           </div>
-          <div className="divider m-0">or</div>
+          <div className="divider m-0 border-primary">or</div>
           <form onSubmit={handleSubmit(onSubmit)}>
             {/*.........Name Input filed start........... */}
             <div className="form-control w-full max-w-xs">
