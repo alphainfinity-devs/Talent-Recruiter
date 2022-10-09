@@ -1,15 +1,24 @@
 import React, { useState } from "react";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
+import { ImCross } from "react-icons/im";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [checkbox, setCheckbox] = useState(false);
+  const [adminCheckbox, setAdminCheckbox] = useState(false);
 
   return (
     <header>
       <div className="flex justify-between py-3 items-center container mx-auto px-5">
+        <label
+          htmlFor="my-drawer-2"
+          className="btn btn-primary drawer-button lg:hidden"
+          onClick={() => setAdminCheckbox(!adminCheckbox)}>
+          {adminCheckbox ? <ImCross size={20}/> : <AiOutlineMenuUnfold  size={20}/>}
+        </label>
         {/*.......Website Logo........*/}
         <div>
-          <h2 className="text-4xl font-bold text-primary">Telent.</h2>
+          <h2 className="text-4xl font-bold text-primary">Talent.</h2>
         </div>
 
         {/*.......md and lg navbar start.......*/}

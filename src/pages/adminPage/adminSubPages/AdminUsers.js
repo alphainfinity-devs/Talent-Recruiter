@@ -15,18 +15,32 @@ const AdminUsers = () => {
       console.log("warning");
     }
   }, [actionValue]);
+  //write debounce function
+  useEffect(() => {
+    const getSearchValue = setTimeout(() => {
+      if (emailSearch) console.log(emailSearch, "do email Search");
+    }, 1000);
+    return () => clearTimeout(getSearchValue);
+  }, [emailSearch]);
+  const handleCheck = (e) => {
+    /* if (e.target.checked) {
+      setActionValue(e.target.value);
+    } else {
+      setActionValue("");
+    } */
+  };
 
   return (
-    <>
-      <div className="flex items-center justify-center my-4">
+    <div className="m-0 relative md:top-0">
+      <div className="flex items-center justify-center md:my-14 my-3">
         <FaUsersCog size={40} className="mr-2" />
         <h2 className="md:text-3xl uppercase md:font-extrabold text-xl text-transparent bg-clip-text bg-gradient-to-tr from-primary to-secondary">
           All Registered Users
         </h2>
       </div>
-      <div className="flex md:flex-row flex-col justify-between">
+      <div className="flex md:flex-row flex-col items-center md:justify-between md:my-6 my-2 px-2">
         <select
-          className="select select-ghost w-full max-w-xs my-2"
+          className="select select-ghost w-full max-w-xs md:my-0 my-3"
           defaultValue="noValue">
           <option value={"noValue"} disabled>
             Filter User Role
@@ -38,17 +52,17 @@ const AdminUsers = () => {
         <input
           type="text"
           placeholder="Search by Email"
-          className="input input-bordered input-primary w-full max-w-xs"
+          className="input input-bordered input-primary w-full max-w-xs md:my-0 my-3"
           name="search"
           value={emailSearch}
           onChange={setEmailSearch}
         />
       </div>
-      <div className="overflow-x-auto w-full">
-        <table className="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table table-zebra w-full">
           <thead>
             <tr>
-              <th>Name</th>
+              <th className="relative">Name</th>
               <th>Role</th>
               <th>Email</th>
               <th>Action</th>
@@ -89,6 +103,7 @@ const AdminUsers = () => {
                       <span className="label-text mx-2">Make Admin</span>
                       <input
                         type="checkbox"
+                        onChange={handleCheck}
                         // checked
                         className="checkbox checkbox-accent"
                       />
@@ -97,7 +112,7 @@ const AdminUsers = () => {
                 ) : (
                   <select
                     onChange={(e) => setActionValue(e.target.value)}
-                    className="select select-ghost w-full"
+                    className="select select-ghost"
                     defaultValue={"defaultValue"}>
                     <option disabled value="defaultValue">
                       Select Action
@@ -123,8 +138,13 @@ const AdminUsers = () => {
             </tr>
           </tbody>
         </table>
+        <div className="flex justify-center btn-group mt-5">
+          <button className="btn">«</button>
+          <span className="btn">Page 22</span>
+          <button className="btn">»</button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

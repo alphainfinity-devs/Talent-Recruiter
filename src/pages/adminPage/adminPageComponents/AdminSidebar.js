@@ -1,17 +1,28 @@
-import { NavLink } from "react-router-dom";
-import {GoPlug} from "react-icons/go";
+import { NavLink, useLocation } from "react-router-dom";
+import { GoPlug } from "react-icons/go";
+import { IoBookmarksOutline } from "react-icons/io5";
+import { MdPostAdd } from "react-icons/md";
+import {BsFillFileEarmarkPostFill} from "react-icons/bs";
 
 export default function AdminSidebar() {
+  const location = useLocation().pathname;
   return (
     <>
-      <div className="flex h-screen-[-200px] flex-col justify-between border-r bg-white w-1/3">
+      <div className="flex h-screen-[-100px] flex-col justify-between border-r bg-white md:w-full w-[75%]">
         <div className="px-4 py-6">
           <nav className="mt-6 flex flex-col space-y-1">
             <NavLink
               to="dashboard"
-              className="flex items-center md:text-sm text-xs md:font-medium rounded-lg bg-gray-100 px-4 py-2 text-gray-700">
+              className={(props) => {
+                return `${
+                  (props.isActive ||
+                    location === "/about" ||
+                    location === "/about/") &&
+                  "bg-gray-300"
+                } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+              }}>
               <svg
-                className="mr-2 h-5 w-5 opacity-75 md:block hidden"
+                className="mr-2 h-5 w-5 opacity-75"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -31,97 +42,20 @@ export default function AdminSidebar() {
               Dashboard
             </NavLink>
 
-            <details className="group">
-              <summary className="flex cursor-pointer items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 opacity-75 md:block hidden"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-
-                <span className="ml-3 md:text-sm text-xs md:font-medium">
-                  Teams
-                </span>
-
-                <span className="ml-auto shrink-0 transition duration-300 group-open:-rotate-180">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 md:block hidden"
-                    viewBox="0 0 20 20"
-                    fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </span>
-              </summary>
-
-              <nav className="mt-1.5 ml-8 flex flex-col">
-                <NavLink
-                  to="/"
-                  className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 opacity-75 md:block hidden"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
-                    />
-                  </svg>
-                  <span className="md:ml-3 md:text-sm text-xs md:font-medium">
-                    Banned Users
-                  </span>
-                </NavLink>
-
-                <NavLink
-                  to="/"
-                  className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 opacity-75 md:block hidden"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-
-                  <span className="md:ml-3 md:text-sm text-xs md:font-medium">
-                    Calendar
-                  </span>
-                </NavLink>
-              </nav>
-            </details>
-
             <NavLink
               to="users"
-              className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+              className={(props) => {
+                return `${
+                  props.isActive && "bg-gray-300"
+                } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+              }}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                className="h-5 w-5 opacity-75 md:block hidden"
+                className="h-5 w-5 opacity-75"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
@@ -137,19 +71,39 @@ export default function AdminSidebar() {
             </NavLink>
 
             <NavLink
-              to="/"
-              className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-              <GoPlug size={20} className="opacity-75 md:block hidden"/>
+              to="customize"
+              className={(props) => {
+                return `${
+                  props.isActive && "bg-gray-300"
+                } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+              }}>
+              <GoPlug size={20} className="opacity-75" />
               <span className="ml-3 md:text-sm text-xs md:font-medium">
                 Customize
               </span>
             </NavLink>
             <NavLink
-              to="/"
-              className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+              to="jobs"
+              className={(props) => {
+                return `${
+                  props.isActive && "bg-gray-300"
+                } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+              }}>
+              <IoBookmarksOutline size={20} className="opacity-75" />
+              <span className="ml-3 md:text-sm text-xs md:font-medium">
+                Jobs
+              </span>
+            </NavLink>
+            <NavLink
+              to="email-campaign"
+              className={(props) => {
+                return `${
+                  props.isActive && "bg-gray-300"
+                } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+              }}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 opacity-75 md:block hidden"
+                className="h-5 w-5 opacity-75"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -161,15 +115,78 @@ export default function AdminSidebar() {
                 />
               </svg>
               <span className="ml-3 md:text-sm text-xs md:font-medium">
-                Campaign
+                Email Campaign
               </span>
             </NavLink>
+            <details className="group">
+              <summary className="flex cursor-pointer items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                <BsFillFileEarmarkPostFill size={20} className="opacity-75"/>
+                <span className="ml-3 md:text-sm text-xs md:font-medium">
+                  Posts
+                </span>
+
+                <span className="ml-auto shrink-0 transition duration-300 group-open:-rotate-180">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <nav className="mt-1.5 ml-8 flex flex-col">
+                <NavLink
+                  to="admin-add-post"
+                  className={(props) => {
+                    return `${
+                      props.isActive && "bg-gray-300"
+                    } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+                  }}>
+               <MdPostAdd size={20} className="opacity-75" />
+                  <span className="md:ml-3 md:text-sm text-xs md:font-medium">
+                    Add Post
+                  </span>
+                </NavLink>
+
+                <NavLink
+                  to="admin-all-posts"
+                  className={(props) => {
+                    return `${
+                      props.isActive && "bg-gray-300"
+                    } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+                  }}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 opacity-75"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+
+                  <span className="md:ml-3 md:text-sm text-xs md:font-medium">
+                    All Posts
+                  </span>
+                </NavLink>
+              </nav>
+            </details>
 
             <details className="group">
               <summary className="flex cursor-pointer items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 opacity-75 md:block hidden"
+                  className="h-5 w-5 opacity-75"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -186,7 +203,7 @@ export default function AdminSidebar() {
                 <span className="ml-auto shrink-0 transition duration-300 group-open:-rotate-180">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 md:block hidden"
+                    className="h-5 w-5"
                     viewBox="0 0 20 20"
                     fill="currentColor">
                     <path
@@ -200,11 +217,15 @@ export default function AdminSidebar() {
 
               <nav className="mt-1.5 ml-8 flex flex-col">
                 <NavLink
-                  to="/"
-                  className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                  to="details"
+                  className={(props) => {
+                    return `${
+                      props.isActive && "bg-gray-300"
+                    } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+                  }}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 opacity-75 md:block hidden"
+                    className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -219,13 +240,16 @@ export default function AdminSidebar() {
                     Details
                   </span>
                 </NavLink>
-
                 <NavLink
-                  to="/"
-                  className="flex items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                  to="admin-security"
+                  className={(props) => {
+                    return `${
+                      props.isActive && "bg-gray-300"
+                    } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+                  }}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 opacity-75 md:block hidden"
+                    className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -236,7 +260,6 @@ export default function AdminSidebar() {
                       d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                     />
                   </svg>
-
                   <span className="ml-3 md:text-sm text-xs md:font-medium">
                     Security
                   </span>
@@ -247,7 +270,7 @@ export default function AdminSidebar() {
                   className="flex w-full items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 opacity-75 md:block hidden"
+                    className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -278,8 +301,6 @@ export default function AdminSidebar() {
             <div className="ml-1.5">
               <p className="text-xs">
                 <strong className="block font-medium">Eric Frusciante</strong>
-
-                <span> eric@frusciante.com </span>
               </p>
             </div>
           </span>
