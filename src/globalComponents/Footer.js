@@ -1,7 +1,7 @@
 import React from "react";
-import ScrollToTop from "react-scroll-to-top";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { GrFacebookOption } from "react-icons/gr";
+import ScrollToTop from "react-scroll-to-top";
 import {
   AiOutlineGooglePlus,
   AiOutlineTwitter,
@@ -17,11 +17,18 @@ import logo from "../assets/images/logo.png";
 const Footer = () => {
   return (
     <footer>
+      {/* ......scroll to top button..... */}
       <ScrollToTop
         smooth
-        top="20"
         color="white"
-        className="bg-primary text-white text-center p-[6px]"
+        width="20px"
+        height="30px"
+        style={{
+          backgroundColor: "tomato",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       />
 
       <div className="bg-[#F9FCFF] py-16">
