@@ -1,7 +1,7 @@
 import React from "react";
-import ScrollToTop from "react-scroll-to-top";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { GrFacebookOption } from "react-icons/gr";
+import ScrollToTop from "react-scroll-to-top";
 import {
   AiOutlineGooglePlus,
   AiOutlineTwitter,
@@ -12,28 +12,34 @@ import { MdLocationOn } from "react-icons/md";
 
 import { FiInstagram } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 const Footer = () => {
   return (
     <footer>
+      {/* ......scroll to top button..... */}
       <ScrollToTop
         smooth
-        top="20"
         color="white"
-        className="bg-primary text-white text-center p-[6px]"
+        width="20px"
+        height="30px"
+        style={{
+          backgroundColor: "tomato",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       />
 
-      <div className="bg-[#FFFFFF] py-16">
+      <div className="bg-[#F9FCFF] py-16">
         <div className="grid px-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 container mx-auto text-base-100">
           {/* .......footer info start........ */}
           <div>
             <div>
               <div>
-                <Link to="#">
-                  <h2 className="text-4xl font-bold text-primary mb-5">
-                    Telent.
-                  </h2>
-                </Link>
+                <figure className="mb-4">
+                  <img src={logo} alt="logo" className="shrink-0 w-44" />
+                </figure>
                 <p className="mb-5 text-neutral">
                   Lorem Ipsum is simply dummy text of printing and type setting
                   industry. Lorem Ipsum been industry standard dummy text ever
