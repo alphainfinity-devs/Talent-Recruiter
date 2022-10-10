@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import Footer from "./globalComponents/Footer";
 import Navbar from "./globalComponents/Navbar";
+import ApplicantProfile from "./pages/applicantPage/ApplicantProfile";
+
 import AboutPage from "./pages/aboutPage/AboutPage";
 import ContactPage from "./pages/contactUsPage/ContactPage";
 import Login from "./pages/loginPage/Login";
