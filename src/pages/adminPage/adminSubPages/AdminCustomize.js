@@ -10,34 +10,59 @@ const AdminCustomize = () => {
           Customize Option
         </h2>
       </div>
-      <div className="mockup-window border bg-base-300">
-        <div className="flex justify-center px-4 py-16 bg-base-200">
-        <div className="form-control">
-  <label className="label cursor-pointer">
-    <span className="label-text">Remember me</span>
-    <input type="checkbox" className="toggle toggle-primary" checked />
-  </label>
-</div>
+      <div className="mockup-window border-2 border-secondary bg-success">
+        <div className="px-4 py-16 bg-base-200">
+          
 
-         
-<div className="form-control">
-  <label className="label cursor-pointer">
-    <span className="label-text">Remember me</span> 
-    <input type="checkbox"  className="checkbox checkbox-primary" />
-  </label>
-</div>
-          <label htmlFor="saturation">Saturation control
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value="20"
-              className="range"
-              />
-     
-              </label>
+          <div className="stack">
+            <div className="card shadow-md bg-primary text-primary-content">
+              <div className="card-body">
+              <label className="flex justify-center items-center">
+            Theme Font Family
+            <div
+              className="tooltip cursor-pointer overflow-visible z-10"
+              data-tip={"Only support Google font family"}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="stroke-current flex-shrink-0 w-6 h-6 mx-3">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <input type="text" className="py-1 rounded px-2" placeholder='i.e."Sofia", sans-serif' />
+          </label>
               </div>
             </div>
+            <div className="card shadow bg-primary text-primary-content">
+              <div className="card-body"></div>
+            </div>
+            <div className="card shadow-sm bg-primary text-primary-content">
+              <div className="card-body"></div>
+            </div>
+          </div>
+          <div className="stack">
+            <div className="card shadow-md bg-primary text-primary-content">
+              <div className="card-body">
+                <label className="flex items-center">
+                  Theme Background
+                  <input type="color" value="#f6f82" id="colorPicker" />
+                </label>
+              </div>
+            </div>
+            <div className="card shadow bg-primary text-primary-content">
+              <div className="card-body"></div>
+            </div>
+            <div className="card shadow-sm bg-primary text-primary-content">
+              <div className="card-body"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
