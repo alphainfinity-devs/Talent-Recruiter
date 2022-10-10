@@ -4,6 +4,8 @@ import HomePage from "./pages/homePage/HomePage";
 import Footer from "./globalComponents/Footer";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./globalComponents/Navbar";
+import ApplicantProfile from "./pages/applicantPage/ApplicantProfile";
+
 function App() {
   return (
     <>
