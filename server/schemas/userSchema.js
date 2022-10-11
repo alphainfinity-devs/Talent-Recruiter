@@ -11,18 +11,19 @@ const userSchema = mongoose.Schema({
   },
   password: {
     type: String || Number,
-    required: true,
+    required: true, 
   },
   status: {
     type: String,
     required: true,
     enum: ["active", "inactive"],
   },
-  todos: [
+  jobs: [
     {
       type: mongoose.Types.ObjectId,
       ref: "Todo",
     },
   ],
 });
-module.exports = userSchema;
+
+export default mongoose.models.User || mongoose.model('User', userSchema)
