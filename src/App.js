@@ -1,8 +1,8 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import Footer from "./globalComponents/Footer";
-import { Routes, Route } from "react-router-dom";
 import Navbar from "./globalComponents/Navbar";
 import AdminPage from "./pages/adminPage/AdminPage";
 import AdminDashboard from "./pages/adminPage/adminSubPages/AdminDashboard";
@@ -15,6 +15,12 @@ import AdminEmailCampaign from "./pages/adminPage/adminSubPages/AdminEmailCampai
 import AdminAllPosts from "./pages/adminPage/adminSubPages/AdminAllPosts";
 import AdminAddPost from "./pages/adminPage/adminSubPages/AdminAddPost";
 import AdminSecurity from "./pages/adminPage/adminSubPages/AdminSecurity";
+import ApplicantProfile from "./pages/applicantPage/ApplicantProfile";
+import AboutPage from "./pages/aboutPage/AboutPage";
+import ContactPage from "./pages/contactUsPage/ContactPage";
+import Login from "./pages/loginPage/Login";
+import Register from "./pages/registerPage/Register";
+
 function App() {
   return (
     <>
@@ -37,7 +43,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-
+      
       {/* for toastify popup */}
       <ToastContainer
         position="top-center"

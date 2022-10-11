@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
 import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../assets/images/logo.png";
+
 
 const Navbar = () => {
   const [checkbox, setCheckbox] = useState(false);
@@ -19,6 +22,11 @@ const Navbar = () => {
         {/*.......Website Logo........*/}
         <div>
           <h2 className="text-4xl font-bold text-primary">Talent.</h2>
+          <Link to="/">
+            <figure>
+              <img src={logo} alt="logo" className="shrink-0 w-44" />
+            </figure>
+          </Link>
         </div>
 
         {/*.......md and lg navbar start.......*/}
@@ -26,22 +34,36 @@ const Navbar = () => {
           <div className="flex items-center justify-between sm:gap-10">
             <div>
               <ul className="flex md:gap-3 lg:gap-6">
-                <li className="font-bold">Home</li>
+                <li className="font-bold">
+                  <NavLink to="/home">Home</NavLink>
+                </li>
                 <li className="font-bold">
                   <NavLink to="/about">About</NavLink>
                 </li>
-                <li className="font-bold">Reviews</li>
-                <li className="font-bold">Blogs</li>
-                <li className="font-bold">Contact</li>
+                <li className="font-bold">
+                  <NavLink to="/review">Reviews</NavLink>
+                </li>
+                <li className="font-bold">
+                  <NavLink to="/blogs">Blogs</NavLink>
+                </li>
+                <li className="font-bold">
+                  <NavLink to="/contact">Contact</NavLink>
+                </li>
               </ul>
             </div>
             <div className="flex gap-2">
-              <button className="px-4 bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold border-2 hover:border-2">
+              <Link
+                to="/login"
+                className="btn rounded-none bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold px-4 py-2 border-2 hover:border-2"
+              >
                 Login
-              </button>
-              <button className="bg-primary hover:bg-white text-white border-primary hover:border-primary hover:text-primary font-bold px-4 py-2 border-2 hover:border-2">
+              </Link>
+              <Link
+                to="/register"
+                className="btn rounded-none bg-primary hover:bg-white text-white border-primary hover:border-primary hover:text-primary font-bold px-4 py-2 border-2 hover:border-2"
+              >
                 Register
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -71,15 +93,29 @@ const Navbar = () => {
         {checkbox && (
           <div className="absolute top-20 inset-x-4 z-10 md:hidden">
             <ul className="menu bg-base-100 p-5 shadow-lg rounded-box border-2 w-full gap-y-3">
-              <li className="font-bold">Home</li>
-              <li className="font-bold">About</li>
-              <li className="font-bold">Reviews</li>
-              <li className="font-bold">Blogs</li>
-              <li className="font-bold">Contact</li>
+              <li className="font-bold">
+                <NavLink to="/home">Home</NavLink>
+              </li>
+              <li className="font-bold">
+                <NavLink to="/about">About</NavLink>
+              </li>
+              <li className="font-bold">
+                <NavLink to="/review">Reviews</NavLink>
+              </li>
+              <li className="font-bold">
+                <NavLink to="/blogs">Blogs</NavLink>
+              </li>
+              <li className="font-bold">
+                <NavLink to="/contact">Contact</NavLink>
+              </li>
 
               <div className="flex gap-2">
-                <button className="btn btn-primary">Login</button>
-                <button className="btn btn-primary">Register</button>
+                <Link to="/login" className="btn btn-primary">
+                  Login
+                </Link>
+                <Link to="/register" className="btn btn-primary">
+                  Register
+                </Link>
               </div>
             </ul>
           </div>

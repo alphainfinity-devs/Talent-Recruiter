@@ -1,5 +1,5 @@
 import React from "react";
-// bg-indigo-500
+
 const Newsletter = () => {
   return (
     <section className="bg-primary p-10 max-w-4xl mx-auto py-16 px-5">
