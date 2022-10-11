@@ -5,16 +5,16 @@ const SearchComponent = () => {
     <section>
       <div className="m-[-100px] container mx-auto px-5 pb-40">
         <div className="bg-primary shadow-lg z-10 p-10">
-          <form className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <form className="grid sm:grid-cols-2 md:grid-cols-4 gap-2">
             {/*........keyword type input........*/}
             <input
               type="text"
               placeholder="Search Keyword"
-              className="input w-full max-w-xs"
+              className="input w-full max-w-xs rounded-none"
             />
             {/*........selecte location input........*/}
-            <select className="select w-full max-w-xs">
-              <option disabled selected>
+            <select defaultValue="noValue" className="select w-full max-w-xs rounded-none">
+              <option value="noValue" disabled >
                 Location
               </option>
               <option>Bangladesh</option>
@@ -26,8 +26,8 @@ const SearchComponent = () => {
             </select>
 
             {/*.......selecte category input.......*/}
-            <select className="select w-full max-w-xs">
-              <option disabled selected>
+            <select defaultValue="noValue" className="select w-full max-w-xs rounded-none">
+              <option value="noValue" disabled>
                 Category
               </option>
               <option>Designer</option>
@@ -41,7 +41,7 @@ const SearchComponent = () => {
             <input
               type="submit"
               value="Search"
-              className="w-full bg-secondary hover:bg-primary py-2 text-white border-white cursor-pointer hover:border-white font-bold border-2 hover:border-2"
+              className="btn rounded-none w-full bg-secondary hover:bg-primary py-2 text-white border-white cursor-pointer hover:border-white font-bold border-2 hover:border-2"
             />
           </form>
         </div>

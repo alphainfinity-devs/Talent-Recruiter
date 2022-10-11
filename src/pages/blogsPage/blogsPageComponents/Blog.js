@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RecruiterPageComponents = () => {
+const Blog = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const RecruiterPageComponents = () => {
     );
 };
 
-export default RecruiterPageComponents;
+export default Blog;
