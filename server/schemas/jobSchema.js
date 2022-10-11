@@ -20,11 +20,11 @@ const jobSchema = mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Category',
     required: false
-},
+  },
   company_name: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: false
-  },
+  },  
 });
 export default mongoose.models.Job || mongoose.model('Job', jobSchema)
