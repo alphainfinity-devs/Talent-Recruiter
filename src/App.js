@@ -43,7 +43,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-      
+
       {/* for toastify popup */}
       <ToastContainer
         position="top-center"
