@@ -21,10 +21,10 @@ const Banner = () => {
             </p>
 
             <div className="flex gap-2 mb-5">
-              <button className="px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+              <button className="btn rounded-none px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
                 Apply Now
               </button>
-              <button className="px-4 py-3 bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold border-2 hover:border-2">
+              <button className="btn rounded-none px-4 py-3 bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold border-2 hover:border-2">
                 Post a Job
               </button>
             </div>
