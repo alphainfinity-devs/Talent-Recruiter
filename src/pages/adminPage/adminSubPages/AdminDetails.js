@@ -3,6 +3,7 @@ import React from "react";
 const AdminDetails = () => {
   return (
     <>
+      <div className="h-fit">
       <figure className="w-full">
         <img
           src="https://placeimg.com/400/225/arch"
@@ -18,7 +19,7 @@ const AdminDetails = () => {
         </div>
       </div>
       <div className="flex justify-center relative top-[-20px]">
-        <div className="flex py-4 justify-center w-[600px] rounded-[10px] bg-primary shadow-[35px_35px_70px_#308e3c,-35px_-35px_70px_#42c051]">
+        <div className="flex py-4 justify-center w-[600px] bg-opacity-70 rounded-[10px] bg-primary shadow-[5px_5px_0px_#308e3c,-5px_-5px_0px_#42c051]">
           <div>
           <h3 className="my-2 text-xl">Name: Jibon Ahmed</h3>
           <p className="my-2 text-xl">Bio: Web developer</p>
@@ -28,6 +29,7 @@ const AdminDetails = () => {
           <button className="btn btn-primary rounder-full">Update</button>
          </div>
         </div>
+      </div>
       </div>
     </>
   );
