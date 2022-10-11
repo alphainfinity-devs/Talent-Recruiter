@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-  name: {
+  email: {
     type: String,
     required: true,
   },
@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
   jobs: [
     {
       type: mongoose.Types.ObjectId,
-      ref: "Todo",
+      ref: "Job",
     },
   ],
 });
