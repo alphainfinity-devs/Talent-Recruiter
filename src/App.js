@@ -28,6 +28,7 @@ function App() {
           <Route path="jobs" element={<AdminJobs />} />
           <Route path="customize" element={<AdminCustomize />} />
           <Route path="admin-all-posts" element={<AdminAllPosts />} />
+          <Route path="admin-add-post/:id" element={<AdminAddPost />} />
           <Route path="admin-add-post" element={<AdminAddPost />} />
           <Route path="admin-security" element={<AdminSecurity />} />
           <Route path="email-campaign" element={<AdminEmailCampaign />} />

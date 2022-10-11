@@ -6,7 +6,7 @@ export default function AdminDashboard() {
     <>
       <div className="bg-light-blue-500 px-3 md:px-8 relative md:top-20 top-28">
         <div className="px-3 md:px-8">
-          <div className="container">
+          <div className="container h-max">
             <LineChart />
           </div>
           <div className="container my-20">
