@@ -15,6 +15,12 @@ import AdminEmailCampaign from './pages/adminPage/adminSubPages/AdminEmailCampai
 import AdminAllPosts from './pages/adminPage/adminSubPages/AdminAllPosts';
 import AdminAddPost from './pages/adminPage/adminSubPages/AdminAddPost';
 import AdminSecurity from './pages/adminPage/adminSubPages/AdminSecurity';
+import AboutPage from './pages/aboutPage/AboutPage';
+import ContactPage from './pages/contactUsPage/ContactPage';
+import Login from './pages/loginPage/Login';
+import Register from './pages/registerPage/Register';
+import ReviewsPage from './pages/reviewPage/ReviewsPage';
+import BlogsPage from './pages/blogsPage/BlogsPage';
 import RecruiterDashboard from './pages/recruiterPage/RecruiterDashboard';
 import AppliedJobs from './pages/recruiterPage/AppliedJobs';
 import Recruiter from './pages/recruiterPage/Recruiter';
@@ -26,29 +32,44 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/about' element={<AdminPage />}>
-          {/* admin dashboard start */}
+        <Route path='/about' element={<AboutPage />} />
+
+        {/* admin dashboard start */}
+        <Route path='/admin-dashboard' element={<AdminPage />}>
           <Route path='dashboard' element={<AdminDashboard />} />
           <Route path='users' element={<AdminUsers />} />
           <Route path='jobs' element={<AdminJobs />} />
           <Route path='customize' element={<AdminCustomize />} />
           <Route path='admin-all-posts' element={<AdminAllPosts />} />
+          <Route path='admin-add-post/:id' element={<AdminAddPost />} />
           <Route path='admin-add-post' element={<AdminAddPost />} />
           <Route path='admin-security' element={<AdminSecurity />} />
           <Route path='email-campaign' element={<AdminEmailCampaign />} />
           <Route path='details' element={<AdminDetails />} />
-          {/* admin dashboard end */}
         </Route>
-        {/* recruiter dashboard start */}
-        <Route path='/review' element={<RecruiterDashboard />}>
-          <Route path='/review/appliedJobs' element={<AppliedJobs />}></Route>
-          <Route path='/review/recruiter' element={<Recruiter />}></Route>
-          <Route path='/review/addjobs' element={<AddJobs />}></Route>
+        {/* admin dashboard end */}
+
+        {/* recruiter dashboard end */}
+        <Route path='/recruiterDashboard' element={<RecruiterDashboard />}>
+          <Route index element={<AppliedJobs />}></Route>
+          <Route path='appliedJobs' element={<AppliedJobs />}></Route>
+          <Route path='recruiter' element={<Recruiter />}></Route>
+          <Route path='addJobs' element={<AddJobs />}></Route>
         </Route>
         {/* recruiter dashboard end */}
+
+        {/* Others Page routes start */}
+        <Route path='/reviews' element={<ReviewsPage />} />
+        <Route path='/blogs' element={<BlogsPage />} />
+        <Route path='/contact' element={<ContactPage />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        {/* Others Page routes End */}
+
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
+
       {/* for toastify popup */}
       <ToastContainer
         position='top-center'

@@ -96,6 +96,11 @@ const AdminJobs = () => {
             </tr>
           </tbody>
         </table>
+        <div className="flex justify-center btn-group mt-5">
+          <button className="btn">«</button>
+          <span className="btn">Page 22</span>
+          <button className="btn">»</button>
+        </div>
       </div>
     </>
   );

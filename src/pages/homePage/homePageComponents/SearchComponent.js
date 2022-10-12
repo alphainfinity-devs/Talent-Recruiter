@@ -13,8 +13,8 @@ const SearchComponent = () => {
               className="input w-full max-w-xs rounded-none"
             />
             {/*........selecte location input........*/}
-            <select className="select w-full max-w-xs rounded-none">
-              <option disabled selected>
+            <select defaultValue="noValue" className="select w-full max-w-xs rounded-none">
+              <option value="noValue" disabled >
                 Location
               </option>
               <option>Bangladesh</option>
@@ -26,8 +26,8 @@ const SearchComponent = () => {
             </select>
 
             {/*.......selecte category input.......*/}
-            <select className="select w-full max-w-xs rounded-none">
-              <option disabled selected>
+            <select defaultValue="noValue" className="select w-full max-w-xs rounded-none">
+              <option value="noValue" disabled>
                 Category
               </option>
               <option>Designer</option>

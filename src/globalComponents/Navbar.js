@@ -1,125 +1,140 @@
-import React, { useState } from 'react';
-import { AiOutlineMenuUnfold } from 'react-icons/ai';
-import { ImCross } from 'react-icons/im';
-import { Link, NavLink } from 'react-router-dom';
-import logo from '../assets/images/logo.png';
+import React, { useState } from "react";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
+import { ImCross } from "react-icons/im";
+import { NavLink } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 const Navbar = () => {
   const [checkbox, setCheckbox] = useState(false);
   const [adminCheckbox, setAdminCheckbox] = useState(false);
-
+  const [ifLoggedIn] = useState(true); //just for testing and design confirmation
   return (
     <header>
-      <div className='flex justify-between py-3 items-center container mx-auto px-5'>
+      <div className="flex justify-between py-3 items-center container mx-auto px-5">
+        {/* any dashboard hamburger menu icon start */}
         <label
-          htmlFor='my-drawer-2'
-          className='btn btn-primary drawer-button lg:hidden'
-          onClick={() => setAdminCheckbox(!adminCheckbox)}
-        >
+          htmlFor="my-drawer-2"
+          className="btn btn-primary drawer-button lg:hidden"
+          onClick={() => setAdminCheckbox(!adminCheckbox)}>
           {adminCheckbox ? (
             <ImCross size={20} />
           ) : (
             <AiOutlineMenuUnfold size={20} />
           )}
         </label>
+        {/* any dashboard hamburger menu icon End */}
         {/*.......Website Logo........*/}
         <div>
-          <Link to='/'>
+          <NavLink
+            className={"cursor-pointer hover:bg-primary bg-opacity-90"}
+            to="/">
             <figure>
-              <img src={logo} alt='logo' className='shrink-0 w-44' />
+              <img src={logo} alt="logo" className="shrink-0 w-44" />
             </figure>
-          </Link>
+          </NavLink>
         </div>
 
         {/*.......md and lg navbar start.......*/}
-        <div className='hidden md:block'>
-          <div className='flex items-center justify-between sm:gap-10'>
+        <div className="hidden md:block">
+          <div className="flex items-center justify-between sm:gap-10">
             <div>
-              <ul className='flex md:gap-3 lg:gap-6'>
-                <li className='font-bold'>
-                  <NavLink to='/home'>Home</NavLink>
+              <ul className="flex md:gap-3 lg:gap-6">
+                <li className="font-bold">
+                 <NavLink to="/">Home</NavLink>
                 </li>
-                <li className='font-bold'>
-                  <NavLink to='/about'>About</NavLink>
+                <li className="font-bold">
+                  <NavLink to="/about">About</NavLink>
                 </li>
-                <li className='font-bold'>
-                  <NavLink to='/review'>Reviews</NavLink>
+                <li className="font-bold">
+                  <NavLink to="/reviews">Reviews</NavLink>
                 </li>
-                <li className='font-bold'>
-                  <NavLink to='/blogs'>Blogs</NavLink>
+                <li className="font-bold">
+                  <NavLink to="/blogs">Blogs</NavLink>
                 </li>
-                <li className='font-bold'>
-                  <NavLink to='/contact'>Contact</NavLink>
+                <li className="font-bold">
+                  <NavLink to="/contact">Contact</NavLink>
                 </li>
               </ul>
             </div>
-            <div className='flex gap-2'>
-              <Link
-                to='/login'
-                className='btn rounded-none bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold px-4 py-2 border-2 hover:border-2'
-              >
-                Login
-              </Link>
-              <Link
-                to='/register'
-                className='btn rounded-none bg-primary hover:bg-white text-white border-primary hover:border-primary hover:text-primary font-bold px-4 py-2 border-2 hover:border-2'
-              >
-                Register
-              </Link>
+            <div className="flex gap-2">
+              {ifLoggedIn ? (
+                <NavLink to="/dashboard" className="btn btn-primary">
+                  Dashboard
+                </NavLink>
+              ) : (
+                <>
+                  <NavLink
+                    to="/login"
+                    className="btn rounded-none bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold px-4 py-2 border-2 hover:border-2">
+                    Login
+                  </NavLink>
+                  <NavLink
+                    to="/register"
+                    className="btn rounded-none bg-primary hover:bg-white text-white border-primary hover:border-primary hover:text-primary font-bold px-4 py-2 border-2 hover:border-2">
+                    Register
+                  </NavLink>
+                </>
+              )}
             </div>
           </div>
         </div>
         {/*........md and lg navbar start.........*/}
 
         {/*.........Mobile navbar start..........*/}
-        <label className='btn bg-white hover:bg-white px-3 swap swap-rotate border-2 md:hidden'>
-          <input type='checkbox' onClick={() => setCheckbox(!checkbox)} />
+        <label className="btn bg-white hover:bg-white px-3 swap swap-rotate border-2 md:hidden">
+          <input type="checkbox" onClick={() => setCheckbox(!checkbox)} />
           <svg
-            className='swap-off'
-            xmlns='http://www.w3.org/2000/svg'
-            width='32'
-            height='32'
-            viewBox='0 0 512 512'
-          >
-            <path d='M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z' />
+            className="swap-off"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 512 512">
+            <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
           </svg>
           <svg
-            className='swap-on'
-            xmlns='http://www.w3.org/2000/svg'
-            width='32'
-            height='32'
-            viewBox='0 0 512 512'
-          >
-            <polygon points='400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49' />
+            className="swap-on"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 512 512">
+            <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
           </svg>
         </label>
 
         {checkbox && (
-          <div className='absolute top-20 inset-x-4 z-10 md:hidden'>
-            <ul className='menu bg-base-100 p-5 shadow-lg rounded-box border-2 w-full gap-y-3'>
-              <li className='font-bold'>
-                <NavLink to='/home'>Home</NavLink>
+          <div className="absolute top-20 inset-x-4 z-10 md:hidden">
+            <ul className="menu bg-base-100 p-5 shadow-lg rounded-box border-2 w-full gap-y-3">
+              <li className="font-bold">
+                <NavLink to="/">Home</NavLink>
               </li>
-              <li className='font-bold'>
-                <NavLink to='/about'>About</NavLink>
+              <li className="font-bold">
+                <NavLink to="/about">About</NavLink>
               </li>
-              <li className='font-bold'>
-                <NavLink to='/review'>Reviews</NavLink>
+              <li className="font-bold">
+                <NavLink to="/reviews">Reviews</NavLink>
               </li>
-              <li className='font-bold'>
-                <NavLink to='/blogs'>Blogs</NavLink>
+              <li className="font-bold">
+                <NavLink to="/blogs">Blogs</NavLink>
               </li>
-              <li className='font-bold'>
-                <NavLink to='/contact'>Contact</NavLink>
+              <li className="font-bold">
+                <NavLink to="/contact">Contact</NavLink>
               </li>
 
-              <div className='flex gap-2'>
-                <Link to='/login' className='btn btn-primary'>
-                  Login
-                </Link>
-                <Link to='/register' className='btn btn-primary'>
-                  Register
-                </Link>
+              <div className="flex gap-2">
+                {ifLoggedIn ? (
+                  <NavLink to="/dashboard" className="btn btn-primary">
+                    Dashboard
+                  </NavLink>
+                ) : (
+                  <>
+                    <NavLink to="/login" className="btn btn-primary">
+                      Login
+                    </NavLink>
+                    <NavLink to="/register" className="btn btn-primary">
+                      Register
+                    </NavLink>
+                  </>
+                )}
               </div>
             </ul>
           </div>

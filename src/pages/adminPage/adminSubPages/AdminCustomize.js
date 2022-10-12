@@ -11,7 +11,7 @@ const AdminCustomize = () => {
         </h2>
       </div>
       <div className="mockup-window border-2 border-secondary bg-success">
-        <div className="px-4 py-16 bg-base-200">
+        <div className="grid md:grid-cols-2 grid-cols-1 md:gap-4 gap-6 px-4 py-16 bg-base-200">
           
 
           <div className="stack">
@@ -48,9 +48,9 @@ const AdminCustomize = () => {
           <div className="stack">
             <div className="card shadow-md bg-primary text-primary-content">
               <div className="card-body">
-                <label className="flex items-center">
+                <label className="flex items-center justify-center">
                   Theme Background
-                  <input type="color" value="#f6f82" id="colorPicker" />
+                  <input type="color" value="#f6f82" className="ml-3" id="colorPicker" />
                 </label>
               </div>
             </div>
