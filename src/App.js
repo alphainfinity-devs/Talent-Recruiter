@@ -15,10 +15,10 @@ import AdminEmailCampaign from './pages/adminPage/adminSubPages/AdminEmailCampai
 import AdminAllPosts from './pages/adminPage/adminSubPages/AdminAllPosts';
 import AdminAddPost from './pages/adminPage/adminSubPages/AdminAddPost';
 import AdminSecurity from './pages/adminPage/adminSubPages/AdminSecurity';
-import AboutPage from './pages/aboutPage/AboutPage';
-import ContactPage from './pages/contactUsPage/ContactPage';
-import Login from './pages/loginPage/Login';
-import Register from './pages/registerPage/Register';
+import RecruiterDashboard from './pages/recruiterPage/RecruiterDashboard';
+import AppliedJobs from './pages/recruiterPage/AppliedJobs';
+import Recruiter from './pages/recruiterPage/Recruiter';
+import AddJobs from './pages/recruiterPage/AddJobs';
 
 function App() {
   return (
@@ -39,7 +39,13 @@ function App() {
           <Route path='details' element={<AdminDetails />} />
           {/* admin dashboard end */}
         </Route>
-
+        {/* recruiter dashboard start */}
+        <Route path='/review' element={<RecruiterDashboard />}>
+          <Route path='/review/appliedJobs' element={<AppliedJobs />}></Route>
+          <Route path='/review/recruiter' element={<Recruiter />}></Route>
+          <Route path='/review/addjobs' element={<AddJobs />}></Route>
+        </Route>
+        {/* recruiter dashboard end */}
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
