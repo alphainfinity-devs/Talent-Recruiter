@@ -12,19 +12,36 @@ const jobSchema = mongoose.Schema({
     trim: true
   },
   status: {
+    type: Boolean,
+    default: false,
+  },
+  level: {
     type: String,
     required: true,
-    enum: ["active", "inactive"],
+    enum: ["Entry Level", "Mid Level", "Senior Level"],
   },
-  category: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Category',
-    required: false
+  experience: {
+    type: String,
+    required: true,
   },
-  company_name: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'User',
-      required: false
-  },  
+  salary: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  // category: {
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: 'Category',
+  //   required: false
+  // },
+  // company_name: {
+  //     type: mongoose.Schema.ObjectId,
+  //     ref: 'User',
+  //     required: false
+  // },  
 });
-export default mongoose.models.Job || mongoose.model('Job', jobSchema)
+
+module.exports = mongoose.model('Job',jobSchema)

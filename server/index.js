@@ -12,8 +12,14 @@ mongoose
   .catch((err) => console.log("error", err));
 
 
+
+  app.get('/', (req, res) => {
+    res.send("{ filters }");
+  });
+
 // create all routes here
-// app.use("/todo", todoHandler);
+app.use("/api/applicant",require("./routers/applicantRouter"));
+app.use("/api/jobs",require("./routers/jobRouter"));
 
 
 
