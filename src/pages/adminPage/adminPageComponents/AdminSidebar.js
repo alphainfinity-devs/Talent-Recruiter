@@ -16,8 +16,8 @@ export default function AdminSidebar() {
               className={(props) => {
                 return `${
                   (props.isActive ||
-                    location === "/about" ||
-                    location === "/about/") &&
+                    location === "/dashboard" ||
+                    location === "/dashboard/") &&
                   "bg-gray-300"
                 } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
               }}>
@@ -43,7 +43,7 @@ export default function AdminSidebar() {
             </NavLink>
 
             <NavLink
-              to="users"
+              to="admin-users"
               className={(props) => {
                 return `${
                   props.isActive && "bg-gray-300"
@@ -71,7 +71,7 @@ export default function AdminSidebar() {
             </NavLink>
 
             <NavLink
-              to="customize"
+              to="admin-customize"
               className={(props) => {
                 return `${
                   props.isActive && "bg-gray-300"
@@ -83,7 +83,7 @@ export default function AdminSidebar() {
               </span>
             </NavLink>
             <NavLink
-              to="jobs"
+              to="admin-jobs"
               className={(props) => {
                 return `${
                   props.isActive && "bg-gray-300"
@@ -95,7 +95,7 @@ export default function AdminSidebar() {
               </span>
             </NavLink>
             <NavLink
-              to="email-campaign"
+              to="admin-email-campaign"
               className={(props) => {
                 return `${
                   props.isActive && "bg-gray-300"
@@ -217,7 +217,7 @@ export default function AdminSidebar() {
 
               <nav className="mt-1.5 ml-8 flex flex-col">
                 <NavLink
-                  to="details"
+                  to="admin-details"
                   className={(props) => {
                     return `${
                       props.isActive && "bg-gray-300"

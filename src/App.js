@@ -30,17 +30,17 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         {/* admin dashboard start */}
-        <Route path="/admin-dashboard" element={<AdminPage />}>
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="users" element={<AdminUsers />} />
-          <Route path="jobs" element={<AdminJobs />} />
-          <Route path="customize" element={<AdminCustomize />} />
+        <Route path="/dashboard" element={<AdminPage />}>
+          <Route path="admin-dashboard" element={<AdminDashboard />} />
+          <Route path="admin-users" element={<AdminUsers />} />
+          <Route path="admin-jobs" element={<AdminJobs />} />
+          <Route path="admin-customize" element={<AdminCustomize />} />
           <Route path="admin-all-posts" element={<AdminAllPosts />} />
           <Route path="admin-add-post/:id" element={<AdminAddPost />} />
           <Route path="admin-add-post" element={<AdminAddPost />} />
           <Route path="admin-security" element={<AdminSecurity />} />
-          <Route path="email-campaign" element={<AdminEmailCampaign />} />
-          <Route path="details" element={<AdminDetails />} />
+          <Route path="admin-email-campaign" element={<AdminEmailCampaign />} />
+          <Route path="admin-details" element={<AdminDetails />} />
         </Route>
         {/* admin dashboard end */}
         {/* Others Page routes start */}
