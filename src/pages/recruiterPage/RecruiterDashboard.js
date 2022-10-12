@@ -27,7 +27,7 @@ const RecruiterDashboard = () => {
 
           <li>
             <Link
-              to='/review/appliedJobs'
+              to='/recruiterDashboard/appliedJobs'
               className='flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition'
             >
               <BsList className='w-5 mr-3' />
@@ -36,7 +36,7 @@ const RecruiterDashboard = () => {
           </li>
           <li>
             <Link
-              to='/review/recruiter'
+              to='/recruiterDashboard/recruiter'
               className='flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition'
             >
               <FaUserTie className='w-5 mr-3' />
@@ -45,7 +45,7 @@ const RecruiterDashboard = () => {
           </li>
           <li>
             <Link
-              to='/review/addJobs'
+              to='/recruiterDashboard/addJobs'
               className='flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition'
             >
               <FaBriefcase className='w-5 mr-3' />
