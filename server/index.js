@@ -22,6 +22,7 @@ const userRouter = require("./routers/userRoute");
 
 // create all routes here
 app.use("/api", userRouter);
+app.use("/api/jobs/", require("./routers/jobRoute"));
 
 // All default error handling function
 function errorHandler(err, req, res, next) {
