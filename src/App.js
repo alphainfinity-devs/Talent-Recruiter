@@ -21,6 +21,10 @@ import Login from "./pages/loginPage/Login";
 import Register from "./pages/registerPage/Register";
 import ReviewsPage from "./pages/reviewPage/ReviewsPage";
 import BlogsPage from "./pages/blogsPage/BlogsPage";
+import RecruiterDashboard from "./pages/recruiterPage/RecruiterDashboard";
+import AppliedJobs from "./pages/recruiterPage/AppliedJobs";
+import Recruiter from "./pages/recruiterPage/Recruiter";
+import AddJobs from "./pages/recruiterPage/AddJobs";
 
 function App() {
   return (
@@ -29,6 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+
         {/* admin dashboard start */}
         <Route path="/dashboard" element={<AdminPage />}>
           <Route path="admin-dashboard" element={<AdminDashboard />} />
@@ -43,6 +48,16 @@ function App() {
           <Route path="admin-details" element={<AdminDetails />} />
         </Route>
         {/* admin dashboard end */}
+
+        {/* recruiter dashboard end */}
+        <Route path="/recruiterDashboard" element={<RecruiterDashboard />}>
+          <Route index element={<AppliedJobs />}></Route>
+          <Route path="appliedJobs" element={<AppliedJobs />}></Route>
+          <Route path="recruiter" element={<Recruiter />}></Route>
+          <Route path="addJobs" element={<AddJobs />}></Route>
+        </Route>
+        {/* recruiter dashboard end */}
+
         {/* Others Page routes start */}
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/blogs" element={<BlogsPage />} />

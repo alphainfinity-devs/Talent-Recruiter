@@ -12,7 +12,7 @@ export default function AdminSidebar() {
         <div className="px-4 py-6">
           <nav className="mt-6 flex flex-col space-y-1">
             <NavLink
-              to="dashboard"
+              to="admin-dashboard"
               className={(props) => {
                 return `${
                   (props.isActive ||

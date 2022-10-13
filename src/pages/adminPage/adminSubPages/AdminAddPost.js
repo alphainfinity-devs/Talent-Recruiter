@@ -28,7 +28,7 @@ const AdminAddPost = () => {
     <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mx-3 h-screen">
       <div className="block p-2 rounded-lg shadow-lg bg-white ">
         <form onSubmit={handlePostSubmit}>
-          <div className="form-group mb-6">
+          <div className=" mb-6">
             <input
               onChange={(e) => setTitleInput(e.target.value)}
               type="text"
@@ -50,7 +50,7 @@ const AdminAddPost = () => {
               placeholder="Enter post title"
             />
           </div>
-          <div className="form-group mb-6">
+          <div className=" mb-6">
             <input
               onChange={(e) => setAuthor(e.target.value)}
               type="text"
@@ -72,11 +72,12 @@ const AdminAddPost = () => {
               placeholder="Author name"
             />
           </div>
-          <div className="form-group mb-6">
+          <div className="flex items-center mb-6">
             <input
               onChange={(e) => setFileImg(e.target.files[0])}
               type="file"
               className="form-control block
+              cursor-pointer
         w-full
         px-3
         py-1.5
@@ -91,8 +92,21 @@ const AdminAddPost = () => {
         m-0
         focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none"
             />
+            <div className="tooltip" data-tip="Recommended 600px X 600 px">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="stroke-current flex-shrink-0 w-6 h-6 mx-3 cursor-pointer">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
           </div>
-          <div className="form-group mb-6">
+          <div className=" mb-6">
             <textarea
               onChange={(e) => setDescription(e.target.value)}
               className="form-control block
@@ -122,7 +136,7 @@ const AdminAddPost = () => {
       {(titleInput || author || description || fileImg) && (
         <div className="block p-2 rounded-lg shadow-lg bg-white ">
           {titleInput && (
-            <div className="form-group mb-6">
+            <div className=" mb-6">
               <h2
                 type="text"
                 className="form-control
@@ -146,7 +160,7 @@ const AdminAddPost = () => {
             </div>
           )}
           {author && (
-            <div className="form-group mb-6">
+            <div className=" mb-6">
               <h2
                 type="text"
                 className="form-control
@@ -170,7 +184,7 @@ const AdminAddPost = () => {
             </div>
           )}
           {fileImg && (
-            <div className="form-group mb-6">
+            <div className=" mb-6">
               <img
                 src={fileImg?.name}
                 className="form-control block
@@ -192,7 +206,7 @@ const AdminAddPost = () => {
             </div>
           )}
           {description && (
-            <div className="form-group mb-6">
+            <div className=" mb-6">
               <p
                 className="form-control block
         w-full
