@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler')
 
 // Create new room   =>   /api/rooms
 const createJob = asyncHandler(async (req, res) => {
-    const data =  {...req.body,company_name:"634695ce8421bda6f2efc74a"}
+    const data =  {...req.body}
     const newJob = await Job.create(data);
 
     if(newJob){
