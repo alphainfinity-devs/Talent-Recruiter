@@ -1,18 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../../features/userAuth/userAuthAPI";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 const Register = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [login, { isLoading, error, isSuccess, data: userInfo }] =
+    useLoginMutation();
+  useEffect(() => {
+    if (error) {
+      toast.error("there was an error" + error?.message, { toastId: "error" });
+    }
+    if (!error && !isLoading && isSuccess) {
+      toast.success("You have logged in", {
+        toastId: "success",
+      });
+      navigate("/dashboard");
+    }
+  }, [error, isLoading, dispatch, navigate, isSuccess]);
+  const onSubmit = async (data) => {
+    await login(data);
+    window.location.reload();
 
-  const onSubmit = (data) => {
-    console.log(data);
+    dispatch(login({
+      user: userInfo?.user,
+      token: userInfo?.token,
+    }));
   };
-
+console.log(userInfo?.user)
+console.log(userInfo?.token)
   return (
     <div className="flex py-8 sm:pt-16  px-2 justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl rounded-none">
@@ -101,9 +124,10 @@ const Register = () => {
 
             {/* ..........Login Button.......... */}
             <input
+              disabled={isLoading}
               className="btn btn-primary font-bold w-full max-w-xs text-white rounded-none hover:shadow-lg"
               type="submit"
-              value="Login"
+              value={isLoading ? "Loading..." : "Login"}
             />
           </form>
           <p>

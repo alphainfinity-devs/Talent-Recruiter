@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineReconciliation } from "react-icons/ai";
+import { MdOutlineFindInPage } from "react-icons/md";
+import { toast } from "react-toastify";
+import { useUserRegisterMutation } from "../../features/userAuth/userAuthAPI";
 const Register = () => {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [userRegister, { isLoading, error, isSuccess }] =
+    useUserRegisterMutation();
+  useEffect(() => {
+    if (error) {
+      toast.error("there was an error" + error?.message, { toastId: "error" });
+    }
+    if (!error && !isLoading && isSuccess) {
+      toast.success("You have register please login", {
+        toastId: "success",
+      });
+      navigate("/login");
+    }
+  }, [error, isLoading, navigate, isSuccess]);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    await userRegister(data);
   };
 
   return (
@@ -34,11 +51,11 @@ const Register = () => {
                 <span className="label-text">Your Name</span>
               </label>
               <input
-                name="fname"
+                name="name"
                 type="text"
-                placeholder="Your Email"
+                placeholder="Your Name"
                 className="input input-bordered w-full max-w-xs rounded-none"
-                {...register("fname", {
+                {...register("name", {
                   required: {
                     value: true,
                     message: "Name is Required",
@@ -166,22 +183,57 @@ const Register = () => {
               </label>
             </div>
             {/*.........confirm Password Input filed start.......... */}
+            {/* ..........role checker Input filed start...... */}
+            <div className="flex justify-between w-full max-w-xs mb-3">
+              <label className="label label-text">
+                <input
+                  type="radio"
+                  value="applicant"
+                  defaultChecked="applicant"
+                  className="radio radio-primary mr-2"
+                  {...register("role", { required: true })}
+                />
+                <MdOutlineFindInPage
+                  color="#39a746"
+                  size={20}
+                  className="mr-2"
+                />{" "}
+                Job Seeker
+              </label>
+              <label className="label label-text">
+                <input
+                  type="radio"
+                  value="recruiter"
+                  // className="input input-bordered w-full max-w-xs rounded-none"
+                  className="radio radio-primary mr-2"
+                  {...register("role", { required: true })}
+                />
+                <AiOutlineReconciliation
+                  color="#39a746"
+                  size={20}
+                  className="mr-2"
+                />{" "}
+                Recruiter
+              </label>
+            </div>
+            {/*.........role checker Password Input filed start.......... */}
 
             {/* ..........Login Button.......... */}
             <input
+              disabled={isLoading}
               className="btn btn-primary w-full max-w-xs text-white rounded-none hover:shadow-lg"
               type="submit"
-              value="Register"
+              value={isLoading ? "Loading..." : "Register"}
             />
           </form>
-          <p>
+          <div className="flex justify-center">
             <small>
-              Alrady have an account?{" "}
+              Already have an account?{" "}
               <Link className="text-primary hover:underline" to="/login">
                 please login
               </Link>
             </small>
-          </p>
+          </div>
         </div>
       </div>
     </div>

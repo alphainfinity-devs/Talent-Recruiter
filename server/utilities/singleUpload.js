@@ -3,8 +3,8 @@ const multer = require("multer");
 const path = require('path');
 
 function uploader(subfolder_path, allowed_file_type, max_file_size, error_msg) {
-  const UPLOAD_FOLDER = `${__dirname}/../public/uploads/${subfolder_path}/`;
-
+  const UPLOAD_FOLDER = `${__dirname}/../uploads/${subfolder_path}/`;
+console.log(UPLOAD_FOLDER,"hello upload")
   // define the storage
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {

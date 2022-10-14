@@ -1,47 +1,52 @@
-const User = require("../schemas/userSchema");
+const User = require("../Models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 //register a user
-exports.registrUser = async (req, res, next) => {
-  const { name, email, password } = req.body;
-
-  let existingUser;
-
+exports.registerUser = async (req, res, next) => {
   try {
-    existingUser = await User.findOne({ email: email });
+    const { name, email, role, password } = req.body;
+    console.log(req.body);
+    const existingUser = await User.findOne({ email: email });
+    console.log(existingUser);
+    if (existingUser) {
+      //if user already exists
+      return res.status(400).json({ message: "User already exists" });
+    } else {
+      if (name && email && role && password) {
+        //if all fields are filled
+        //otherwise create a new user
+        const hashedPassword = await bcrypt.hash(password, 10); //hashed password
+        const user = new User({
+          name,
+          email,
+          role,
+          password: hashedPassword,
+        });
+        const insertResult = await user.save(); //inset in the db
+        // exclude field response in mongoose
+        const {
+          password: userPass,
+          _id,
+          ...userWithoutPassword
+        } = insertResult.toObject();
+        console.log(userWithoutPassword);
+        return res.status(200).json({
+          success: true,
+          user: userWithoutPassword,
+        });
+      } else {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+    }
   } catch (error) {
     console.log(error);
   }
-
-  if (existingUser) {
-    return res.status(400).json({ message: "User already exists" });
-  }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-  console.log(hashedPassword);
-  const user = new User({
-    name,
-    email,
-    password: hashedPassword,
-  });
-
-  try {
-    await user.save();
-  } catch (error) {
-    console.log(error);
-  }
-
-  return res.status(201).json({
-    success: true,
-    user,
-  });
 };
 
 //login user
 exports.loginUser = async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(req.body);
   let existingUser;
   try {
     existingUser = await User.findOne({ email: email });
@@ -55,7 +60,7 @@ exports.loginUser = async (req, res, next) => {
 
   const isPasswordCorrect = await bcrypt.compare(
     password,
-    existingUser.password
+    existingUser.password,
   );
 
   if (!isPasswordCorrect) {
@@ -78,11 +83,12 @@ exports.loginUser = async (req, res, next) => {
     httpOnly: true,
     sameSite: "lax",
   });
-
+  const { password: loggedInPass, ...userWithoutPassword } =
+    existingUser.toObject();
   return res.status(200).json({
     success: true,
     message: "Successfully Logged In",
-    user: existingUser,
+    user: userWithoutPassword,
     token,
   });
 };
@@ -164,7 +170,7 @@ exports.refreshToken = (req, res, next) => {
 
       req.id = user.id;
       next();
-    }
+    },
   );
 };
 
@@ -195,6 +201,6 @@ exports.logoutUser = async (req, res, next) => {
       return res.status(200).json({
         massage: "successfully Logged out",
       });
-    }
+    },
   );
 };

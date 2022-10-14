@@ -12,7 +12,7 @@ const AdminPage = () => {
         <div className='drawer-content'>
           {/* <!-- Page content here --> */}
           <Outlet />
-          {(location === '/about' || location === '/about/') && (
+          {(location === '/dashboard' || location === '/dashboard/') && (
             <AdminDashboard />
           )}
         </div>
