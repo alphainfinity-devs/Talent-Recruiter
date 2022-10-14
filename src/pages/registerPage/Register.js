@@ -19,10 +19,10 @@ const Register = () => {
         <div className="card-body">
           {/* ......social login button..... */}
           <div className="flex gap-2 mb-3">
-            <button className="btn rounded-none border-primary border-2 text-primary bg-white w-[49%] hover:shadow-lg font-bold hover:bg-white hover:border-primary">
+            <button className="btn bg-[#C80911] border-[#C80911] rounded-none hover:border-[#C80911] border-2 text-white hover:text-[#C80911] w-[49%] hover:shadow-lg font-bold hover:bg-white">
               Google
             </button>
-            <button className="btn rounded-none border-primary border-2 text-primary bg-white w-[49%] hover:shadow-lg font-bold hover:bg-white hover:border-primary">
+            <button className="btn bg-[#005B7F] border-[#005B7F] rounded-none hover:border-[#005B7F] border-2 text-white hover:text-[#005B7F] w-[49%] hover:shadow-lg font-bold hover:bg-white">
               Facebook
             </button>
           </div>
