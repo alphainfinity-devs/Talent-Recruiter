@@ -21,7 +21,9 @@ app.get("/", (req, res) => {
 const userRouter = require("./routers/userRoute");
 
 // create all routes here
-app.use("/api", userRouter);
+app.use("/api/auth/", userRouter);
+app.use("/api/jobs/", require("./routers/jobRoute"));
+app.use("/api/applicant/", require("./routers/applicantRouter"));
 
 // All default error handling function
 function errorHandler(err, req, res, next) {

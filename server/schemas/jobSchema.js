@@ -37,11 +37,11 @@ const jobSchema = mongoose.Schema({
   //   ref: 'Category',
   //   required: false
   // },
-  // company_name: {
-  //     type: mongoose.Schema.ObjectId,
-  //     ref: 'User',
-  //     required: false
-  // },  
+  company_name: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: false
+  },  
 });
 
 module.exports = mongoose.model('Job',jobSchema)
