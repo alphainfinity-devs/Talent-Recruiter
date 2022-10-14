@@ -3,29 +3,30 @@ import { login } from "./userAuthSlice";
 
 export const userAuthAPI = APIsSlice.injectEndpoints({
   endpoints: (builder) => ({
-    register: builder.mutation({
+    userRegister: builder.mutation({
       query: (body) => ({
-        url: "/register",
+        url: "/api/user/register",
         method: "POST",
         body,
       }),
-      async onQueryStarted(body, { dispatch, queryFulfilled }) {
+     /*  async onQueryStarted(body, { dispatch, queryFulfilled }) {
         try {
           const result = await queryFulfilled;
           localStorage.setItem("auth", JSON.stringify(result.data));
           dispatch(login(result.data));
         } catch (error) {}
-      },
+      }, */
     }),
     login: builder.mutation({
       query: (body) => ({
-        url: "/login",
+        url: "/api/user/login",
         method: "POST",
         body,
       }),
       async onQueryStarted(body, { dispatch, getState, queryFulfilled }) {
         try {
           const result = await queryFulfilled;
+          // console.log(result.data.token)
           localStorage.setItem("auth", JSON.stringify(result.data));
           dispatch(login(result.data));
         } catch (error) {}
@@ -33,4 +34,4 @@ export const userAuthAPI = APIsSlice.injectEndpoints({
     }),
   }),
 });
-export const { useRegisterMutation, useLoginMutation } = userAuthAPI;
+export const { useUserRegisterMutation, useLoginMutation } = userAuthAPI;

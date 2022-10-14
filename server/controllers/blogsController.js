@@ -16,7 +16,7 @@ const addBlog = async (req, res, next) => {
        post_author,
        post_category,
     });
-    await blogPost.save();
+    await blogPost.save();//insert in the db all info
     res.status(200).json({ success: "blog was added successfully" });
   } catch (error) {
     console.log(error);

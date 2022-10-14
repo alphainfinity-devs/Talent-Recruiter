@@ -25,6 +25,8 @@ import RecruiterDashboard from "./pages/recruiterPage/RecruiterDashboard";
 import AppliedJobs from "./pages/recruiterPage/AppliedJobs";
 import Recruiter from "./pages/recruiterPage/Recruiter";
 import AddJobs from "./pages/recruiterPage/AddJobs";
+import JobList from "./pages/jobPage/JobList";
+import JobDetails from "./pages/jobPage/JobDetails";
 
 function App() {
   return (
@@ -33,9 +35,15 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/jobs" element={<JobList />} />
+        <Route path="/jobdetails" element={<JobDetails />} />
 
         {/* admin dashboard start */}
-        <Route path="/dashboard" element={<AdminPage />}>
+        <Route path="/dashboard" element={
+
+          <AdminPage />
+        
+        }>
           <Route path="admin-dashboard" element={<AdminDashboard />} />
           <Route path="admin-users" element={<AdminUsers />} />
           <Route path="admin-jobs" element={<AdminJobs />} />

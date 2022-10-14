@@ -1,11 +1,22 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { GoPlug } from "react-icons/go";
 import { IoBookmarksOutline } from "react-icons/io5";
 import { MdPostAdd } from "react-icons/md";
-import {BsFillFileEarmarkPostFill} from "react-icons/bs";
+import { BsFillFileEarmarkPostFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../features/userAuth/userAuthSlice";
 
 export default function AdminSidebar() {
   const location = useLocation().pathname;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    window.location.reload();
+
+    dispatch(logout());
+    localStorage.removeItem("auth");
+    navigate("/login");
+  };
   return (
     <>
       <div className="flex h-screen-[-100px] flex-col justify-between border-r bg-white md:w-full w-[75%]">
@@ -120,7 +131,7 @@ export default function AdminSidebar() {
             </NavLink>
             <details className="group">
               <summary className="flex cursor-pointer items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-                <BsFillFileEarmarkPostFill size={20} className="opacity-75"/>
+                <BsFillFileEarmarkPostFill size={20} className="opacity-75" />
                 <span className="ml-3 md:text-sm text-xs md:font-medium">
                   Posts
                 </span>
@@ -148,7 +159,7 @@ export default function AdminSidebar() {
                       props.isActive && "bg-gray-300"
                     } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
                   }}>
-               <MdPostAdd size={20} className="opacity-75" />
+                  <MdPostAdd size={20} className="opacity-75" />
                   <span className="md:ml-3 md:text-sm text-xs md:font-medium">
                     Add Post
                   </span>
@@ -266,7 +277,7 @@ export default function AdminSidebar() {
                 </NavLink>
 
                 <button
-                  type="submit"
+                  onClick={handleLogOut}
                   className="flex w-full items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

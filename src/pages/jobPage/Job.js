@@ -1,13 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import JobList from './JobList';
 
 
 const job = () => {
     return (
-        <div>
+        <NavLink to={"/jobs"}>
             <JobList />
 
-        </div>
+        </NavLink>
     );
 };
 

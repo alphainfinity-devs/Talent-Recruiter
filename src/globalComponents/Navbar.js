@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 
 const Navbar = () => {
   const [checkbox, setCheckbox] = useState(false);
   const [adminCheckbox, setAdminCheckbox] = useState(false);
-  const [ifLoggedIn] = useState(true); //just for testing and design confirmation
+  const [auth, setAuth] = useState(false);
+  const userAuth = localStorage.getItem("auth");
+  const { info } = useSelector((state) => state.auth);
+  console.log(info,"from nav")
+  useEffect(() => {
+    if (userAuth) {
+      setAuth(true);
+    }
+  }, [userAuth]);
+console.log(auth)
   return (
     <header>
       <div className="flex justify-between py-3 items-center container mx-auto px-5">
@@ -40,7 +50,7 @@ const Navbar = () => {
             <div>
               <ul className="flex md:gap-3 lg:gap-6">
                 <li className="font-bold">
-                 <NavLink to="/">Home</NavLink>
+                  <NavLink to="/">Home</NavLink>
                 </li>
                 <li className="font-bold">
                   <NavLink to="/about">About</NavLink>
@@ -57,7 +67,7 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="flex gap-2">
-              {ifLoggedIn ? (
+              {auth ? (
                 <NavLink to="/dashboard" className="btn btn-primary">
                   Dashboard
                 </NavLink>
@@ -121,7 +131,7 @@ const Navbar = () => {
               </li>
 
               <div className="flex gap-2">
-                {ifLoggedIn ? (
+                {auth ? (
                   <NavLink to="/dashboard" className="btn btn-primary">
                     Dashboard
                   </NavLink>
