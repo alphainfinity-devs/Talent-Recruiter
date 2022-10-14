@@ -30,11 +30,15 @@ const userRoute = require("./routers/userRoute");
 const multer = require("multer");
 
 // create all routes here
-// app.use("/api/applicant",require("./routers/applicantRouter"));
+
+
 app.use("/api/blogs", blogsRoute);
-// app.use("/api/jobs",require("./routers/jobRouter"));
 
 app.use("/api/user", userRoute); //for login and register
+
+app.use("/api/jobs/", require("./routers/jobRoute"));
+
+// app.use("/api/applicant/", require("./routers/applicantRouter"));
 
 
 // All default error handling function

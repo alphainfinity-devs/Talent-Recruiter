@@ -47,7 +47,6 @@ exports.registerUser = async (req, res, next) => {
 //login user
 exports.loginUser = async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(email, password);
   let existingUser;
   try {
     existingUser = await User.findOne({ email: email });
@@ -67,7 +66,7 @@ exports.loginUser = async (req, res, next) => {
   if (!isPasswordCorrect) {
     return res.status(400).json({ message: "invalid email or password" });
   }
-
+  console.log(existingUser);
   const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET_KEY, {
     expiresIn: "35s",
   });

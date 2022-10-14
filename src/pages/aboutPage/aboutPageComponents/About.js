@@ -2,14 +2,8 @@ import React from "react";
 
 const About = () => {
   return (
-    <section className="py-16">
-      <div className="text-center mb-4 md:mb-6">
-        <p className="text-xl md:text-xl font-bold uppercase text-primary mb-1">
-          OUR COMPANY
-        </p>
-        <h1 className="text-2xl md:text-4xl font-bold">About Our Company</h1>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 container mx-auto px-8">
+    <section className="">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 container mx-auto px-5">
         <div className="flex items-center justify-center">
           <img
             src="http://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/about/img-about2.png"
