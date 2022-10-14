@@ -4,7 +4,6 @@ import BlogCart from "../homePage/homePageComponents/BlogCart";
 
 const BlogsPage = () => {
   const { data: getPosts, isLoading, error } = useGetBlogPostsQuery();
-  console.log(getPosts.posts);
   // decide what to show based on the state
   let content = null;
   if (isLoading) content = <div>Loading...</div>;

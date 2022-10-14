@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { MdDateRange } from "react-icons/md";
 const BlogCart = ({ blog }) => {
   const {
     post_title,
@@ -17,14 +17,20 @@ const BlogCart = ({ blog }) => {
         <img src={post_image} alt="Shoes" className="h-[250px] w-full" />
 
         {/*............ Date badge .............*/}
-        <div className="flex gap-2 badge-primary bottom-8 left-5 text-base-100 p-2 rounded absolute">
-          <i className="ri-calendar-todo-fill"></i>
-          <p>{post_date}</p>
+        <div className="flex justify-evenly gap-2 badge-primary bottom-8 left-5 text-base-100 p-2 rounded absolute">
+          <h5 className="flex items-center left-5">
+            <MdDateRange size={20} className="mr-2"/>
+            {post_date}
+          </h5>
         </div>
       </figure>
 
       {/*...........blog info.............*/}
       <div className="p-5">
+        <div className="flex justify-between">
+          <h2 className="rounded-full bg-primary bg-opacity-90 text-white p-2">Category: {post_category}</h2>
+          <h2 className="rounded-full bg-primary bg-opacity-90 text-white p-2">Author: { post_author}</h2>
+        </div>
         <h2 className="text-xl text-accent font-bold py-4 hover:text-primary">
           <Link to="#">{post_title}</Link>
         </h2>
