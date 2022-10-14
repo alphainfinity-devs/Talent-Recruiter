@@ -1,12 +1,7 @@
 const express = require("express");
-const { addBlog } = require("../controllers/blogsController");
+const { addBlog, getPosts } = require("../controllers/blogsController");
 
 const router = express.Router();
 
-// process login
-router.post(
-  "/add-blog",
-  addBlog
-);
-// router.delete("/", logout);
+router.post("/add-blog", addBlog).get("/posts", getPosts);
 module.exports = router;

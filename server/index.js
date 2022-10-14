@@ -1,31 +1,43 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-dotenv.config();
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
+dotenv.config();
 const app = express();
-app.use(express.json());
+// middleware
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.static("uploads"));//image upload
+app.use(cookieParser());
+app.use(cors());
 // database connection is here
 mongoose
-  .connect(`${process.env.MONGO_URI}`)
+  .connect(`${process.env.MONGO_URI}`, {
+    dbName: "talentRecruiterDBByAlphaInfinity",
+  })
   .then(() => console.log("connection success"))
   .catch((err) => console.log("error", err));
 
+app.get("/", (req, res) => {
+  res.json({ success: "server is running" });
+});
 
-
-  app.get('/', (req, res) => {
-    res.send("{ filters }");
-  });
+//import all route
+const blogsRouter = require("./routers/blogsRouter");
+const userRouter = require("./routers/userRoute");
+const multer = require("multer");
 
 // create all routes here
 // app.use("/api/applicant",require("./routers/applicantRouter"));
-app.use("/api/blogs",require("./routers/blogsRouter"));
+app.use("/api/blogs", blogsRouter);
 // app.use("/api/jobs",require("./routers/jobRouter"));
 
+app.use("/api", userRouter); //for login and register
 
 
-
-// All default error handling fn
+// All default error handling function
 function errorHandler(err, req, res, next) {
   if (res.headersSent) {
     return next(err);

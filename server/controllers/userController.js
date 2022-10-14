@@ -1,87 +1,199 @@
-const bcrypt = require("bcrypt");
-const User = require("../modals/People");
-const path = require("path");
-const fs = require("fs");
+const User = require("../schemas/userSchema");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
-// get all users
-const getUser = async (req, res, next) => {
+//register a user
+exports.registrUser = async (req, res, next) => {
+  const { name, email, password } = req.body;
+  let existingUser;
+
   try {
-    const info = path.join(__dirname + `/../public/uploads/avatars`)
-    // console.log("my path",info);
-    const users = await User.find();
-    res.render("users", {
-      users: users,
-    });
+    existingUser = await User.findOne({ email: email });
   } catch (error) {
-    next(error);
+    console.log(error);
   }
+
+  if (existingUser) {
+    return res.status(400).json({ message: "User already exists" });
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const user = new User({
+    name,
+    email,
+    password: hashedPassword,
+  });
+
+  try {
+    await user.save();
+  } catch (error) {
+    console.log(error);
+  }
+
+  return res.status(201).json({
+    success: true,
+    user,
+  });
 };
-// add a user
-async function addUser(req, res, next) {
-  let newUser;
-  const hashPassword = await bcrypt.hash(req.body.password, 10);
-  if (req.files && req.files.length > 0) {
-    newUser = new User({
-      ...req.body,
-      avatar: req.files[0].filename,
-      password: hashPassword,
-    });
-  } else {
-    newUser = new User({
-      ...req.body,
-      password: hashPassword,
-    });
-  }
-  // save user or throw error
+
+//login user
+exports.loginUser = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  let existingUser;
   try {
-    await newUser.save();
-    res.status(200).json({
-      message: "user was added successfully",
-    });
+    existingUser = await User.findOne({ email: email });
   } catch (error) {
-    console.log("common error", error);
-    res.status(500).json({
-      errors: {
-        common: {
-          msg: "there was a unknown error",
-        },
-      },
+    return new Error(error);
+  }
+
+  if (!existingUser) {
+    return res.status(400).json({ message: "User not found" });
+  }
+
+  const isPasswordCorrect = await bcrypt.compare(
+    password,
+    existingUser.password
+  );
+
+  if (!isPasswordCorrect) {
+    return res.status(400).json({ message: "invalid email or password" });
+  }
+
+  const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: "35s",
+  });
+
+  console.log("Generated token\n", token);
+
+  if (req.cookies[`${existingUser._id}`]) {
+    req.cookies[`${existingUser.Id}`] = "";
+  }
+
+  res.cookie(String(existingUser._id), token, {
+    path: "/",
+    expires: new Date(Date.now() + 1000 * 30),
+    httpOnly: true,
+    sameSite: "lax",
+  });
+
+  return res.status(200).json({
+    success: true,
+    message: "Successfully Logged In",
+    user: existingUser,
+    token,
+  });
+};
+
+//varify token
+exports.verifyToken = (req, res, next) => {
+  const cookies = req.headers.cookie;
+  const token = cookies.split("=")[1];
+  // console.log(token);
+
+  if (!token) {
+    res.status(404).json({
+      message: "token not found",
     });
   }
-}
-
-// remove user
-async function deleteUser(req, res, next) {
-  try {
-    const user = await User.findByIdAndDelete({
-      _id: req.params.id,
-    });
-    // remove user avatar if any
-    if (user.avatar) {
-      console.log("got user", user);
-      await fs.unlink(
-        path.join(__dirname + `/../public/uploads/avatars/${user.avatar}`),
-        (err) => {
-          if (err) console.log("error occurred unlink delete", err);
-        }
-      );
+  jwt.verify(String(token), process.env.JWT_SECRET_KEY, (error, user) => {
+    if (error) {
+      return res.status(400).json({ message: "Invalid token" });
     }
-    res.status(200).json({
-      message: "User was removed successfully!",
-    });
-  } catch (err) {
-    res.status(500).json({
-      errors: {
-        common: {
-          msg: "Could not delete the user!",
-        },
-      },
+    req.id = user.id;
+  });
+  next();
+};
+
+//get user
+exports.getUser = async (req, res, next) => {
+  const userId = req.id;
+  let user;
+  try {
+    user = await User.findById(userId, "-password");
+  } catch (error) {
+    return new Error(error);
+  }
+
+  if (!user) {
+    return res.status(404).json({
+      message: "User Not found",
     });
   }
-}
 
-module.exports = {
-  getUser,
-  addUser,
-  deleteUser,
+  return res.status(200).json({ user });
+};
+
+//refresh token
+exports.refreshToken = (req, res, next) => {
+  const cookies = req.headers.cookie;
+  const previusToken = cookies.split("=")[1];
+
+  if (!previusToken) {
+    return res.status(400).json({
+      message: "couldn't find token",
+    });
+  }
+  jwt.varify(
+    String(previusToken),
+    process.env.JWT_SECRET_KEY,
+    (error, user) => {
+      if (error) {
+        // console.log(error);
+        return res.status(403).json({
+          message: "Authentication failed",
+        });
+      }
+
+      res.clearCookie(`${user.id}`);
+      req.cookie[`${user.id}`] = "";
+
+      const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, {
+        expiresIn: "35s",
+      });
+      console.log("Generated token\n", token);
+
+      res.cookie(String(user.id), token, {
+        path: "/",
+        expires: new Date(Date.now() + 1000 * 30),
+        httpOnly: true,
+        sameSite: "lax",
+      });
+
+      req.id = user.id;
+      next();
+    }
+  );
+};
+
+//logout user
+exports.logoutUser = async (req, res, next) => {
+  const cookies = req.headers.cookie;
+  const previusToken = cookies.split("=")[1];
+
+  if (!previusToken) {
+    return res.status(400).json({
+      message: "couldn't find token",
+    });
+  }
+
+  jwt.varify(
+    String(previusToken),
+    process.env.JWT_SECRET_KEY,
+    (error, user) => {
+      if (error) {
+        // console.log(error);
+        return res.status(403).json({
+          message: "Authentication failed",
+        });
+      }
+
+      res.clearCookie(`${user.id}`);
+      req.cookie[`${user.id}`] = "";
+      return res.status(200).json({
+        massage: "successfully Logged out",
+      });
+    }
+  );
 };

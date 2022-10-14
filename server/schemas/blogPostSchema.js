@@ -24,8 +24,8 @@ const blogPostSchema = mongoose.Schema({
     required: true,
   },
   post_date: {
-    type: Date,
-    default: moment().format("MMM Do YY"),
+    type: String,
+    default: moment().format("MMM Do YYYY"),
   },
 });
 
