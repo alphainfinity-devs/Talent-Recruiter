@@ -4,7 +4,9 @@ import { ImLocation2 } from "react-icons/im";
 import { Link } from "react-router-dom";
 
 const JobListCard = (job) => {
-  const { title, website, img, salery, location, type } = job.job;
+  const {_id, title, website, img, salary, address, level } = job.job;
+  
+  const link = `/job/${_id}`
 
   return (
     <div className="md:flex justify-start items-center shadow-md hover:shadow-lg gap-4 px-5 py-6 hover:border-primary border-secondary border">
@@ -21,24 +23,21 @@ const JobListCard = (job) => {
               <div className="flex items-start">
                 <BsCurrencyDollar className="text-primary mr-2 text-xl" />
               </div>
-              <small>{salery}</small>
+              <small>{salary}</small>
             </div>
             <div className="flex justify-start">
               <div className="flex items-start">
                 <ImLocation2 className="text-primary mr-2 text-xl" />
               </div>
-              <small className="mb-2">{location}</small>
+              <small className="mb-2">{address}</small>
             </div>
-            <p className="text-primary text-sm font-bold">{type}</p>
+            <p className="text-primary text-sm font-bold">{level}</p>
           </div>
         </div>
         <div className="flex justify-start md:justify-center items-center">
           <div className="flex md:flex-col gap-3">
-            <button className="btn rounded-none bg-primary text-white hover:bg-accent md:btn-md mb-3">
-              Apply
-            </button>
             <Link
-              to="/jobdetails"
+              to={link}
               className="btn rounded-none bg-primary text-white hover:bg-accent md:btn-md"
             >
               Detail

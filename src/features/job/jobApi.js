@@ -14,7 +14,7 @@ reducerPath: 'JobsApi',
     query: (id) => {
      console.log("ID:", id)
      return {
-      url: `jobs/job/${id}`,
+      url: `/api/jobs/job/${id}`,
       method: 'GET'
      }
     }

@@ -32,6 +32,10 @@ const jobSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  dead_line: {
+    type: String,
+    required: true,
+  },
   // category: {
   //   type: mongoose.Schema.ObjectId,
   //   ref: 'Category',
@@ -41,7 +45,10 @@ const jobSchema = mongoose.Schema({
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: false
-  },  
-});
+  }, 
+  },
+  {
+  timestamps: true,
+})
 
 module.exports = mongoose.model('Job',jobSchema)

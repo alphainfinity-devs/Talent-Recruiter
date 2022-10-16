@@ -36,7 +36,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/jobs" element={<JobPage />} />
-        <Route path="/jobdetails" element={<JobDetails />} />
+        <Route path="/job/:id" element={<JobDetails />} />
 
         {/* admin dashboard start */}
         <Route path="/dashboard" element={<AdminPage />}>
