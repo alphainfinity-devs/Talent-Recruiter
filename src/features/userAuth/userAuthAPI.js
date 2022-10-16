@@ -9,13 +9,15 @@ export const userAuthAPI = APIsSlice.injectEndpoints({
         method: "POST",
         body,
       }),
-     /*  async onQueryStarted(body, { dispatch, queryFulfilled }) {
+      async onQueryStarted(body, { dispatch, queryFulfilled }) {
         try {
           const result = await queryFulfilled;
           localStorage.setItem("auth", JSON.stringify(result.data));
           dispatch(login(result.data));
-        } catch (error) {}
-      }, */
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }),
     login: builder.mutation({
       query: (body) => ({
@@ -29,7 +31,9 @@ export const userAuthAPI = APIsSlice.injectEndpoints({
           // console.log(result.data.token)
           localStorage.setItem("auth", JSON.stringify(result.data));
           dispatch(login(result.data));
-        } catch (error) {}
+        } catch (error) {
+          console.log(error);
+        }
       },
     }),
   }),

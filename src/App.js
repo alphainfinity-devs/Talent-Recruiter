@@ -27,6 +27,7 @@ import Recruiter from "./pages/recruiterPage/Recruiter";
 import AddJobs from "./pages/recruiterPage/AddJobs";
 import JobPage from "./pages/jobPage/JobPage";
 import JobDetails from "./pages/jobPage/jobPageComponents/JobDetails";
+import PrivateRoute from "./globalComponents/PrivateRoute";
 
 function App() {
   return (
@@ -39,7 +40,13 @@ function App() {
         <Route path="/job/:id" element={<JobDetails />} />
 
         {/* admin dashboard start */}
-        <Route path="/dashboard" element={<AdminPage />}>
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>  {/* under admin page all is auth required now */}
+              <AdminPage />
+            </PrivateRoute>
+          }>
           <Route path="admin-dashboard" element={<AdminDashboard />} />
           <Route path="admin-users" element={<AdminUsers />} />
           <Route path="admin-jobs" element={<AdminJobs />} />

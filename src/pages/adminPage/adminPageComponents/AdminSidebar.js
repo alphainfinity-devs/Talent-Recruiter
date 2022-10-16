@@ -11,10 +11,7 @@ export default function AdminSidebar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogOut = () => {
-    window.location.reload();
-
     dispatch(logout());
-    localStorage.removeItem("auth");
     navigate("/login");
   };
   return (
