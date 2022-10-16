@@ -18,7 +18,7 @@ const JobDetails = () => {
       isLoading,
 
   } = useGetJobByIdQuery(id)
-  const job = data.job
+  const job = data?.job
   return (
     <div className="flex flex-col md:flex-col lg:flex-row gap-8 container mx-auto px-5 py-16">
       <div className="w-[100%] lg:w-[70%]">
