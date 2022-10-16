@@ -6,26 +6,48 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 
 const Navbar = () => {
+  // navbar sticky to when scroll start
+  const [stickyClass, setStickyClass] = useState("relative");
+
+  useEffect(() => {
+    window.addEventListener("scroll", stickNavbar);
+
+    return () => {
+      window.removeEventListener("scroll", stickNavbar);
+    };
+  }, []);
+
+  const stickNavbar = () => {
+    if (window !== undefined) {
+      let windowHeight = window.scrollY;
+      windowHeight > 100
+        ? setStickyClass("fixed top-0 left-0 z-50 bg-white shadow-lg")
+        : setStickyClass("relative");
+    }
+  };
+  // navbar sticky to when scroll end
+
   const [checkbox, setCheckbox] = useState(false);
   const [adminCheckbox, setAdminCheckbox] = useState(false);
   const [auth, setAuth] = useState(false);
   const userAuth = localStorage.getItem("auth");
   const { info } = useSelector((state) => state.auth);
-  console.log(info,"from nav")
+  console.log(info, "from nav");
   useEffect(() => {
     if (userAuth) {
       setAuth(true);
     }
   }, [userAuth]);
-console.log(auth)
+  console.log(auth);
   return (
-    <header>
-      <div className="flex justify-between py-3 items-center container mx-auto px-5">
+    <header className={`w-full py-4 ${stickyClass}`}>
+      <div className="flex justify-between items-center container mx-auto px-5">
         {/* any dashboard hamburger menu icon start */}
         <label
           htmlFor="my-drawer-2"
           className="btn btn-primary drawer-button lg:hidden"
-          onClick={() => setAdminCheckbox(!adminCheckbox)}>
+          onClick={() => setAdminCheckbox(!adminCheckbox)}
+        >
           {adminCheckbox ? (
             <ImCross size={20} />
           ) : (
@@ -37,7 +59,8 @@ console.log(auth)
         <div>
           <NavLink
             className={"cursor-pointer hover:bg-primary bg-opacity-90"}
-            to="/">
+            to="/"
+          >
             <figure>
               <img src={logo} alt="logo" className="shrink-0 w-44" />
             </figure>
@@ -53,11 +76,12 @@ console.log(auth)
                   <NavLink to="/">Home</NavLink>
                 </li>
                 <li className="font-bold">
-                  <NavLink to="/about">About</NavLink>
+                  <NavLink to="/jobs">Jobs</NavLink>
                 </li>
                 <li className="font-bold">
-                  <NavLink to="/reviews">Reviews</NavLink>
+                  <NavLink to="/about">About</NavLink>
                 </li>
+
                 <li className="font-bold">
                   <NavLink to="/blogs">Blogs</NavLink>
                 </li>
@@ -75,12 +99,14 @@ console.log(auth)
                 <>
                   <NavLink
                     to="/login"
-                    className="btn rounded-none bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold px-4 py-2 border-2 hover:border-2">
+                    className="btn rounded-none bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold px-4 border"
+                  >
                     Login
                   </NavLink>
                   <NavLink
                     to="/register"
-                    className="btn rounded-none bg-primary hover:bg-white text-white border-primary hover:border-primary hover:text-primary font-bold px-4 py-2 border-2 hover:border-2">
+                    className="btn rounded-none bg-primary hover:bg-accent text-white font-bold px-4"
+                  >
                     Register
                   </NavLink>
                 </>
@@ -98,7 +124,8 @@ console.log(auth)
             xmlns="http://www.w3.org/2000/svg"
             width="32"
             height="32"
-            viewBox="0 0 512 512">
+            viewBox="0 0 512 512"
+          >
             <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
           </svg>
           <svg
@@ -106,7 +133,8 @@ console.log(auth)
             xmlns="http://www.w3.org/2000/svg"
             width="32"
             height="32"
-            viewBox="0 0 512 512">
+            viewBox="0 0 512 512"
+          >
             <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
           </svg>
         </label>

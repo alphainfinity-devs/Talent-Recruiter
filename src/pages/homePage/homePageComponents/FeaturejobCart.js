@@ -21,7 +21,7 @@ const FeaturejobCart = (job) => {
           <small className="mb-2">{location}</small>
         </div>
         <div className="flex gap-3 items-center">
-          <button className="btn rounded-none px-4 md:px-6 py-2 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+          <button className="btn rounded-none px-4 md:px-6 py-2 bg-primary hover:bg-accent text-white hover:text-primary font-bold">
             Apply
           </button>
           <p className="text-secondary text-sm font-bold">{type}</p>
