@@ -16,7 +16,7 @@ const Newsletter = () => {
               placeholder="Enter you Email"
               className="p-4 outline-none w-[80%]"
             />
-            <button className="bg-secondary font-bold px-2 md:px-10 text-white border-2 border-white hover:bg-primary ">
+            <button className="bg-[tomato] font-bold px-2 md:px-10 text-white border-2 border-white hover:bg-primary ">
               Subscribe
             </button>
           </div>
