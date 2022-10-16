@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { APIsSlice } from "../features/APIs/APIsSlice";
 import blogPostSlice from "../features/blogPost/blogPostSlice";
+import { JobsApi } from "../features/job/jobApi";
 import userAuthSlice from "../features/userAuth/userAuthSlice";
 
 export const store = configureStore({
@@ -8,6 +9,7 @@ export const store = configureStore({
     [APIsSlice.reducerPath]: APIsSlice.reducer,
     blogPost: blogPostSlice,
     auth: userAuthSlice,
+    jobs:JobsApi
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(APIsSlice.middleware),

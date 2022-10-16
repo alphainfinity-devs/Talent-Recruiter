@@ -5,120 +5,125 @@ import { AiOutlineFieldTime } from "react-icons/ai";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { MdWorkOutline } from "react-icons/md";
 import { MdCastForEducation } from "react-icons/md";
-import { FiBox } from "react-icons/fi";
 import { BiNotepad } from "react-icons/bi";
+import { useParams } from "react-router-dom";
+import { useGetJobByIdQuery } from "../../../features/job/jobApi";
+import Spinner from "../../../utils/Spinner";
 
 const JobDetails = () => {
+
+  const { id } = useParams();
+  const {
+      data,
+      isLoading,
+
+  } = useGetJobByIdQuery(id)
+  const job = data?.job
   return (
     <div className="flex flex-col md:flex-col lg:flex-row gap-8 container mx-auto px-5 py-16">
       <div className="w-[100%] lg:w-[70%]">
-        <div className="shadow-lg p-4 mb-4 border">
-          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3">
-            {/* .......compani Logo...... */}
-            <div className="flex justify-center md:justify-start items-center bg-secondary rounded">
-              <img
-                src="https://templates.envytheme.com/jubi/default/assets/images/hot-jobs/hot-jobs-6.png"
-                className="w-24 p-1"
-                alt=""
-              />
-            </div>
-
-            {/* .......Basic job information........ */}
-            <div className="grid justify-items-center lg:justify-items-start">
-              <p className="text-lg font-bold">Software Engineer</p>
-              <p className="text-sm">www.youtube.com</p>
-              <p className="font-bold">Vacancy: 01</p>
-              <div className="flex flex-row gap-4 mt-2 mb-2">
-                <p className="text-sm font-light flex flex-row gap-1 items-center">
-                  <FiBox />
-                  Hexagon
-                </p>
-                <p className="text-sm font-light flex flex-row gap-1 items-center">
-                  <FaMapMarkerAlt />
-                  Dhaka
-                </p>
-                <p className="text-sm font-light flex flex-row gap-1 items-center">
-                  <AiOutlineFieldTime />
-                  Full Time
-                </p>
+        {
+          isLoading ? <Spinner/> : (        
+            <>
+              <div className="shadow-lg p-4 mb-4 border">
+              <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3">
+              {/* .......compani Logo...... */}
+              <div className="flex justify-center md:justify-start items-center bg-secondary rounded">
+                <img
+                  src="https://templates.envytheme.com/jubi/default/assets/images/hot-jobs/hot-jobs-6.png"
+                  className="w-24 p-1"
+                  alt=""
+                />
               </div>
-            </div>
 
-            {/* .........apply button and deadline....... */}
-            <div className="flex flex-col gap-2">
-              <button className="btn rounded-none text-white bg-primary hover:bg-accent">
-                Apply Now
-              </button>
-              <p className="text-base font-bold">Deadline: Dec 01, 2022</p>
-            </div>
-          </div>
-        </div>
+              {/* .......Basic job information........ */}
+              <div className="grid justify-items-center lg:justify-items-start">
+                <p className="text-lg font-bold">{job.title}</p>
+                <p className="text-sm">www.youtube.com</p>
+                <p className="font-bold">Vacancy: 01</p>
+                <div className="flex flex-row gap-4 mt-2 mb-2">
+                  {/* <p className="text-sm font-light flex flex-row gap-1 items-center">
+                    <FiBox />
+                    Hexagon
+                  </p> */}
+                  <p className="text-sm font-light flex flex-row gap-1 items-center">
+                    <FaMapMarkerAlt />
+                    {job.address}
+                  </p>
+                  <p className="text-sm font-light flex flex-row gap-1 items-center">
+                    <AiOutlineFieldTime />
+                    {job.level}
+                  </p>
+                </div>
+              </div>
 
-        <div className="p-4 shadow-lg border">
-          {/* .........job description.............*/}
-          <p className="text-2xl font-semibold text-accent">Job Description</p>
-          <p className="py-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in
-            pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur
-            nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi
-            tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam
-            sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum
-            facilisis massa, a consequat purus viverra a. Aliquam pellentesque
-            nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper
-            placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc.
-            Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis
-            nunc velit, et fermentum urna dapibus non. Vivamus magna lorem,
-            elementum id gravida ac, laoreet tristique augue. Maecenas dictum
-            lacus eu nunc porttitor, ut hendrerit arcu efficitur.
-          </p>
+              {/* .........apply button and deadline....... */}
+              <div className="flex flex-col gap-2">
+                <button className="btn rounded-none text-white bg-primary hover:bg-accent">
+                  Apply Now
+                </button>
+                <p className="text-base font-bold">Deadline: Dec 01, 2022</p>
+              </div>
+              </div>
+              </div>
 
-          {/*...........Education & Experience............*/}
-          <p className="text-2xl font-semibold text-accent py-4">
-            Education & Experience
-          </p>
-          <ul className="steps steps-vertical">
-            <li className="step step-primary " data-content="✓">
-              M.B.S / M.B.A under National University with CA course complete.
-            </li>
-            <li className="step  step-primary" data-content="✓">
-              3 or more years of professional design experience
-            </li>
-            <li className="step  step-primary" data-content="✓">
-              Excellent communication skills, most notably a demonstrated
-              ability to solicit and address creative.
-            </li>
-            <li className="step  step-primary" data-content="✓">
-              3Masters of library science any Green University.
-            </li>
-            <li className="step  step-primary" data-content="✓">
-              BA/BS degree in a technical field or equivalent practical
-              experience.
-            </li>
-            <li className="step  step-primary" data-content="✓">
-              Ability to work independently and to carry out assignments to
-              completion within parameters of instructions .
-            </li>
-          </ul>
+              <div className="p-4 shadow-lg border">
+              {/* .........job description.............*/}
+              <p className="text-2xl font-semibold text-accent">Job Description</p>
+              <p className="py-4">
+              {job.description}
+              </p>
 
-          {/*.......... Responsibilities........... */}
+              {/*...........Education & Experience............*/}
+                {/*      <p className="text-2xl font-semibold text-accent py-4">
+              Education & Experience
+              </p>
+               <ul className="steps steps-vertical">
+              <li className="step step-primary " data-content="✓">
+                M.B.S / M.B.A under National University with CA course complete.
+              </li>
+              <li className="step  step-primary" data-content="✓">
+                3 or more years of professional design experience
+              </li>
+              <li className="step  step-primary" data-content="✓">
+                Excellent communication skills, most notably a demonstrated
+                ability to solicit and address creative.
+              </li>
+              <li className="step  step-primary" data-content="✓">
+                3Masters of library science any Green University.
+              </li>
+              <li className="step  step-primary" data-content="✓">
+                BA/BS degree in a technical field or equivalent practical
+                experience.
+              </li>
+              <li className="step  step-primary" data-content="✓">
+                Ability to work independently and to carry out assignments to
+                completion within parameters of instructions .
+              </li>
+              </ul> */}
 
-          <p className="text-2xl font-semibold py-4">Responsibilities</p>
-          <ul className="steps steps-vertical">
-            <li className="step step-primary " data-content="✓">
-              Explore and design dynamic and compelling consumer experiences.
-            </li>
-            <li className="step  step-primary" data-content="✓">
-              Have sound knowledge of commercial activities.
-            </li>
-            <li className="step  step-primary" data-content="✓">
-              Build next-generation web applications with a focus on the client
-              side.
-            </li>
-            <li className="step  step-primary" data-content="✓">
-              The applicants should have experience in the following areas
-            </li>
-          </ul>
-        </div>
+              {/*.......... Responsibilities........... */}
+
+              {/* <p className="text-2xl font-semibold py-4">Responsibilities</p>
+              <ul className="steps steps-vertical">
+              <li className="step step-primary " data-content="✓">
+                Explore and design dynamic and compelling consumer experiences.
+              </li>
+              <li className="step  step-primary" data-content="✓">
+                Have sound knowledge of commercial activities.
+              </li>
+              <li className="step  step-primary" data-content="✓">
+                Build next-generation web applications with a focus on the client
+                side.
+              </li>
+              <li className="step  step-primary" data-content="✓">
+                The applicants should have experience in the following areas
+              </li>
+              </ul> */}
+              </div>
+            </> 
+          )
+        }
       </div>
 
       <div className="shadow-lg w-[100%] lg:w-[30%] border">

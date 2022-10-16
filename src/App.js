@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import Footer from "./globalComponents/Footer";
 import Navbar from "./globalComponents/Navbar";
-import AdminPage from "./pages/adminPage/AdminPage";
+import AdminPage from "./pages/adminPage/adminPage";
 import AdminDashboard from "./pages/adminPage/adminSubPages/AdminDashboard";
 import AdminUsers from "./pages/adminPage/adminSubPages/AdminUsers";
 import NotFound from "./globalComponents/NotFound";
@@ -36,7 +36,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/jobs" element={<JobPage />} />
-        <Route path="/jobdetails" element={<JobDetails />} />
+        <Route path="/job/:id" element={<JobDetails />} />
 
         {/* admin dashboard start */}
         <Route path="/dashboard" element={<AdminPage />}>
