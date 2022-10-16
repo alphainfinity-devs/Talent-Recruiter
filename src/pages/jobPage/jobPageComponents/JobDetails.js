@@ -7,8 +7,19 @@ import { MdWorkOutline } from "react-icons/md";
 import { MdCastForEducation } from "react-icons/md";
 import { FiBox } from "react-icons/fi";
 import { BiNotepad } from "react-icons/bi";
+import { useParams } from "react-router-dom";
+import { useGetJobByIdQuery } from "../../../features/job/jobApi";
 
 const JobDetails = () => {
+
+  const { id } = useParams();
+  const {
+      data,
+      isLoading,
+      // isSuccess,
+      // isError,
+      // error
+  } = useGetJobByIdQuery(id)
   return (
     <div className="flex flex-col md:flex-col lg:flex-row gap-8 container mx-auto px-5 py-16">
       <div className="w-[100%] lg:w-[70%]">

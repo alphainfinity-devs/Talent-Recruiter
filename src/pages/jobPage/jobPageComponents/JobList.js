@@ -1,7 +1,18 @@
 import React from "react";
+import { useGetAllJobsQuery } from "../../../features/job/jobApi";
 import JobListCard from "./JobListCard";
 
 const JobList = () => {
+
+  const {
+    data: jobs,
+    isLoading,
+    isSuccess,
+    isError,
+    error
+} = useGetAllJobsQuery('getJobs')
+
+console.log(jobs);
   const featurejobs = [
     {
       _id: 1,
@@ -116,7 +127,7 @@ const JobList = () => {
     <section className="py-16">
       <div className="container mx-auto px-5">
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
-          {featurejobs.map((job) => (
+          {jobs.Jobs.map((job) => (
             <JobListCard key={job._id} job={job}></JobListCard>
           ))}
         </div>
