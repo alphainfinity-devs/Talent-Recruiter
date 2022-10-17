@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const AddJobs = () => {
+const RecruiterAddJobs = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
+    // reset,
   } = useForm();
 
   const onSubmit = (data) => console.log(data);
@@ -160,4 +160,4 @@ const AddJobs = () => {
   );
 };
 
-export default AddJobs;
+export default RecruiterAddJobs;

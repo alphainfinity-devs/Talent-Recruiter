@@ -10,7 +10,7 @@ const JobListCard = (job) => {
 
   return (
     <div className="md:flex justify-start items-center shadow-md hover:shadow-lg gap-4 px-5 py-6 hover:border-primary border-secondary border">
-      <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4">
         <div className="flex justify-start md:justify-center items-center">
           <img src={img} alt="" className="" />
         </div>

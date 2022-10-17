@@ -38,7 +38,7 @@ const Navbar = () => {
   const [checkbox, setCheckbox] = useState(false);
   const [adminCheckbox, setAdminCheckbox] = useState(false);
   const { user, accessToken } = useSelector((state) => state.auth || {});
-
+// console.log(user?.role)
   return (
     <header className={`w-full py-4 ${stickyClass}`}>
       <div className="flex justify-between items-center container mx-auto px-5">
@@ -90,7 +90,11 @@ const Navbar = () => {
             </div>
             <div className="flex gap-2">
               {accessToken && user?.email ? (
-                <NavLink to="/dashboard" className="btn btn-primary">
+                <NavLink
+                  to={
+                    `/${user?.role}`
+                  }
+                  className="btn btn-primary">
                   Dashboard
                 </NavLink>
               ) : (
@@ -154,7 +158,11 @@ const Navbar = () => {
 
               <div className="flex gap-2">
                 {accessToken && user?.email ? (
-                  <NavLink to="/dashboard" className="btn btn-primary">
+                  <NavLink
+                    to={
+                     `/${user?.role}`
+                    }
+                    className="btn btn-primary">
                     Dashboard
                   </NavLink>
                 ) : (

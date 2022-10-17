@@ -15,7 +15,7 @@ const useAuthVerify = () => {
         setIsAuthUser(false);
     }
     setAuthLoading(false);
-      console.log("useAuthVerify");
+      // console.log("useAuthVerify");
   }, [dispatch]);
 
   return [authLoading, isAuthUser];

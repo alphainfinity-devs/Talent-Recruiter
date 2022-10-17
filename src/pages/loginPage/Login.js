@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useLoginMutation } from "../../features/userAuth/userAuthAPI";
 import { toast } from "react-toastify";
 const Register = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     register,
     formState: { errors },
@@ -14,15 +15,16 @@ const Register = () => {
   useEffect(() => {
     // console.log(userInfo?.user);
     // console.log(userInfo?.accessToken);
+    const from = location.state?.from || `/${userInfo?.user?.role}`;
     if (error?.data) {
       toast.error("there was an error" + error?.data, { toastId: "error" });
     } else {
       toast.dismiss();
-      if ( userInfo?.user || userInfo?.accessToken) {
-        navigate("/dashboard");
+      if (userInfo?.user || userInfo?.accessToken) {
+        navigate(from, { replace: true });
       }
     }
-  }, [error, userInfo, navigate]);
+  }, [error, userInfo, navigate, location.state?.from]);
   const onSubmit = async (data) => {
     await login(data);
   };

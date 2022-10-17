@@ -20,12 +20,11 @@ export default function AdminSidebar() {
         <div className="px-4 py-6">
           <nav className="mt-6 flex flex-col space-y-1">
             <NavLink
-              to="admin-dashboard"
+              to="dashboard"
               className={(props) => {
                 return `${
                   (props.isActive ||
-                    location === "/dashboard" ||
-                    location === "/dashboard/") &&
+                    location === ("/admin" || "/dashboard/")) &&
                   "bg-gray-300"
                 } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
               }}>

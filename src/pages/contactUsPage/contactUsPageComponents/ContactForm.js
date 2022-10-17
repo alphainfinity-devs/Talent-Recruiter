@@ -6,7 +6,7 @@ import { MdLocationOn } from "react-icons/md";
 const ContactForm = () => {
   return (
     <section className="py-16 container mx-auto px-5">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 shadow-lg py-8 px-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 shadow-lg py-8 px-5">
         <div>
           <h2 className="font-bold mb-4 text-xl text-accent">CONTACT FORM</h2>
           <div className="flex justify-center items-center">
