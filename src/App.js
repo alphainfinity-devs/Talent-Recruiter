@@ -1,5 +1,5 @@
 import React from "react";
-import { ToastContainer } from "react-toastify";
+
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import Footer from "./globalComponents/Footer";
@@ -162,18 +162,7 @@ function App() {
       </Routes>
       <Footer />
 
-      {/* for toastify popup */}
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+    
     </>
   );
 }
