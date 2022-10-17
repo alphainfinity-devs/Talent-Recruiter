@@ -11,6 +11,9 @@ const categorySchema = mongoose.Schema({
     required: true,
     enum: ["active", "inactive"],
   }
+},
+{
+  timestamps: true,
 });
 
 export default mongoose.models.Category || mongoose.model('Category', categorySchema)
