@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Recruiter = () => {
+const RecruiterProfile = () => {
   return (
     <div className='hero min-h-[60vh]'>
       <div className='card w-full max-w-sm shadow-2xl bg-base-100'>
@@ -69,4 +69,4 @@ const Recruiter = () => {
   );
 };
 
-export default Recruiter;
+export default RecruiterProfile;

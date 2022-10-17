@@ -21,26 +21,57 @@ import Login from "./pages/loginPage/Login";
 import Register from "./pages/registerPage/Register";
 import ReviewsPage from "./pages/reviewPage/ReviewsPage";
 import BlogsPage from "./pages/blogsPage/BlogsPage";
-import RecruiterDashboard from "./pages/recruiterPage/RecruiterDashboard";
-import AppliedJobs from "./pages/recruiterPage/AppliedJobs";
-import Recruiter from "./pages/recruiterPage/Recruiter";
-import AddJobs from "./pages/recruiterPage/AddJobs";
+import RecruiterPage from "./pages/recruiterPage/RecruiterPage";
+import AppliedJobs from "./pages/recruiterPage/recruiterComponents/AppliedJobs";
+import RecruiterProfile from "./pages/recruiterPage/recruiterComponents/RecruiterProfile";
+import RecruiterAddJobs from "./pages/recruiterPage/recruiterComponents/RecruiterAddJobs";
 import JobPage from "./pages/jobPage/JobPage";
 import JobDetails from "./pages/jobPage/jobPageComponents/JobDetails";
+import PrivateRoute from "./globalComponents/PrivateRoute";
+import AdminRouteProtect from "./globalComponents/AdminRouteProtect";
+import RecruiterRouteProtect from "./globalComponents/RecruiterRouteProtect";
+import useRoleChecking from "./hooks/useRoleChecking";
+import ApplicantRouteProtect from "./globalComponents/ApplicantRouteProtect";
+import ApplicantPage from "./pages/applicantPage/ApplicantPage";
+import ApplicantAppliedJob from "./pages/applicantPage/applicantComponents/ApplicantAppliedJob";
+import ApplicantProfile from "./pages/applicantPage/applicantComponents/ApplicantProfile";
+import ApplicantSaveJob from "./pages/applicantPage/applicantComponents/ApplicantSaveJob";
+import ApplicantMessage from "./pages/applicantPage/applicantComponents/ApplicantMessage";
 
 function App() {
+  const [, userRole] = useRoleChecking();
+  console.log(userRole);
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/jobs" element={<JobPage />} />
-        <Route path="/job/:id" element={<JobDetails />} />
-
         {/* admin dashboard start */}
-        <Route path="/dashboard" element={<AdminPage />}>
-          <Route path="admin-dashboard" element={<AdminDashboard />} />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminRouteProtect>
+                <AdminPage />
+              </AdminRouteProtect>
+            </PrivateRoute>
+          }>
+          {/* admin dashboard start */}
+          <Route
+            index
+            element={
+              <AdminRouteProtect>
+                <AdminDashboard />
+              </AdminRouteProtect>
+            }
+          />
+          <Route
+            path="dashboard"
+            element={
+              <AdminRouteProtect>
+                <AdminDashboard />
+              </AdminRouteProtect>
+            }
+          />
           <Route path="admin-users" element={<AdminUsers />} />
           <Route path="admin-jobs" element={<AdminJobs />} />
           <Route path="admin-customize" element={<AdminCustomize />} />
@@ -50,25 +81,82 @@ function App() {
           <Route path="admin-security" element={<AdminSecurity />} />
           <Route path="admin-email-campaign" element={<AdminEmailCampaign />} />
           <Route path="admin-details" element={<AdminDetails />} />
-        </Route>
-        {/* admin dashboard end */}
 
-        {/* recruiter dashboard end */}
-        <Route path="/recruiterDashboard" element={<RecruiterDashboard />}>
-          <Route index element={<AppliedJobs />}></Route>
-          <Route path="appliedJobs" element={<AppliedJobs />}></Route>
-          <Route path="recruiter" element={<Recruiter />}></Route>
-          <Route path="addJobs" element={<AddJobs />}></Route>
+          {/* admin dashboard end */}
+        </Route>
+        {/* recruiter dashboard start */}
+        <Route
+          path="/recruiter"
+          element={
+            <PrivateRoute>
+              <RecruiterRouteProtect>
+                <RecruiterPage />
+              </RecruiterRouteProtect>
+            </PrivateRoute>
+          }>
+          <Route
+            index
+            element={
+              <RecruiterRouteProtect>
+                <AppliedJobs />
+              </RecruiterRouteProtect>
+            }
+          />
+          <Route
+            path="appliedJobs"
+            element={
+              <RecruiterRouteProtect>
+                <AppliedJobs />
+              </RecruiterRouteProtect>
+            }
+          />
+          <Route path="recruiter" element={<RecruiterProfile />} />
+          <Route path="addJobs" element={<RecruiterAddJobs />} />
         </Route>
         {/* recruiter dashboard end */}
+        {/* applicant dashboard start */}
+        <Route
+          path="/applicant"
+          element={
+            <PrivateRoute>
+              <ApplicantRouteProtect>
+                <ApplicantPage />
+              </ApplicantRouteProtect>
+            </PrivateRoute>
+          }>
+          <Route
+            index
+            element={
+              <ApplicantRouteProtect>
+                <ApplicantAppliedJob />
+              </ApplicantRouteProtect>
+            }
+          />
+          <Route
+            path="appliedJobs"
+            element={
+              <ApplicantRouteProtect>
+                <ApplicantAppliedJob />
+              </ApplicantRouteProtect>
+            }
+          />
+          <Route path="profile" element={<ApplicantProfile />} />
+          <Route path="save-job" element={<ApplicantSaveJob />} />
+          <Route path="message" element={<ApplicantMessage />} />
+        </Route>
+        {/* applicant dashboard end */}
 
-        {/* Others Page routes start */}
+        {/* public Page routes start */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/jobs" element={<JobPage />} />
+        <Route path="/job/:id" element={<JobDetails />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/blogs" element={<BlogsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* Others Page routes End */}
+        {/* public Page routes End */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>
