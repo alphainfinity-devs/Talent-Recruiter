@@ -1,41 +1,34 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useLoginMutation } from "../../features/userAuth/userAuthAPI";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
 const Register = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const location = useLocation();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [login, { isLoading, error, isSuccess, data: userInfo }] =
-    useLoginMutation();
+  const [login, { isLoading, error, data: userInfo }] = useLoginMutation();
   useEffect(() => {
-    if (error) {
-      toast.error("there was an error" + error?.message, { toastId: "error" });
+    // console.log(userInfo?.user);
+    // console.log(userInfo?.accessToken);
+    const from = location.state?.from || `/${userInfo?.user?.role}`;
+    if (error?.data) {
+      toast.error("there was an error" + error?.data, { toastId: "error" });
+    } else {
+      toast.dismiss();
+      if (userInfo?.user || userInfo?.accessToken) {
+        navigate(from, { replace: true });
+      }
     }
-    if (!error && !isLoading && isSuccess) {
-      toast.success("You have logged in", {
-        toastId: "success",
-      });
-      navigate("/dashboard");
-    }
-  }, [error, isLoading, dispatch, navigate, isSuccess]);
+  }, [error, userInfo, navigate, location.state?.from]);
   const onSubmit = async (data) => {
     await login(data);
-    window.location.reload();
-
-    dispatch(login({
-      user: userInfo?.user,
-      token: userInfo?.token,
-    }));
   };
-console.log(userInfo?.user)
-console.log(userInfo?.token)
+
   return (
     <div className="flex py-8 sm:pt-16  px-2 justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl rounded-none">

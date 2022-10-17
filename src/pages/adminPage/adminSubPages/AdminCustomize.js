@@ -50,7 +50,7 @@ const AdminCustomize = () => {
               <div className="card-body">
                 <label className="flex items-center justify-center">
                   Theme Background
-                  <input type="color" value="#f6f82" className="ml-3" id="colorPicker" />
+                  <input type="color" className="ml-3" id="colorPicker" />
                 </label>
               </div>
             </div>

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { ImCross } from "react-icons/im";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
+import { login } from "../features/userAuth/userAuthSlice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // navbar sticky to when scroll start
   const [stickyClass, setStickyClass] = useState("relative");
 
@@ -26,19 +29,16 @@ const Navbar = () => {
     }
   };
   // navbar sticky to when scroll end
+  // logged in checking
+  useEffect(() => {
+    const auth = JSON.parse(localStorage.getItem("auth"));
+    dispatch(login({ user: auth?.user, token: auth?.token }));
+  }, [dispatch, navigate]);
 
   const [checkbox, setCheckbox] = useState(false);
   const [adminCheckbox, setAdminCheckbox] = useState(false);
-  const [auth, setAuth] = useState(false);
-  const userAuth = localStorage.getItem("auth");
-  const { info } = useSelector((state) => state.auth);
-  console.log(info, "from nav");
-  useEffect(() => {
-    if (userAuth) {
-      setAuth(true);
-    }
-  }, [userAuth]);
-  console.log(auth);
+  const { user, accessToken } = useSelector((state) => state.auth || {});
+// console.log(user?.role)
   return (
     <header className={`w-full py-4 ${stickyClass}`}>
       <div className="flex justify-between items-center container mx-auto px-5">
@@ -46,8 +46,7 @@ const Navbar = () => {
         <label
           htmlFor="my-drawer-2"
           className="btn btn-primary drawer-button lg:hidden"
-          onClick={() => setAdminCheckbox(!adminCheckbox)}
-        >
+          onClick={() => setAdminCheckbox(!adminCheckbox)}>
           {adminCheckbox ? (
             <ImCross size={20} />
           ) : (
@@ -59,8 +58,7 @@ const Navbar = () => {
         <div>
           <NavLink
             className={"cursor-pointer hover:bg-primary bg-opacity-90"}
-            to="/"
-          >
+            to="/">
             <figure>
               <img src={logo} alt="logo" className="shrink-0 w-44" />
             </figure>
@@ -91,22 +89,24 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="flex gap-2">
-              {auth ? (
-                <NavLink to="/dashboard" className="btn btn-primary">
+              {accessToken && user?.email ? (
+                <NavLink
+                  to={
+                    `/${user?.role}`
+                  }
+                  className="btn btn-primary">
                   Dashboard
                 </NavLink>
               ) : (
                 <>
                   <NavLink
                     to="/login"
-                    className="btn rounded-none bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold px-4 border"
-                  >
+                    className="btn rounded-none bg-white hover:bg-primary text-primary border-primary hover:border-primary hover:text-white font-bold px-4 border">
                     Login
                   </NavLink>
                   <NavLink
                     to="/register"
-                    className="btn rounded-none bg-primary hover:bg-accent text-white font-bold px-4"
-                  >
+                    className="btn rounded-none bg-primary hover:bg-accent text-white font-bold px-4">
                     Register
                   </NavLink>
                 </>
@@ -124,8 +124,7 @@ const Navbar = () => {
             xmlns="http://www.w3.org/2000/svg"
             width="32"
             height="32"
-            viewBox="0 0 512 512"
-          >
+            viewBox="0 0 512 512">
             <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
           </svg>
           <svg
@@ -133,8 +132,7 @@ const Navbar = () => {
             xmlns="http://www.w3.org/2000/svg"
             width="32"
             height="32"
-            viewBox="0 0 512 512"
-          >
+            viewBox="0 0 512 512">
             <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
           </svg>
         </label>
@@ -159,8 +157,12 @@ const Navbar = () => {
               </li>
 
               <div className="flex gap-2">
-                {auth ? (
-                  <NavLink to="/dashboard" className="btn btn-primary">
+                {accessToken && user?.email ? (
+                  <NavLink
+                    to={
+                     `/${user?.role}`
+                    }
+                    className="btn btn-primary">
                     Dashboard
                   </NavLink>
                 ) : (
