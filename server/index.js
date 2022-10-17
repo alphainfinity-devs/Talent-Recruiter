@@ -37,6 +37,7 @@ app.use("/api/blogs", blogsRoute);
 app.use("/api/user", userRoute); //for login and register
 
 app.use("/api/jobs/", require("./routers/jobRoute"));
+app.use("/api/category/", require("./routers/categoryRoute"));
 app.use("/api/applicant/", require("./routers/applicantRouter"));
 
 // app.use("/api/applicant/", require("./routers/applicantRouter"));
