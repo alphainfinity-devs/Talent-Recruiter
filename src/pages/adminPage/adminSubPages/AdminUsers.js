@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { FaUsersCog } from "react-icons/fa";
-import { toast } from "react-toastify";
 import { useAdminGetUsersQuery } from "../../../features/adminUsers/adminUsersAPI";
 import TablePlaceholder from "../../../utils/TablePlaceholder";
 import SingleUser from "../adminPageComponents/SingleUser";
@@ -21,9 +20,7 @@ const AdminUsers = () => {
   if (isLoading && !error) {
     content = <TablePlaceholder />;
   } else if (error && !isLoading) {
-    content = toast.error(error?.message, {
-      toastId: "error",
-    });
+    content = <tr className="text-xl text-red-500 text-center">There was an error occurred</tr>
   } else if (data?.users && !isLoading && !error) {
     content = data.users.map((user) => (
       <SingleUser key={user._id} user={user} />
@@ -67,8 +64,7 @@ const AdminUsers = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>{content}
-          </tbody>
+          <tbody>{content}</tbody>
         </table>
         <div className="flex justify-center btn-group mt-5">
           <button className="btn">«</button>

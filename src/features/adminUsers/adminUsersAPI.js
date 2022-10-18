@@ -12,23 +12,15 @@ export const adminUsersAPI = APIsSlice.injectEndpoints({
         headers: roleHeader,
       }),
     }),
-    login: builder.mutation({
-      query: (body) => ({
-        url: "/api/user/login",
-        method: "POST",
-        body,
+    adminUpdateUser: builder.mutation({
+      query: ({ id, role }) => ({
+        url: `/api/admin/update-user-role/${id}`,
+        method: "PATCH",
+        body: { role }, //what role to update
+        headers: roleHeader,
       }),
-      async onQueryStarted(body, { dispatch, getState, queryFulfilled }) {
-        try {
-          const result = await queryFulfilled;
-          // console.log(result.data.token)
-          localStorage.setItem("auth", JSON.stringify(result.data));
-          //   dispatch(login(result.data));
-        } catch (error) {
-          console.log(error);
-        }
-      },
     }),
   }),
 });
-export const { useAdminGetUsersQuery } = adminUsersAPI;
+export const { useAdminGetUsersQuery, useAdminUpdateUserMutation } =
+  adminUsersAPI;

@@ -13,11 +13,7 @@ const adminUsersSlice = createSlice({
       state.accessToken = action.payload.token;
       state.user = action.payload.user;
     },
-    logout: (state) => {
-      state.accessToken = null;
-      state.user = null;
-      localStorage.removeItem("auth");
-    },
+ 
   },
 });
 export const { login, logout } = adminUsersSlice.actions;
