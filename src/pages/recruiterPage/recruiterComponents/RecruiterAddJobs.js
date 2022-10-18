@@ -1,22 +1,44 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useGetCategoryQuery } from "../../../features/category/categoryApi";
+import { usePostJobMutation } from "../../../features/requiter/requiterApi";
+import Spinner from "../../../utils/Spinner";
 
 const RecruiterAddJobs = () => {
   const {
+    data: category,
+    isLoading,
+
+} = useGetCategoryQuery()
+
+const [postJob,{data,isSuccess,isError}] = usePostJobMutation()
+if (isSuccess) {
+  toast.success("Job posted successfully", {
+    toastId: "success",
+  });
+}else if(isError){
+  toast.error("Something Went Wrong", {
+    toastId: "error",
+  });
+}
+const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const onSubmit = async (data) => {
-    console.log(data);
-  };
+
   return (
     <section className="py-10 w-full container mx-auto">
       <div className="flex justify-center items-center">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="w-[650px] bg-secondary p-5 md:p-10 shadow-lg"
+      {
+        isLoading ? <Spinner/> :
+        <form onSubmit={handleSubmit((data) => {
+          console.log({data});
+          postJob(data);
+        })}
+        className="w-[650px] bg-secondary p-5 md:p-10 shadow-lg"
         >
           {/* ........job title input filed......... */}
           <div className="flex flex-wrap mb-4">
@@ -62,14 +84,11 @@ const RecruiterAddJobs = () => {
                 })}
                 className="select select-bordered w-full rounded-none"
               >
-                <option disabled selected>
-                  Web Developer
-                </option>
-                <option>UI/UX Designer</option>
-                <option>Web Designer</option>
-                <option>Software</option>
-                <option>SEO</option>
-                <option>Digital Markater</option>
+ 
+                <option disabled>Select Category</option>
+                {
+                  category?.all_category.map((category) =>  <option key={category._id} value={category._id}>{category.categoryname}</option>)
+                }
               </select>
               <label className="label p-[2px]">
                 {errors.category?.type === "required" && (
@@ -97,14 +116,13 @@ const RecruiterAddJobs = () => {
                 })}
                 className="select select-bordered w-full rounded-none"
               >
-                <option disabled selected>
-                  Full Time
-                </option>
+                <option disabled>
+                Job Type
+                </option>    
+                <option>Full Time</option>
                 <option>Part Time</option>
-                <option>Remote</option>
-                <option>Office</option>
-                <option>Internship</option>
-                <option>Contract</option>
+                <option>Contactual</option>
+             
               </select>
               <label className="label p-[2px]">
                 {errors.type?.type === "required" && (
@@ -131,7 +149,7 @@ const RecruiterAddJobs = () => {
                 className="input input-bordered w-full rounded-none"
                 type="date"
                 placeholder="Job Title"
-                {...register("deadline", {
+                {...register("dead_line", {
                   required: {
                     value: true,
                     message: "Job deadline is required",
@@ -163,10 +181,10 @@ const RecruiterAddJobs = () => {
                   },
                 })}
                 className="select select-bordered w-full rounded-none"
+                
               >
-                <option disabled selected>
-                  25000 - 30000
-                </option>
+                <option disabled>Select Salary</option>
+                <option>Negotiable</option>
                 <option>30000 - 40000</option>
                 <option>40000 - 50000</option>
                 <option>50000 - 60000</option>
@@ -195,7 +213,7 @@ const RecruiterAddJobs = () => {
             <div className="w-full md:w-1/2 mb-2 md:mb-0">
               <label className="block mb-2">Lavel*</label>
               <select
-                {...register("lavel", {
+                {...register("level", {
                   required: {
                     value: true,
                     message: "lavel is required",
@@ -203,11 +221,10 @@ const RecruiterAddJobs = () => {
                 })}
                 className="select select-bordered w-full rounded-none"
               >
-                <option disabled selected>
-                  Senior
-                </option>
-                <option>Fresher</option>
-                <option>Junior</option>
+                <option disabled>Select Level</option>
+                <option>Entry Level</option>
+                <option>Mid Level</option>
+                <option>Senior Level</option>
               </select>
               <label className="label p-[2px]">
                 {errors.lavel?.type === "required" && (
@@ -223,16 +240,17 @@ const RecruiterAddJobs = () => {
               </label>
             </div>
 
-            {/* .....logo file input..... */}
+            {/* .....Experience file input..... */}
             <div className="w-full md:w-1/2 mb-2 md:mb-0">
-              <label className="block mb-2">Company Logo*:</label>
+              <label className="block mb-2">Experience*:</label>
               <input
-                className="w-full"
-                type="file"
-                {...register("cLogo", {
+                className="input input-bordered w-full rounded-none"
+                type="text"
+                placeholder="Experience"
+                {...register("experience", {
                   required: {
                     value: true,
-                    message: "company logo is required",
+                    message: "Experience is required",
                   },
                 })}
               />
@@ -250,7 +268,122 @@ const RecruiterAddJobs = () => {
               </label>
             </div>
           </div>
+          {/* ...lavel and compani Logo.. */}
+          <div className="flex mb-6 gap-1">
+            {/* .....Company Detail ..... */}
+            <div className="w-full md:w-1/2 mb-2 md:mb-0">
+              <label className="block mb-2">Company Name*:</label>
+              <input
+                className="input input-bordered w-full rounded-none"
+                type="text"
+                placeholder="Company Name"
+                {...register("company_name", {
+                  required: {
+                    value: true,
+                    message: "Company Name is required",
+                  },
+                })}
+              />
+              <label className="label p-[2px]">
+                {errors.company_name?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.company_name.message}
+                  </span>
+                )}
+                {errors.company_name?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.company_name.message}
+                  </span>
+                )}
+              </label>
+            </div>
 
+            {/* .....Company Website ..... */}
+            <div className="w-full md:w-1/2 mb-2 md:mb-0">
+              <label className="block mb-2">Company Website*:</label>
+              <input
+                className="input input-bordered w-full rounded-none"
+                type="url"
+                placeholder="Company Website"
+                {...register("company_link", {
+                  required: {
+                    value: true,
+                    message: "Company Website is required",
+                  },
+                })}
+              />
+              <label className="label p-[2px]">
+                {errors.company_link?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.company_link.message}
+                  </span>
+                )}
+                {errors.company_link?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.company_link.message}
+                  </span>
+                )}
+              </label>
+            </div>
+          </div>
+          {/* ...lavel and compani Logo.. */}
+          <div className="flex mb-6 gap-1">
+            {/* .....Address ..... */}
+            <div className="w-full md:w-1/2 mb-2 md:mb-0">
+              <label className="block mb-2">Address*:</label>
+              <input
+                className="input input-bordered w-full rounded-none"
+                type="text"
+                placeholder="Address"
+                {...register("address", {
+                  required: {
+                    value: true,
+                    message: "Address is required",
+                  },
+                })}
+              />
+              <label className="label p-[2px]">
+                {errors.address?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.address.message}
+                  </span>
+                )}
+                {errors.address?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.address.message}
+                  </span>
+                )}
+              </label>
+            </div>
+
+            {/* .....Company Website ..... */}
+            <div className="w-full md:w-1/2 mb-2 md:mb-0">
+              <label className="block mb-2">Vacancy*:</label>
+              <input
+                className="input input-bordered w-full rounded-none"
+                type="number"
+                placeholder="Vacancy"
+                {...register("vacancy", {
+                  required: {
+                    value: true,
+                    message: "Vacancy is required",
+                  },
+                })}
+              />
+              <label className="label p-[2px]">
+                {errors.vacancy?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.vacancy.message}
+                  </span>
+                )}
+                {errors.vacancy?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.vacancy.message}
+                  </span>
+                )}
+              </label>
+            </div>
+          </div>
           {/* .....Job description input fied...... */}
           <div className="flex flex-wrap mb-2">
             <div className="w-full">
@@ -287,6 +420,7 @@ const RecruiterAddJobs = () => {
             value="Post the job"
           />
         </form>
+      }
       </div>
     </section>
   );
