@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
-const appliedJobSchema = mongoose.Schema({
+const bookmarkJobSchema = mongoose.Schema({
 
     job : {
       type: mongoose.Schema.ObjectId,
       ref: 'Job',
       required: false
     }, 
-    candidate : {
+    user : {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: false
@@ -17,4 +17,4 @@ const appliedJobSchema = mongoose.Schema({
   timestamps: true,
 })
 
-module.exports = mongoose.model('AppliedJob',appliedJobSchema)
+module.exports = mongoose.model('BookmarkJob',bookmarkJobSchema)
