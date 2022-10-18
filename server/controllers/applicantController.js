@@ -1,27 +1,117 @@
-const Job = require('../schemas/jobSchema')
-const asyncHandler = require('express-async-handler')
 
-// Create new room   =>   /api/rooms
-const createJob = asyncHandler(async (req, res) => {
-    const data =  {...req.body}
-    console.log(req.user);
-    const newJob = await Job.create({data,company_name:req.user});
+const asyncHandler = require('express-async-handler');
+const AppliedJob= require('../schemas/appliedJobSchema');
+const BookmarkJob = require('../schemas/bookmarkJobSchema');
 
-    if(newJob){
-        res.status(200).json({
-            success: true,
-            message: "Successfully Create The Job",
-            newJob
-        })
-    }else{
-        res.status(400).json({
-            success: false,
-            message: "Something went wrong. Please try again",
-        })
+// @desc Get BookMarked Job
+const getBookmarkedJob = asyncHandler(async (req, res, next) => {
+    try{
+        const isBookmark = await BookmarkJob.find({user:req.user.id});
+
+        if(isBookmark){
+            res.status(200).json({
+                success: true,
+                bookmarkedjobs:isBookmark
+            })
+        }else{
+            res.status(400).json({
+                success: false,
+                message: "Something went wrong. Please try again",
+            })
+        }
+    }catch(err){
+        next(err)
     }
 
 })
 
+// @desc Create BookMarked 
+const bookmarkJob = asyncHandler(async (req, res, next) => {
+    try{
+        const isBookmark = await BookmarkJob.create({job:req.params.id,user:req.user.id});
+
+        if(isBookmark){
+            res.status(200).json({
+                success: true,
+                message: "Successfully Bookmark The Job",
+            })
+        }else{
+            res.status(400).json({
+                success: false,
+                message: "Something went wrong. Please try again",
+            })
+        }
+    }catch(err){
+        next(err)
+    }
+
+})
+
+// @desc  Delete Job Controller
+const deleteBookmark = asyncHandler(async(req,res,next)=>{
+
+    try{
+        const isDelete = await BookmarkJob.findOneAndDelete({_id:req.params.id, user:req.user.id})
+        if(isDelete){
+            res.status(200).json({
+                success: true,
+                message: `Bookmark deleted successfully`
+            })
+        }
+        else{
+            res.status(404).json({
+                success: false,
+                message: "Bookmark not found"
+            })
+    }
+    }catch(err){
+        next(err)
+    }
+
+})
+
+
+//  @desc Apply Job 
+const getAppliedJob = asyncHandler(async(req, res, next) =>{
+    try{
+        const isApplied = await AppliedJob.find({user:req.user.id}).populate('job','_id title');;
+
+        if(isApplied){
+            res.status(200).json({
+                success: true,
+                appliedjobs:isApplied
+            })
+        }else{
+            res.status(400).json({
+                success: false,
+                message: "Something went wrong. Please try again",
+            })
+        }
+    }catch(err){
+        next(err)
+    }
+})
+//  @desc Apply Job 
+const applyJob = asyncHandler(async(req, res, next) =>{
+    try{
+        const isApplied = await AppliedJob.create({job:req.params.id,user:req.user.id});
+
+        if(isApplied){
+            res.status(200).json({
+                success: true,
+                message: "Successfully Applied The Job",
+            })
+        }else{
+            res.status(400).json({
+                success: false,
+                message: "Something went wrong. Please try again",
+            })
+        }
+    }catch(err){
+        next(err)
+    }
+})
+
 module.exports ={
-    createJob
+    getBookmarkedJob, bookmarkJob,deleteBookmark, getAppliedJob, applyJob
 }
