@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 exports.registerUser = async (req, res, next) => {
   try {
     const { name, email, role, password } = req.body;
-    console.log(req.body);
     const existingUser = await User.findOne({ email: email });
     console.log(existingUser);
     if (existingUser) {
@@ -67,8 +66,8 @@ exports.loginUser = async (req, res, next) => {
     return res.status(400).json({ message: "invalid email or password" });
   }
   console.log(existingUser);
-  const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: "35s",
+  const token = jwt.sign({ id: existingUser._id, email:existingUser.email }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.JWT_EXPIRE,
   });
 
   console.log("Generated token\n", token);
@@ -93,25 +92,6 @@ exports.loginUser = async (req, res, next) => {
   });
 };
 
-//varify token
-exports.verifyToken = (req, res, next) => {
-  const cookies = req.headers.cookie;
-  const token = cookies.split("=")[1];
-  // console.log(token);
-
-  if (!token) {
-    res.status(404).json({
-      message: "token not found",
-    });
-  }
-  jwt.verify(String(token), process.env.JWT_SECRET_KEY, (error, user) => {
-    if (error) {
-      return res.status(400).json({ message: "Invalid token" });
-    }
-    req.id = user.id;
-  });
-  next();
-};
 
 //get user
 exports.getUser = async (req, res, next) => {

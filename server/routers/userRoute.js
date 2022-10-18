@@ -2,11 +2,11 @@ const express = require("express");
 const {
    registerUser,
   loginUser,
-  verifyToken,
   getUser,
   refreshToken,
   logoutUser,
 } = require("../controllers/userController");
+const verifyToken = require("../Middlewares/verifyToken");
 
 const router = express.Router();
 
