@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import { FaUsersCog } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import dummyImg from "../../../assets/img/team-1-800x800.jpg";
+import { useAdminGetUsersQuery } from "../../../features/adminUsers/adminUsersAPI";
 
 const AdminUsers = () => {
   const [actionValue, setActionValue] = useState("");
   const [emailSearch, setEmailSearch] = useState("");
+  const { isLoading, error, data } = useAdminGetUsersQuery();
+  console.log(data);
+  console.log(error);
   useEffect(() => {
     if (actionValue === "delete") {
       console.log("delete");

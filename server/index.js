@@ -8,8 +8,8 @@ dotenv.config();
 const app = express();
 // middleware
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.static("uploads"));//image upload
+app.use(express.json({ limit: "50mb" }));
+app.use(express.static("uploads")); //image upload
 app.use(cookieParser());
 app.use(cors());
 // database connection is here
@@ -28,20 +28,21 @@ app.get("/", (req, res) => {
 const blogsRoute = require("./routers/blogsRoute");
 const userRoute = require("./routers/userRoute");
 const multer = require("multer");
+const adminUsers = require("./routers/adminUsers");
+const roleAuthCheck = require("./Middlewares/roleAuthCheck");
 
 // create all routes here
 
-
-app.use("/api/blogs", blogsRoute);
+app.use("/api/blogs", blogsRoute); //dynamic blog post
+app.use("/api/admin", roleAuthCheck, adminUsers); //admin user route
 
 app.use("/api/user", userRoute); //for login and register
 
 app.use("/api/jobs/", require("./routers/jobRoute"));
-app.use("/api/category/", require("./routers/categoryRoute"));
+// app.use("/api/category/", require("./routers/categoryRoute"));
 app.use("/api/applicant/", require("./routers/applicantRouter"));
 
 // app.use("/api/applicant/", require("./routers/applicantRouter"));
-
 
 // All default error handling function
 function errorHandler(err, req, res, next) {

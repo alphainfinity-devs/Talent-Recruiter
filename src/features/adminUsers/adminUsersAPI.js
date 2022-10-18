@@ -1,23 +1,16 @@
 import { APIsSlice } from "../APIs/APIsSlice";
-import { login } from "./userAuthSlice";
-
+// import { login } from "./userAuthSlice";
+const roleHeader = {
+  role: "dmin",
+};
 export const adminUsersAPI = APIsSlice.injectEndpoints({
   endpoints: (builder) => ({
-    userRegister: builder.mutation({
-      query: (body) => ({
-        url: "/api/user/register",
-        method: "POST",
-        body,
+    adminGetUsers: builder.query({
+      query: (query = 0) => ({
+        url: "/api/admin/get-users",
+        method: "GET",
+        headers: roleHeader,
       }),
-      async onQueryStarted(body, { dispatch, queryFulfilled }) {
-        try {
-          const result = await queryFulfilled;
-          localStorage.setItem("auth", JSON.stringify(result.data));
-          dispatch(login(result.data));
-        } catch (error) {
-          console.log(error);
-        }
-      },
     }),
     login: builder.mutation({
       query: (body) => ({
@@ -30,7 +23,7 @@ export const adminUsersAPI = APIsSlice.injectEndpoints({
           const result = await queryFulfilled;
           // console.log(result.data.token)
           localStorage.setItem("auth", JSON.stringify(result.data));
-          dispatch(login(result.data));
+          //   dispatch(login(result.data));
         } catch (error) {
           console.log(error);
         }
@@ -38,4 +31,4 @@ export const adminUsersAPI = APIsSlice.injectEndpoints({
     }),
   }),
 });
-export const { useUserRegisterMutation, useLoginMutation } = adminUsersAPI;
+export const { useAdminGetUsersQuery } = adminUsersAPI;
