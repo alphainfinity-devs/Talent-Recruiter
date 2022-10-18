@@ -1,4 +1,5 @@
 import React from "react";
+import PageTitleBanner from "../../globalComponents/PageTitleBanner";
 import { useGetBlogPostsQuery } from "../../features/blogPost/blogPostAPI";
 import BlogCart from "../homePage/homePageComponents/BlogCart";
 
@@ -18,6 +19,7 @@ const BlogsPage = () => {
     );
   return (
     <>
+      <PageTitleBanner title="Blog Page" />
       <h1 className="text-2xl text-center font-bold my-4">Blogs Page</h1>
       {content}
     </>
