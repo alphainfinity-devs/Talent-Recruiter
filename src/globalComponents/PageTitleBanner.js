@@ -3,6 +3,7 @@ import PageTitle from "./PageTitle";
 import { Link } from "react-router-dom";
 
 const PageTitleBanner = ({ title }) => {
+  console.log('s',title);
   return (
     <>
       <PageTitle title={title} />

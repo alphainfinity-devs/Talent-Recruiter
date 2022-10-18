@@ -25,7 +25,6 @@ const getJobByRequiter = asyncHandler(async (req, res, next) => {
 // @desc Post New Job Controller
 const postJob = asyncHandler(async (req, res, next) => {
     const data =  {...req.body}
-    console.log(req.user);
     try{
         const newJob = await Job.create({...data,company_name:req.user.id});
 
