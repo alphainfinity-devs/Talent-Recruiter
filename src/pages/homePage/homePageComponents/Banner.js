@@ -2,7 +2,7 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <section>
+    <section className="bg-secondary py-3">
       <div className="grid md:grid-cols-2 justify-center items-center gap-2 container mx-auto px-5">
         {/*.......Banner info data start........*/}
         <div className="flex justify-center items-center mb-4">

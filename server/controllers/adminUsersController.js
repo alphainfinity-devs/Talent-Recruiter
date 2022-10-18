@@ -1,10 +1,18 @@
+const User = require("../Models/userModel");
 // get Posts
 const getAdminUsers = async (req, res, next) => {
   try {
     // console.log(req.body);
     console.log(req?.headers);
-    //   const posts = await BlogPost.find();
-    res.status(200).json({ p: "posts" });
+    const users = await User.find(
+      {},
+      {
+        password: 0,
+        __v: 0,
+      },
+    );
+    console.log(users);
+    res.status(200).json({ users });
   } catch (error) {
     console.log(error);
     next(error);

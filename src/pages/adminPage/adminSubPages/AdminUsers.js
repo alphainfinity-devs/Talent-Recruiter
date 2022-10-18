@@ -1,24 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FaUsersCog } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
-import dummyImg from "../../../assets/img/team-1-800x800.jpg";
+import { toast } from "react-toastify";
 import { useAdminGetUsersQuery } from "../../../features/adminUsers/adminUsersAPI";
+import TablePlaceholder from "../../../utils/TablePlaceholder";
+import SingleUser from "../adminPageComponents/SingleUser";
 
 const AdminUsers = () => {
-  const [actionValue, setActionValue] = useState("");
   const [emailSearch, setEmailSearch] = useState("");
   const { isLoading, error, data } = useAdminGetUsersQuery();
-  console.log(data);
-  console.log(error);
-  useEffect(() => {
-    if (actionValue === "delete") {
-      console.log("delete");
-    } else if (actionValue === "edit") {
-      console.log("edit");
-    } else if (actionValue === "warning") {
-      console.log("warning");
-    }
-  }, [actionValue]);
   //write debounce function
   useEffect(() => {
     const getSearchValue = setTimeout(() => {
@@ -26,14 +15,20 @@ const AdminUsers = () => {
     }, 1000);
     return () => clearTimeout(getSearchValue);
   }, [emailSearch]);
-  const handleCheck = (e) => {
-    /* if (e.target.checked) {
-      setActionValue(e.target.value);
-    } else {
-      setActionValue("");
-    } */
-  };
 
+  // decide what to render
+  let content;
+  if (isLoading && !error) {
+    content = <TablePlaceholder />;
+  } else if (error && !isLoading) {
+    content = toast.error(error?.message, {
+      toastId: "error",
+    });
+  } else if (data?.users && !isLoading && !error) {
+    content = data.users.map((user) => (
+      <SingleUser key={user._id} user={user} />
+    ));
+  }
   return (
     <div className="m-0 relative md:top-0">
       <div className="flex items-center justify-center md:my-14 my-3">
@@ -72,74 +67,7 @@ const AdminUsers = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src={dummyImg} alt="Avatar" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
-                    <div className="text-sm opacity-50">United States</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Applicant
-                <br />
-                <span className="badge badge-primary opacity-75 badge-sm">
-                  Active User
-                </span>
-              </td>
-              <td>purple@gmail.com</td>
-              <th>
-                {actionValue === "edit" ? (
-                  <div className="flex justify-center items-center">
-                    <span
-                      className="label-text"
-                      onClick={() => setActionValue("")}>
-                      <ImCross className="cursor-pointer hover:text-secondary-focus" />
-                    </span>
-                    <label className="cursor-pointer label">
-                      <span className="label-text mx-2">Make Admin</span>
-                      <input
-                        type="checkbox"
-                        onChange={handleCheck}
-                        // checked
-                        className="checkbox checkbox-accent"
-                      />
-                    </label>
-                  </div>
-                ) : (
-                  <select
-                    onChange={(e) => setActionValue(e.target.value)}
-                    className="select select-ghost"
-                    defaultValue={"defaultValue"}>
-                    <option disabled value="defaultValue">
-                      Select Action
-                    </option>
-                    <option
-                      value={"delete"}
-                      className="text-error cursor-pointer">
-                      Delete
-                    </option>
-                    <option
-                      value={"warning"}
-                      className="text-yellow-400 cursor-pointer">
-                      Warning
-                    </option>
-                    <option
-                      value={"edit"}
-                      className="text-success cursor-pointer">
-                      Edit User Role
-                    </option>
-                  </select>
-                )}
-              </th>
-            </tr>
+          <tbody>{content}
           </tbody>
         </table>
         <div className="flex justify-center btn-group mt-5">

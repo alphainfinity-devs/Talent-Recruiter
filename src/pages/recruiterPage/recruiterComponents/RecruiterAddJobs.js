@@ -1,162 +1,294 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React from "react";
+import { useForm } from "react-hook-form";
 
 const RecruiterAddJobs = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
-    // reset,
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
   return (
-    <div className='hero min-h-[60vh]'>
-      <div className='card w-full max-w-sm shadow-2xl bg-base-100'>
-        <h2 className='text-2xl text-center text-secondary font-bold pb-5'>
-          Add a Job
-        </h2>
-        <div className='flex  justify-center items-center'>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='form-control w-full max-w-xs '>
-              <label className='label'>
-                <span className='label-text'>Job Position</span>
-              </label>
-
+    <section className="py-10 w-full container mx-auto">
+      <div className="flex justify-center items-center">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-[650px] bg-secondary p-5 md:p-10 shadow-lg"
+        >
+          {/* ........job title input filed......... */}
+          <div className="flex flex-wrap mb-4">
+            <div className="w-full">
+              <label className="block mb-2">Job Title*</label>
               <input
-                type='text'
-                placeholder='Job Position'
-                className='input input-bordered w-full max-w-xs'
-                {...register('jobPosition', {
+                className="input input-bordered w-full rounded-none"
+                type="text"
+                placeholder="job title"
+                {...register("title", {
                   required: {
                     value: true,
-                    message: 'Job Position is Required',
+                    message: "Job title is required",
                   },
                 })}
               />
+              <label className="label p-[2px]">
+                {errors.title?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.title.message}
+                  </span>
+                )}
+                {errors.title?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.title.message}
+                  </span>
+                )}
+              </label>
+            </div>
+          </div>
 
-              <label className='label'>
-                {errors.name?.type === 'required' && (
-                  <span className='label-text-alt text-red-500'>
-                    {errors.name.message}
+          {/* .......job categor and job type......... */}
+          <div className="flex mb-6 gap-1">
+            {/* .....job category input..... */}
+            <div className="w-full md:w-1/2 mb-2 md:mb-0">
+              <label className="block mb-2">Job Category*</label>
+              <select
+                {...register("category", {
+                  required: {
+                    value: true,
+                    message: "Job Category is required",
+                  },
+                })}
+                className="select select-bordered w-full rounded-none"
+              >
+                <option disabled selected>
+                  Web Developer
+                </option>
+                <option>UI/UX Designer</option>
+                <option>Web Designer</option>
+                <option>Software</option>
+                <option>SEO</option>
+                <option>Digital Markater</option>
+              </select>
+              <label className="label p-[2px]">
+                {errors.category?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.category.message}
+                  </span>
+                )}
+                {errors.category?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.category.message}
                   </span>
                 )}
               </label>
             </div>
 
-            <div className='form-control w-full max-w-xs '>
-              <label className='label'>
-                <span className='label-text'>Company Name</span>
-              </label>
-
-              <input
-                type='text'
-                placeholder='Company Name'
-                className='input input-bordered w-full max-w-xs'
-                {...register('companyName', {
+            {/* .....job type input..... */}
+            <div className="w-full md:w-1/2 mb-2 md:mb-0">
+              <label className="block mb-2">Job Type*</label>
+              <select
+                {...register("type", {
                   required: {
                     value: true,
-                    message: 'Company Name is Required',
+                    message: "Job type is required",
+                  },
+                })}
+                className="select select-bordered w-full rounded-none"
+              >
+                <option disabled selected>
+                  Full Time
+                </option>
+                <option>Part Time</option>
+                <option>Remote</option>
+                <option>Office</option>
+                <option>Internship</option>
+                <option>Contract</option>
+              </select>
+              <label className="label p-[2px]">
+                {errors.type?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.type.message}
+                  </span>
+                )}
+                {errors.type?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.type.message}
+                  </span>
+                )}
+              </label>
+            </div>
+          </div>
+
+          {/* ...Application Deadline and Salary Currency.. */}
+          <div className="flex mb-6 gap-1">
+            {/* .....Application Deadline input..... */}
+            <div className="w-full md:w-1/2 mb-2 md:mb-0">
+              <label className="block mb-2">Deadline*</label>
+
+              <input
+                className="input input-bordered w-full rounded-none"
+                type="date"
+                placeholder="Job Title"
+                {...register("deadline", {
+                  required: {
+                    value: true,
+                    message: "Job deadline is required",
                   },
                 })}
               />
-
-              <label className='label'>
-                {errors.name?.type === 'required' && (
-                  <span className='label-text-alt text-red-500'>
-                    {errors.name.message}
+              <label className="label p-[2px]">
+                {errors.deadline?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.deadline.message}
+                  </span>
+                )}
+                {errors.deadline?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.deadline.message}
                   </span>
                 )}
               </label>
             </div>
 
-            <div className='form-control w-full max-w-xs '>
-              <label className='label'>
-                <span className='label-text'>Vacancy</span>
-              </label>
-
-              <input
-                type='number'
-                placeholder='Vacancy'
-                className='input input-bordered w-full max-w-xs'
-                {...register('vacancy', {
+            {/* .....job type input..... */}
+            <div className="w-full md:w-1/2 mb-2 md:mb-0">
+              <label className="block mb-2">Salary*</label>
+              <select
+                {...register("salary", {
                   required: {
                     value: true,
-                    message: 'Vacancy is Required',
+                    message: "Job salary is required",
                   },
                 })}
-              />
+                className="select select-bordered w-full rounded-none"
+              >
+                <option disabled selected>
+                  25000 - 30000
+                </option>
+                <option>30000 - 40000</option>
+                <option>40000 - 50000</option>
+                <option>50000 - 60000</option>
+                <option>60000 - 70000</option>
+                <option>70000 - 80000</option>
+                <option>80000 - 90000</option>
+              </select>
+              <label className="label p-[2px]">
+                {errors.salary?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.salary.message}
+                  </span>
+                )}
+                {errors.salary?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.salary.message}
+                  </span>
+                )}
+              </label>
+            </div>
+          </div>
 
-              <label className='label'>
-                {errors.name?.type === 'required' && (
-                  <span className='label-text-alt text-red-500'>
-                    {errors.name.message}
+          {/* ...lavel and compani Logo.. */}
+          <div className="flex mb-6 gap-1">
+            {/* .....cadidate lavel input..... */}
+            <div className="w-full md:w-1/2 mb-2 md:mb-0">
+              <label className="block mb-2">Lavel*</label>
+              <select
+                {...register("lavel", {
+                  required: {
+                    value: true,
+                    message: "lavel is required",
+                  },
+                })}
+                className="select select-bordered w-full rounded-none"
+              >
+                <option disabled selected>
+                  Senior
+                </option>
+                <option>Fresher</option>
+                <option>Junior</option>
+              </select>
+              <label className="label p-[2px]">
+                {errors.lavel?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.lavel.message}
+                  </span>
+                )}
+                {errors.lavel?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.lavel.message}
                   </span>
                 )}
               </label>
             </div>
 
-            <div className='form-control w-full max-w-xs '>
-              <label className='label'>
-                <span className='label-text'>Job Details</span>
+            {/* .....logo file input..... */}
+            <div className="w-full md:w-1/2 mb-2 md:mb-0">
+              <label className="block mb-2">Company Logo*:</label>
+              <input
+                className="w-full"
+                type="file"
+                {...register("cLogo", {
+                  required: {
+                    value: true,
+                    message: "company logo is required",
+                  },
+                })}
+              />
+              <label className="label p-[2px]">
+                {errors.cLogo?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.cLogo.message}
+                  </span>
+                )}
+                {errors.cLogo?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.cLogo.message}
+                  </span>
+                )}
               </label>
+            </div>
+          </div>
 
+          {/* .....Job description input fied...... */}
+          <div className="flex flex-wrap mb-2">
+            <div className="w-full">
+              <label className="block mb-2">Job Description*</label>
               <textarea
-                type='text'
-                placeholder='Job Details'
-                className='textarea textarea-bordered w-full max-w-xs'
-                {...register('jobDetails', {
+                className="textarea textarea-bordered w-full border-1 rounded-none h-[100px]"
+                type="text"
+                placeholder="Job Description"
+                {...register("description", {
                   required: {
                     value: true,
-                    message: 'Job details is Required',
+                    message: "Job Description is required",
                   },
                 })}
-              />
-
-              <label className='label'>
-                {errors.name?.type === 'required' && (
-                  <span className='label-text-alt text-red-500'>
-                    {errors.name.message}
+              ></textarea>
+              <label className="label p-[2px]">
+                {errors.description?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.description.message}
+                  </span>
+                )}
+                {errors.description?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.description.message}
                   </span>
                 )}
               </label>
             </div>
+          </div>
 
-            <div className='form-control w-full max-w-xs '>
-              <label className='label'>
-                <span className='label-text'>Job Requirement</span>
-              </label>
-
-              <textarea
-                type='text'
-                placeholder='Job Requirement'
-                className='textarea textarea-bordered w-full max-w-xs'
-                {...register('jobRequirement', {
-                  required: {
-                    value: true,
-                    message: 'Job Requirement is Required',
-                  },
-                })}
-              />
-
-              <label className='label'>
-                {errors.name?.type === 'required' && (
-                  <span className='label-text-alt text-red-500'>
-                    {errors.name.message}
-                  </span>
-                )}
-              </label>
-            </div>
-
-            <input
-              className='btn w-full max-w-xs bg-primary text-black mb-4'
-              type='submit'
-              value='Add'
-            />
-          </form>
-        </div>
+          <input
+            className="btn btn-primary hover:bg-accent w-full text-white rounded-none hover:shadow-lg"
+            type="submit"
+            value="Post the job"
+          />
+        </form>
       </div>
-    </div>
+    </section>
   );
 };
 

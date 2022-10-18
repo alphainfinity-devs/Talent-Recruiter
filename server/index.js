@@ -35,14 +35,13 @@ const roleAuthCheck = require("./Middlewares/roleAuthCheck");
 
 app.use("/api/blogs", blogsRoute); //dynamic blog post
 app.use("/api/admin", roleAuthCheck, adminUsers); //admin user route
-
 app.use("/api/user", userRoute); //for login and register
-
 app.use("/api/jobs/", require("./routers/jobRoute"));
-// app.use("/api/category/", require("./routers/categoryRoute"));
+app.use("/api/category/", require("./routers/categoryRoute"));
 app.use("/api/applicant/", require("./routers/applicantRouter"));
-
-// app.use("/api/applicant/", require("./routers/applicantRouter"));
+app.use("/api/applicant/", require("./routers/applicantRouter"));
+app.use("/api/requiter/", require("./routers/requiterRouter"));
+app.use("/api/applicant/", require("./routers/applicantRouter"));
 
 // All default error handling function
 function errorHandler(err, req, res, next) {

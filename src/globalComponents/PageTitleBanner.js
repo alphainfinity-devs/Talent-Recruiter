@@ -1,21 +1,25 @@
 import React from "react";
+import PageTitle from "./PageTitle";
 import { Link } from "react-router-dom";
 
 const PageTitleBanner = ({ title }) => {
   return (
-    <div className="py-12 bg-secondary">
-      <div className="container mx-auto px-5 text-center md:text-start">
-        <h2 className="text-accent text-3xl md:text-4xl lg:text-5xl">
-          {title}
-        </h2>
-        <div className="flex gap-2 text-accent text-xl pt-2 justify-center md:justify-start">
-          <Link to="/home" className="hover:text-primary">
-            Home
-          </Link>{" "}
-          /<p className="text-primary">{title}</p>
+    <>
+      <PageTitle title={title} />
+      <div className="py-10 bg-secondary">
+        <div className="container mx-auto px-5 text-center md:text-start">
+          <h2 className="text-accent text-2xl md:text-3xl lg:text-4xl">
+            {title}
+          </h2>
+          <div className="flex gap-2 text-accent text-xl pt-2 justify-center md:justify-start">
+            <Link to="/" className="hover:text-primary">
+              Home
+            </Link>{" "}
+            /<p className="text-primary">{title}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

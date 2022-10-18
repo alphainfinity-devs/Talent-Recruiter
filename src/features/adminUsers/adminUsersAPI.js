@@ -1,7 +1,7 @@
 import { APIsSlice } from "../APIs/APIsSlice";
 // import { login } from "./userAuthSlice";
 const roleHeader = {
-  role: "dmin",
+  role: "admin",
 };
 export const adminUsersAPI = APIsSlice.injectEndpoints({
   endpoints: (builder) => ({
