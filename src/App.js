@@ -38,6 +38,7 @@ import ApplicantProfile from "./pages/applicantPage/applicantComponents/Applican
 import ApplicantSaveJob from "./pages/applicantPage/applicantComponents/ApplicantSaveJob";
 import ApplicantMessage from "./pages/applicantPage/applicantComponents/ApplicantMessage";
 
+
 function App() {
   const [, userRole] = useRoleChecking();
   console.log(userRole);

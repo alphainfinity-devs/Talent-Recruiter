@@ -17,13 +17,13 @@ const JobDetails = () => {
   const job = data?.job;
   return (
     <section>
-      <PageTitleBanner title="Job Detail" />
       <div className="flex flex-col md:flex-col lg:flex-row gap-8 container mx-auto px-5 py-16">
         <div className="w-[100%] lg:w-[70%]">
           {isLoading ? (
             <Spinner />
           ) : (
             <>
+            <PageTitleBanner title={job?.title} />
               <div className="shadow-lg p-4 mb-4 border">
                 <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3">
                   {/* .......compani Logo...... */}
