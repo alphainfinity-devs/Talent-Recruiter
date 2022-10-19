@@ -19,14 +19,14 @@ const RecruiterSidebar = () => {
           {/* <!-- Sidebar content here --> */}
           <li>
             <Link
-              to="appliedJobs"
+              to="jobs"
               className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
               <BsList className="w-5"/>Jobs
             </Link>
           </li>
           <li>
             <Link
-              to="addJobs"
+              to="job/post"
               className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
               <FaBriefcase className="w-5" />Post Your Job
             </Link>

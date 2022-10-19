@@ -37,6 +37,7 @@ import ApplicantAppliedJob from "./pages/applicantPage/applicantComponents/Appli
 import ApplicantProfile from "./pages/applicantPage/applicantComponents/ApplicantProfile";
 import ApplicantSaveJob from "./pages/applicantPage/applicantComponents/ApplicantSaveJob";
 import ApplicantMessage from "./pages/applicantPage/applicantComponents/ApplicantMessage";
+import ApplicantList from "./pages/recruiterPage/recruiterComponents/ApplicantList";
 
 
 function App() {
@@ -104,20 +105,28 @@ function App() {
             }
           />
           <Route
-            path="appliedJobs"
+            path="jobs"
             element={
               <RecruiterRouteProtect>
                 <AppliedJobs />
               </RecruiterRouteProtect>
             }
           />
+          <Route
+            path="jobs/applicants/:id"
+            element={
+              <RecruiterRouteProtect>
+                <ApplicantList />
+              </RecruiterRouteProtect>
+            }
+            />
           <Route path="recruiter" element={<RecruiterProfile />} />
-          <Route path="addJobs" element={<RecruiterAddJobs />} />
+          <Route path="job/post" element={<RecruiterAddJobs />} />
         </Route>
         {/* recruiter dashboard end */}
         {/* applicant dashboard start */}
         <Route
-          path="/applicant"
+          path="/applicants"
           element={
             <PrivateRoute>
               <ApplicantRouteProtect>

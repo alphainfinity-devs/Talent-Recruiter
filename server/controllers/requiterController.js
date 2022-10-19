@@ -22,12 +22,13 @@ const getJobByRequiter = asyncHandler(async (req, res, next) => {
     }
 })
 // @desc Get Job All Via Applicant Id
-const getApplicantByRequiter = asyncHandler(async (req, res, next) => {
+const getApplicantByJob = asyncHandler(async (req, res, next) => {
+    console.log(req.params.id);
     try{
-        const getApplicantByRequiter = await AppliedJob.find({job:req.params.id,}).populate('candidate','_id name')
-        if(getApplicantByRequiter){
+        const getApplicantByJob = await AppliedJob.find({"job":{_id:req.params.id}}).populate('candidate','_id name')
+        if(getApplicantByJob){
             res.status(200).json({
-                ApplicantByJob:getApplicantByRequiter
+                ApplicantByJob:getApplicantByJob
             })
         }else{
             res.status(400).json({
@@ -86,5 +87,5 @@ const deleteJob = asyncHandler(async(req,res,next)=>{
 
 })
 module.exports ={
-    postJob, getJobByRequiter,getApplicantByRequiter, deleteJob
+    postJob, getJobByRequiter,getApplicantByJob, deleteJob
 }
