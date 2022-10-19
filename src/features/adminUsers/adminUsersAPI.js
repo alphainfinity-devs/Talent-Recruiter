@@ -11,6 +11,7 @@ export const adminUsersAPI = APIsSlice.injectEndpoints({
         method: "GET",
         headers: roleHeader,
       }),
+      providesTags: ["adminUsers"],
     }),
     adminUpdateUser: builder.mutation({
       query: ({ id, role }) => ({
@@ -24,9 +25,17 @@ export const adminUsersAPI = APIsSlice.injectEndpoints({
       query: (email) => ({
         url: `api/admin/warning-user`,
         method: "POST",
-        body: {email},
+        body: { email },
         headers: roleHeader,
       }),
+    }),
+    adminDeleteUser: builder.mutation({
+      query: (id) => ({
+        url: `api/admin/delete-user/${id}`,
+        method: "DELETE",
+        headers: roleHeader,
+      }),
+      invalidatesTags: ["adminUsers"],
     }),
   }),
 });
@@ -34,4 +43,5 @@ export const {
   useAdminGetUsersQuery,
   useAdminWarningUserMutation,
   useAdminUpdateUserMutation,
+  useAdminDeleteUserMutation,
 } = adminUsersAPI;

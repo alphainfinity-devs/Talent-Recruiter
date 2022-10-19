@@ -48,6 +48,7 @@ const updateUserRole = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
+    console.log(id);
     const user = await User.findByIdAndDelete(id);
     res.status(200).json({ user });
   } catch (error) {

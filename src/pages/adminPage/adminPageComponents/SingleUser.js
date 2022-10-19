@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import { ImCross } from "react-icons/im";
 import {
+  useAdminDeleteUserMutation,
   useAdminUpdateUserMutation,
   useAdminWarningUserMutation,
 } from "../../../features/adminUsers/adminUsersAPI";
@@ -21,13 +22,24 @@ const SingleUser = ({ user }) => {
       isSuccess: warningSuccess,
     },
   ] = useAdminWarningUserMutation();
+  const [
+    adminDeleteUser,
+    { isLoading: deleteLoading, error: deleteError, isSuccess: deleteSuccess },
+  ] = useAdminDeleteUserMutation();
   useEffect(() => {
     if (actionValue === "delete") {
-      console.log("delete");
+      const isTrue = window.confirm(
+        "Are you sure you want to delete this user?",
+      );
+      console.log(isTrue);
+      if (isTrue) {
+        adminDeleteUser(_id);
+      }
     } else if (actionValue === "warning") {
       adminWarningUser(email);
     }
-  }, [actionValue, adminWarningUser, email]);
+  }, [actionValue, adminWarningUser, adminDeleteUser, email, _id]);
+
   useEffect(() => {
     if (check.status) {
       // do update the role
@@ -35,14 +47,21 @@ const SingleUser = ({ user }) => {
   }, [check, _id, adminUpdateUser]);
 
   useEffect(() => {
-    if (error || warningError) {
-      toast.error(`${error || warningError}`, {
+    setActionValue("");
+    if (error || warningError || deleteError) {
+      toast.error(`${error || warningError || deleteError}`, {
         toastId: "error",
       });
     }
-    if (isSuccess || warningSuccess) {
+    if (isSuccess || warningSuccess || deleteSuccess) {
       toast.success(
-        `${isSuccess ? "User role updated" : "Warning was sent to this user"}`,
+        `${
+          isSuccess
+            ? "User role updated"
+            : warningSuccess
+            ? "Warning was sent to this user"
+            : "User was deleted"
+        }`,
         {
           toastId: "success",
         },
@@ -50,7 +69,14 @@ const SingleUser = ({ user }) => {
       setActionValue("defaultValue");
       setCheck({ status: false, role: "" });
     }
-  }, [error, isSuccess, warningSuccess, warningError]);
+  }, [
+    error,
+    isSuccess,
+    warningSuccess,
+    warningError,
+    deleteSuccess,
+    deleteError,
+  ]);
 
   const handleCheck = (e) => {
     console.log(e.target.name);
@@ -133,8 +159,8 @@ const SingleUser = ({ user }) => {
                 </form>
               )}
             </div>
-          ) : warningLoading ? (
-            <div className="flex justify-center items-center animate-pulse bg-slate-700">
+          ) : warningLoading || deleteLoading ? (
+            <div className="flex text-white justify-center items-center animate-pulse bg-slate-700">
               Loading...
             </div>
           ) : (
@@ -144,11 +170,7 @@ const SingleUser = ({ user }) => {
                 role === "administrator" && "hidden"
               } select select-ghost`}
               defaultValue={"defaultValue"}>
-              <option
-                disabled={actionValue ? false : true}
-                value={"defaultValue"}>
-                Select Action
-              </option>
+              <option value={"defaultValue"}>Select Action</option>
               <option value={"delete"} className="text-error cursor-pointer">
                 Delete
               </option>
