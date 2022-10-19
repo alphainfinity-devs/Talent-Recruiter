@@ -2,8 +2,6 @@ import React from "react";
 import PageTitleBanner from "../../../globalComponents/PageTitleBanner";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { AiOutlineFieldTime } from "react-icons/ai";
-import { BsGenderAmbiguous } from "react-icons/bs";
 import { MdWorkOutline } from "react-icons/md";
 import { MdCastForEducation } from "react-icons/md";
 import { BiNotepad } from "react-icons/bi";

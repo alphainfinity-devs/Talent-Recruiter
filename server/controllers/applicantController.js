@@ -94,18 +94,21 @@ const getAppliedJob = asyncHandler(async(req, res, next) =>{
 //  @desc Apply Job 
 const applyJob = asyncHandler(async(req, res, next) =>{
     try{
-        const isApplied = await AppliedJob.create({job:req.params.id,user:req.user.id});
+        const isApplied = await AppliedJob.find({job:req.params.id,user:req.user.id});
 
         if(isApplied){
             res.status(200).json({
                 success: true,
-                message: "Successfully Applied The Job",
+                message: "Already Applied This Job",
             })
         }else{
-            res.status(400).json({
-                success: false,
-                message: "Something went wrong. Please try again",
-            })
+            const applied = await AppliedJob.create({job:req.params.id,user:req.user.id});
+            if(applied){
+                res.status(200).json({
+                    success: true,
+                    message: "Already Applied This Job",
+                })
+            }
         }
     }catch(err){
         next(err)

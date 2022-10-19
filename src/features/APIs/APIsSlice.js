@@ -11,7 +11,7 @@ export const APIsSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Post","DELETE"],
+  tagTypes: ["Post"],
   endpoints: (builder) => ({
     getPosts: builder.query({
       query: () => "posts",

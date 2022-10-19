@@ -22,7 +22,7 @@ import Register from "./pages/registerPage/Register";
 import ReviewsPage from "./pages/reviewPage/ReviewsPage";
 import BlogsPage from "./pages/blogsPage/BlogsPage";
 import RecruiterPage from "./pages/recruiterPage/RecruiterPage";
-import AppliedJobs from "./pages/recruiterPage/recruiterComponents/AppliedJobs";
+import AppliedJobs from "./pages/recruiterPage/recruiterComponents/RequiterJobList";
 import RecruiterProfile from "./pages/recruiterPage/recruiterComponents/RecruiterProfile";
 import RecruiterAddJobs from "./pages/recruiterPage/recruiterComponents/RecruiterAddJobs";
 import JobPage from "./pages/jobPage/JobPage";

@@ -22,8 +22,7 @@ export const requiterApi = APIsSlice.injectEndpoints({
       },
     }),
     deleteJob: builder.mutation({
-      query: ({ id }) => {
-        // console.log(body);
+      query: (id) => {
         return {
           url: `/api/requiter/delete-job/${id}`,
           method: "DELETE",
@@ -33,4 +32,4 @@ export const requiterApi = APIsSlice.injectEndpoints({
   }),
 });
 
-export const { usePostJobMutation , usegetOwnJobListQuery,  useDeleteJobMutation, } = requiterApi;
+export const { usePostJobMutation , useGetOwnJobListQuery,  useDeleteJobMutation, } = requiterApi;

@@ -1,15 +1,16 @@
 const Job = require('../schemas/jobSchema')
 const asyncHandler = require('express-async-handler');
+const AppliedJob = require('../schemas/appliedJobSchema');
 
 
 // @desc Get Job All Via Applicant Id
 const getJobByRequiter = asyncHandler(async (req, res, next) => {
     try{
-        const getJobByRequiter = await Job.find({company_name:req.user.id});
+        const getJobByRequiter = await Job.find({requiter:req.user.id}).populate('requiter','_id name');
 
         if(getJobByRequiter){
             res.status(200).json({
-                getJobByRequiter
+                JobByRequiter:getJobByRequiter
             })
         }else{
             res.status(400).json({
