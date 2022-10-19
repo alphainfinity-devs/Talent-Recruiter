@@ -22,24 +22,21 @@ const RecruiterSidebar = () => {
             <Link
               to="appliedJobs"
               className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-              <BsList className="w-5 mr-3" />
-              Applied Jobs
+              <BsList className="w-5 mr-3" />Applied Jobs
             </Link>
           </li>
           <li>
             <Link
               to="recruiter"
               className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-              <FaUserTie className="w-5 mr-3" />
-              Profile
+              <FaUserTie className="w-5 mr-3" />Profile
             </Link>
           </li>
           <li>
             <Link
               to="addJobs"
               className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-              <FaBriefcase className="w-5 mr-3" />
-              Add a Job
+              <FaBriefcase className="w-5 mr-3" />Add a Job
             </Link>
           </li>
           <li>

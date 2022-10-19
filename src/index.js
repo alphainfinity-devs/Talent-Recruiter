@@ -6,7 +6,8 @@ import App from "./App";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import { BrowserRouter } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
+import { HelmetProvider } from 'react-helmet-async';
+
 
 const container = document.getElementById("root");
 const root = createRoot(container);
