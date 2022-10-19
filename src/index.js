@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 
+
 const container = document.getElementById("root");
 const root = createRoot(container);
 
@@ -20,5 +21,5 @@ root.render(
         </BrowserRouter>
       </HelmetProvider>
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
