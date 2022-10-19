@@ -1,9 +1,12 @@
 const User = require("../Models/userModel");
+const emailSender = require("../utilities/emailSender");
+// const emailSender = require("../utilities/emailSender");
+
 // get Users
 const getAdminUsers = async (req, res, next) => {
   try {
     // console.log(req.body);
-    console.log(req?.headers);
+    // console.log(req?.headers);
     const users = await User.find(
       {},
       {
@@ -11,7 +14,6 @@ const getAdminUsers = async (req, res, next) => {
         __v: 0,
       },
     );
-    console.log(users);
     res.status(200).json({ users });
   } catch (error) {
     console.log(error);
@@ -35,7 +37,7 @@ const updateUserRole = async (req, res, next) => {
         },
       },
     );
-    console.log(user);
+    // console.log(user);
     res.status(200).json({ user });
   } catch (error) {
     console.log(error);
@@ -54,8 +56,30 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
+// warning for user
+const warningUser = async (req, res, next) => {
+  try {
+    const subject = "⚠️ Warning for Violation our Terms and Conditions";
+    const body = `
+    <h1>Warning</h1>
+    <p>Dear User,</p>
+    <p>You have been warned for violating our terms and conditions. Please be careful next time.</p>
+    <p>Thank you.</p>
+    `;
+    const { email } = req.body;
+    console.log(email);
+    if (email) {
+      const result = await emailSender(email, subject, body);
+      res.status(200).json({ result });
+    }
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
 module.exports = {
   getAdminUsers,
   updateUserRole,
   deleteUser,
+  warningUser,
 };

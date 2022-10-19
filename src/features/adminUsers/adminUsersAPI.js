@@ -20,7 +20,18 @@ export const adminUsersAPI = APIsSlice.injectEndpoints({
         headers: roleHeader,
       }),
     }),
+    adminWarningUser: builder.mutation({
+      query: (email) => ({
+        url: `api/admin/warning-user`,
+        method: "POST",
+        body: {email},
+        headers: roleHeader,
+      }),
+    }),
   }),
 });
-export const { useAdminGetUsersQuery, useAdminUpdateUserMutation } =
-  adminUsersAPI;
+export const {
+  useAdminGetUsersQuery,
+  useAdminWarningUserMutation,
+  useAdminUpdateUserMutation,
+} = adminUsersAPI;

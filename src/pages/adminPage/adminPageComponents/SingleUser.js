@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import { ImCross } from "react-icons/im";
-import { useAdminUpdateUserMutation } from "../../../features/adminUsers/adminUsersAPI";
+import {
+  useAdminUpdateUserMutation,
+  useAdminWarningUserMutation,
+} from "../../../features/adminUsers/adminUsersAPI";
 import { toast } from "react-toastify";
 import { ColorRing } from "react-loader-spinner";
 const SingleUser = ({ user }) => {
@@ -10,42 +13,50 @@ const SingleUser = ({ user }) => {
   const [check, setCheck] = useState({ status: false, role: "" });
   const [adminUpdateUser, { isLoading, error, data, isSuccess }] =
     useAdminUpdateUserMutation();
+  const [
+    adminWarningUser,
+    {
+      isLoading: warningLoading,
+      error: warningError,
+      isSuccess: warningSuccess,
+    },
+  ] = useAdminWarningUserMutation();
   useEffect(() => {
     if (actionValue === "delete") {
       console.log("delete");
-    } else if (actionValue === "edit") {
-      console.log("edit");
     } else if (actionValue === "warning") {
-      console.log("warning");
+      adminWarningUser(email);
     }
-  }, [actionValue]);
+  }, [actionValue, adminWarningUser, email]);
   useEffect(() => {
     if (check.status) {
       // do update the role
-      
     }
   }, [check, _id, adminUpdateUser]);
+
   useEffect(() => {
-    if (error) {
-      toast.error(error, {
+    if (error || warningError) {
+      toast.error(`${error || warningError}`, {
         toastId: "error",
       });
     }
-    if (isSuccess) {
-      setActionValue("");
-      setCheck({status: false,role:"" });
-      toast.success("User role updated", {
-        toastId: "success",
-      });
+    if (isSuccess || warningSuccess) {
+      toast.success(
+        `${isSuccess ? "User role updated" : "Warning was sent to this user"}`,
+        {
+          toastId: "success",
+        },
+      );
+      setActionValue("defaultValue");
+      setCheck({ status: false, role: "" });
     }
-  }, [error, isSuccess]);
+  }, [error, isSuccess, warningSuccess, warningError]);
 
   const handleCheck = (e) => {
     console.log(e.target.name);
     // setCheck({ ...check, status: true, role: e.target.name });
     adminUpdateUser({ id: _id, role: e.target.name });
   };
-
   return (
     <>
       <tr>
@@ -122,6 +133,10 @@ const SingleUser = ({ user }) => {
                 </form>
               )}
             </div>
+          ) : warningLoading ? (
+            <div className="flex justify-center items-center animate-pulse bg-slate-700">
+              Loading...
+            </div>
           ) : (
             <select
               onChange={(e) => setActionValue(e.target.value)}
@@ -129,7 +144,9 @@ const SingleUser = ({ user }) => {
                 role === "administrator" && "hidden"
               } select select-ghost`}
               defaultValue={"defaultValue"}>
-              <option disabled value="defaultValue">
+              <option
+                disabled={actionValue ? false : true}
+                value={"defaultValue"}>
                 Select Action
               </option>
               <option value={"delete"} className="text-error cursor-pointer">

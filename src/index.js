@@ -7,6 +7,7 @@ import "./index.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { HelmetProvider } from "react-helmet-async";
 const container = document.getElementById("root");
 const root = createRoot(container);
 
@@ -14,19 +15,21 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
-        {/* for toastify popup */}
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
+        <HelmetProvider>
+          <App />
+          {/* for toastify popup */}
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </HelmetProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
