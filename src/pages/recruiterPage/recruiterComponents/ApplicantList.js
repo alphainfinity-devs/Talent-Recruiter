@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useGetApplicantListQuery } from "../../../features/requiter/requiterApi";
 import Spinner from "../../../utils/Spinner";
-import JobListRow from "./JobListRow";
 import { useParams } from "react-router-dom";
+import ApplicantListRow from "./ApplicantListRow";
 
 const ApplicantList = () => {
   const { id } = useParams();
@@ -19,18 +18,18 @@ console.log(data);
           <table className="min-w-max w-full table-auto">
             <thead>
               <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                <th className="py-3 px-6 text-left">Job Title</th>
-                <th className="py-3 px-6 text-center">Status</th>
+                <th className="py-3 px-6 text-left">Applicant Name</th>
+                <th className="py-3 px-6 text-center">Email</th>
                 <th className="py-3 px-6 text-center">Post Date</th>
                 <th className="py-3 px-6 text-center">Applicant</th>
-                <th className="py-3 px-6 text-center">Actions</th>
+                <th className="py-3 px-6 text-center">View Profile</th>
               </tr>
             </thead>
             {
               isLoading ? <Spinner/> :
-                data?.JobByRequiter?.map(job=>{
+                data?.ApplicantByJob?.map(applicant=>{
 
-                    return <JobListRow key={job._id} job={job}/>
+                    return <ApplicantListRow key={applicant._id} applicant={applicant}/>
 
                 })
             }

@@ -102,7 +102,7 @@ const applyJob = asyncHandler(async(req, res, next) =>{
                 message: "Already Applied This Job",
             })
         }else{
-            const applied = await AppliedJob.create({job:req.params.id,user:req.user.id});
+            const applied = await AppliedJob.create({job:req.params.id,candidate:req.user.id});
             if(applied){
                 res.status(200).json({
                     success: true,

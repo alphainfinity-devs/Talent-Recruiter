@@ -25,7 +25,7 @@ const getJobByRequiter = asyncHandler(async (req, res, next) => {
 const getApplicantByJob = asyncHandler(async (req, res, next) => {
     console.log(req.params.id);
     try{
-        const getApplicantByJob = await AppliedJob.find({"job":{_id:req.params.id}}).populate('candidate','_id name')
+        const getApplicantByJob = await AppliedJob.find({job:{_id:req.params.id}})
         if(getApplicantByJob){
             res.status(200).json({
                 ApplicantByJob:getApplicantByJob
