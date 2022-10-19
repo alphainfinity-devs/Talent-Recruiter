@@ -31,7 +31,7 @@ const Footer = () => {
         }}
       />
 
-      <div className="bg-[#F9FCFF] py-16">
+      <div className="bg-[#d0ffce] py-16">
         <div className="grid px-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 container mx-auto text-base-100">
           {/* .......footer info start........ */}
           <div>
