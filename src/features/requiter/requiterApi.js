@@ -26,7 +26,7 @@ export const requiterApi = APIsSlice.injectEndpoints({
         // console.log(body);
         return {
           url: `/api/requiter/delete-job/${id}`,
-          method: "POST",
+          method: "DELETE",
         };
       },
     }),
