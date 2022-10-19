@@ -6,8 +6,7 @@ const AppliedJob = require('../schemas/appliedJobSchema');
 // @desc Get Job All Via Applicant Id
 const getJobByRequiter = asyncHandler(async (req, res, next) => {
     try{
-        const getJobByRequiter = await Job.find({requiter:req.user.id}).populate('requiter','_id name');
-
+        const getJobByRequiter = await Job.find({requiter:req.user.id}).populate('requiter','_id name')
         if(getJobByRequiter){
             res.status(200).json({
                 JobByRequiter:getJobByRequiter
@@ -22,11 +21,27 @@ const getJobByRequiter = asyncHandler(async (req, res, next) => {
         next(err)
     }
 })
+// @desc Get Job All Via Applicant Id
+const getApplicantByRequiter = asyncHandler(async (req, res, next) => {
+    try{
+        const getApplicantByRequiter = await AppliedJob.find({job:req.params.id,}).populate('candidate','_id name')
+        if(getApplicantByRequiter){
+            res.status(200).json({
+                ApplicantByJob:getApplicantByRequiter
+            })
+        }else{
+            res.status(400).json({
+                message: "Something went wrong. Please try Again",
+            })
+        }
+    }catch(err){
+        console.log(err);
+        next(err)
+    }
+})
 
 // @desc Post New Job Controller
 const postJob = asyncHandler(async (req, res, next) => {
-    const data =  {...req.body}
-    console.log({...req.body,requiter:req.user.id});
     const newJob = await Job.create({...req.body,requiter:req.user.id});
     try{
 
@@ -71,5 +86,5 @@ const deleteJob = asyncHandler(async(req,res,next)=>{
 
 })
 module.exports ={
-    postJob, getJobByRequiter, deleteJob
+    postJob, getJobByRequiter,getApplicantByRequiter, deleteJob
 }

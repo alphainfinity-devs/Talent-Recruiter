@@ -1,10 +1,11 @@
 const express = require("express");
-const { postJob, getJobByRequiter, deleteJob } = require("../controllers/requiterController");
+const { postJob, getJobByRequiter, deleteJob, getApplicantByRequiter } = require("../controllers/requiterController");
 const verifyToken = require("../Middlewares/verifyToken");
 
 const router = express.Router();
 
 router.get("/get-job-via-requiter", verifyToken, getJobByRequiter);
+router.delete("/get-applicant-via-job/:id", verifyToken, getApplicantByRequiter);
 router.post("/post-job", verifyToken, postJob);
 router.delete("/delete-job/:id", verifyToken, deleteJob);
 
