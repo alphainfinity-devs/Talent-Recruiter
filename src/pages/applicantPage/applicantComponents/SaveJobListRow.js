@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import { useDeleteJobMutation } from "../../../features/requiter/requiterApi";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import { toast } from "react-toastify";
 import moment from 'moment';
+import { useDeleteSaveJobMutation } from "../../../features/applicant/applicantApi";
 moment().format();
 
 const SaveJobListRow = ({job}) => {
   console.log(job);
-  const  [deleteJob, {isSuccess, isError} ]= useDeleteJobMutation ()
+  const  [deleteJob, {isSuccess, isError} ]= useDeleteSaveJobMutation ()
   let link = `/job/${job.job._id}`
   if (isSuccess) {
     toast.success("Delete Successful", {

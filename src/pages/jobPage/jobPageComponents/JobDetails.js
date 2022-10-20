@@ -17,7 +17,7 @@ const JobDetails = () => {
   const { data, isLoading } = useGetJobByIdQuery(id);
   const job = data?.job;
   const [isAuthUser] =  useAuthVerify()
-
+  console.log(isAuthUser,"isAuthUser");
   const [applyJob,{isSuccess:isApplySuccess, isError:isApplyError}] = useApplyJobMutation()
 
   const [bookMarkJob,{isSuccess:isBookmarkSuccess, isError:isBookmarkError}] = useBookMarkJobMutation()
