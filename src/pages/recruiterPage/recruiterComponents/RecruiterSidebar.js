@@ -15,30 +15,30 @@ const RecruiterSidebar = () => {
       };
     return (
         <>
-         <ul className="menu p-4 overflow-y-auto w-80 bg-gray-200 text-base-content">
+         <ul className="menu p-4 overflow-y-auto w-60 bg-gray-200 text-base-content">
           {/* <!-- Sidebar content here --> */}
-
           <li>
             <Link
-              to="appliedJobs"
+              to="jobs"
               className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-              <BsList className="w-5 mr-3" />Applied Jobs
+              <BsList className="w-5"/>Jobs
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="job/post"
+              className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
+              <FaBriefcase className="w-5" />Post Your Job
             </Link>
           </li>
           <li>
             <Link
               to="recruiter"
               className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-              <FaUserTie className="w-5 mr-3" />Profile
+              <FaUserTie className="w-5"/>Profile
             </Link>
           </li>
-          <li>
-            <Link
-              to="addJobs"
-              className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-              <FaBriefcase className="w-5 mr-3" />Add a Job
-            </Link>
-          </li>
+
           <li>
             <button
               onClick={handleLogout}
@@ -55,8 +55,7 @@ const RecruiterSidebar = () => {
                   strokeLinejoin="round"
                   d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                 />
-              </svg>
-              Logout
+              </svg>  Logout
             </button>
           </li>
         </ul>   

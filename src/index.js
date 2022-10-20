@@ -5,6 +5,7 @@ import { store } from "./appStore/store";
 import App from "./App";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.min.css";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 

@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler')
 // @desc All Job Controller
 const getAllJobs = asyncHandler(async (req, res, next) => {
     try{
-        const Jobs = await Job.find().populate('company_name','_id name');
+        const Jobs = await Job.find().populate('requiter','_id name');
             res.status(200).json({
                 success: true,
                 Jobs

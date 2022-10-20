@@ -11,9 +11,16 @@ export const requiterApi = APIsSlice.injectEndpoints({
         };
       },
     }),
+    getApplicantList: builder.query({
+      query: (id) => {
+        return {
+          url: `/api/requiter/get-applicant-via-job/${id}`,
+          method: "GET",
+        };
+      },
+    }),
     postJob: builder.mutation({
       query: (body) => {
-        // console.log(body);
         return {
           url: `/api/requiter/post-job`,
           method: "POST",
@@ -22,15 +29,14 @@ export const requiterApi = APIsSlice.injectEndpoints({
       },
     }),
     deleteJob: builder.mutation({
-      query: ({ id }) => {
-        // console.log(body);
+      query: (id) => {
         return {
           url: `/api/requiter/delete-job/${id}`,
-          method: "POST",
+          method: "DELETE",
         };
       },
     }),
   }),
 });
 
-export const { usePostJobMutation , usegetOwnJobListQuery,  useDeleteJobMutation, } = requiterApi;
+export const { usePostJobMutation , useGetOwnJobListQuery, useGetApplicantListQuery,  useDeleteJobMutation, } = requiterApi;

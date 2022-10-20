@@ -13,6 +13,7 @@ const RecruiterAddJobs = () => {
 } = useGetCategoryQuery()
 
 const [postJob,{data,isSuccess,isError}] = usePostJobMutation()
+console.log(data);
 if (isSuccess) {
   toast.success("Job posted successfully", {
     toastId: "success",
@@ -30,12 +31,11 @@ const {
 
 
   return (
-    <section className="py-10 w-full container mx-auto">
+    <section className="py-10 w-full container mx-auto mb-5">
       <div className="flex justify-center items-center">
       {
         isLoading ? <Spinner/> :
         <form onSubmit={handleSubmit((data) => {
-          console.log({data});
           postJob(data);
         })}
         className="w-[650px] bg-secondary p-5 md:p-10 shadow-lg"

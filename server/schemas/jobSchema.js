@@ -57,12 +57,12 @@ const jobSchema = mongoose.Schema({
   company_link: {
     type: String,
     required: true,
-}, 
-requiter: {
-  type: mongoose.Schema.ObjectId,
-  ref: 'User',
-  required: false
-}, 
+  }, 
+  requiter: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: false
+  }, 
   },
   {
   timestamps: true,
