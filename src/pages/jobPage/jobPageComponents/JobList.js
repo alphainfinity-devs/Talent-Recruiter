@@ -7,10 +7,10 @@ const JobList = () => {
 
   const {
     data: jobs,
-    isLoading,
-    isSuccess,
-    isError,
-    error
+    isLoading
+    // isSuccess,
+    // isError,
+    // error
 } = useGetAllJobsQuery('getJobs')
 
 console.log(jobs);

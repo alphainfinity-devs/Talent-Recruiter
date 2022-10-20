@@ -4,7 +4,7 @@ module.exports = {
     themes: [
       {
         talentRecruiter: {
-          primary: "#39A746",
+          primary: "#3CCF56",
           secondary: "#F7F7FB",
           accent: "#1A1A1A",
           neutral: "#90949F",

@@ -5,9 +5,11 @@ import { store } from "./appStore/store";
 import App from "./App";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.min.css";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { HelmetProvider } from "react-helmet-async";
+
 const container = document.getElementById("root");
 const root = createRoot(container);
 

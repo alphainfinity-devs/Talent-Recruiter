@@ -2,69 +2,97 @@ import React from "react";
 import PageTitleBanner from "../../../globalComponents/PageTitleBanner";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { AiOutlineFieldTime } from "react-icons/ai";
-import { BsGenderAmbiguous } from "react-icons/bs";
 import { MdWorkOutline } from "react-icons/md";
 import { MdCastForEducation } from "react-icons/md";
 import { BiNotepad } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { useGetJobByIdQuery } from "../../../features/job/jobApi";
 import Spinner from "../../../utils/Spinner";
+import useAuthVerify from "../../../hooks/useAuthVerify";
+import { useApplyJobMutation, useBookMarkJobMutation } from "../../../features/applicant/applicantApi";
+import { toast } from "react-toastify";
 
 const JobDetails = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetJobByIdQuery(id);
   const job = data?.job;
+  const [isAuthUser] =  useAuthVerify()
+  console.log(isAuthUser,"isAuthUser");
+  const [applyJob,{isSuccess:isApplySuccess, isError:isApplyError}] = useApplyJobMutation()
+
+  const [bookMarkJob,{isSuccess:isBookmarkSuccess, isError:isBookmarkError}] = useBookMarkJobMutation()
+
+  if (isApplySuccess) {
+    toast.success("Apply Successful", {
+      toastId: "success1",
+    });
+  }else if(isBookmarkSuccess){
+    toast.success("Bookmark Successful", {
+      toastId: "success21",
+    });
+  }
+  else if(isBookmarkError || isApplyError){
+    toast.error("Something went wrong. Try Again", {
+      toastId: "error2",
+    });
+  }
+
+  console.log('job.title',job?.title);
   return (
     <section>
-      <PageTitleBanner title="Job Detail" />
       <div className="flex flex-col md:flex-col lg:flex-row gap-8 container mx-auto px-5 py-16">
         <div className="w-[100%] lg:w-[70%]">
           {isLoading ? (
             <Spinner />
           ) : (
             <>
+            <PageTitleBanner title={job?.title} />
               <div className="shadow-lg p-4 mb-4 border">
-                <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 gap-3">
                   {/* .......compani Logo...... */}
-                  <div className="flex justify-center md:justify-start items-center bg-secondary rounded">
+                  {/* <div className="flex justify-center md:justify-start items-center bg-secondary rounded">
                     <img
                       src="https://templates.envytheme.com/jubi/default/assets/images/hot-jobs/hot-jobs-6.png"
                       className="w-24 p-1"
                       alt=""
                     />
-                  </div>
+                  </div> */}
 
                   {/* .......Basic job information........ */}
                   <div className="grid justify-items-center lg:justify-items-start">
-                    <p className="text-lg font-bold">{job.title}</p>
-                    <p className="text-sm">www.youtube.com</p>
-                    <p className="font-bold">Vacancy: 01</p>
-                    <div className="flex flex-row gap-4 mt-2 mb-2">
-                      {/* <p className="text-sm font-light flex flex-row gap-1 items-center">
-                    <FiBox />
-                    Hexagon
-                  </p> */}
-                      <p className="text-sm font-light flex flex-row gap-1 items-center">
-                        <FaMapMarkerAlt />
-                        {job.address}
-                      </p>
-                      <p className="text-sm font-light flex flex-row gap-1 items-center">
-                        <AiOutlineFieldTime />
-                        {job.level}
-                      </p>
-                    </div>
+                    <p className="text-lg font-bold ">{job?.title}</p>
+                    <p className="text-sm">{job?.company_link}</p>
+                    <p className="font-bold">Vacancy: {job?.vacancy}</p>
+                    <p className="text-base font-bold">
+                      Deadline: {job?.dead_line}
+                    </p>
                   </div>
 
                   {/* .........apply button and deadline....... */}
-                  <div className="flex flex-col gap-2">
-                    <button className="btn rounded-none text-white bg-primary hover:bg-accent">
+                  {
+                    isAuthUser ?
+                    <>
+                      <div className="flex justify-center  md:justify-end gap-1">
+                          <button onClick={()=>applyJob(job._id)} className="btn rounded-none text-white bg-primary hover:bg-accent">
+                            Apply Now
+                          </button>
+                          <button onClick={()=>bookMarkJob(job._id)}  className="btn rounded-none text-white bg-warning hover:bg-accent">
+                            Save Now
+                          </button>
+                      </div>
+                    </>
+                    : 
+                    <>
+                    <div className="flex justify-center  md:justify-end gap-1">
+                    <button onClick={()=>applyJob(job._id)} className="btn rounded-none text-white bg-primary hover:bg-accent">
                       Apply Now
                     </button>
-                    <p className="text-base font-bold">
-                      Deadline: Dec 01, 2022
-                    </p>
-                  </div>
+                    <button onClick={()=>bookMarkJob(job._id)}  className="btn rounded-none text-white bg-warning hover:bg-accent">
+                      Save Now
+                    </button>
+                </div></>
+                  }
+
                 </div>
               </div>
 
@@ -73,7 +101,7 @@ const JobDetails = () => {
                 <p className="text-2xl font-semibold text-accent">
                   Job Description
                 </p>
-                <p className="py-4">{job.description}</p>
+                <p className="py-4">{job?.description}</p>
 
                 {/*...........Education & Experience............*/}
                 <p className="text-2xl font-semibold text-accent py-4">
@@ -135,32 +163,21 @@ const JobDetails = () => {
             </h2>
 
             <div className="flex flex-row justify-start items-center gap-5 px-4 py-2">
-              <div className="text-3xl text-primary">
+              <div className="text-1xl text-primary">
                 <FaMoneyCheckAlt />
               </div>
               <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Salary</p>
-                <p className="text-sm font-light">£12,000 - £25,000</p>
+                <p className="text-lg font-bold">Salary : <span className="text-sm font-light">{job?.salary}</span></p>
               </div>
             </div>
 
             <div className="flex flex-row justify-start items-center gap-5 px-4 py-2">
-              <div className="text-3xl text-primary">
+              <div className="text-1xl text-primary">
                 <FaMapMarkerAlt />
               </div>
               <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Location</p>
-                <p className="text-sm font-light">New York City</p>
-              </div>
-            </div>
-
-            <div className="flex flex-row justify-start items-center gap-5 px-4 py-2">
-              <div className="text-3xl text-primary">
-                <BsGenderAmbiguous />
-              </div>
-              <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Gender</p>
-                <p className="text-sm font-light">Any</p>
+                <p className="text-lg font-bold">Location : <span className="text-sm font-light">{job?.address}</span>
+                </p>
               </div>
             </div>
 
@@ -169,8 +186,7 @@ const JobDetails = () => {
                 <MdWorkOutline />
               </div>
               <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Job Type</p>
-                <p className="text-sm font-light">Full Time</p>
+                <p className="text-lg font-bold">Job Type : <span className="text-sm font-light">{job?.type} </span></p>
               </div>
             </div>
 
@@ -179,8 +195,7 @@ const JobDetails = () => {
                 <MdCastForEducation />
               </div>
               <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Qualification</p>
-                <p className="text-sm font-light">Mba</p>
+                <p className="text-lg font-bold">Qualification : <span className="text-sm font-light">Mba</span></p>
               </div>
             </div>
 
@@ -189,8 +204,7 @@ const JobDetails = () => {
                 <BiNotepad />
               </div>
               <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Experience</p>
-                <p className="text-sm font-light">2 to 3 year</p>
+                <p className="text-lg font-bold">Experience : <span className="text-sm font-light">{job?.experience}</span></p>
               </div>
             </div>
 

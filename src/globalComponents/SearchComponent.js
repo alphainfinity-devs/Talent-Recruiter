@@ -1,21 +1,34 @@
 import React from "react";
+import { FaSearch } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 
 const SearchComponent = () => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
+
   return (
     <section>
-      <div className="container mx-auto px-5 pt-10">
-        <div className="shadow-lg z-10 p-5 md:p-10 border bg-primary">
-          <form className="grid sm:grid-cols-2 md:grid-cols-4 gap-1">
+      <div className="container mx-auto">
+        <div className="shadow-lg z-10 p-5 border bg-primary">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="grid sm:grid-cols-4 md:grid-cols-4 gap-1"
+          >
             {/*........keyword type input........*/}
             <input
               type="text"
               placeholder="Search Keyword"
               className="input w-full rounded-none input-bordered"
+              {...register("keyword")}
             />
             {/*........selecte location input........*/}
             <select
               defaultValue="noValue"
-              className="select select-bordered w-full rounded-none"
+              className="select select-bordered w-full rounded-none text-[tomato]"
+              {...register("location")}
             >
               <option value="noValue" disabled>
                 Location
@@ -31,7 +44,8 @@ const SearchComponent = () => {
             {/*.......selecte category input.......*/}
             <select
               defaultValue="noValue"
-              className="select select-bordered w-full rounded-none"
+              className="select select-bordered w-full rounded-none text-[tomato]"
+              {...register("category")}
             >
               <option value="noValue" disabled>
                 Category
@@ -44,11 +58,9 @@ const SearchComponent = () => {
               <option>Markating</option>
             </select>
             {/*........search button..........*/}
-            <input
-              type="submit"
-              value="Search"
-              className="btn rounded-none w-full bg-[tomato] border-[tomato] hover:bg-accent py-3 text-white cursor-pointer font-bold"
-            />
+            <button className="btn rounded-none w-full bg-[tomato] border-[tomato] hover:bg-accent py-3 text-white cursor-pointer font-bold">
+              <FaSearch className="mr-2" /> Search
+            </button>
           </form>
         </div>
       </div>

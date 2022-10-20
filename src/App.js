@@ -22,7 +22,7 @@ import Register from "./pages/registerPage/Register";
 import ReviewsPage from "./pages/reviewPage/ReviewsPage";
 import BlogsPage from "./pages/blogsPage/BlogsPage";
 import RecruiterPage from "./pages/recruiterPage/RecruiterPage";
-import AppliedJobs from "./pages/recruiterPage/recruiterComponents/AppliedJobs";
+import AppliedJobs from "./pages/recruiterPage/recruiterComponents/RequiterJobList";
 import RecruiterProfile from "./pages/recruiterPage/recruiterComponents/RecruiterProfile";
 import RecruiterAddJobs from "./pages/recruiterPage/recruiterComponents/RecruiterAddJobs";
 import JobPage from "./pages/jobPage/JobPage";
@@ -37,6 +37,7 @@ import ApplicantAppliedJob from "./pages/applicantPage/applicantComponents/Appli
 import ApplicantProfile from "./pages/applicantPage/applicantComponents/ApplicantProfile";
 import ApplicantSaveJob from "./pages/applicantPage/applicantComponents/ApplicantSaveJob";
 import ApplicantMessage from "./pages/applicantPage/applicantComponents/ApplicantMessage";
+import ApplicantList from "./pages/recruiterPage/recruiterComponents/ApplicantList";
 
 function App() {
   const [, userRole] = useRoleChecking();
@@ -54,7 +55,8 @@ function App() {
                 <AdminPage />
               </AdminRouteProtect>
             </PrivateRoute>
-          }>
+          }
+        >
           {/* admin dashboard start */}
           <Route
             index
@@ -93,25 +95,38 @@ function App() {
                 <RecruiterPage />
               </RecruiterRouteProtect>
             </PrivateRoute>
-          }>
+          }
+        >
           <Route
             index
             element={
               <RecruiterRouteProtect>
-                <AppliedJobs />
+                <RecruiterAddJobs />
               </RecruiterRouteProtect>
             }
           />
+          <Route path="job/post" element={
+            <RecruiterRouteProtect>
+              <RecruiterAddJobs />
+            </RecruiterRouteProtect>} />
+
           <Route
-            path="appliedJobs"
+            path="jobs"
             element={
               <RecruiterRouteProtect>
                 <AppliedJobs />
               </RecruiterRouteProtect>
             }
           />
+          <Route
+            path="jobs/applicants/:id"
+            element={
+              <RecruiterRouteProtect>
+                <ApplicantList />
+              </RecruiterRouteProtect>
+            }
+            />
           <Route path="recruiter" element={<RecruiterProfile />} />
-          <Route path="addJobs" element={<RecruiterAddJobs />} />
         </Route>
         {/* recruiter dashboard end */}
         {/* applicant dashboard start */}
@@ -123,7 +138,8 @@ function App() {
                 <ApplicantPage />
               </ApplicantRouteProtect>
             </PrivateRoute>
-          }>
+          }
+        >
           <Route
             index
             element={
@@ -133,7 +149,7 @@ function App() {
             }
           />
           <Route
-            path="appliedJobs"
+            path="applied-jobs"
             element={
               <ApplicantRouteProtect>
                 <ApplicantAppliedJob />
@@ -141,7 +157,7 @@ function App() {
             }
           />
           <Route path="profile" element={<ApplicantProfile />} />
-          <Route path="save-job" element={<ApplicantSaveJob />} />
+          <Route path="bookmark-job" element={<ApplicantSaveJob />} />
           <Route path="message" element={<ApplicantMessage />} />
         </Route>
         {/* applicant dashboard end */}

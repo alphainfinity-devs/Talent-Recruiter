@@ -20,6 +20,11 @@ const jobSchema = mongoose.Schema({
     required: true,
     enum: ["Entry Level", "Mid Level", "Senior Level"],
   },
+  type: {
+    type: String,
+    required: true,
+    enum: ["Full Time", "Part Time", "Contactual"],
+  },
   experience: {
     type: String,
     required: true,
@@ -32,19 +37,31 @@ const jobSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  vacancy: {
+    type: Number,
+    required: true,
+  },
   dead_line: {
     type: String,
     required: true,
   },
-  // category: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: 'Category',
-  //   required: false
-  // },
+  category: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Category',
+    required: false
+  },
   company_name: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'User',
-      required: false
+    type: String,
+    required: true,
+  },
+  company_link: {
+    type: String,
+    required: true,
+  }, 
+  requiter: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: false
   }, 
   },
   {
