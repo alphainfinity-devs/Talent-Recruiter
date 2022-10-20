@@ -7,7 +7,7 @@ const FeaturejobCart = (job) => {
 
   return (
     <div className="flex justify-start items-center bg-base-100 shadow hover:shadow-lg gap-4 px-5 py-6 cursor-pointer hover:border-secondary border-white border">
-      <div className="bg-secondary p-4 py-7 text-white text-3xl">{icon}</div>
+      <div className="bg-[tomato] p-4 py-7 text-white text-3xl">{icon}</div>
       <div className="">
         <h2 className="font-bold text-xl md:text-2xl">{title}</h2>
         <p className="font-medium text-primary mb-2">{website}</p>
@@ -21,7 +21,7 @@ const FeaturejobCart = (job) => {
           <small className="mb-2">{location}</small>
         </div>
         <div className="flex gap-3 items-center">
-          <button className="btn rounded-none px-4 md:px-6 py-2 bg-primary hover:bg-accent text-white hover:text-primary font-bold">
+          <button className="btn rounded-none px-4 md:px-6 py-2 bg-primary hover:bg-accent text-white font-bold">
             Apply
           </button>
           <p className="text-secondary text-sm font-bold">{type}</p>

@@ -47,7 +47,7 @@ const Navbar = () => {
   return (
     <header>
       {/* ......Mini navbar start...... */}
-      <div className="py-3 bg-secondary hidden sm:block">
+      <div className="py-3 bg-[#d0ffce] hidden sm:block">
         <div className="flex justify-between container mx-auto px-5">
           <div className="font-bold text-sm md:text-base flex items-center gap-2">
             <BsFillTelephoneForwardFill className="text-sm" />
@@ -76,7 +76,7 @@ const Navbar = () => {
       </div>
       {/* ......Mini navbar end...... */}
 
-      <div className={`w-full py-4 ${stickyClass}`}>
+      <div className={`w-full py-4 shadow-lg ${stickyClass}`}>
         <div className="flex justify-between items-center container mx-auto px-5">
           {/* any dashboard hamburger menu icon start */}
           <label
