@@ -1,7 +1,7 @@
 import React from "react";
 import { useGetBookMarkJobListQuery } from "../../../features/applicant/applicantApi";
 import Spinner from "../../../utils/Spinner";
-import JobListRow from "./JobListRow";
+import SaveJobListRow from "./SaveJobListRow";
 
 const ApplicantSaveJob = () => {
 
@@ -29,7 +29,7 @@ console.log(jobs);
               isLoading ? <Spinner/> :
                 jobs?.bookmarkedjobs?.map(job=>{
 
-                    return <JobListRow key={job._id} job={job}/>
+                    return <SaveJobListRow key={job._id} job={job}/>
 
                 })
             }

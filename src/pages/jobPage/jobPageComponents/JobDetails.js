@@ -8,11 +8,55 @@ import { BiNotepad } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { useGetJobByIdQuery } from "../../../features/job/jobApi";
 import Spinner from "../../../utils/Spinner";
+import useAuthVerify from "../../../hooks/useAuthVerify";
+import { useApplyJobMutation, useBookMarkJobMutation } from "../../../features/applicant/applicantApi";
+import { confirmAlert } from "react-confirm-alert";
+import { toast } from "react-toastify";
 
 const JobDetails = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetJobByIdQuery(id);
   const job = data?.job;
+  const [isAuthUser] =  useAuthVerify()
+
+  const [applyJob,{isSuccess:isApplySuccess, isError}] = useApplyJobMutation()
+
+  const [bookMarkJob,{isSuccess:isBookmarkSuccess}] = useBookMarkJobMutation()
+
+  if (isApplySuccess) {
+    toast.success("Apply Successful", {
+      toastId: "success1",
+    });
+  }else if(isBookmarkSuccess){
+    toast.error("Bookmark Successful", {
+      toastId: "success21",
+    });
+  }else if(isError){
+    toast.error("Delete Fail. Try Again", {
+      toastId: "error2",
+    });
+  }
+  const handleSubmit = (id)=>{
+    const applyConfirm = () => applyJob(id)
+    console.log('s');
+    confirmAlert(
+      {
+      title: 'Confirm to submit',
+      message: 'Are you sure Delete this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => applyConfirm()
+        },
+        {
+          label: 'No',
+          onClick: () => null
+        }
+      ]
+    });
+  }
+
+
   return (
     <section>
       <div className="flex flex-col md:flex-col lg:flex-row gap-8 container mx-auto px-5 py-16">
@@ -44,14 +88,29 @@ const JobDetails = () => {
                   </div>
 
                   {/* .........apply button and deadline....... */}
-                  <div className="flex justify-center  md:justify-end gap-1">
-                    <button className="btn rounded-none text-white bg-primary hover:bg-accent">
+                  {
+                    isAuthUser ?
+                    <>
+                      <div className="flex justify-center  md:justify-end gap-1">
+                          <button onClick={()=>handleSubmit(job._id)} className="btn rounded-none text-white bg-primary hover:bg-accent">
+                            Apply Now
+                          </button>
+                          <button onClick={()=>bookMarkJob(job._id)}  className="btn rounded-none text-white bg-warning hover:bg-accent">
+                            Save Now
+                          </button>
+                      </div>
+                    </>
+                    : 
+                    <>                             <div className="flex justify-center  md:justify-end gap-1">
+                    <button onClick={()=>handleSubmit(job._id)} className="btn rounded-none text-white bg-primary hover:bg-accent">
                       Apply Now
                     </button>
-                    <button className="btn rounded-none text-white bg-warning hover:bg-accent">
+                    <button onClick={()=>bookMarkJob(job._id)}  className="btn rounded-none text-white bg-warning hover:bg-accent">
                       Save Now
                     </button>
-                  </div>
+                </div></>
+                  }
+
                 </div>
               </div>
 

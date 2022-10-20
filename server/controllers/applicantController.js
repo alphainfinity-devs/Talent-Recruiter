@@ -6,8 +6,8 @@ const BookmarkJob = require('../schemas/bookmarkJobSchema');
 // @desc Get BookMarked Job
 const getBookmarkedJob = asyncHandler(async (req, res, next) => {
     try{
-        const isBookmark = await BookmarkJob.find({user:req.user.id});
-
+        const isBookmark = await BookmarkJob.find({user:{_id:req.user.id}}).populate('job','_id title');
+        console.log(isBookmark);
         if(isBookmark){
             res.status(200).json({
                 success: true,

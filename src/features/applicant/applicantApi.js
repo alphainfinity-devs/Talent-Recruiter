@@ -23,10 +23,26 @@ export const applicantApi = APIsSlice.injectEndpoints({
       },
       providesTags: ["applicant"]
     }),
-    deleteJob: builder.mutation({
+    applyJob: builder.mutation({
       query: (id) => {
         return {
-          url: `/api/applicant/delete-job/${id}`,
+          url: `/api/applicant/apply-job/${id}`,
+          method: "POST",
+        };
+      },
+    }),
+    bookMarkJob: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/api/applicant/bookmark-job/${id}`,
+          method: "POST",
+        };
+      },
+    }),
+    deleteSaveJob: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/api/applicant/delete-bookmark/${id}`,
           method: "DELETE",
         };
       },
@@ -34,4 +50,4 @@ export const applicantApi = APIsSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAppliedJobListQuery , useGetBookMarkJobListQuery,  useDeleteJobMutation } = applicantApi;
+export const { useGetAppliedJobListQuery , useGetBookMarkJobListQuery,  useDeleteSaveJobMutation, useApplyJobMutation, useBookMarkJobMutation } = applicantApi;
