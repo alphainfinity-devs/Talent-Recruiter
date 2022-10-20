@@ -1,5 +1,4 @@
 import { APIsSlice } from "../APIs/APIsSlice";
-// import { login } from "./userAuthSlice";
 const roleHeader = {
   role: "admin",
 };
