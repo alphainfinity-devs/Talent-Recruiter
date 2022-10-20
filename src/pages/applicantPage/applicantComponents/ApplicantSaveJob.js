@@ -9,7 +9,7 @@ const ApplicantSaveJob = () => {
     data: jobs,
     isLoading,
 } =useGetBookMarkJobListQuery()
-console.log(jobs);
+
   return (
     <div className="overflow-x-auto">
     <div className="min-w-screen min-h-screen flex justify-center bg-gray-100 font-sans overflow-hidden">
@@ -21,16 +21,17 @@ console.log(jobs);
               <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                 <th className="py-3 px-6 text-left">Job Title</th>
                 <th className="py-3 px-6 text-center">Status</th>
-                <th className="py-3 px-6 text-center">Post Date</th>
+                <th className="py-3 px-6 text-center">Bookmark Time</th>
                 <th className="py-3 px-6 text-center">Actions</th>
               </tr>
             </thead>
             {
               isLoading ? <Spinner/> :
-                jobs?.bookmarkedjobs?.map(job=>{
+              
+                      jobs?.bookmarkedjobs?.map(job=>{
 
                     return <SaveJobListRow key={job._id} job={job}/>
-
+              
                 })
             }
           </table>

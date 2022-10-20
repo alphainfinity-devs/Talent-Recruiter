@@ -2,7 +2,7 @@ import { APIsSlice } from "../APIs/APIsSlice";
 
 export const applicantApi = APIsSlice.injectEndpoints({
 
-  tagTypes: ["applicant"],
+  tagTypes: ["Applicant"],
   endpoints: (builder) => ({
 
     getAppliedJobList: builder.query({
@@ -12,7 +12,7 @@ export const applicantApi = APIsSlice.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["applicant"]
+      providesTags: ["Applicant"]
     }),
     getBookMarkJobList: builder.query({
       query: () => {
@@ -21,7 +21,7 @@ export const applicantApi = APIsSlice.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["applicant"]
+      providesTags: ["Applicant"]
     }),
     applyJob: builder.mutation({
       query: (id) => {
@@ -30,6 +30,7 @@ export const applicantApi = APIsSlice.injectEndpoints({
           method: "POST",
         };
       },
+      invalidatesTags: ["Applicant"]
     }),
     bookMarkJob: builder.mutation({
       query: (id) => {
@@ -38,6 +39,7 @@ export const applicantApi = APIsSlice.injectEndpoints({
           method: "POST",
         };
       },
+      invalidatesTags: ["Applicant"]
     }),
     deleteSaveJob: builder.mutation({
       query: (id) => {
@@ -46,6 +48,7 @@ export const applicantApi = APIsSlice.injectEndpoints({
           method: "DELETE",
         };
       },
+      invalidatesTags: ["Applicant"]
     }),
   }),
 });

@@ -7,7 +7,8 @@ moment().format();
 
 const JobListRow = ({job}) => {
   const  [deleteJob, {isSuccess, isError} ]= useDeleteJobMutation()
-  let link = `applicants/${job._id}`
+  let link = `/applicants/${job._id}`
+  let jobDetail = `/job/${job._id}`
   if (isSuccess) {
     toast.success("Delete Successful", {
       toastId: "success1",
@@ -82,7 +83,7 @@ const JobListRow = ({job}) => {
           </td>
           <td className="py-3 px-6 text-center">
             <div className="flex item-center justify-center">
-              <Link to={link}>
+              <Link to={jobDetail}>
                 <div className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

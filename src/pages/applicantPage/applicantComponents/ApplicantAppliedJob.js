@@ -22,7 +22,7 @@ const ApplicantAppliedJob = () => {
               <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                 <th className="py-3 px-6 text-left">Job Title</th>
                 <th className="py-3 px-6 text-center">Status</th>
-                <th className="py-3 px-6 text-center">Post Date</th>
+                <th className="py-3 px-6 text-center">Apply Time</th>
                 <th className="py-3 px-6 text-center">Actions</th>
               </tr>
             </thead>

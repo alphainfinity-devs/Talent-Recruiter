@@ -101,10 +101,15 @@ function App() {
             index
             element={
               <RecruiterRouteProtect>
-                <AppliedJobs />
+                <RecruiterAddJobs />
               </RecruiterRouteProtect>
             }
           />
+          <Route path="job/post" element={
+            <RecruiterRouteProtect>
+              <RecruiterAddJobs />
+            </RecruiterRouteProtect>} />
+
           <Route
             path="jobs"
             element={
@@ -122,7 +127,6 @@ function App() {
             }
             />
           <Route path="recruiter" element={<RecruiterProfile />} />
-          <Route path="job/post" element={<RecruiterAddJobs />} />
         </Route>
         {/* recruiter dashboard end */}
         {/* applicant dashboard start */}

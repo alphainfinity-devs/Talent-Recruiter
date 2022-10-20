@@ -26,14 +26,7 @@ const ApplicantSidebar = () => {
             Applied Jobs
           </Link>
         </li>
-        <li>
-          <Link
-            to="profile"
-            className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-            <FaUserTie className="w-5" />
-            Profile
-          </Link>
-        </li>
+
         <li>
           <Link
             to="bookmark-job"
@@ -42,14 +35,22 @@ const ApplicantSidebar = () => {
             Save job
           </Link>
         </li>
-        <li>
+        {/* <li>
+          <Link
+            to="profile"
+            className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
+            <FaUserTie className="w-5" />
+            Profile
+          </Link>
+        </li> */}
+        {/* <li>
           <Link
             to="message"
             className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
             <FaBriefcase className="w-5" />
             Message
           </Link>
-        </li>
+        </li> */}
         <li>
           <button
             onClick={handleLogout}
