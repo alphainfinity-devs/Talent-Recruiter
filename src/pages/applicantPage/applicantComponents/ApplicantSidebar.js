@@ -15,41 +15,42 @@ const ApplicantSidebar = () => {
   };
   return (
     <>
-      <ul className="menu p-4 overflow-y-auto w-80 bg-gray-200 text-base-content">
+      <ul className="menu p-4 overflow-y-auto w-60 bg-gray-200 text-base-content">
         {/* <!-- Sidebar content here --> */}
 
         <li>
           <Link
-            to="appliedJobs"
+            to="applied-jobs"
             className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-            <BsList className="w-5 mr-3" />
+            <BsList className="w-5" />
             Applied Jobs
           </Link>
         </li>
+
         <li>
           <Link
-            to="profile"
+            to="bookmark-job"
             className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-            <FaUserTie className="w-5 mr-3" />
-            Profile
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="save-job"
-            className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-            <FaBriefcase className="w-5 mr-3" />
+            <FaBriefcase className="w-5" />
             Save job
           </Link>
         </li>
-        <li>
+        {/* <li>
+          <Link
+            to="profile"
+            className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
+            <FaUserTie className="w-5" />
+            Profile
+          </Link>
+        </li> */}
+        {/* <li>
           <Link
             to="message"
             className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
-            <FaBriefcase className="w-5 mr-3" />
+            <FaBriefcase className="w-5" />
             Message
           </Link>
-        </li>
+        </li> */}
         <li>
           <button
             onClick={handleLogout}
