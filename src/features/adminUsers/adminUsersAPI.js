@@ -6,8 +6,8 @@ const roleHeader = {
 export const adminUsersAPI = APIsSlice.injectEndpoints({
   endpoints: (builder) => ({
     adminGetUsers: builder.query({
-      query: (query = 0) => ({
-        url: "/api/admin/get-users",
+      query: ({ email, role, page, limit }) => ({
+        url: `/api/admin/get-users?email=${email}&role=${role}&page=${page}&limit=${limit}`,
         method: "GET",
         headers: roleHeader,
       }),
