@@ -1,22 +1,34 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 
 const SearchComponent = () => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
+
   return (
     <section>
       <div className="container mx-auto">
         <div className="shadow-lg z-10 p-5 border bg-primary">
-          <form className="grid sm:grid-cols-4 md:grid-cols-4 gap-1">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="grid sm:grid-cols-4 md:grid-cols-4 gap-1"
+          >
             {/*........keyword type input........*/}
             <input
               type="text"
               placeholder="Search Keyword"
               className="input w-full rounded-none input-bordered"
+              {...register("keyword")}
             />
             {/*........selecte location input........*/}
             <select
               defaultValue="noValue"
               className="select select-bordered w-full rounded-none text-[tomato]"
+              {...register("location")}
             >
               <option value="noValue" disabled>
                 Location
@@ -33,6 +45,7 @@ const SearchComponent = () => {
             <select
               defaultValue="noValue"
               className="select select-bordered w-full rounded-none text-[tomato]"
+              {...register("category")}
             >
               <option value="noValue" disabled>
                 Category

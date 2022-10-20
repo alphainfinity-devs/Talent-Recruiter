@@ -1,5 +1,5 @@
 import React from "react";
-import Reviews from "./homePageComponents/Reviews";
+import ReviewMain from "./homePageComponents/ReviewMain";
 import HowItWork from "../../globalComponents/HowItWork";
 import BrowseJobsBanner from "./homePageComponents/BrowseJobsBanner";
 import Banner from "./homePageComponents/Banner";
@@ -19,7 +19,7 @@ const HomePage = () => {
       <HowItWork />
       <ProfileBanner />
       <Blogs />
-      <Reviews />
+      <ReviewMain />
       <Newsletter />
     </>
   );

@@ -3,7 +3,7 @@ import About from "./aboutPageComponents/About";
 import TeamMembers from "./aboutPageComponents/TeamMembers";
 import HowItWork from "../../globalComponents/HowItWork";
 import Blogs from "../homePage/homePageComponents/Blogs";
-import Reviews from "../homePage/homePageComponents/Reviews";
+import ReviewMain from "../homePage/homePageComponents/ReviewMain";
 import PageTitleBanner from "../../globalComponents/PageTitleBanner";
 
 const AboutPage = () => {
@@ -14,7 +14,7 @@ const AboutPage = () => {
       <TeamMembers />
       <HowItWork />
       <Blogs />
-      <Reviews />
+      <ReviewMain />
     </>
   );
 };

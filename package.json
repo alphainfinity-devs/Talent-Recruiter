@@ -29,6 +29,7 @@
     "react-scroll-to-top": "^3.0.0",
     "react-toastify": "^9.0.8",
     "react-type-animation": "^2.1.1",
+    "swiper": "^8.4.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
