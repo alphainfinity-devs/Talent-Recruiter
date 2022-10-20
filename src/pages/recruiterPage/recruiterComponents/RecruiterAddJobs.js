@@ -11,23 +11,20 @@ const RecruiterAddJobs = () => {
     isLoading,
 
 } = useGetCategoryQuery()
-
+const {register,formState: { errors },handleSubmit, reset} = useForm();
 const [postJob,{data,isSuccess,isError}] = usePostJobMutation()
 console.log(data);
 if (isSuccess) {
   toast.success("Job posted successfully", {
     toastId: "success",
   });
+  reset()
 }else if(isError){
   toast.error("Something Went Wrong", {
     toastId: "error",
   });
 }
-const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+
 
 
   return (

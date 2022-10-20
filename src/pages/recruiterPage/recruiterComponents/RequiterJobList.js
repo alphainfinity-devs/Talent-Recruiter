@@ -43,7 +43,7 @@ const RequiterJobList = () => {
         </div>
       </div>
     </div>
-  </div>
+    </div>
   );
 };
 

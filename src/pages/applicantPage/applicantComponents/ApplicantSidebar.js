@@ -20,7 +20,7 @@ const ApplicantSidebar = () => {
 
         <li>
           <Link
-            to="appliedJobs"
+            to="applied-jobs"
             className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
             <BsList className="w-5 mr-3" />
             Applied Jobs
@@ -36,7 +36,7 @@ const ApplicantSidebar = () => {
         </li>
         <li>
           <Link
-            to="save-job"
+            to="bookmark-job"
             className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
             <FaBriefcase className="w-5 mr-3" />
             Save job

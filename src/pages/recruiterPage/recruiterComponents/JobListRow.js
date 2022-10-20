@@ -7,7 +7,7 @@ moment().format();
 
 const JobListRow = ({job}) => {
   const  [deleteJob, {isSuccess, isError} ]= useDeleteJobMutation()
-  let link = `jobs/applicants/${job._id}`
+  let link = `applicants/${job._id}`
   if (isSuccess) {
     toast.success("Delete Successful", {
       toastId: "success1",

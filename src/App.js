@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import Footer from "./globalComponents/Footer";
 import Navbar from "./globalComponents/Navbar";
-import AdminPage from "./pages/adminPage/AdminPage";
+import AdminPage from "./pages/adminPage/adminPage";
 import AdminDashboard from "./pages/adminPage/adminSubPages/AdminDashboard";
 import AdminUsers from "./pages/adminPage/adminSubPages/AdminUsers";
 import NotFound from "./globalComponents/NotFound";
@@ -127,7 +127,7 @@ function App() {
         {/* recruiter dashboard end */}
         {/* applicant dashboard start */}
         <Route
-          path="/applicants"
+          path="/applicant"
           element={
             <PrivateRoute>
               <ApplicantRouteProtect>
@@ -145,7 +145,7 @@ function App() {
             }
           />
           <Route
-            path="appliedJobs"
+            path="applied-jobs"
             element={
               <ApplicantRouteProtect>
                 <ApplicantAppliedJob />
@@ -153,7 +153,7 @@ function App() {
             }
           />
           <Route path="profile" element={<ApplicantProfile />} />
-          <Route path="save-job" element={<ApplicantSaveJob />} />
+          <Route path="bookmark-job" element={<ApplicantSaveJob />} />
           <Route path="message" element={<ApplicantMessage />} />
         </Route>
         {/* applicant dashboard end */}
