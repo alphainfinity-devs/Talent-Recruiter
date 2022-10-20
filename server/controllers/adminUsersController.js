@@ -5,16 +5,21 @@ const emailSender = require("../utilities/emailSender");
 // get Users
 const getAdminUsers = async (req, res, next) => {
   try {
-    // console.log(req.body);
-    // console.log(req?.headers);
-    const users = await User.find(
-      {},
-      {
-        password: 0,
-        __v: 0,
-      },
-    );
-    res.status(200).json({ users });
+    const { email, role, page, limit } = req.query;
+    console.log(page, limit);
+    const users = await User.find(email ? { email } : role ? { role } : {}, {
+      password: 0,
+      __v: 0,
+    })
+      .skip(`${email || role ? 0 : (page - 1) * limit}`)
+      .limit(`${email || role ? 0 : limit}`)
+      .exec();
+    const count = await User.count();
+    res.status(200).json({
+      users,
+      totalPages: Math.ceil(`${email || role ? 1 : count / limit}`),
+      currentPage: `${email || role ? 1 : page}`,
+    });
   } catch (error) {
     console.log(error);
     next(error);
@@ -48,7 +53,6 @@ const updateUserRole = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-    console.log(id);
     const user = await User.findByIdAndDelete(id);
     res.status(200).json({ user });
   } catch (error) {
@@ -71,10 +75,13 @@ const warningUser = async (req, res, next) => {
     console.log(email);
     if (email) {
       const result = await emailSender(email, subject, body);
+      if (result?.message) {
+        res.status(500).json({ error: "email sent timeout" });
+      }
       res.status(200).json({ result });
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     next(error);
   }
 };
