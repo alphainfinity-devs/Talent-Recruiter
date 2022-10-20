@@ -6,8 +6,8 @@ const BookmarkJob = require('../schemas/bookmarkJobSchema');
 // @desc Get BookMarked Job
 const getBookmarkedJob = asyncHandler(async (req, res, next) => {
     try{
-        const isBookmark = await BookmarkJob.find({user:req.user.id});
-
+        const isBookmark = await BookmarkJob.find({user:{_id:req.user.id}}).populate('job','_id title');
+        console.log(isBookmark);
         if(isBookmark){
             res.status(200).json({
                 success: true,
@@ -94,6 +94,30 @@ const getAppliedJob = asyncHandler(async(req, res, next) =>{
 //  @desc Apply Job 
 const applyJob = asyncHandler(async(req, res, next) =>{
     try{
+        const isApplied = await AppliedJob.find({job:req.params.id,user:req.user.id}).count();
+        console.log(isApplied===0);
+        console.log(isApplied);
+        if(!isApplied===0){
+            res.status(200).json({
+                success: true,
+                message: "Already Applied This Job",
+            })
+        }else{
+            const applied = await AppliedJob.create({job:req.params.id,candidate:req.user.id});
+            if(applied){
+                res.status(200).json({
+                    success: true,
+                    message: "Already Applied This Job",
+                })
+            }
+        }
+    }catch(err){
+        next(err)
+    }
+})
+
+const isApplied = asyncHandler(async(req, res, next) =>{
+    try{
         const isApplied = await AppliedJob.find({job:req.params.id,user:req.user.id});
 
         if(isApplied){
@@ -116,5 +140,5 @@ const applyJob = asyncHandler(async(req, res, next) =>{
 })
 
 module.exports ={
-    getBookmarkedJob, bookmarkJob,deleteBookmark, getAppliedJob, applyJob
+    getBookmarkedJob, bookmarkJob,deleteBookmark, getAppliedJob, applyJob, isApplied
 }

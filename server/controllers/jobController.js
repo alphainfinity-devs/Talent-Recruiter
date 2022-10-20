@@ -19,7 +19,7 @@ const getAllJobs = asyncHandler(async (req, res, next) => {
 const getSingleJob = asyncHandler(async (req, res, next) => {
 
     try{
-        const job = await Job.findById(req.params.id).populate('company_name','_id name');;
+        const job = await Job.findById(req.params.id).populate('company_name','_id name');
         if (!job) {
             res.status(404).json({message:'Job not found'})
         }
