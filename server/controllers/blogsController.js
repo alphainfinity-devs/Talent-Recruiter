@@ -52,6 +52,7 @@ const getPosts = async (req, res, next) => {
 // get a single post
 const getPost = async (req, res, next) => {
   try {
+    console.log(req.params)
     const post = await BlogPost.findById(req.params.id);
     res.status(200).json({ post });
   } catch (error) {

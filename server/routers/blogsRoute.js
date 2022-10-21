@@ -5,6 +5,7 @@ const {
   getPosts,
   deletePost,
   updatePost,
+  getPost,
 } = require("../controllers/blogsController");
 
 const router = express.Router();
@@ -12,6 +13,7 @@ const router = express.Router();
 router
   .post("/add-blog", roleAuthCheck, addBlog)
   .get("/posts", getPosts)
+  .get("/post/:id", getPost)
   .delete("/delete/:id", roleAuthCheck, deletePost)
   .put("/update/:id", roleAuthCheck, updatePost);
 module.exports = router;

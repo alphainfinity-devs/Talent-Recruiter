@@ -61,11 +61,9 @@ const AdminAllPosts = () => {
     );
   }
   if (error) {
-    content = (
-      <div className="text-center text-red-500 text-2xl">
-        Something went wrong
-      </div>
-    );
+    toast.error("There is an error please try again", {
+      toastId: "error",
+    });
   }
   if (getPosts) {
     content = (

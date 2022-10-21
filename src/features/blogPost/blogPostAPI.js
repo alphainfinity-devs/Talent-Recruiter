@@ -26,11 +26,18 @@ export const blogPostAPI = APIsSlice.injectEndpoints({
       }),
       invalidatesTags: ["blogPosts"],
     }),
+    getBlogPost: builder.query({
+      query: ({id}) => ({
+        url: `/api/blogs/post/${id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
 export const {
   useGetBlogPostsQuery,
+  useGetBlogPostQuery,
   useAddBlogPostMutation,
   useDeleteBlogPostMutation,
 } = blogPostAPI;
