@@ -1,25 +1,42 @@
-import { APIsSlice } from '../APIs/APIsSlice';
-
+import { APIsSlice } from "../APIs/APIsSlice";
 
 export const JobsApi = APIsSlice.injectEndpoints({
-reducerPath: 'JobsApi',
- endpoints: (builder) => ({
-  getAllJobs: builder.query({
-   query: () => ({
-    url: '/api/jobs',
-    method: 'GET'
-   })
+  endpoints: (builder) => ({
+    getAllJobs: builder.query({
+      query: () => ({
+        url: "/api/jobs",
+        method: "GET",
+      }),
+      providesTags: ["Jobs"],
+    }),
+    getJobById: builder.query({
+      query: (id) => ({
+        url: `/api/jobs/job/${id}`,
+        method: "GET",
+      }),
+    }),
+    updateJobByAdmin: builder.mutation({
+      query: ({ id, status }) => ({
+        url: `/api/jobs/update-job/${id}`,
+        method: "PATCH",
+        body: { status },
+      }),
+      invalidatesTags: ["Jobs"],
+    }),
+    // delete the job
+    deleteJobByAdmin: builder.mutation({
+      query: (id) => ({
+        url: `/api/jobs/delete-job/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Jobs"],
+    }),
   }),
-  getJobById: builder.query({
-    query: (id) => {
-     console.log("ID:", id)
-     return {
-      url: `/api/jobs/job/${id}`,
-      method: 'GET'
-     }
-    }
-   })
-})
-})
+});
 
-export const { useGetAllJobsQuery, useGetJobByIdQuery} = JobsApi
+export const {
+  useGetAllJobsQuery,
+  useGetJobByIdQuery,
+  useUpdateJobByAdminMutation,
+  useDeleteJobByAdminMutation,
+} = JobsApi;
