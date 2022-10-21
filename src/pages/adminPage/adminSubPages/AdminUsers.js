@@ -1,35 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { FaUsersCog } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
-import dummyImg from "../../../assets/img/team-1-800x800.jpg";
+import { useAdminGetUsersQuery } from "../../../features/adminUsers/adminUsersAPI";
+import TablePlaceholder from "../../../utils/TablePlaceholder";
+import SingleUser from "../adminPageComponents/SingleUser";
 
 const AdminUsers = () => {
-  const [actionValue, setActionValue] = useState("");
   const [emailSearch, setEmailSearch] = useState("");
-  useEffect(() => {
-    if (actionValue === "delete") {
-      console.log("delete");
-    } else if (actionValue === "edit") {
-      console.log("edit");
-    } else if (actionValue === "warning") {
-      console.log("warning");
-    }
-  }, [actionValue]);
+  const [doEmail, setDoEmail] = useState("");
+  const [actionValue, setActionValue] = useState("");
+  const [page, setPage] = useState(1);
+  const { isLoading, error, data } = useAdminGetUsersQuery(
+    { email: doEmail, role: actionValue, page, limit: 2 },
+    {
+      refetchOnMountOrArgChange: true,
+    },
+  );
   //write debounce function
   useEffect(() => {
     const getSearchValue = setTimeout(() => {
-      if (emailSearch) console.log(emailSearch, "do email Search");
+      if (emailSearch) {
+        setDoEmail(emailSearch);
+      } else {
+        setDoEmail("");
+      }
     }, 1000);
     return () => clearTimeout(getSearchValue);
   }, [emailSearch]);
-  const handleCheck = (e) => {
-    /* if (e.target.checked) {
-      setActionValue(e.target.value);
-    } else {
-      setActionValue("");
-    } */
-  };
-
+  console.log(data);
+  // decide what to render
+  let content;
+  if (isLoading && !error) {
+    content = <TablePlaceholder />;
+  } else if (error && !isLoading) {
+    content = (
+      <tr className="text-xl text-red-500 text-center">
+        There was an error occurred
+      </tr>
+    );
+  } else if (!isLoading && !error && data?.users?.length === 0) {
+    content = (
+      <tr>
+        <td className="flex items-center justify-center text-xl text-red-400 space-y-3">
+          No users found
+        </td>
+      </tr>
+    );
+  } else if (data?.users && !isLoading && !error) {
+    content = data.users.map((user) => (
+      <SingleUser key={user._id} user={user} />
+    ));
+  }
+  console.log(data?.totalPages);
   return (
     <div className="m-0 relative md:top-0">
       <div className="flex items-center justify-center md:my-14 my-3">
@@ -40,14 +61,12 @@ const AdminUsers = () => {
       </div>
       <div className="flex md:flex-row flex-col items-center md:justify-between md:my-6 my-2 px-2">
         <select
+          onChange={(e) => setActionValue(e.target.value)}
           className="select select-ghost w-full max-w-xs md:my-0 my-3"
-          defaultValue="noValue">
-          <option value={"noValue"} disabled>
-            Filter User Role
-          </option>
-          <option>Applicant</option>
-          <option>Recruiter</option>
-          <option>Investor</option>
+          defaultValue="">
+          <option value={""}>Filter User Role</option>
+          <option value="applicant">Applicant</option>
+          <option value="recruiter">Recruiter</option>
         </select>
         <input
           type="text"
@@ -55,7 +74,7 @@ const AdminUsers = () => {
           className="input input-bordered input-primary w-full max-w-xs md:my-0 my-3"
           name="search"
           value={emailSearch}
-          onChange={setEmailSearch}
+          onChange={(e) => setEmailSearch(e.target.value)}
         />
       </div>
       <div className="overflow-x-auto">
@@ -68,80 +87,24 @@ const AdminUsers = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src={dummyImg} alt="Avatar" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
-                    <div className="text-sm opacity-50">United States</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Applicant
-                <br />
-                <span className="badge badge-primary opacity-75 badge-sm">
-                  Active User
-                </span>
-              </td>
-              <td>purple@gmail.com</td>
-              <th>
-                {actionValue === "edit" ? (
-                  <div className="flex justify-center items-center">
-                    <span
-                      className="label-text"
-                      onClick={() => setActionValue("")}>
-                      <ImCross className="cursor-pointer hover:text-secondary-focus" />
-                    </span>
-                    <label className="cursor-pointer label">
-                      <span className="label-text mx-2">Make Admin</span>
-                      <input
-                        type="checkbox"
-                        onChange={handleCheck}
-                        // checked
-                        className="checkbox checkbox-accent"
-                      />
-                    </label>
-                  </div>
-                ) : (
-                  <select
-                    onChange={(e) => setActionValue(e.target.value)}
-                    className="select select-ghost"
-                    defaultValue={"defaultValue"}>
-                    <option disabled value="defaultValue">
-                      Select Action
-                    </option>
-                    <option
-                      value={"delete"}
-                      className="text-error cursor-pointer">
-                      Delete
-                    </option>
-                    <option
-                      value={"warning"}
-                      className="text-yellow-400 cursor-pointer">
-                      Warning
-                    </option>
-                    <option
-                      value={"edit"}
-                      className="text-success cursor-pointer">
-                      Edit User Role
-                    </option>
-                  </select>
-                )}
-              </th>
-            </tr>
-          </tbody>
+          <tbody>{content}</tbody>
         </table>
         <div className="flex justify-center btn-group mt-5">
-          <button className="btn">«</button>
-          <span className="btn">Page 22</span>
-          <button className="btn">»</button>
+          <button
+            onClick={() => setPage((prev) => (prev > 1 ? prev - 1 : 1))}
+            className="p-4 bg-gray-400">
+            «
+          </button>
+          <span className="p-4 badge-primary">Page {data?.currentPage}</span>
+          <button
+            onClick={() =>
+              setPage((prev) =>
+                prev < data?.totalPages ? prev + 1 : data?.totalPages,
+              )
+            }
+            className="p-4 bg-gray-400">
+            »
+          </button>
         </div>
       </div>
     </div>

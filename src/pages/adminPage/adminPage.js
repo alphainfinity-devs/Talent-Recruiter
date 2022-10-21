@@ -12,9 +12,9 @@ const AdminPage = () => {
         <div className='drawer-content'>
           {/* <!-- Page content here --> */}
           <Outlet />
-          {(location === '/dashboard' || location === '/dashboard/') && (
+          {/* {(location === '/dashboard' || location === '/dashboard/') && (
             <AdminDashboard />
-          )}
+          )} */}
         </div>
         <div className='drawer-side'>
           <label htmlFor='my-drawer-2' className='drawer-overlay'></label>
