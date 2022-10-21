@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useGetCategoryQuery } from "../../../features/category/categoryApi";
@@ -14,11 +14,12 @@ const RecruiterAddJobs = () => {
 const {register,formState: { errors },handleSubmit, reset} = useForm();
 const [postJob,{data,isSuccess,isError}] = usePostJobMutation()
 console.log(data);
+
 if (isSuccess) {
   toast.success("Job posted successfully", {
     toastId: "success",
   });
-  reset()
+  
 }else if(isError){
   toast.error("Something Went Wrong", {
     toastId: "error",
