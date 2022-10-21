@@ -1,4 +1,5 @@
 const BlogPost = require("../Models/blogPostModel");
+
 // add a blog post
 const addBlog = async (req, res, next) => {
   try {
@@ -10,24 +11,39 @@ const addBlog = async (req, res, next) => {
       post_category,
     } = req.body;
     const blogPost = new BlogPost({
-       post_title,
-       post_description,
-       post_image,
-       post_author,
-       post_category,
+      post_title,
+      post_description,
+      post_image,
+      post_author,
+      post_category,
     });
-    await blogPost.save();//insert in the db all info
+    await blogPost.save(); //insert in the db all info
     res.status(200).json({ success: "blog was added successfully" });
   } catch (error) {
     console.log(error);
     next(error);
   }
 };
-// get Posts
+// get all Posts
 const getPosts = async (req, res, next) => {
   try {
-    const posts = await BlogPost.find();
-    res.status(200).json({ posts });
+    const { chunkLimit, limit } = req.query;
+    console.log(chunkLimit, limit);
+    const posts = await BlogPost.find(
+      {},
+      {
+        __v: 0,
+      },
+    )
+      .limit(limit)
+      // .skip((page - 1) * limit)
+      .exec();
+    const count = await BlogPost.count();
+    res.status(200).json({
+      posts,
+      totalPost: count,
+      totalPages: Math.ceil(count / chunkLimit),
+    });
   } catch (error) {
     console.log(error);
     next(error);
@@ -73,13 +89,9 @@ const updatePost = async (req, res, next) => {
 // delete a post
 const deletePost = async (req, res, next) => {
   try {
-    const post = await BlogPost.findById(req.params.id);
-    if (post) {
-      await post.remove();
-      res.status(200).json({ message: "Post removed" });
-    } else {
-      res.status(404).json({ message: "Post not found" });
-    }
+    const { id } = req.params;
+    await BlogPost.findByIdAndDelete(id);
+    res.status(200).json({ message: "Post deleted successfully" });
   } catch (error) {
     console.log(error);
     next(error);
@@ -89,4 +101,7 @@ const deletePost = async (req, res, next) => {
 module.exports = {
   addBlog,
   getPosts,
+  getPost,
+  updatePost,
+  deletePost,
 };

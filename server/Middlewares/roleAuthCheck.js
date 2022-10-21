@@ -12,7 +12,7 @@ const roleAuthCheck = (req, res, next) => {
         next("authorization failed");
     }
   } catch (error) {
-    console.log("any error", error);
+    console.log("any error authorization", error);
     next("authorization failed" + error);
   }
 };
