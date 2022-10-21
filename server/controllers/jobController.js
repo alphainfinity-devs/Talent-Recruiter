@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 // @desc All Job Controller
 const getAllJobs = asyncHandler(async (req, res, next) => {
   try {
-      const Jobs = await Job.find().populate("company_name", "_id name");
+      const Jobs = await Job.find().populate("category", "requiter");
       console.log(Jobs)
     res.status(200).json({
       success: true,
@@ -54,6 +54,7 @@ const updateJob = asyncHandler(async (req, res, next) => {
 });
 const deleteJob = asyncHandler(async (req, res, next) => {
   try {
+    console.log(req.params.id);
     const job = await Job.findByIdAndDelete(req.params.id);
     if (!job) {
       res.status(404).json({ message: "Job not found" });

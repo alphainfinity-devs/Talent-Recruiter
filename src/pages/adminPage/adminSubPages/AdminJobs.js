@@ -11,25 +11,8 @@ import AdminSingleJob from "../adminPageComponents/AdminSingleJob";
 
 const AdminJobs = () => {
   const [emailSearch, setEmailSearch] = useState("");
-  const [actionValue, setActionValue] = useState("");
   const { isLoading, data, error } = useGetAllJobsQuery();
-  const [
-    updateJobByAdmin,
-    { isLoading: updateLoading, isSuccess, data: job, error: updateError },
-  ] = useUpdateJobByAdminMutation();
-  useEffect(() => {
-    updateJobByAdmin({ id: 2, status: true });
-  }, [updateJobByAdmin]);
 
-  console.log(data, "jobs");
-  console.log(error, "error");
-  useEffect(() => {
-    if (actionValue === "reject") {
-      console.log("reject");
-    } else if (actionValue === "accept") {
-      console.log("accept");
-    }
-  }, [actionValue]);
   //write debounce function
   useEffect(() => {
     const getSearchValue = setTimeout(() => {
@@ -39,7 +22,7 @@ const AdminJobs = () => {
   }, [emailSearch]);
   // decide what to render
   let content;
-  if (isLoading || updateLoading) {
+  if (isLoading) {
     content = <TablePlaceholder />;
   } else if (error) {
     toast.error("Something went wrong", {
@@ -97,7 +80,7 @@ const AdminJobs = () => {
         </table>
         <div className="flex justify-center btn-group mt-5">
           <button className="btn">«</button>
-          <span className="btn">Page 22</span>
+          <span className="btn">Page 1</span>
           <button className="btn">»</button>
         </div>
       </div>

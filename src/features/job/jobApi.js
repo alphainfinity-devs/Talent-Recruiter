@@ -7,6 +7,7 @@ export const JobsApi = APIsSlice.injectEndpoints({
         url: "/api/jobs",
         method: "GET",
       }),
+      providesTags: ["Jobs"],
     }),
     getJobById: builder.query({
       query: (id) => ({
@@ -20,6 +21,15 @@ export const JobsApi = APIsSlice.injectEndpoints({
         method: "PATCH",
         body: { status },
       }),
+      invalidatesTags: ["Jobs"],
+    }),
+    // delete the job
+    deleteJobByAdmin: builder.mutation({
+      query: (id) => ({
+        url: `/api/jobs/delete-job/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Jobs"],
     }),
   }),
 });
@@ -28,4 +38,5 @@ export const {
   useGetAllJobsQuery,
   useGetJobByIdQuery,
   useUpdateJobByAdminMutation,
+  useDeleteJobByAdminMutation,
 } = JobsApi;
