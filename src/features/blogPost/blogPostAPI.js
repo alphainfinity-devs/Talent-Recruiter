@@ -26,11 +26,22 @@ export const blogPostAPI = APIsSlice.injectEndpoints({
       }),
       invalidatesTags: ["blogPosts"],
     }),
+    //single blog post get
     getBlogPost: builder.query({
-      query: ({id}) => ({
+      query: ({ id }) => ({
         url: `/api/blogs/post/${id}`,
         method: "GET",
       }),
+    }),
+    // update the blog post
+    updateBlogPost: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/api/blogs/update/${id}`,
+        method: "PATCH",
+        headers: roleHeader,
+        body,
+      }),
+      invalidatesTags: ["blogPosts"],
     }),
   }),
 });
@@ -40,4 +51,5 @@ export const {
   useGetBlogPostQuery,
   useAddBlogPostMutation,
   useDeleteBlogPostMutation,
+  useUpdateBlogPostMutation,
 } = blogPostAPI;

@@ -52,7 +52,7 @@ const getPosts = async (req, res, next) => {
 // get a single post
 const getPost = async (req, res, next) => {
   try {
-    console.log(req.params)
+    console.log(req.params);
     const post = await BlogPost.findById(req.params.id);
     res.status(200).json({ post });
   } catch (error) {
@@ -63,22 +63,23 @@ const getPost = async (req, res, next) => {
 // update a post
 const updatePost = async (req, res, next) => {
   try {
-    const {
-      post_title,
-      post_description,
-      post_author,
-      post_image,
-      post_category,
-    } = req.body;
-    const post = await BlogPost.findById(req.params.id);
+    let updateValue = {};
+    for (const value in req.body) {
+      if (req.body[value]) {
+        updateValue[value] = req.body[value];
+      }
+    }
+    const post = await BlogPost.findByIdAndUpdate(
+      req.params.id,
+      { $set: updateValue },
+      {
+        new: true,
+        runValidators: true,
+      },
+    );
+    console.log(post);
     if (post) {
-      post.post_title = post_title;
-      post.post_description = post_description;
-      post.post_author = post_author;
-      post.post_image = post_image;
-      post.post_category = post_category;
-      const updatedPost = await post.save();
-      res.status(200).json({ updatedPost });
+      res.status(200).json(post);
     } else {
       res.status(404).json({ message: "Post not found" });
     }

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import {
   useAddBlogPostMutation,
   useGetBlogPostQuery,
+  useUpdateBlogPostMutation,
 } from "../../../features/blogPost/blogPostAPI";
 import imgBBUpload from "../../../utils/imgBBUpload";
 import AdminPostPreview from "../adminPageComponents/AdminPostPreview";
@@ -33,6 +34,10 @@ const AdminAddPost = () => {
   const ref = useRef();
   const [addBlogPost, { isError, error, isLoading, data: addPost }] =
     useAddBlogPostMutation();
+  const [
+    updateBlogPost,
+    { isLoading: updateLoading, error: updateError, data: updateData },
+  ] = useUpdateBlogPostMutation();
   useEffect(() => {
     if (id) {
       setTitleInput(post_title);
@@ -83,7 +88,7 @@ const AdminAddPost = () => {
     formData.append("image", fileImg);
     const img_url = await imgBBUpload(formData); //img upload utils fn
     setImgUploadLoading(false);
-    if (img_url) {
+    if (img_url && !id) {
       await addBlogPost({
         post_title: titleInput,
         post_description: description,
@@ -91,8 +96,20 @@ const AdminAddPost = () => {
         post_author: author,
         post_category: category,
       });
-      setResetValues();
+    } else {
+      const body = {
+        post_title: titleInput,
+        post_description: description,
+        post_image: img_url,
+        post_author: author,
+        post_category: category,
+      };
+      await updateBlogPost({
+        id,
+        body,
+      });
     }
+    setResetValues();
   };
 
   return (
@@ -101,7 +118,7 @@ const AdminAddPost = () => {
         <form onSubmit={handlePostSubmit} encType="multipart/form-data">
           <div className=" mb-6">
             <input
-              required
+              required={id ? false : true}
               value={titleInput}
               onChange={(e) => setTitleInput(e.target.value)}
               type="text"
@@ -125,7 +142,7 @@ const AdminAddPost = () => {
           </div>
           <div className=" mb-6">
             <input
-              required
+             required={id ? false : true}
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
               type="text"
@@ -149,7 +166,7 @@ const AdminAddPost = () => {
           </div>
           <div className=" mb-6">
             <input
-              required
+              required={id ? false : true}
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               type="text"
@@ -173,7 +190,7 @@ const AdminAddPost = () => {
           </div>
           <div className="flex items-center mb-6">
             <input
-              required
+              required={id ? false : true}
               ref={ref}
               accept="image/*"
               name="image"
@@ -212,6 +229,7 @@ const AdminAddPost = () => {
           <div className=" mb-6">
             <textarea
               value={description}
+              required={id ? false : true}
               onChange={(e) => setDescription(e.target.value)}
               className="form-control block
         w-full

@@ -15,5 +15,5 @@ router
   .get("/posts", getPosts)
   .get("/post/:id", getPost)
   .delete("/delete/:id", roleAuthCheck, deletePost)
-  .put("/update/:id", roleAuthCheck, updatePost);
+  .patch("/update/:id", /* roleAuthCheck, */ updatePost);
 module.exports = router;
