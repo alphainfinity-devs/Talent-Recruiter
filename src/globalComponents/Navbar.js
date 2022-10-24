@@ -28,7 +28,7 @@ const Navbar = () => {
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 130
+      windowHeight > 400
         ? setStickyClass("fixed top-0 left-0 z-50 bg-white shadow-lg")
         : setStickyClass("relative");
     }
@@ -76,7 +76,7 @@ const Navbar = () => {
       </div>
       {/* ......Mini navbar end...... */}
 
-      <div className={`w-full py-5 shadow-lg ${stickyClass}`}>
+      <div className={`w-full py-5 shadow-lg duration-700 ${stickyClass}`}>
         <div className="flex justify-between items-center container mx-auto px-5">
           {/* any dashboard hamburger menu icon start */}
           <label
@@ -138,7 +138,7 @@ const Navbar = () => {
                   <>
                     <NavLink
                       to="/"
-                      className="btn rounded-none bg-primary hover:bg-accent text-white font-bold px-4"
+                      className="btn rounded-none duration-700 bg-primary hover:bg-accent text-white font-bold px-4"
                     >
                       Post a job
                     </NavLink>

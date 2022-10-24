@@ -15,13 +15,14 @@ const ApplicantSidebar = () => {
   };
   return (
     <>
-      <ul className="menu p-4 overflow-y-auto w-60 bg-gray-200 text-base-content">
+      <ul className="menu p-4 overflow-y-auto w-60 bg-[#d0ffce] text-base-content">
         {/* <!-- Sidebar content here --> */}
 
         <li>
           <Link
             to="applied-jobs"
-            className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
+            className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition"
+          >
             <BsList className="w-5" />
             Applied Jobs
           </Link>
@@ -30,7 +31,8 @@ const ApplicantSidebar = () => {
         <li>
           <Link
             to="bookmark-job"
-            className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
+            className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition"
+          >
             <FaBriefcase className="w-5" />
             Save job
           </Link>
@@ -54,14 +56,16 @@ const ApplicantSidebar = () => {
         <li>
           <button
             onClick={handleLogout}
-            className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition">
+            className="flex items-center my-1 px-4 py-3 text-black font-bold border-l-4 border-transparent hover:border-secondary hover:bg-gray-300 transition"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 opacity-75"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              strokeWidth="2">
+              strokeWidth="2"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

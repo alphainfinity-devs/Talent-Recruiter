@@ -14,7 +14,7 @@ const BlogCart = ({ blog }) => {
   } = blog;
 
   return (
-    <div className="shadow-md hover:shadow-lg relative hover:-translate-y-3 duration-700">
+    <div className="shadow-md hover:shadow-lg relative hover:-translate-y-2 duration-700">
       <figure className="pb-2 relative">
         {/*........... blog image ..........*/}
         <img src={post_image} alt="Shoes" className="h-[200px] w-full" />

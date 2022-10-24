@@ -18,7 +18,7 @@ export default function AdminSidebar() {
   };
   return (
     <>
-      <div className="flex h-screen-[-100px] flex-col justify-between border-r bg-white md:w-full w-[75%]">
+      <div className="flex flex-col justify-between bg-[#d0ffce] md:w-full w-[75%]">
         <div className="px-4 py-6">
           <nav className="mt-6 flex flex-col space-y-1">
             <NavLink
@@ -29,14 +29,16 @@ export default function AdminSidebar() {
                     location === ("/admin" || "/dashboard/")) &&
                   "bg-gray-300"
                 } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-              }}>
+              }}
+            >
               <svg
                 className="mr-2 h-5 w-5 opacity-75"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                strokeWidth="2">
+                strokeWidth="2"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -57,7 +59,8 @@ export default function AdminSidebar() {
                 return `${
                   props.isActive && "bg-gray-300"
                 } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-              }}>
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -68,7 +71,8 @@ export default function AdminSidebar() {
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
-                strokeLinejoin="round">
+                strokeLinejoin="round"
+              >
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
@@ -85,7 +89,8 @@ export default function AdminSidebar() {
                 return `${
                   props.isActive && "bg-gray-300"
                 } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-              }}>
+              }}
+            >
               <GoPlug size={20} className="opacity-75" />
               <span className="ml-3 md:text-sm text-xs md:font-medium">
                 Customize
@@ -97,7 +102,8 @@ export default function AdminSidebar() {
                 return `${
                   props.isActive && "bg-gray-300"
                 } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-              }}>
+              }}
+            >
               <IoBookmarksOutline size={20} className="opacity-75" />
               <span className="ml-3 md:text-sm text-xs md:font-medium">
                 Jobs
@@ -109,14 +115,16 @@ export default function AdminSidebar() {
                 return `${
                   props.isActive && "bg-gray-300"
                 } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-              }}>
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 opacity-75"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                strokeWidth="2">
+                strokeWidth="2"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -139,7 +147,8 @@ export default function AdminSidebar() {
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
                     viewBox="0 0 20 20"
-                    fill="currentColor">
+                    fill="currentColor"
+                  >
                     <path
                       fillRule="evenodd"
                       d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -156,7 +165,8 @@ export default function AdminSidebar() {
                     return `${
                       props.isActive && "bg-gray-300"
                     } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-                  }}>
+                  }}
+                >
                   <MdPostAdd size={20} className="opacity-75" />
                   <span className="md:ml-3 md:text-sm text-xs md:font-medium">
                     Add Post
@@ -169,14 +179,16 @@ export default function AdminSidebar() {
                     return `${
                       props.isActive && "bg-gray-300"
                     } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-                  }}>
+                  }}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2">
+                    strokeWidth="2"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -199,7 +211,8 @@ export default function AdminSidebar() {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth="2">
+                  strokeWidth="2"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -214,7 +227,8 @@ export default function AdminSidebar() {
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
                     viewBox="0 0 20 20"
-                    fill="currentColor">
+                    fill="currentColor"
+                  >
                     <path
                       fillRule="evenodd"
                       d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -231,14 +245,16 @@ export default function AdminSidebar() {
                     return `${
                       props.isActive && "bg-gray-300"
                     } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-                  }}>
+                  }}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2">
+                    strokeWidth="2"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -255,14 +271,16 @@ export default function AdminSidebar() {
                     return `${
                       props.isActive && "bg-gray-300"
                     } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-                  }}>
+                  }}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2">
+                    strokeWidth="2"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -276,14 +294,16 @@ export default function AdminSidebar() {
 
                 <button
                   onClick={handleLogOut}
-                  className="flex w-full items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                  className="flex w-full items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2">
+                    strokeWidth="2"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -304,7 +324,9 @@ export default function AdminSidebar() {
             <Avatar email={user.email} size="50" round={true} />
             <div className="ml-1.5">
               <p className="text-xs">
-                <strong className="block uppercase font-extrabold">{ user.name}</strong>
+                <strong className="block uppercase font-extrabold">
+                  {user.name}
+                </strong>
               </p>
             </div>
           </span>
