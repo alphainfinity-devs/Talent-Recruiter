@@ -44,7 +44,7 @@ const AdminAddCategory = () => {
                 <button
                   disabled={isLoading}
                   type="submit"
-                  className={!isLoading && "btn btn-primary"}>
+                  className={!isLoading ? "btn btn-primary" : undefined}>
                   {isLoading ? (
                     <Comment
                       width={100}
@@ -56,7 +56,7 @@ const AdminAddCategory = () => {
                       backgroundColor="#39a746"
                     />
                   ) : (
-                    <BsCheck2Circle />
+                    <BsCheck2Circle size={25}/>
                   )}
                 </button>
               </div>

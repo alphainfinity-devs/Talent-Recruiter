@@ -326,7 +326,7 @@ export default function AdminSidebar() {
 
         <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
           <span className="flex shrink-0 items-center bg-white p-4 hover:bg-gray-50">
-            <Avatar email={user.email} size="50" round={true} />
+            <Avatar name={user.name} size="50" round={true} maxInitials={2} />
             <div className="ml-1.5">
               <p className="text-xs">
                 <strong className="block uppercase font-extrabold">{ user.name}</strong>
