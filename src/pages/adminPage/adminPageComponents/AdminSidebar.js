@@ -3,11 +3,13 @@ import { GoPlug } from "react-icons/go";
 import { IoBookmarksOutline } from "react-icons/io5";
 import { MdPostAdd } from "react-icons/md";
 import { BsFillFileEarmarkPostFill } from "react-icons/bs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../features/userAuth/userAuthSlice";
+import Avatar from "react-avatar";
 
 export default function AdminSidebar() {
   const location = useLocation().pathname;
+  const { user } = useSelector((state) => state.auth || {});
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogOut = () => {
@@ -299,15 +301,10 @@ export default function AdminSidebar() {
 
         <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
           <span className="flex shrink-0 items-center bg-white p-4 hover:bg-gray-50">
-            <img
-              alt="Man"
-              src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              className="h-10 w-10 rounded-full object-cover"
-            />
-
+            <Avatar email={user.email} size="50" round={true} />
             <div className="ml-1.5">
               <p className="text-xs">
-                <strong className="block font-medium">Eric Frusciante</strong>
+                <strong className="block uppercase font-extrabold">{ user.name}</strong>
               </p>
             </div>
           </span>

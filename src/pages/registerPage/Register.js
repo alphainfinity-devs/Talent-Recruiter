@@ -20,10 +20,10 @@ const Register = () => {
       toast.error("there was an error" + error?.message, { toastId: "error" });
     }
     if (!error && !isLoading && isSuccess) {
+      navigate("/login");
       toast.success("You have register please login", {
         toastId: "success",
       });
-      navigate("/login");
     }
   }, [error, isLoading, navigate, isSuccess]);
 

@@ -1,23 +1,40 @@
+import { data } from "autoprefixer";
 import React, { useEffect, useState } from "react";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
+import { toast } from "react-toastify";
+import {
+  useGetAllJobsQuery,
+  useUpdateJobByAdminMutation,
+} from "../../../features/job/jobApi";
+import TablePlaceholder from "../../../utils/TablePlaceholder";
+import AdminSingleJob from "../adminPageComponents/AdminSingleJob";
 
 const AdminJobs = () => {
   const [emailSearch, setEmailSearch] = useState("");
-  const [actionValue, setActionValue] = useState("");
-  useEffect(() => {
-    if (actionValue === "reject") {
-      console.log("reject");
-    } else if (actionValue === "accept") {
-      console.log("accept");
-    }
-  }, [actionValue]);
+  const { isLoading, data, error } = useGetAllJobsQuery();
+
   //write debounce function
-    useEffect(() => {
-    const getSearchValue= setTimeout(() => {
-       if(emailSearch) console.log(emailSearch,"do emailSearch");
+  useEffect(() => {
+    const getSearchValue = setTimeout(() => {
+      if (emailSearch) console.log(emailSearch, "do emailSearch");
     }, 1000);
     return () => clearTimeout(getSearchValue);
- },[emailSearch]);
+  }, [emailSearch]);
+  // decide what to render
+  let content;
+  if (isLoading) {
+    content = <TablePlaceholder />;
+  } else if (error) {
+    toast.error("Something went wrong", {
+      toastId: "error",
+    });
+  } else if (data.Jobs.length === 0) {
+    content = <tr className="text-center my-2 text-xs">No Job available</tr>;
+  } else if (!isLoading && data?.Jobs) {
+    content = data.Jobs.map((job) => (
+      <AdminSingleJob key={job._id} job={job} />
+    ));
+  }
   return (
     <>
       <div className="flex items-center justify-center md:my-14 my-3">
@@ -30,9 +47,7 @@ const AdminJobs = () => {
         <select
           className="select select-ghost w-full max-w-xs md:my-0 my-3"
           defaultValue="noValue">
-          <option value={"noValue"} disabled>
-            Filter By Category
-          </option>
+          <option value={"noValue"}>Filter By Category</option>
           <option>IT</option>
           <option>Finance</option>
           <option>Marketing</option>
@@ -45,7 +60,7 @@ const AdminJobs = () => {
           className="input input-bordered input-primary w-full max-w-xs md:my-0 my-3"
           name="search"
           value={emailSearch}
-          onChange={(e)=>setEmailSearch(e.target.value)}
+          onChange={(e) => setEmailSearch(e.target.value)}
         />
       </div>
       <div className="overflow-x-auto w-full px-2">
@@ -61,44 +76,11 @@ const AdminJobs = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th>122312</th>
-              <td>Job title</td>
-              <td>Web Development</td>
-              <td>Jhon Doe</td>
-              <td>12 May, 2022</td>
-              <td>
-                <span className="badge badge-primary opacity-75 badge-sm">
-                  Pending
-                </span>
-              </td>
-              <th>
-                <select
-                  onChange={(e) => setActionValue(e.target.value)}
-                  className="select select-ghost"
-                  defaultValue={"defaultValue"}>
-                  <option disabled value="defaultValue">
-                    Select Action
-                  </option>
-                  <option
-                    value={"reject"}
-                    className="text-error cursor-pointer">
-                    Reject
-                  </option>
-                  <option
-                    value={"accept"}
-                    className="text-success cursor-pointer">
-                    Accept
-                  </option>
-                </select>
-              </th>
-            </tr>
-          </tbody>
+          <tbody>{content}</tbody>
         </table>
         <div className="flex justify-center btn-group mt-5">
           <button className="btn">«</button>
-          <span className="btn">Page 22</span>
+          <span className="btn">Page 1</span>
           <button className="btn">»</button>
         </div>
       </div>
