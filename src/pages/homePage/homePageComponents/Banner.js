@@ -55,7 +55,7 @@ const Banner = () => {
         {/*......Banner info data end.......*/}
 
         {/*......Banner image start........*/}
-        <figure classNmae="col-span-2 md:col-span-1 w-full">
+        <figure className="col-span-2 md:col-span-1 w-full">
           <img
             src="https://templates.envytheme.com/jubi/default/assets/images/faq-img.png"
             alt="banner"

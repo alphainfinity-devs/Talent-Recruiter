@@ -28,21 +28,21 @@ const addBlog = async (req, res, next) => {
 const getPosts = async (req, res, next) => {
   try {
     const { chunkLimit, limit } = req.query;
-    console.log(chunkLimit, limit);
+    // console.log(chunkLimit, limit);
     const posts = await BlogPost.find(
       {},
       {
         __v: 0,
       },
     )
-      .limit(limit)
-      // .skip((page - 1) * limit)
+      .limit(limit ? limit : 0)
       .exec();
+    console.log(posts,"all posts");
     const count = await BlogPost.count();
     res.status(200).json({
       posts,
       totalPost: count,
-      totalPages: Math.ceil(count / chunkLimit),
+      totalPages: chunkLimit ? Math.ceil(count / chunkLimit) : 1,
     });
   } catch (error) {
     console.log(error);

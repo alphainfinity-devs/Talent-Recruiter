@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import { useAddCategoryMutation } from "../../../features/category/categoryApi";
+import { BsCheck2Circle } from "react-icons/bs";
 import { toast } from "react-toastify";
+import { Comment } from "react-loader-spinner";
 const AdminAddCategory = () => {
   const [addCategory, { isLoading, isError, isSuccess }] =
     useAddCategoryMutation();
   const handleSubmit = (e) => {
     e.preventDefault();
     const category = e.target.category.value;
-    console.log(category);
     if (category) {
-      addCategory({category, status: true});
+      addCategory({ category, status: true });
     }
+    e.target.reset();
   };
   useEffect(() => {
     if (isError) {
@@ -27,21 +29,41 @@ const AdminAddCategory = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          required
-          className="form-control"
-          name="category"
-          placeholder="category name"
-        />
-        <input
-          disabled={isLoading}
-          type="submit"
-          className="btn btn-primary"
-          value={isLoading ? "Loading..." : "add category"}
-        />
-      </form>
+      <div className="">
+        <div className="mockup-window border bg-base-300">
+          <div className="flex justify-center px-4 py-16 bg-base-200">
+            <form onSubmit={handleSubmit}>
+              <div className="input-group">
+                <input
+                  type="text"
+                  required
+                  className="form-control p-2"
+                  name="category"
+                  placeholder="Category name"
+                />
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  className={!isLoading && "btn btn-primary"}>
+                  {isLoading ? (
+                    <Comment
+                      width={100}
+                      height={40}
+                      visible={true}
+                      ariaLabel="comment-loading"
+                      wrapperClass="btn"
+                      color="#fff"
+                      backgroundColor="#39a746"
+                    />
+                  ) : (
+                    <BsCheck2Circle />
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

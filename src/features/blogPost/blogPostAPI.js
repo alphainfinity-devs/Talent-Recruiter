@@ -6,8 +6,10 @@ export const blogPostAPI = APIsSlice.injectEndpoints({
   endpoints: (builder) => ({
     // endpoints here
     getBlogPosts: builder.query({
-      query: ({ chunkLimit, limit }) =>
-        `/api/blogs/posts?chunkLimit=${chunkLimit}&limit=${limit}`,
+      query: ({ chunkLimit=0, limit=0 }) =>
+        `/api/blogs/posts?chunkLimit=${chunkLimit ? chunkLimit : 0}&limit=${
+          limit ? limit : 0
+        }`,
       providesTags: ["blogPosts"],
     }),
     addBlogPost: builder.mutation({

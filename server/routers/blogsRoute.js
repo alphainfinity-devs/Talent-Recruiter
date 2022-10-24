@@ -11,9 +11,9 @@ const {
 const router = express.Router();
 
 router
-  .post("/add-blog", roleAuthCheck, addBlog)
   .get("/posts", getPosts)
   .get("/post/:id", getPost)
+  .post("/add-blog", roleAuthCheck, addBlog)
   .delete("/delete/:id", roleAuthCheck, deletePost)
-  .patch("/update/:id", /* roleAuthCheck, */ updatePost);
+  .patch("/update/:id", roleAuthCheck, updatePost);
 module.exports = router;
