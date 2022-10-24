@@ -117,7 +117,9 @@ const Featurejobs = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-5">
         <div className="text-center mb-12">
-          <h2 className="text-3xl text-primary font-bold">Feature Jobs</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl text-primary font-bold">
+            Feature Jobs
+          </h2>
           <p className="text-natural py-1">
             Hand-picked jobs featured depending on popularity and benifits
           </p>

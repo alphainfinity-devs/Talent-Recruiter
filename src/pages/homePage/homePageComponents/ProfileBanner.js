@@ -2,7 +2,7 @@ import React from "react";
 
 const ProfileBanner = () => {
   return (
-    <section className="py-16 bg-[#F9FCFF]">
+    <section className="py-16 bg-secondary">
       <div className="grid lg:grid-cols-2 justify-center items-center px-5 gap-10 container mx-auto">
         {/*............prifile section image start.........*/}
         <div className="flex justify-start items-center sm:mb-5">

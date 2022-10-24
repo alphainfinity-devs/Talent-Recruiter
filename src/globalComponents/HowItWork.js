@@ -10,7 +10,9 @@ const HowItWork = () => {
     <section>
       <div className="py-10 container mx-auto p-4">
         <div className="text-center">
-          <h1 className="text-3xl mb-3 font-bold text-primary">How It Works</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl mb-3 font-bold text-primary">
+            How Work Our System
+          </h1>
           <p>
             TalentRecruiter is a job hunting platform where users can find the
             desired jobs.

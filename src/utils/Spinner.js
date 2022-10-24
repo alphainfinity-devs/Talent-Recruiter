@@ -1,23 +1,26 @@
-import { FallingLines } from  'react-loader-spinner'
+import { Oval } from "react-loader-spinner";
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
-
-import React from 'react';
+import React from "react";
 
 const Spinner = () => {
-    return (
-        <>
-           <div className="flex justify-center">
-
-            <FallingLines
-            color="#4fa94d"
-            width="70"
-            visible={true}
-            ariaLabel='falling-lines-loading'
+  return (
+    <>
+      <div className="flex justify-center">
+        <Oval
+          height={80}
+          width={80}
+          color="#3CCF56"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="oval-loading"
+          secondaryColor="#4fa94d"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
         />
-           </div>
-
-        </>
-    );
-}
+      </div>
+    </>
+  );
+};
 export default Spinner;

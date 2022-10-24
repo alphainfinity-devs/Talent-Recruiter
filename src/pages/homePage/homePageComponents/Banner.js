@@ -34,7 +34,7 @@ const Banner = () => {
           <div>
             <SearchComponent />
           </div>
-          <div className="flex flex-wrap justify-start gap-4 mt-5">
+          <div className="flex flex-wrap justify-start gap-2 mt-5">
             <p className="text-sm md:text-xl font-bold">
               Trending Jobs Keywords:
             </p>

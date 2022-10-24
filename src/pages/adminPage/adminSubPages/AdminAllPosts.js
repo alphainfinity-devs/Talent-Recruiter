@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { useGetBlogPostsQuery } from "../../../features/blogPost/blogPostAPI";
 import { FiExternalLink } from "react-icons/fi";
 import AdminBlogCard from "../adminPageComponents/AdminBlogCard";
+import Spinner from "../../../utils/Spinner";
+import Alert from "../../../utils/Alert";
+
 const AdminAllPosts = () => {
   const { data: getPosts, isLoading, error } = useGetBlogPostsQuery();
   // decide what to show based on the state
   let content = null;
-  if (isLoading) content = <div>Loading...</div>;
-  if (error) content = <div>Something went wrong</div>;
+  if (isLoading) content = <Spinner />;
+  if (error) content = <Alert alert="Something went wrong" />;
   if (getPosts)
     content = (
       <>
