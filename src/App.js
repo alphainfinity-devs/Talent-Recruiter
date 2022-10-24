@@ -38,6 +38,7 @@ import ApplicantMessage from "./pages/applicantPage/applicantComponents/Applican
 import ApplicantList from "./pages/recruiterPage/recruiterComponents/ApplicantList";
 import AdminAddCategory from "./pages/adminPage/adminSubPages/AdminAddCategory";
 import AdminDeleteCategory from "./pages/adminPage/adminSubPages/AdminDeleteCategory";
+import SearchPage from "./pages/searchPage/SearchPage";
 
 function App() {
   const [, userRole] = useRoleChecking();
@@ -175,6 +176,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/search" element={<SearchPage />} />
         {/* public Page routes End */}
 
         <Route path="*" element={<NotFound />} />

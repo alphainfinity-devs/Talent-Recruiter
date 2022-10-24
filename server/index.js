@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
 const blogsRoute = require("./routers/blogsRoute");
 const userRoute = require("./routers/userRoute");
 const adminUsers = require("./routers/adminUsers");
+const searchRoute = require("./routers/searchRoute");
 const roleAuthCheck = require("./Middlewares/roleAuthCheck");//role checking middleware
 const emailCampaign = require("./routers/emailCampaignRoute")//email campaign imported
 
@@ -38,6 +39,7 @@ app.use("/api/blogs", blogsRoute); //dynamic blog post
 app.use("/api/admin", roleAuthCheck, adminUsers); //admin user route
 app.use("/api/email-campaign", roleAuthCheck,emailCampaign); //for email campaign
 app.use("/api/user", userRoute); //for login and register
+app.use("/api/search", searchRoute); //for search result
 app.use("/api/jobs/", require("./routers/jobRoute"));
 app.use("/api/category/", require("./routers/categoryRoute"));
 app.use("/api/applicant/", require("./routers/applicantRouter"));

@@ -1,8 +1,8 @@
 import React from "react";
 import JobList from "./jobPageComponents/JobList";
 import PageTitleBanner from "../../globalComponents/PageTitleBanner";
-import SearchComponent from "../../globalComponents/SearchComponent";
 import Newsletter from "../../globalComponents/Newsletter";
+import SearchComponent from "../homePage/homePageComponents/SearchComponent";
 
 const job = () => {
   return (

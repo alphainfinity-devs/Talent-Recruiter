@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import SearchComponent from "../../../globalComponents/SearchComponent";
 import { TypeAnimation } from "react-type-animation";
+import SearchComponent from "./SearchComponent";
 
 const Banner = () => {
   const [count, setCount] = useState(1);
@@ -17,7 +17,7 @@ const Banner = () => {
         <div className="col-span-1 md:col-span-2">
           <div className="mb-7 md:mb-5">
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-accent mb-3">
-              Find Your Desiare Job &
+              Find Your Desire Job &
             </h1>
             {/* .....typing animation...... */}
             <TypeAnimation
