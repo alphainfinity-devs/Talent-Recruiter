@@ -9,7 +9,7 @@ const ProfileBanner = () => {
         <div className="flex justify-center items-center">
           <div>
             <p className="text-base md:text-xl lg:text-2xl font-bold text-primary mb-1 md:mb-3">
-              The Most Popular
+              Most Popular Blogs
             </p>
             <h1 className="text-2xl md:text-3xl font-bold text-accent mb-3 md:mb-5">
               Our expert job research team wrote the blog. Those will help you

@@ -122,13 +122,13 @@ const JobDetails = () => {
 
               <div className="p-4 shadow-lg border">
                 {/* .........job description.............*/}
-                <p className="text-2xl font-semibold text-accent">
+                <p className="text-2xl font-semibold text-primary">
                   Job Description
                 </p>
                 <p className="py-4">{job?.description}</p>
 
                 {/*...........Education & Experience............*/}
-                <p className="text-2xl font-semibold text-accent py-4">
+                <p className="text-2xl font-semibold text-primary py-4">
                   Education & Experience
                 </p>
                 <ul className="steps steps-vertical">
@@ -158,7 +158,9 @@ const JobDetails = () => {
 
                 {/*.......... Responsibilities........... */}
 
-                <p className="text-2xl font-semibold py-4">Responsibilities</p>
+                <p className="text-2xl font-semibold py-4 text-primary">
+                  Responsibilities
+                </p>
                 <ul className="steps steps-vertical">
                   <li className="step step-primary " data-content="✓">
                     Explore and design dynamic and compelling consumer
@@ -182,7 +184,7 @@ const JobDetails = () => {
 
         <div className="shadow-lg w-[100%] lg:w-[30%] border">
           <div>
-            <h2 className="text-accent text-2xl p-3 bg-secondary font-bold">
+            <h2 className="text-accent text-2xl p-3 bg-[#d0ffce] font-bold">
               Job Overview
             </h2>
 
@@ -246,7 +248,7 @@ const JobDetails = () => {
               </div>
             </div>
 
-            <h2 className="text-accent text-2xl p-3 bg-secondary font-bold">
+            <h2 className="text-accent text-2xl p-3 bg-[#d0ffce] font-bold">
               Quick Contacts
             </h2>
             <form className=" w-full p-5">
