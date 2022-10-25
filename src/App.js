@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import Footer from "./globalComponents/Footer";
 import Navbar from "./globalComponents/Navbar";
-import AdminPage from "./pages/adminPage/AdminPage";
+import AdminPage from "./pages/adminPage/adminPage";
 import AdminDashboard from "./pages/adminPage/adminSubPages/AdminDashboard";
 import AdminUsers from "./pages/adminPage/adminSubPages/AdminUsers";
 import NotFound from "./globalComponents/NotFound";
@@ -56,7 +56,8 @@ function App() {
                 <AdminPage />
               </AdminRouteProtect>
             </PrivateRoute>
-          }>
+          }
+        >
           <Route
             index
             element={
@@ -97,7 +98,8 @@ function App() {
                 <RecruiterPage />
               </RecruiterRouteProtect>
             </PrivateRoute>
-          }>
+          }
+        >
           <Route
             index
             element={
@@ -143,7 +145,8 @@ function App() {
                 <ApplicantPage />
               </ApplicantRouteProtect>
             </PrivateRoute>
-          }>
+          }
+        >
           <Route
             index
             element={
