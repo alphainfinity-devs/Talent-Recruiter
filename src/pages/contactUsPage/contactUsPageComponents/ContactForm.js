@@ -38,7 +38,7 @@ const ContactForm = () => {
               <input
                 type="submit"
                 value="SEND MESSAGE"
-                className="btn bg-primary hover:bg-white text-white hover:text-primary border-primary border-2 hover:border-primary font-bold rounded-none w-full max-w-xs mt-2"
+                className="btn bg-primary hover:bg-white duration-700 text-white hover:text-primary border-primary border-2 hover:border-primary font-bold rounded-none w-full max-w-xs mt-2"
               />
             </form>
           </div>

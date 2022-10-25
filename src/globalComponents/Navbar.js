@@ -179,7 +179,7 @@ const Navbar = () => {
                     style={({ isActive }) =>
                       isActive ? activeStyle : undefined
                     }
-                    className="btn rounded-none bg-primary hover:bg-accent text-white font-bold px-4"
+                    className="btn rounded-none border-0 bg-primary hover:bg-accent text-white font-bold px-4"
                   >
                     Dashboard
                   </NavLink>
@@ -187,7 +187,7 @@ const Navbar = () => {
                   <>
                     <NavLink
                       to="/"
-                      className="btn rounded-none duration-700 bg-primary hover:bg-accent text-white font-bold px-4"
+                      className="btn rounded-none border-0 duration-700 bg-primary hover:bg-accent text-white font-bold px-4"
                     >
                       Post a job
                     </NavLink>

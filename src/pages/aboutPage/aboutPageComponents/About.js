@@ -4,13 +4,14 @@ const About = () => {
   return (
     <section className="">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 container mx-auto px-5">
-        <div className="flex items-center justify-center">
+        <div className="flex justify-start items-center sm:mb-5 ">
           <img
             src="http://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/about/img-about2.png"
             alt="hero banner"
-            className="shrink-0 w-full md:h-[70%]"
+            className="w-full rounded-md h-[300px]"
           />
         </div>
+        {/*........blog banner image end..........*/}
 
         <div className="flex justify-center items-center">
           <div>
@@ -30,7 +31,7 @@ const About = () => {
               more-or-less. The point of using Lorem Ipsum is that it has a
               more-or-less.
             </p>
-            <button className="btn rounded-none bg-primary hover:bg-white text-white hover:text-primary border-2 border-primary hover:border-primary">
+            <button className="btn rounded-none duration-700 bg-primary hover:bg-white text-white hover:text-primary border-2 border-primary hover:border-primary">
               Read More
             </button>
           </div>
