@@ -30,22 +30,22 @@ const blogsRoute = require("./routers/blogsRoute");
 const userRoute = require("./routers/userRoute");
 const adminUsers = require("./routers/adminUsers");
 const searchRoute = require("./routers/searchRoute");
-const roleAuthCheck = require("./Middlewares/roleAuthCheck");//role checking middleware
-const emailCampaign = require("./routers/emailCampaignRoute")//email campaign imported
-
+const roleAuthCheck = require("./Middlewares/roleAuthCheck"); //role checking middleware
+const emailCampaign = require("./routers/emailCampaignRoute"); //email campaign imported
+const category = require("./routers/categoryRoute");
+const jobRoute = require("./routers/jobRoute");
+const applicantRoute = require("./routers/applicantRouter");
+const recruiterRoute = require("./routers/requiterRouter");
 // create all routes here
-
 app.use("/api/blogs", blogsRoute); //dynamic blog post
 app.use("/api/admin", roleAuthCheck, adminUsers); //admin user route
-app.use("/api/email-campaign", roleAuthCheck,emailCampaign); //for email campaign
+app.use("/api/email-campaign", roleAuthCheck, emailCampaign); //for email campaign
 app.use("/api/user", userRoute); //for login and register
 app.use("/api/search", searchRoute); //for search result
-app.use("/api/jobs/", require("./routers/jobRoute"));
-app.use("/api/category/", require("./routers/categoryRoute"));
-app.use("/api/applicant/", require("./routers/applicantRouter"));
-app.use("/api/applicant/", require("./routers/applicantRouter"));
-app.use("/api/requiter/", require("./routers/requiterRouter"));
-app.use("/api/applicant/", require("./routers/applicantRouter"));
+app.use("/api/jobs/", jobRoute);
+app.use("/api/category/", category);
+app.use("/api/applicant/", applicantRoute);
+app.use("/api/requiter/", recruiterRoute);
 
 // All default error handling function
 function errorHandler(err, req, res, next) {
