@@ -168,6 +168,7 @@ function App() {
 
         {/* public Page routes start */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/jobs" element={<JobPage />} />
         <Route path="/job/:id" element={<JobDetails />} />

@@ -28,7 +28,7 @@ const Navbar = () => {
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 400
+      windowHeight > 250
         ? setStickyClass("fixed top-0 left-0 z-50 bg-white shadow-lg")
         : setStickyClass("relative");
     }
@@ -44,6 +44,12 @@ const Navbar = () => {
   const [adminCheckbox, setAdminCheckbox] = useState(false);
   const { user, accessToken } = useSelector((state) => state.auth || {});
   // console.log(user?.role)
+
+  //active link
+  let activeStyle = {
+    color: "green",
+  };
+
   return (
     <header>
       {/* ......Mini navbar start...... */}
@@ -57,6 +63,7 @@ const Navbar = () => {
             <ul className="flex text-sm gap-2 md:gap-3 md:text-base font-bold">
               <NavLink
                 to="/login"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 className="hover:text-primary flex items-center gap-1"
               >
                 <BsFileEarmarkLockFill className="text-sm" />
@@ -65,6 +72,7 @@ const Navbar = () => {
               /
               <NavLink
                 to="/register"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 className="hover:text-primary flex items-center gap-1"
               >
                 <FaUserAlt className="text-sm" />
@@ -76,7 +84,9 @@ const Navbar = () => {
       </div>
       {/* ......Mini navbar end...... */}
 
-      <div className={`w-full py-5 shadow-lg duration-700 ${stickyClass}`}>
+      <div
+        className={`w-full py-5 shadow-lg bg-white duration-700 ${stickyClass}`}
+      >
         <div className="flex justify-between items-center container mx-auto px-5">
           {/* any dashboard hamburger menu icon start */}
           <label
@@ -96,6 +106,7 @@ const Navbar = () => {
             <NavLink
               className={"cursor-pointer hover:bg-primary bg-opacity-90"}
               to="/"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               <figure>
                 <img src={logo} alt="logo" className="shrink-0 w-44" />
@@ -109,20 +120,55 @@ const Navbar = () => {
               <div>
                 <ul className="flex md:gap-3 lg:gap-6">
                   <li className="font-bold">
-                    <NavLink to="/">Home</NavLink>
+                    <NavLink
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                      to="/"
+                    >
+                      Home
+                    </NavLink>
                   </li>
                   <li className="font-bold">
-                    <NavLink to="/jobs">Jobs</NavLink>
+                    <NavLink
+                      to="/jobs"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      Jobs
+                    </NavLink>
                   </li>
                   <li className="font-bold">
-                    <NavLink to="/about">About</NavLink>
+                    <NavLink
+                      to="/about"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      About
+                    </NavLink>
                   </li>
 
                   <li className="font-bold">
-                    <NavLink to="/blogs">Blogs</NavLink>
+                    <NavLink
+                      to="/blogs"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      Blogs
+                    </NavLink>
                   </li>
                   <li className="font-bold">
-                    <NavLink to="/contact">Contact</NavLink>
+                    <NavLink
+                      to="/contact"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      Contact
+                    </NavLink>
                   </li>
                 </ul>
               </div>
@@ -130,6 +176,9 @@ const Navbar = () => {
                 {accessToken && user?.email ? (
                   <NavLink
                     to={`/${user?.role}`}
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
                     className="btn rounded-none bg-primary hover:bg-accent text-white font-bold px-4"
                   >
                     Dashboard
@@ -176,24 +225,65 @@ const Navbar = () => {
             <div className="absolute top-20 inset-x-4 z-10 md:hidden">
               <ul className="menu bg-base-100 p-5 shadow-lg rounded-box border-2 w-full gap-y-3">
                 <li className="font-bold">
-                  <NavLink to="/">Home</NavLink>
+                  <NavLink
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                    to="/"
+                  >
+                    Home
+                  </NavLink>
                 </li>
                 <li className="font-bold">
-                  <NavLink to="/about">About</NavLink>
+                  <NavLink
+                    to="/about"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    About
+                  </NavLink>
                 </li>
                 <li className="font-bold">
-                  <NavLink to="/reviews">Reviews</NavLink>
+                  <NavLink
+                    to="/reviews"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Reviews
+                  </NavLink>
                 </li>
                 <li className="font-bold">
-                  <NavLink to="/blogs">Blogs</NavLink>
+                  <NavLink
+                    to="/blogs"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Blogs
+                  </NavLink>
                 </li>
                 <li className="font-bold">
-                  <NavLink to="/contact">Contact</NavLink>
+                  <NavLink
+                    to="/contact"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Contact
+                  </NavLink>
                 </li>
 
                 <div className="flex gap-2">
                   {accessToken && user?.email ? (
-                    <NavLink to={`/${user?.role}`} className="btn btn-primary">
+                    <NavLink
+                      to={`/${user?.role}`}
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                      className="btn btn-primary"
+                    >
                       Dashboard
                     </NavLink>
                   ) : (
