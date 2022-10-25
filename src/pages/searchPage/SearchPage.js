@@ -3,6 +3,9 @@ import { useSearchParams } from "react-router-dom";
 import { useDoSearchQuery } from "../../features/search/searchApi";
 import SearchComponent from "../homePage/homePageComponents/SearchComponent";
 import JobListCard from "../jobPage/jobPageComponents/JobListCard";
+import PageTitleBanner from "../../globalComponents/PageTitleBanner";
+import Spinner from "../../utils/Spinner";
+import Alert from "../../utils/Alert";
 
 const SearchPage = () => {
   let [searchParams] = useSearchParams();
@@ -18,22 +21,14 @@ const SearchPage = () => {
   // decide what to render
   let content;
   if (isLoading) {
-    content = <div className="text-green-500 text-xl text-center">Loading</div>;
+    content = <Spinner />;
   } else if (error) {
-    content = (
-      <div className="text-red-500 text-xl text-center">
-        Something went wrong
-      </div>
-    );
+    content = <Alert alert="Something went wrong" />;
   } else if (data?.searchResult?.length === 0) {
-    content = (
-      <div className="text-yellow-400 text-xl text-center">
-        There is no result
-      </div>
-    );
+    content = <Alert alert="No job found" />;
   } else if (data?.searchResult?.length > 0) {
     content = (
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 my-5">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 my-5 container mx-auto px-5">
         {data.searchResult.map((item) => (
           <JobListCard key={item._id} job={item} />
         ))}
@@ -42,12 +37,11 @@ const SearchPage = () => {
   }
   return (
     <>
-      <h3 className="text-center text-3xl my-5 capitalize"> search page</h3>
+      <PageTitleBanner title="Search Page" />
       <SearchComponent />
       {content}
     </>
   );
 };
-
 
 export default SearchPage;

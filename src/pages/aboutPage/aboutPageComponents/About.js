@@ -8,7 +8,7 @@ const About = () => {
           <img
             src="http://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/about/img-about2.png"
             alt="hero banner"
-            className="w-full rounded-md h-[300px]"
+            className="w-full rounded-md h-[330px]"
           />
         </div>
         {/*........blog banner image end..........*/}
@@ -30,9 +30,6 @@ const About = () => {
               distracted by the readable content of a page when looking at its
               layout.
             </p>
-            <button className="btn rounded-none duration-700 bg-primary hover:bg-white text-white hover:text-primary border-2 border-primary hover:border-primary">
-              Read More
-            </button>
           </div>
         </div>
       </div>
