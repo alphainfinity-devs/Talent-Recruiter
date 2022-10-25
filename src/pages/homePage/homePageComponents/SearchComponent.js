@@ -56,7 +56,7 @@ const SearchComponent = () => {
 
   return (
     <section>
-      <div className="container mx-auto">
+      <div className="container mx-auto px-5">
         <div className="shadow-lg z-10 p-5 border bg-primary">
           <form
             onSubmit={handleSubmit(onSubmit)}

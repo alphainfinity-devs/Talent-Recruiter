@@ -2,7 +2,7 @@ import React from "react";
 
 const Alert = ({ alert }) => {
   return (
-    <div className="flex items-center justify-center ">
+    <div className="flex items-center justify-center container mx-auto px-5 my-20 ">
       <div className="alert alert-error shadow-lg">
         <div>
           <svg
