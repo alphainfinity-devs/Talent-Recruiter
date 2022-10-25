@@ -8,7 +8,9 @@ const job = () => {
   return (
     <>
       <PageTitleBanner title="Job Listing" />
-      <SearchComponent />
+      <div className="container mx-auto px-5 my-5">
+        <SearchComponent />
+      </div>
       <JobList />
       <Newsletter />
     </>

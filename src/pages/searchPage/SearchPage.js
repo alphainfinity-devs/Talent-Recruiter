@@ -38,7 +38,9 @@ const SearchPage = () => {
   return (
     <>
       <PageTitleBanner title="Search Page" />
-      <SearchComponent />
+      <div className="container mx-auto px-5 my-5">
+        <SearchComponent />
+      </div>
       {content}
     </>
   );
