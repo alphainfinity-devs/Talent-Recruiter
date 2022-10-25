@@ -5,39 +5,52 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { MdWorkOutline } from "react-icons/md";
 import { MdCastForEducation } from "react-icons/md";
 import { BiNotepad } from "react-icons/bi";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useGetJobByIdQuery } from "../../../features/job/jobApi";
 import Spinner from "../../../utils/Spinner";
-import useAuthVerify from "../../../hooks/useAuthVerify";
-import { useApplyJobMutation, useBookMarkJobMutation } from "../../../features/applicant/applicantApi";
+import {
+  useApplyJobMutation,
+  useBookMarkJobMutation,
+} from "../../../features/applicant/applicantApi";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const JobDetails = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetJobByIdQuery(id);
   const job = data?.job;
-  const [isAuthUser] =  useAuthVerify()
-  console.log(isAuthUser,"isAuthUser");
-  const [applyJob,{isSuccess:isApplySuccess, isError:isApplyError}] = useApplyJobMutation()
+  const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  console.log(user?.role, "isAuthUser");
+  const [applyJob, { isSuccess: isApplySuccess, isError: isApplyError }] =
+    useApplyJobMutation();
 
-  const [bookMarkJob,{isSuccess:isBookmarkSuccess, isError:isBookmarkError}] = useBookMarkJobMutation()
+  const [
+    bookMarkJob,
+    { isSuccess: isBookmarkSuccess, isError: isBookmarkError },
+  ] = useBookMarkJobMutation();
 
   if (isApplySuccess) {
     toast.success("Apply Successful", {
       toastId: "success1",
     });
-  }else if(isBookmarkSuccess){
+  } else if (isBookmarkSuccess) {
     toast.success("Bookmark Successful", {
       toastId: "success21",
     });
-  }
-  else if(isBookmarkError || isApplyError){
+  } else if (isBookmarkError || isApplyError) {
     toast.error("Something went wrong. Try Again", {
       toastId: "error2",
     });
   }
+  const handleApplyJob = (id) => {
+    if (user?.role === `${process.env.REACT_APP_ROLE_APPLICANT}`) {
+      applyJob(id);
+    } else {
+      navigate("/login");
+    }
+  };
 
-  console.log('job.title',job?.title);
   return (
     <section>
       <div className="flex flex-col md:flex-col lg:flex-row gap-8 container mx-auto px-5 py-16">
@@ -46,7 +59,7 @@ const JobDetails = () => {
             <Spinner />
           ) : (
             <>
-            <PageTitleBanner title={job?.title} />
+              <PageTitleBanner title={job?.title} />
               <div className="shadow-lg p-4 mb-4 border">
                 <div className="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 gap-3">
                   {/* .......compani Logo...... */}
@@ -69,30 +82,37 @@ const JobDetails = () => {
                   </div>
 
                   {/* .........apply button and deadline....... */}
-                  {
-                    isAuthUser ?
+                  {true ? (
                     <>
                       <div className="flex justify-center  md:justify-end gap-1">
-                          <button onClick={()=>applyJob(job._id)} className="btn rounded-none text-white bg-primary hover:bg-accent">
-                            Apply Now
-                          </button>
-                          <button onClick={()=>bookMarkJob(job._id)}  className="btn rounded-none text-white bg-warning hover:bg-accent">
-                            Save Now
-                          </button>
+                        <button
+                          onClick={() => handleApplyJob(job._id)}
+                          className="btn rounded-none text-white bg-primary hover:bg-accent">
+                          Apply Now
+                        </button>
+                        <button
+                          onClick={() => bookMarkJob(job._id)}
+                          className="btn rounded-none text-white bg-warning hover:bg-accent">
+                          Save Now
+                        </button>
                       </div>
                     </>
-                    : 
+                  ) : (
                     <>
-                    <div className="flex justify-center  md:justify-end gap-1">
-                    <button onClick={()=>applyJob(job._id)} className="btn rounded-none text-white bg-primary hover:bg-accent">
-                      Apply Now
-                    </button>
-                    <button onClick={()=>bookMarkJob(job._id)}  className="btn rounded-none text-white bg-warning hover:bg-accent">
-                      Save Now
-                    </button>
-                </div></>
-                  }
-
+                      <div className="flex justify-center  md:justify-end gap-1">
+                        <button
+                          onClick={() => applyJob(job._id)}
+                          className="btn rounded-none text-white bg-primary hover:bg-accent">
+                          Apply Now
+                        </button>
+                        <button
+                          onClick={() => bookMarkJob(job._id)}
+                          className="btn rounded-none text-white bg-warning hover:bg-accent">
+                          Save Now
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -167,7 +187,10 @@ const JobDetails = () => {
                 <FaMoneyCheckAlt />
               </div>
               <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Salary : <span className="text-sm font-light">{job?.salary}</span></p>
+                <p className="text-lg font-bold">
+                  Salary :{" "}
+                  <span className="text-sm font-light">{job?.salary}</span>
+                </p>
               </div>
             </div>
 
@@ -176,7 +199,9 @@ const JobDetails = () => {
                 <FaMapMarkerAlt />
               </div>
               <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Location : <span className="text-sm font-light">{job?.address}</span>
+                <p className="text-lg font-bold">
+                  Location :{" "}
+                  <span className="text-sm font-light">{job?.address}</span>
                 </p>
               </div>
             </div>
@@ -186,7 +211,10 @@ const JobDetails = () => {
                 <MdWorkOutline />
               </div>
               <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Job Type : <span className="text-sm font-light">{job?.type} </span></p>
+                <p className="text-lg font-bold">
+                  Job Type :{" "}
+                  <span className="text-sm font-light">{job?.type} </span>
+                </p>
               </div>
             </div>
 
@@ -195,7 +223,10 @@ const JobDetails = () => {
                 <MdCastForEducation />
               </div>
               <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Qualification : <span className="text-sm font-light">Mba</span></p>
+                <p className="text-lg font-bold">
+                  Qualification :{" "}
+                  <span className="text-sm font-light">Mba</span>
+                </p>
               </div>
             </div>
 
@@ -204,7 +235,10 @@ const JobDetails = () => {
                 <BiNotepad />
               </div>
               <div className="grid justify-items-center lg:justify-items-start">
-                <p className="text-lg font-bold">Experience : <span className="text-sm font-light">{job?.experience}</span></p>
+                <p className="text-lg font-bold">
+                  Experience :{" "}
+                  <span className="text-sm font-light">{job?.experience}</span>
+                </p>
               </div>
             </div>
 
@@ -215,22 +249,19 @@ const JobDetails = () => {
               <div className="mb-3">
                 <label
                   htmlFor="name"
-                  className="leading-7 text-sm text-gray-600"
-                >
+                  className="leading-7 text-sm text-gray-600">
                   Name
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                ></input>
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></input>
               </div>
               <div className="mb-3">
                 <label
                   htmlFor="email"
-                  className="leading-7 text-sm text-gray-600"
-                >
+                  className="leading-7 text-sm text-gray-600">
                   Email
                 </label>
                 <input
@@ -243,15 +274,13 @@ const JobDetails = () => {
               <div className="mb-3">
                 <label
                   htmlFor="message"
-                  className="leading-7 text-sm text-gray-600"
-                >
+                  className="leading-7 text-sm text-gray-600">
                   Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                ></textarea>
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
               </div>
               <div className="mb-3">
                 <button className="btn text-white bg-primary hover:bg-accent rounded-none">
