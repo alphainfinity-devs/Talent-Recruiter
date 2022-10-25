@@ -7,10 +7,9 @@ import sanitizedString from "../../../utils/sanitizedString";
 import useNavigateParams from "../../../hooks/useNavigateParams";
 
 const SearchComponent = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const { isLoading, data, error } = useGetCategoryQuery();
   const [countries, setCountries] = useState([]);
-
   useEffect(() => {
     axios
       .get(
@@ -23,10 +22,15 @@ const SearchComponent = () => {
   const navigate = useNavigateParams();
   const onSubmit = async (data) => {
     const { category, keyword, location } = data;
-    navigate("search", {
+    navigate("/search", {
       category: sanitizedString(category),
       location: sanitizedString(location),
       keyword: sanitizedString(keyword),
+    });
+    reset({
+      category: "",
+      location: "",
+      keyword: "",
     });
   };
 
