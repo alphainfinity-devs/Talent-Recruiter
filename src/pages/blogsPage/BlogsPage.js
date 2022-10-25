@@ -4,6 +4,7 @@ import Spinner from "../../utils/Spinner";
 import { useGetBlogPostsQuery } from "../../features/blogPost/blogPostAPI";
 import BlogCart from "../homePage/homePageComponents/BlogCart";
 import Alert from "../../utils/Alert";
+import BlogPageBanner from "./blogsPageComponents/BlogPageBanner"
 
 const BlogsPage = () => {
   const { data: getPosts, isLoading, error } = useGetBlogPostsQuery({ chunkLimit: 0, limit:0 },);
@@ -22,6 +23,7 @@ const BlogsPage = () => {
   return (
     <>
       <PageTitleBanner title="Blog Page" />
+      <BlogPageBanner/>
       <div className="py-16 container mx-auto px-5">{content}</div>
     </>
   );
