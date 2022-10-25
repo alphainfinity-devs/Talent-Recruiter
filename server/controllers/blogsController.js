@@ -1,4 +1,5 @@
 const BlogPost = require("../Models/blogPostModel");
+
 // add a blog post
 const addBlog = async (req, res, next) => {
   try {
@@ -10,24 +11,39 @@ const addBlog = async (req, res, next) => {
       post_category,
     } = req.body;
     const blogPost = new BlogPost({
-       post_title,
-       post_description,
-       post_image,
-       post_author,
-       post_category,
+      post_title,
+      post_description,
+      post_image,
+      post_author,
+      post_category,
     });
-    await blogPost.save();//insert in the db all info
+    await blogPost.save(); //insert in the db all info
     res.status(200).json({ success: "blog was added successfully" });
   } catch (error) {
     console.log(error);
     next(error);
   }
 };
-// get Posts
+// get all Posts
 const getPosts = async (req, res, next) => {
   try {
-    const posts = await BlogPost.find();
-    res.status(200).json({ posts });
+    const { chunkLimit, limit } = req.query;
+    // console.log(chunkLimit, limit);
+    const posts = await BlogPost.find(
+      {},
+      {
+        __v: 0,
+      },
+    )
+      .limit(limit ? limit : 0)
+      .exec();
+    console.log(posts,"all posts");
+    const count = await BlogPost.count();
+    res.status(200).json({
+      posts,
+      totalPost: count,
+      totalPages: chunkLimit ? Math.ceil(count / chunkLimit) : 1,
+    });
   } catch (error) {
     console.log(error);
     next(error);
@@ -36,6 +52,7 @@ const getPosts = async (req, res, next) => {
 // get a single post
 const getPost = async (req, res, next) => {
   try {
+    console.log(req.params);
     const post = await BlogPost.findById(req.params.id);
     res.status(200).json({ post });
   } catch (error) {
@@ -46,22 +63,23 @@ const getPost = async (req, res, next) => {
 // update a post
 const updatePost = async (req, res, next) => {
   try {
-    const {
-      post_title,
-      post_description,
-      post_author,
-      post_image,
-      post_category,
-    } = req.body;
-    const post = await BlogPost.findById(req.params.id);
+    let updateValue = {};
+    for (const value in req.body) {
+      if (req.body[value]) {
+        updateValue[value] = req.body[value];
+      }
+    }
+    const post = await BlogPost.findByIdAndUpdate(
+      req.params.id,
+      { $set: updateValue },
+      {
+        new: true,
+        runValidators: true,
+      },
+    );
+    console.log(post);
     if (post) {
-      post.post_title = post_title;
-      post.post_description = post_description;
-      post.post_author = post_author;
-      post.post_image = post_image;
-      post.post_category = post_category;
-      const updatedPost = await post.save();
-      res.status(200).json({ updatedPost });
+      res.status(200).json(post);
     } else {
       res.status(404).json({ message: "Post not found" });
     }
@@ -73,13 +91,9 @@ const updatePost = async (req, res, next) => {
 // delete a post
 const deletePost = async (req, res, next) => {
   try {
-    const post = await BlogPost.findById(req.params.id);
-    if (post) {
-      await post.remove();
-      res.status(200).json({ message: "Post removed" });
-    } else {
-      res.status(404).json({ message: "Post not found" });
-    }
+    const { id } = req.params;
+    await BlogPost.findByIdAndDelete(id);
+    res.status(200).json({ message: "Post deleted successfully" });
   } catch (error) {
     console.log(error);
     next(error);
@@ -89,4 +103,7 @@ const deletePost = async (req, res, next) => {
 module.exports = {
   addBlog,
   getPosts,
+  getPost,
+  updatePost,
+  deletePost,
 };

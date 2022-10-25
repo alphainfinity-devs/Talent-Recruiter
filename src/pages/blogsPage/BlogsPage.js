@@ -6,7 +6,7 @@ import BlogCart from "../homePage/homePageComponents/BlogCart";
 import Alert from "../../utils/Alert";
 
 const BlogsPage = () => {
-  const { data: getPosts, isLoading, error } = useGetBlogPostsQuery();
+  const { data: getPosts, isLoading, error } = useGetBlogPostsQuery({ chunkLimit: 0, limit:0 },);
   // decide what to show based on the state
   let content = null;
   if (isLoading) content = <Spinner />;

@@ -6,7 +6,7 @@ import Spinner from "../../../utils/Spinner";
 import Alert from "../../../utils/Alert";
 
 function Blogs() {
-  const { data: getPosts, isLoading, error } = useGetBlogPostsQuery();
+  const { data: getPosts, isLoading, error } = useGetBlogPostsQuery({ chunkLimit: 0, limit:3 });
   // decide what to show based on the state
   let content = null;
   if (isLoading) content = <Spinner />;
