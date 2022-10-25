@@ -42,7 +42,7 @@ import SearchPage from "./pages/searchPage/SearchPage";
 
 function App() {
   const [, userRole] = useRoleChecking();
-  console.log(userRole);
+  console.log("userRole", userRole);
   return (
     <>
       <Navbar />
