@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import Footer from "./globalComponents/Footer";
@@ -14,7 +13,6 @@ import AdminDetails from "./pages/adminPage/adminSubPages/AdminDetails";
 import AdminEmailCampaign from "./pages/adminPage/adminSubPages/AdminEmailCampaign";
 import AdminAllPosts from "./pages/adminPage/adminSubPages/AdminAllPosts";
 import AdminAddPost from "./pages/adminPage/adminSubPages/AdminAddPost";
-import AdminSecurity from "./pages/adminPage/adminSubPages/AdminSecurity";
 import AboutPage from "./pages/aboutPage/AboutPage";
 import ContactPage from "./pages/contactUsPage/ContactPage";
 import Login from "./pages/loginPage/Login";
@@ -38,6 +36,9 @@ import ApplicantProfile from "./pages/applicantPage/applicantComponents/Applican
 import ApplicantSaveJob from "./pages/applicantPage/applicantComponents/ApplicantSaveJob";
 import ApplicantMessage from "./pages/applicantPage/applicantComponents/ApplicantMessage";
 import ApplicantList from "./pages/recruiterPage/recruiterComponents/ApplicantList";
+import AdminAddCategory from "./pages/adminPage/adminSubPages/AdminAddCategory";
+import AdminDeleteCategory from "./pages/adminPage/adminSubPages/AdminDeleteCategory";
+import SearchPage from "./pages/searchPage/SearchPage";
 
 function App() {
   const [, userRole] = useRoleChecking();
@@ -55,9 +56,7 @@ function App() {
                 <AdminPage />
               </AdminRouteProtect>
             </PrivateRoute>
-          }
-        >
-          {/* admin dashboard start */}
+          }>
           <Route
             index
             element={
@@ -80,10 +79,13 @@ function App() {
           <Route path="admin-all-posts" element={<AdminAllPosts />} />
           <Route path="admin-add-post/:id" element={<AdminAddPost />} />
           <Route path="admin-add-post" element={<AdminAddPost />} />
-          <Route path="admin-security" element={<AdminSecurity />} />
           <Route path="admin-email-campaign" element={<AdminEmailCampaign />} />
           <Route path="admin-details" element={<AdminDetails />} />
-
+          <Route path="admin-add-category" element={<AdminAddCategory />} />
+          <Route
+            path="admin-delete-category"
+            element={<AdminDeleteCategory />}
+          />
           {/* admin dashboard end */}
         </Route>
         {/* recruiter dashboard start */}
@@ -95,8 +97,7 @@ function App() {
                 <RecruiterPage />
               </RecruiterRouteProtect>
             </PrivateRoute>
-          }
-        >
+          }>
           <Route
             index
             element={
@@ -105,10 +106,14 @@ function App() {
               </RecruiterRouteProtect>
             }
           />
-          <Route path="job/post" element={
-            <RecruiterRouteProtect>
-              <RecruiterAddJobs />
-            </RecruiterRouteProtect>} />
+          <Route
+            path="job/post"
+            element={
+              <RecruiterRouteProtect>
+                <RecruiterAddJobs />
+              </RecruiterRouteProtect>
+            }
+          />
 
           <Route
             path="jobs"
@@ -125,7 +130,7 @@ function App() {
                 <ApplicantList />
               </RecruiterRouteProtect>
             }
-            />
+          />
           <Route path="recruiter" element={<RecruiterProfile />} />
         </Route>
         {/* recruiter dashboard end */}
@@ -138,8 +143,7 @@ function App() {
                 <ApplicantPage />
               </ApplicantRouteProtect>
             </PrivateRoute>
-          }
-        >
+          }>
           <Route
             index
             element={
@@ -172,13 +176,12 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/search" element={<SearchPage />} />
         {/* public Page routes End */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-
-    
     </>
   );
 }

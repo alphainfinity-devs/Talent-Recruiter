@@ -1,11 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAddBlogPostMutation } from "../../../features/blogPost/blogPostAPI";
+import {
+  useAddBlogPostMutation,
+  useGetBlogPostQuery,
+  useUpdateBlogPostMutation,
+} from "../../../features/blogPost/blogPostAPI";
 import imgBBUpload from "../../../utils/imgBBUpload";
+import AdminPostPreview from "../adminPageComponents/AdminPostPreview";
 
 const AdminAddPost = () => {
   const { id } = useParams() || {};
+  const {
+    isLoading: getPostLoading,
+    error: getPostError,
+    data: getPostData,
+  } = useGetBlogPostQuery(id ? { id } : {}, {
+    skip: !id,
+  });
+  const {
+    post_author,
+    post_category,
+    post_title,
+    post_description,
+    post_image,
+  } = getPostData?.post || {};
   const [titleInput, setTitleInput] = useState("");
   const [description, setDescription] = useState("");
   const [author, setAuthor] = useState("");
@@ -15,6 +34,29 @@ const AdminAddPost = () => {
   const ref = useRef();
   const [addBlogPost, { isError, error, isLoading, data: addPost }] =
     useAddBlogPostMutation();
+  const [
+    updateBlogPost,
+    { isLoading: updateLoading, error: updateError, data: updateData },
+  ] = useUpdateBlogPostMutation();
+  useEffect(() => {
+    if (id) {
+      setTitleInput(post_title);
+      setDescription(post_description);
+      setAuthor(post_author);
+      setCategory(post_category);
+      setFileImg(post_image);
+    } else {
+      setResetValues();
+    }
+  }, [
+    // getPostData,
+    id,
+    post_author,
+    post_category,
+    post_description,
+    post_title,
+    post_image,
+  ]);
   // form reset function
   const setResetValues = () => {
     setTitleInput("");
@@ -25,8 +67,8 @@ const AdminAddPost = () => {
     ref.current.value = "";
   };
   useEffect(() => {
-    if (isError) {
-      toast.error(`Error ${error?.message}`, {
+    if (isError || getPostError) {
+      toast.error(`Error ${error}`, {
         toastId: "error",
       });
     }
@@ -36,8 +78,9 @@ const AdminAddPost = () => {
         toastId: "success",
       });
     }
-  }, [addPost?.success, isError, error?.message]);
+  }, [addPost?.success, isError, error?.message, getPostError, error]);
 
+  // console.log(getPostData);
   const handlePostSubmit = async (e) => {
     e.preventDefault();
     setImgUploadLoading(true);
@@ -45,7 +88,7 @@ const AdminAddPost = () => {
     formData.append("image", fileImg);
     const img_url = await imgBBUpload(formData); //img upload utils fn
     setImgUploadLoading(false);
-    if (img_url) {
+    if (img_url && !id) {
       await addBlogPost({
         post_title: titleInput,
         post_description: description,
@@ -53,8 +96,20 @@ const AdminAddPost = () => {
         post_author: author,
         post_category: category,
       });
-      setResetValues();
+    } else {
+      const body = {
+        post_title: titleInput,
+        post_description: description,
+        post_image: img_url,
+        post_author: author,
+        post_category: category,
+      };
+      await updateBlogPost({
+        id,
+        body,
+      });
     }
+    setResetValues();
   };
 
   return (
@@ -63,7 +118,7 @@ const AdminAddPost = () => {
         <form onSubmit={handlePostSubmit} encType="multipart/form-data">
           <div className=" mb-6">
             <input
-              required
+              required={id ? false : true}
               value={titleInput}
               onChange={(e) => setTitleInput(e.target.value)}
               type="text"
@@ -87,7 +142,7 @@ const AdminAddPost = () => {
           </div>
           <div className=" mb-6">
             <input
-              required
+             required={id ? false : true}
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
               type="text"
@@ -111,7 +166,7 @@ const AdminAddPost = () => {
           </div>
           <div className=" mb-6">
             <input
-              required
+              required={id ? false : true}
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               type="text"
@@ -135,7 +190,7 @@ const AdminAddPost = () => {
           </div>
           <div className="flex items-center mb-6">
             <input
-              required
+              required={id ? false : true}
               ref={ref}
               accept="image/*"
               name="image"
@@ -174,6 +229,7 @@ const AdminAddPost = () => {
           <div className=" mb-6">
             <textarea
               value={description}
+              required={id ? false : true}
               onChange={(e) => setDescription(e.target.value)}
               className="form-control block
         w-full
@@ -198,7 +254,7 @@ const AdminAddPost = () => {
             className={`${
               (imgUploadLoading || isLoading) && "cursor-wait btn-success"
             } btn btn-primary`}>
-            {imgUploadLoading || isLoading
+            {getPostLoading || imgUploadLoading || isLoading
               ? "Loading..."
               : id
               ? "Update Post"
@@ -208,123 +264,13 @@ const AdminAddPost = () => {
       </div>
       {/* ================== preview section ============= */}
       {(titleInput || author || description || fileImg || category) && (
-        <>
-          <div className="block p-2 rounded-lg shadow-lg bg-white ">
-            <h2 className="text-2xl text-center text-gray-600 my-4">Preview</h2>
-            {titleInput && (
-              <div className=" mb-6">
-                <h2
-                  type="text"
-                  className="form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none">
-                  {titleInput}
-                </h2>
-              </div>
-            )}
-            {author && (
-              <div className=" mb-6">
-                <h2
-                  type="text"
-                  className="form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none">
-                  {author}
-                </h2>
-              </div>
-            )}
-            {category && (
-              <div className=" mb-6">
-                <h2
-                  type="text"
-                  className="form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none">
-                  {category}
-                </h2>
-              </div>
-            )}
-            {fileImg && (
-              <div className=" mb-6">
-                <img
-                  src={URL.createObjectURL(fileImg)}
-                  className="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none"
-                  alt="post img"
-                />
-              </div>
-            )}
-            {description && (
-              <div className=" mb-6">
-                <p
-                  className="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none">
-                  {description}
-                </p>
-              </div>
-            )}
-          </div>
-        </>
+        <AdminPostPreview
+          titleInput={titleInput}
+          author={author}
+          description={description}
+          fileImg={fileImg}
+          category={category}
+        />
       )}
     </div>
   );

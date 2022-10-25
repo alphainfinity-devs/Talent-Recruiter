@@ -1,8 +1,9 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { GoPlug } from "react-icons/go";
 import { IoBookmarksOutline } from "react-icons/io5";
-import { MdPostAdd } from "react-icons/md";
+import { MdPostAdd, MdDeleteSweep } from "react-icons/md";
 import { BsFillFileEarmarkPostFill } from "react-icons/bs";
+import {BiCategoryAlt} from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../features/userAuth/userAuthSlice";
 import Avatar from "react-avatar";
@@ -190,6 +191,55 @@ export default function AdminSidebar() {
                 </NavLink>
               </nav>
             </details>
+            <details className="group">
+              <summary className="flex cursor-pointer items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                <BiCategoryAlt size={20} className="opacity-75" />
+                <span className="ml-3 md:text-sm text-xs md:font-medium">
+                  Category
+                </span>
+
+                <span className="ml-auto shrink-0 transition duration-300 group-open:-rotate-180">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </summary>
+
+              <nav className="mt-1.5 ml-8 flex flex-col">
+                <NavLink
+                  to="admin-add-category"
+                  className={(props) => {
+                    return `${
+                      props.isActive && "bg-gray-300"
+                    } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+                  }}>
+                  <MdPostAdd size={20} className="opacity-75" />
+                  <span className="md:ml-3 md:text-sm text-xs md:font-medium">
+                    Add Category
+                  </span>
+                </NavLink>
+                <NavLink
+                  to="admin-delete-category"
+                  className={(props) => {
+                    return `${
+                      props.isActive && "bg-gray-300"
+                    } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
+                  }}>
+                 <MdDeleteSweep size={20} className="opacity-75"/>
+                  <span className="md:ml-3 md:text-sm text-xs md:font-medium">
+                    Delete Category
+                  </span>
+                </NavLink>
+              </nav>
+            </details>
 
             <details className="group">
               <summary className="flex cursor-pointer items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
@@ -249,31 +299,6 @@ export default function AdminSidebar() {
                     Details
                   </span>
                 </NavLink>
-                <NavLink
-                  to="admin-security"
-                  className={(props) => {
-                    return `${
-                      props.isActive && "bg-gray-300"
-                    } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-                  }}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 opacity-75"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                    />
-                  </svg>
-                  <span className="ml-3 md:text-sm text-xs md:font-medium">
-                    Security
-                  </span>
-                </NavLink>
-
                 <button
                   onClick={handleLogOut}
                   className="flex w-full items-center rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
@@ -301,7 +326,7 @@ export default function AdminSidebar() {
 
         <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
           <span className="flex shrink-0 items-center bg-white p-4 hover:bg-gray-50">
-            <Avatar email={user.email} size="50" round={true} />
+            <Avatar name={user.name} size="50" round={true} maxInitials={2} />
             <div className="ml-1.5">
               <p className="text-xs">
                 <strong className="block uppercase font-extrabold">{ user.name}</strong>

@@ -1,7 +1,19 @@
 const express = require("express");
-const { addBlog, getPosts } = require("../controllers/blogsController");
+const roleAuthCheck = require("../Middlewares/roleAuthCheck"); //role checking middleware
+const {
+  addBlog,
+  getPosts,
+  deletePost,
+  updatePost,
+  getPost,
+} = require("../controllers/blogsController");
 
 const router = express.Router();
 
-router.post("/add-blog", addBlog).get("/posts", getPosts);
+router
+  .get("/posts", getPosts)
+  .get("/post/:id", getPost)
+  .post("/add-blog", roleAuthCheck, addBlog)
+  .delete("/delete/:id", roleAuthCheck, deletePost)
+  .patch("/update/:id", roleAuthCheck, updatePost);
 module.exports = router;

@@ -6,7 +6,7 @@ const emailSender = require("../utilities/emailSender");
 const getAdminUsers = async (req, res, next) => {
   try {
     const { email, role, page, limit } = req.query;
-    console.log(page, limit);
+    // console.log(page, limit);
     const users = await User.find(email ? { email } : role ? { role } : {}, {
       password: 0,
       __v: 0,

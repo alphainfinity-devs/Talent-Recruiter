@@ -1,24 +1,21 @@
 const mongoose = require("mongoose");
 
-const categorySchema = mongoose.Schema({
-  categoryname: {
-    type: String,
-    required: true, 
-    trim: true,
-    message: "{VALUE} is required",
-  },
-  status: {
-    type: String,
-    required: true,
-    enum: {
-      values: ["active", "deactive"],
-      message: "{VALUE} is not supported",
+const categorySchema = mongoose.Schema(
+  {
+    category: {
+      type: String,
+      required: true,
+      trim: true,
+      message: "{VALUE} is required",
     },
-    default: "active",
-  }
-},
-{
-  timestamps: true,
-});
+    status: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  },
+);
 
-module.exports = mongoose.model('Category', categorySchema)
+module.exports = mongoose.model("Category", categorySchema);

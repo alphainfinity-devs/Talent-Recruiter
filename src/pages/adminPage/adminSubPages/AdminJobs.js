@@ -1,18 +1,13 @@
-import { data } from "autoprefixer";
 import React, { useEffect, useState } from "react";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
 import { toast } from "react-toastify";
-import {
-  useGetAllJobsQuery,
-  useUpdateJobByAdminMutation,
-} from "../../../features/job/jobApi";
+import { useGetAllJobsQuery } from "../../../features/job/jobApi";
 import TablePlaceholder from "../../../utils/TablePlaceholder";
 import AdminSingleJob from "../adminPageComponents/AdminSingleJob";
 
 const AdminJobs = () => {
   const [emailSearch, setEmailSearch] = useState("");
   const { isLoading, data, error } = useGetAllJobsQuery();
-
   //write debounce function
   useEffect(() => {
     const getSearchValue = setTimeout(() => {

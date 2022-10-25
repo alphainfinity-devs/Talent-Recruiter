@@ -4,7 +4,7 @@ import { FiExternalLink } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 function Blogs() {
-  const { data: getPosts, isLoading, error } = useGetBlogPostsQuery();
+  const { data: getPosts, isLoading, error } = useGetBlogPostsQuery({ chunkLimit: 0, limit:3 });
   // decide what to show based on the state
   let content = null;
   if (isLoading) content = <div>Loading...</div>;
