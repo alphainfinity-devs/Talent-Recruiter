@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useGetBlogPostsQuery } from "../../../features/blogPost/blogPostAPI";
 import { FiExternalLink } from "react-icons/fi";
 import AdminBlogCard from "../adminPageComponents/AdminBlogCard";
+import Spinner from "../../../utils/Spinner";
+import Alert from "../../../utils/Alert";
 import { toast } from "react-toastify";
 import { RotatingLines } from "react-loader-spinner";
+
 const AdminAllPosts = () => {
   const [limit, setLimit] = useState(3);
   const [page, setPage] = useState(1);

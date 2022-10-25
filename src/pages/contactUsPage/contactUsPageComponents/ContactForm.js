@@ -44,10 +44,10 @@ const ContactForm = () => {
           </div>
         </div>
         <div className="border-1 py-3">
-          <h2 className="font-bold mb-4 text-xl text-accent">
+          <h2 className="font-bold text-xl pb-2 text-accent">
             CONTACT ADDRESS
           </h2>
-          <div className="flex justify-start items-center border-2 p-4">
+          <div className="flex justify-start items-center border py-7 px-3">
             <div>
               <div className="flex justify-start items-center gap-3 mb-8">
                 <div className="text-white text-xl bg-primary p-2">

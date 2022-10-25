@@ -29,14 +29,14 @@ if (isSuccess) {
 
 
   return (
-    <section className="py-10 w-full container mx-auto mb-5">
+    <section className="w-full container mx-auto mb-5">
       <div className="flex justify-center items-center">
       {
         isLoading ? <Spinner/> :
         <form onSubmit={handleSubmit((data) => {
           postJob(data);
         })}
-        className="w-[650px] bg-secondary p-5 md:p-10 shadow-lg"
+        className="w-full bg-secondary p-5 md:p-10 shadow-lg"
         >
           {/* ........job title input filed......... */}
           <div className="flex flex-wrap mb-4">

@@ -14,7 +14,7 @@ const About = () => {
 
         <div className="flex justify-center items-center">
           <div>
-            <h2 className="text-2xl md:text-4xl font-bold text-accent text-center md:text-start">
+            <h2 className="text-2xl md:text-4xl font-bold text-primary text-center md:text-start">
               About
             </h2>
             <h3 className="text-3xl py-3 text-accent text-center md:text-start">

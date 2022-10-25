@@ -5,7 +5,7 @@ module.exports = {
       {
         talentRecruiter: {
           primary: "#3CCF56",
-          secondary: "#F7F7FB",
+          secondary: "#F9FCFF",
           accent: "#1A1A1A",
           neutral: "#90949F",
           "base-100": "#ffffff",
