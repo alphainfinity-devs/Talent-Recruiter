@@ -5,7 +5,7 @@ import JobListRow from "./JobListRow";
 
 const RequiterJobList = () => {
   const { data: jobs, isLoading, error } = useGetOwnJobListQuery();
-  console.log(jobs);
+  // console.log(jobs);
   // decide what to render
   let content;
   if (isLoading && !error) {

@@ -38,7 +38,7 @@ const JobListRow = ({ job }) => {
     });
   };
   const handlePayment = (id) => {
-    const paymentConfirm = () => navigate("payment");
+    const paymentConfirm = () => navigate(`payment/${id}`);
     confirmAlert({
       title: "Confirm to submit",
       message: "Are you sure to pay for this job.",

@@ -1,9 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { InfinitySpin } from "react-loader-spinner";
-const PaymentCreditCart = lazy(() =>
-  import("./pages/paymentPage/PaymentCreditCart"),
-);
+const StripePayment = lazy(() => import("./pages/paymentPage/StripPayment"));
 const HomePage = lazy(() => import("./pages/homePage/HomePage"));
 const Footer = lazy(() => import("./globalComponents/Footer"));
 const Navbar = lazy(() => import("./globalComponents/Navbar"));
@@ -93,6 +91,7 @@ function App() {
       <Suspense
         fallback={
           <div className="flex justify-center mx-auto">
+            {/* Please don't remove it cause root level lazy loader */}
             <InfinitySpin width="300" color="#4fa94d" />
           </div>
         }>
@@ -167,20 +166,11 @@ function App() {
                 </RecruiterRouteProtect>
               }
             />
-
             <Route
               path="jobs"
               element={
                 <RecruiterRouteProtect>
                   <AppliedJobs />
-                </RecruiterRouteProtect>
-              }
-            />
-            <Route
-              path="jobs/payment"
-              element={
-                <RecruiterRouteProtect>
-                  <PaymentCreditCart />
                 </RecruiterRouteProtect>
               }
             />
@@ -192,12 +182,19 @@ function App() {
                 </RecruiterRouteProtect>
               }
             />
-
             <Route
-              path="recruiter"
+              path="recruiter-profile"
               element={
                 <RecruiterRouteProtect>
                   <RecruiterProfile />
+                </RecruiterRouteProtect>
+              }
+            />
+            <Route
+              path="jobs/payment/:id"
+              element={
+                <RecruiterRouteProtect>
+                  <StripePayment />
                 </RecruiterRouteProtect>
               }
             />
@@ -246,6 +243,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/search" element={<SearchPage />} />
+
           {/* public Page routes End */}
 
           <Route path="*" element={<NotFound />} />
