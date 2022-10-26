@@ -12,7 +12,6 @@ export function formatCreditCardNumber(value) {
     const issuer = Payment.fns.cardType(value)
     const clearValue = clearNumber(value)
     let nextValue
-
     switch (issuer) {
         case 'amex':
             nextValue = `${clearValue.slice(0, 4)} ${clearValue.slice(
@@ -51,7 +50,6 @@ export function formatCVC(value, prevValue, allValues = {}) {
 
 export function formatExpirationDate(value) {
     const clearValue = clearNumber(value)
-
     if (clearValue.length >= 3) {
         return `${clearValue.slice(0, 2)}/${clearValue.slice(2, 4)}`
     }

@@ -34,7 +34,7 @@ const AdminUsers = () => {
   } else if (error && !isLoading) {
     content = (
       <tr className="text-xl text-red-500 text-center">
-        There was an error occurred
+        <td>There was an error occurred</td>
       </tr>
     );
   } else if (!isLoading && !error && data?.users?.length === 0) {
