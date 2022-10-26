@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const multer = require("multer");
+// const multer = require("multer");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -36,6 +36,7 @@ const category = require("./routers/categoryRoute");
 const jobRoute = require("./routers/jobRoute");
 const applicantRoute = require("./routers/applicantRouter");
 const recruiterRoute = require("./routers/requiterRouter");
+const featureJobsRoute = require("./routers/featureJobsRoute");
 const createPayment = require("./routers/createPaymentRoute");
 // create all routes here
 app.use("/api/blogs", blogsRoute); //dynamic blog post
@@ -47,6 +48,7 @@ app.use("/api/jobs/", jobRoute);
 app.use("/api/category/", category);
 app.use("/api/applicant/", applicantRoute);
 app.use("/api/requiter/", recruiterRoute);
+app.use("/api/feature/jobs", featureJobsRoute);
 app.use("/api/create-payment", createPayment);
 
 // All default error handling function

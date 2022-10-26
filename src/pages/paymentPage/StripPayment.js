@@ -11,7 +11,6 @@ export default function StripePayment() {
   const [clientSecret, setClientSecret] = useState("");
   const { isLoading, data, error } =
   useStripePaymentInitQuery({ amount: 1000, currency: "usd" });
-
   useEffect(() => {
     if (data?.clientSecret) {
       setClientSecret(data.clientSecret);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   PaymentElement,
@@ -7,6 +7,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { ProgressBar } from "react-loader-spinner";
+import { useCreateFeatureJobsMutation } from "../../features/stripePayment copy/featureJobs";
 
 export default function CheckoutForm() {
   const navigate = useNavigate();
@@ -14,6 +15,11 @@ export default function CheckoutForm() {
   const elements = useElements();
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { id } = useParams();
+  const [
+    createFeatureJobs,
+    { idLoading: isFJobLoading, isSuccess: isFJobSuccess, error: FJobError },
+  ] = useCreateFeatureJobsMutation();
   useEffect(() => {
     if (!stripe) {
       return;
@@ -41,6 +47,11 @@ export default function CheckoutForm() {
       }
     });
   }, [stripe]);
+  useEffect(() => {
+    if (!FJobError && isFJobSuccess) {
+      navigate("/recruiter/jobs");
+    }
+  }, [FJobError, isFJobSuccess, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,11 +70,12 @@ export default function CheckoutForm() {
     });
     if (error?.type === "card_error" || error?.type === "validation_error") {
       setMessage(error.message);
-    } else {
-      setMessage("An unexpected error occurred.");
+    } else if (error) {
+      console.log(error);
+      setMessage(`An unexpected error occurred ${error?.message}`);
     }
-    if (paymentIntent.status === "succeeded") {
-      navigate("/recruiter/jobs");
+    if (paymentIntent?.status === "succeeded") {
+      createFeatureJobs({ job_id: id, payment_through: "card" });
     }
     setIsLoading(false);
   };
@@ -72,12 +84,12 @@ export default function CheckoutForm() {
     <form onSubmit={handleSubmit}>
       <PaymentElement />
       <button
-        disabled={isLoading || !stripe || !elements}
+        disabled={isLoading || isFJobLoading || !stripe || !elements}
         type="submit"
         className="btn btn-primary mt-5">
-        {isLoading ? (
+        {isFJobLoading || isLoading ? (
           <ProgressBar
-            height="80"
+            height="40"
             width="80"
             ariaLabel="progress-bar-loading"
             borderColor="#F4442E"

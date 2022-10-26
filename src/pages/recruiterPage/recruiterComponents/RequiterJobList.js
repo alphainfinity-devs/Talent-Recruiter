@@ -5,7 +5,8 @@ import JobListRow from "./JobListRow";
 
 const RequiterJobList = () => {
   const { data: jobs, isLoading, error } = useGetOwnJobListQuery();
-  // console.log(jobs);
+  console.log("recruiter post job", jobs);
+  console.log("what err",error)
   // decide what to render
   let content;
   if (isLoading && !error) {
@@ -13,7 +14,7 @@ const RequiterJobList = () => {
   } else if (error && !isLoading) {
     content = (
       <tr className="text-xl text-red-500 text-center">
-        <td>There was an error occurred</td>
+        <td>There was an error occurred {error?.data?.errorMessage}</td>
       </tr>
     );
   } else if (!isLoading && !error && jobs?.JobByRequiter?.length === 0) {
