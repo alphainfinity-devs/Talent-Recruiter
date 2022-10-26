@@ -9,7 +9,7 @@ const ReviewCart = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl text-primary font-bold">
             Clients Review
           </h2>
-          <p className="text-accent text-sm">
+          <p className="text-natural text-sm font-bold py-1">
             Most popular blog of this website, created by expart
           </p>
         </div>

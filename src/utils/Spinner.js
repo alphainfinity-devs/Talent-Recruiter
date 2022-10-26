@@ -6,7 +6,7 @@ import React from "react";
 const Spinner = () => {
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-center my-20">
         <Oval
           height={80}
           width={80}

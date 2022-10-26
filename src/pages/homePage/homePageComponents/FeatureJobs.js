@@ -120,7 +120,7 @@ const Featurejobs = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl text-primary font-bold">
             Feature Jobs
           </h2>
-          <p className="text-natural py-1">
+          <p className="text-natural py-1 text-sm font-bold">
             Hand-picked jobs featured depending on popularity and benifits
           </p>
         </div>

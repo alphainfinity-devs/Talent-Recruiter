@@ -6,7 +6,11 @@ import Spinner from "../../../utils/Spinner";
 import Alert from "../../../utils/Alert";
 
 function Blogs() {
-  const { data: getPosts, isLoading, error } = useGetBlogPostsQuery({ chunkLimit: 0, limit:3 });
+  const {
+    data: getPosts,
+    isLoading,
+    error,
+  } = useGetBlogPostsQuery({ chunkLimit: 0, limit: 3 });
   // decide what to show based on the state
   let content = null;
   if (isLoading) content = <Spinner />;
@@ -21,7 +25,7 @@ function Blogs() {
         </div>
         {getPosts.posts.length > 2 && (
           <Link to={"/blogs"}>
-            <button className="flex mx-auto items-center text-success btn btn-outline uppercase my-4 font-bold">
+            <button className="flex mx-auto items-center rounded-none bg-primary hover:bg-accent mt-5 text-white btn btn-outline uppercase my-4 font-bold">
               <FiExternalLink size={20} className="mr-2" /> Load More
             </button>
           </Link>
@@ -32,9 +36,9 @@ function Blogs() {
     <section className="container mx-auto px-5 pt-16 pb-16">
       <div className="text-center mb-12">
         <h2 className="text-2xl sm:text-3xl md:text-4xl text-primary font-bold">
-          Blog & News
+          Blog & Career Tips
         </h2>
-        <p className="text-natural">
+        <p className="text-natural text-sm font-bold py-1">
           Most popular blog of this website, created by expert
         </p>
       </div>
