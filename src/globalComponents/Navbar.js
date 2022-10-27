@@ -124,7 +124,7 @@ const Navbar = () => {
                       style={({ isActive }) =>
                         isActive ? activeStyle : undefined
                       }
-                      to="/"
+                      to="/home"
                     >
                       Home
                     </NavLink>

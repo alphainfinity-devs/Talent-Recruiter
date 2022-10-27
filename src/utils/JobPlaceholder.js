@@ -2,7 +2,7 @@ const JobPlaceholder = () => {
   return (
     <div className="container mx-auto px-5 py-16">
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
-        <div class="border border-blue-300 shadow rounded-md p-4 w-full">
+        <div class="shadow-md rounded-md px-5 py-6 w-full">
           <div class="animate-pulse flex space-x-4">
             <div class="rounded-full bg-slate-700 h-28 w-28"></div>
             <div class="flex-1 space-y-6 py-1">
@@ -18,7 +18,7 @@ const JobPlaceholder = () => {
           </div>
         </div>
 
-        <div class="border border-blue-300 shadow rounded-md p-4 w-full">
+        <div class="shadow-md rounded-md px-5 py-6 w-full">
           <div class="animate-pulse flex space-x-4">
             <div class="rounded-full bg-slate-700 h-28 w-28"></div>
             <div class="flex-1 space-y-6 py-1">
@@ -34,7 +34,7 @@ const JobPlaceholder = () => {
           </div>
         </div>
 
-        <div class="border border-blue-300 shadow rounded-md p-4 w-full">
+        <div class="shadow-md rounded-md px-5 py-6 w-full">
           <div class="animate-pulse flex space-x-4">
             <div class="rounded-full bg-slate-700 h-28 w-28"></div>
             <div class="flex-1 space-y-6 py-1">
@@ -50,7 +50,7 @@ const JobPlaceholder = () => {
           </div>
         </div>
 
-        <div class="border border-blue-300 shadow rounded-md p-4 w-full">
+        <div class="shadow-md rounded-md px-5 py-6 w-full">
           <div class="animate-pulse flex space-x-4">
             <div class="rounded-full bg-slate-700 h-28 w-28"></div>
             <div class="flex-1 space-y-6 py-1">
@@ -66,7 +66,7 @@ const JobPlaceholder = () => {
           </div>
         </div>
 
-        <div class="border border-blue-300 shadow rounded-md p-4 w-full">
+        <div class="shadow-md rounded-md px-5 py-6 w-full">
           <div class="animate-pulse flex space-x-4">
             <div class="rounded-full bg-slate-700 h-28 w-28"></div>
             <div class="flex-1 space-y-6 py-1">
@@ -82,7 +82,7 @@ const JobPlaceholder = () => {
           </div>
         </div>
 
-        <div class="border border-blue-300 shadow rounded-md p-4 w-full">
+        <div class="shadow-md rounded-md px-5 py-6 w-full">
           <div class="animate-pulse flex space-x-4">
             <div class="rounded-full bg-slate-700 h-28 w-28"></div>
             <div class="flex-1 space-y-6 py-1">
