@@ -2,6 +2,7 @@ import React from "react";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { ImLocation2 } from "react-icons/im";
 import { Link } from "react-router-dom";
+import companyLogo from "../../../assets/images/companyLogo.png";
 
 const JobListCard = (job) => {
   const { _id, title, website, salary, address, level, type } = job.job;
@@ -12,9 +13,9 @@ const JobListCard = (job) => {
     <Link to={link}>
       <div className="md:flex justify-start items-center shadow-md duration-700 hover:shadow-lg gap-4 px-5 py-6 hover:border-primary border-secondary border">
         <div className="grid sm:grid-cols-1 md:grid-cols-1 gap-4">
-          {/* <div className="flex justify-start md:justify-center items-center">
-          <img src={img} alt="" className="" />
-        </div> */}
+          <div className="flex justify-start md:justify-center items-center">
+            <img src={companyLogo} alt="" className="w-28 h-28" />
+          </div>
 
           <h2 className="font-bold text-xl md:text-2xl">{title}</h2>
           <p className="font-medium text-primary mb-2">{website}</p>
