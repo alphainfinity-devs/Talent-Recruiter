@@ -11,10 +11,33 @@ const JobListCard = (job) => {
 
   return (
     <Link to={link}>
-      <div className="md:flex justify-start items-center shadow-md duration-700 hover:shadow-lg gap-4 px-5 py-6 hover:border-primary border-secondary border">
+      <div className="flex justify-start items-center bg-base-100 shadow hover:shadow-lg gap-4 px-5 py-6 cursor-pointer hover:border-primary border-white border hover:-translate-y-2 duration-700">
+        <div className="bg-[tomato] p-4 py-7 text-white text-3xl">
+          {companyLogo}
+        </div>
+        <div className="">
+          <h2 className="font-bold text-xl md:text-2xl">{title}</h2>
+          <p className="font-medium text-primary mb-2">{website}</p>
+
+          <div className="flex justify-start items-center mb-2">
+            <BsCurrencyDollar className="text-primary mr-2" />
+            <small>{salary}</small>
+          </div>
+          <div className="flex justify-start items-center">
+            <ImLocation2 className="text-primary mr-2 text-xl" />
+            <small className="mb-2">{address}</small>
+          </div>
+          <div className="flex gap-3 items-center">
+            <p className="text-secondary text-sm font-bold">{level}</p>
+            <p className="text-secondary text-sm font-bold">{type}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="md:flex justify-start items-center shadow-md duration-700 hover:shadow-lg gap-4 px-5 py-6 hover:border-primary border-secondary border">
         <div className="grid sm:grid-cols-1 md:grid-cols-1 gap-4">
           <div className="flex justify-start md:justify-center items-center">
-            <img src={companyLogo} alt="" className="w-28 h-28" />
+            <img src={companyLogo} alt="" className="w-28" />
           </div>
 
           <h2 className="font-bold text-xl md:text-2xl">{title}</h2>
@@ -38,23 +61,23 @@ const JobListCard = (job) => {
               {type}
             </div>
 
-            {/* <div className="flex md:flex-col gap-3">
+            <div className="flex md:flex-col gap-3">
                   <Link
                     to={link}
                     className="btn rounded-none bg-primary text-white hover:bg-accent md:btn-md"
                   >
                     Detail
                   </Link>
-                </div> */}
+                </div>
           </div>
-          {/* <div className="flex justify-start">
+          <div className="flex justify-start">
               <div className="flex items-start">
                 <ImLocation2 className="text-primary mr-2 text-xl" />
               </div>
               <small className="mb-2">{address}</small>
-            </div> */}
+            </div>
         </div>
-      </div>
+      </div> */}
     </Link>
   );
 };
