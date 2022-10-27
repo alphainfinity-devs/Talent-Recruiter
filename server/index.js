@@ -35,7 +35,7 @@ const emailCampaign = require("./routers/emailCampaignRoute"); //email campaign 
 const category = require("./routers/categoryRoute");
 const jobRoute = require("./routers/jobRoute");
 const applicantRoute = require("./routers/applicantRouter");
-const recruiterRoute = require("./routers/requiterRouter");
+const recruiterRoute = require("./routers/recruiterRouter");
 const featureJobsRoute = require("./routers/featureJobsRoute");
 const createPayment = require("./routers/createPaymentRoute");
 // create all routes here
@@ -47,7 +47,7 @@ app.use("/api/search", searchRoute); //for search result
 app.use("/api/jobs/", jobRoute);
 app.use("/api/category/", category);
 app.use("/api/applicant/", applicantRoute);
-app.use("/api/requiter/", recruiterRoute);
+app.use("/api/recruiter/", recruiterRoute);
 app.use("/api/feature/jobs", featureJobsRoute);
 app.use("/api/create-payment", createPayment);
 

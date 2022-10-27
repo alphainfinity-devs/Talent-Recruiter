@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useGetCategoryQuery } from "../../../features/category/categoryApi";
-import { usePostJobMutation } from "../../../features/requiter/requiterApi";
+import { usePostJobMutation } from "../../../features/requiter/recruiterApi";
 import Spinner from "../../../utils/Spinner";
 
 const RecruiterAddJobs = () => {

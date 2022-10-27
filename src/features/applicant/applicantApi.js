@@ -50,7 +50,16 @@ export const applicantApi = APIsSlice.injectEndpoints({
       },
       invalidatesTags: ["Applicant"]
     }),
+    getAppliedOrBookMarked: builder.query({
+      query: (id) => {
+        return {
+          url: `/api/applicant/applied-or-bookmarked/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["Applicant"]
+    }),
   }),
 });
 
-export const { useGetAppliedJobListQuery , useGetBookMarkJobListQuery,  useDeleteSaveJobMutation, useApplyJobMutation, useBookMarkJobMutation } = applicantApi;
+export const { useGetAppliedJobListQuery , useGetBookMarkJobListQuery,  useDeleteSaveJobMutation, useApplyJobMutation, useBookMarkJobMutation, useGetAppliedOrBookMarkedQuery } = applicantApi;
