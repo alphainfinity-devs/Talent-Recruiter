@@ -1,6 +1,7 @@
 const roleAuthCheck = (req, res, next) => {
   try {
     const { role } = req.headers || {};
+    console.log('Hello role', role);
     switch (role) {
       case "admin":
         return next();
