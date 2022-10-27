@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useDeleteJobMutation } from "../../../features/requiter/requiterApi";
+import { useDeleteJobMutation } from "../../../features/requiter/recruiterApi";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import { toast } from "react-toastify";
 import moment from 'moment';

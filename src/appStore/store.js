@@ -3,7 +3,7 @@ import { APIsSlice } from "../features/APIs/APIsSlice";
 import { applicantApi } from "../features/applicant/applicantApi";
 import blogPostSlice from "../features/blogPost/blogPostSlice";
 import { JobsApi } from "../features/job/jobApi";
-import { requiterApi } from "../features/requiter/requiterApi";
+import { recruiterApi } from "../features/requiter/recruiterApi";
 import userAuthSlice from "../features/userAuth/userAuthSlice";
 
 export const store = configureStore({
@@ -13,7 +13,7 @@ export const store = configureStore({
     auth: userAuthSlice,
     jobs:JobsApi,
     applicant:applicantApi,
-    requiter:requiterApi,
+    recruiter:recruiterApi,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(APIsSlice.middleware),

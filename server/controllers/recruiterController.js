@@ -3,15 +3,15 @@ const asyncHandler = require("express-async-handler");
 const AppliedJob = require("../schemas/appliedJobSchema");
 
 // @desc Get Job All Via Applicant Id
-const getJobByRequiter = asyncHandler(async (req, res, next) => {
+const getJobByRecruiter = asyncHandler(async (req, res, next) => {
   try {
-    const getJobByRequiter = await Job.find({ requiter: req.user.id }).populate(
+    const getJobByRecruiter = await Job.find({ recruiter: req.user.id }).populate(
       "requiter",
       "_id name",
     );
-    if (getJobByRequiter) {
+    if (getJobByRecruiter) {
       res.status(200).json({
-        JobByRequiter: getJobByRequiter,
+        JobByRecruiter: getJobByRecruiter,
       });
     } else {
       res.status(400).json({
@@ -47,7 +47,7 @@ const getApplicantByJob = asyncHandler(async (req, res, next) => {
 
 // @desc Post New Job Controller
 const postJob = asyncHandler(async (req, res, next) => {
-  const newJob = await Job.create({ ...req.body, requiter: req.user.id });
+  const newJob = await Job.create({ ...req.body, recruiter: req.user.id });
   try {
     console.log("new job", newJob);
     if (newJob) {
@@ -91,7 +91,7 @@ const deleteJob = asyncHandler(async (req, res, next) => {
 });
 module.exports = {
   postJob,
-  getJobByRequiter,
+  getJobByRecruiter,
   getApplicantByJob,
   deleteJob,
 };

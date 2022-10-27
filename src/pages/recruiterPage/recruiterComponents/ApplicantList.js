@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetApplicantListQuery } from "../../../features/requiter/requiterApi";
+import { useGetApplicantListQuery } from "../../../features/requiter/recruiterApi";
 import Spinner from "../../../utils/Spinner";
 import { useParams } from "react-router-dom";
 import ApplicantListRow from "./ApplicantListRow";

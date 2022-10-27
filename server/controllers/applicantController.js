@@ -95,11 +95,9 @@ const getAppliedJob = asyncHandler(async(req, res, next) =>{
 const applyJob = asyncHandler(async(req, res, next) =>{
     try{
         const isApplied = await AppliedJob.find({job:req.params.id,user:req.user.id}).count();
-        console.log(isApplied===0);
-        console.log(isApplied);
-        if(!isApplied===0){
-            res.status(200).json({
-                success: true,
+        if(isApplied>0){
+            res.status(400).json({
+                success: false,
                 message: "Already Applied This Job",
             })
         }else{
@@ -107,7 +105,7 @@ const applyJob = asyncHandler(async(req, res, next) =>{
             if(applied){
                 res.status(200).json({
                     success: true,
-                    message: "Already Applied This Job",
+                    message: "Successfully Applied This Job",
                 })
             }
         }
@@ -116,23 +114,19 @@ const applyJob = asyncHandler(async(req, res, next) =>{
     }
 })
 
-const isApplied = asyncHandler(async(req, res, next) =>{
+const isAppliedOrBookmarke = asyncHandler(async(req, res, next) =>{
+    console.log(req.user)
     try{
-        const isApplied = await AppliedJob.find({job:req.params.id,user:req.user.id});
-
-        if(isApplied){
+        const isApplied = await AppliedJob.exists({job:req.params.id,candidate:req.user.id}).count()
+        const isBookmarked = await BookmarkJob.exists({job:req.params.id, user:req.user.id}).count();
+        
+        console.log(isApplied,isBookmarked)
+        
+        if(isApplied || isBookmarked){
             res.status(200).json({
-                success: true,
-                message: "Already Applied This Job",
+                isApplied,
+                isBookmarked
             })
-        }else{
-            const applied = await AppliedJob.create({job:req.params.id,candidate:req.user.id});
-            if(applied){
-                res.status(200).json({
-                    success: true,
-                    message: "Already Applied This Job",
-                })
-            }
         }
     }catch(err){
         next(err)
@@ -140,5 +134,5 @@ const isApplied = asyncHandler(async(req, res, next) =>{
 })
 
 module.exports ={
-    getBookmarkedJob, bookmarkJob,deleteBookmark, getAppliedJob, applyJob, isApplied
+    getBookmarkedJob, bookmarkJob,deleteBookmark, getAppliedJob, applyJob, isAppliedOrBookmarke
 }
