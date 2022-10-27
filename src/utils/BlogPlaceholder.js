@@ -2,7 +2,7 @@ import React from "react";
 
 const Placeholder = () => {
   return (
-    <section className="text-gray-700 body-font">
+    <section className="text-gray-500 body-font">
       <div className="container px-5 py-16 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <div className="shadow-md">
