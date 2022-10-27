@@ -11,12 +11,12 @@ const JobListCard = (job) => {
 
   return (
     <Link to={link}>
-      <div className="flex flex-col sm:flex-row justify-start items-center bg-base-100 shadow hover:shadow-lg gap-4 px-5 py-6 cursor-pointer hover:border-primary border-white border hover:-translate-y-2 duration-700">
-        <div className="bg-[tomato] p-4 py-7 text-white text-3xl h-32 w-32">
+      <div className="flex flex-col sm:flex-row justify-start items-center bg-base-100 shadow hover:shadow-lg gap-4 px-5 py-6 cursor-pointer hover:border-primary border-white border hover:-translate-y-1 duration-700">
+        <div className="bg-secondary p-4 py-8 text-white text-3xl h-32 w-32">
           <img src={companyLogo} alt="compnay logo" />
         </div>
         <div className="">
-          <h2 className="font-bold text-xl md:text-2xl">{title}</h2>
+          <h2 className="font-bold text-xl">{title}</h2>
           <p className="font-medium text-primary mb-2">{website}</p>
 
           <div className="flex justify-start items-center mb-2">
