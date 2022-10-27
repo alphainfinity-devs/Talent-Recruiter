@@ -87,7 +87,7 @@ const SearchPage = lazy(() => import("./pages/searchPage/SearchPage"));
 function App() {
   return (
     <>
-      <Navbar /
+      <Navbar />
       <Suspense
         fallback={
           <div className="flex justify-center mx-auto">
@@ -97,24 +97,6 @@ function App() {
         }>
       <Routes>
   {/*======================== admin dashboard start ======================== */}
-        <Route
-          path="/admin"
-          element={
-            <PrivateRoute>
-              <AdminRouteProtect>
-                <AdminPage />
-              </AdminRouteProtect>
-            </PrivateRoute>
-          }
-        >
-          <Route
-            index
-            element={
-              <AdminRouteProtect>
-                <AdminDashboard />
-              </AdminRouteProtect>
-            }
-          />
           <Route
             path="/admin"
             element={
@@ -156,26 +138,12 @@ function App() {
               path="admin-delete-category"
               element={<AdminDeleteCategory />}
             />
-          </Route>
-          <Route
-            path="admin-delete-category"
-            element={<AdminDeleteCategory />}
-          />
+          </Route>  
  {/*======================== admin dashboard end ========================*/}
-        </Route>
+       
  {/*======================== recruiter dashboard start ========================*/}
-        <Route
-          path="/recruiter"
-          element={
-            <PrivateRoute>
-              <RecruiterRouteProtect>
-                <RecruiterPage />
-              </RecruiterRouteProtect>
-            </PrivateRoute>
-          }
-        >
           <Route
-            index
+          path="/recruiter"
             element={
               <PrivateRoute>
                 <RecruiterRouteProtect>
