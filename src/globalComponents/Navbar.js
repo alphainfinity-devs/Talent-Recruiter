@@ -176,9 +176,6 @@ const Navbar = () => {
                 {accessToken && user?.email ? (
                   <NavLink
                     to={`/${user?.role}`}
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
                     className="btn rounded-none border-0 bg-primary hover:bg-accent text-white font-bold px-4"
                   >
                     Dashboard
