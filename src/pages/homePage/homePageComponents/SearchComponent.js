@@ -13,7 +13,7 @@ const SearchComponent = () => {
   useEffect(() => {
     axios
       .get(
-        "https://raw.githubusercontent.com/raselmahmud22/fakeData/main/countries.json",
+        "https://raw.githubusercontent.com/raselmahmud22/fakeData/main/countries.json"
       )
       .then((res) => {
         setCountries(res.data.data);
@@ -60,7 +60,8 @@ const SearchComponent = () => {
         <div className="shadow-lg z-10 p-5 border bg-primary">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="grid sm:grid-cols-4 md:grid-cols-4 gap-1">
+            className="grid sm:grid-cols-4 md:grid-cols-4 gap-1"
+          >
             {/*........keyword type input........*/}
             <input
               type="text"
@@ -74,7 +75,8 @@ const SearchComponent = () => {
               required
               defaultValue=""
               className="select select-bordered w-full rounded-none text-[tomato]"
-              {...register("location")}>
+              {...register("location")}
+            >
               <option value="" disabled>
                 Location
               </option>
@@ -93,7 +95,8 @@ const SearchComponent = () => {
               required
               defaultValue=""
               className="select select-bordered w-full rounded-none text-[tomato]"
-              {...register("category")}>
+              {...register("category")}
+            >
               <option value="" disabled>
                 Category
               </option>
@@ -102,7 +105,8 @@ const SearchComponent = () => {
             {/*........search button..........*/}
             <button
               type="submit"
-              className="btn rounded-none w-full bg-[tomato] border-[tomato] hover:bg-accent py-3 text-white cursor-pointer font-bold">
+              className="btn rounded-none w-full duration-700 bg-[tomato] border-[tomato] hover:bg-accent py-3 text-white cursor-pointer font-bold"
+            >
               <FaSearch className="mr-2" /> Search
             </button>
           </form>

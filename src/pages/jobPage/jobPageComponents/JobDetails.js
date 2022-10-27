@@ -87,12 +87,14 @@ const JobDetails = () => {
                       <div className="flex justify-center  md:justify-end gap-1">
                         <button
                           onClick={() => handleApplyJob(job._id)}
-                          className="btn rounded-none text-white bg-primary hover:bg-accent">
+                          className="btn rounded-none duration-700 text-white bg-primary hover:bg-accent"
+                        >
                           Apply Now
                         </button>
                         <button
                           onClick={() => bookMarkJob(job._id)}
-                          className="btn rounded-none text-white bg-warning hover:bg-accent">
+                          className="btn rounded-none duration-700 text-white bg-warning hover:bg-accent"
+                        >
                           Save Now
                         </button>
                       </div>
@@ -102,12 +104,14 @@ const JobDetails = () => {
                       <div className="flex justify-center  md:justify-end gap-1">
                         <button
                           onClick={() => applyJob(job._id)}
-                          className="btn rounded-none text-white bg-primary hover:bg-accent">
+                          className="btn rounded-none text-white bg-primary hover:bg-accent"
+                        >
                           Apply Now
                         </button>
                         <button
                           onClick={() => bookMarkJob(job._id)}
-                          className="btn rounded-none text-white bg-warning hover:bg-accent">
+                          className="btn rounded-none text-white bg-warning hover:bg-accent"
+                        >
                           Save Now
                         </button>
                       </div>
@@ -118,13 +122,13 @@ const JobDetails = () => {
 
               <div className="p-4 shadow-lg border">
                 {/* .........job description.............*/}
-                <p className="text-2xl font-semibold text-accent">
+                <p className="text-2xl font-semibold text-primary">
                   Job Description
                 </p>
                 <p className="py-4">{job?.description}</p>
 
                 {/*...........Education & Experience............*/}
-                <p className="text-2xl font-semibold text-accent py-4">
+                <p className="text-2xl font-semibold text-primary py-4">
                   Education & Experience
                 </p>
                 <ul className="steps steps-vertical">
@@ -154,7 +158,9 @@ const JobDetails = () => {
 
                 {/*.......... Responsibilities........... */}
 
-                <p className="text-2xl font-semibold py-4">Responsibilities</p>
+                <p className="text-2xl font-semibold py-4 text-primary">
+                  Responsibilities
+                </p>
                 <ul className="steps steps-vertical">
                   <li className="step step-primary " data-content="✓">
                     Explore and design dynamic and compelling consumer
@@ -178,7 +184,7 @@ const JobDetails = () => {
 
         <div className="shadow-lg w-[100%] lg:w-[30%] border">
           <div>
-            <h2 className="text-accent text-2xl p-3 bg-secondary font-bold">
+            <h2 className="text-accent text-2xl p-3 bg-[#d0ffce] font-bold">
               Job Overview
             </h2>
 
@@ -242,26 +248,29 @@ const JobDetails = () => {
               </div>
             </div>
 
-            <h2 className="text-accent text-2xl p-3 bg-secondary font-bold">
+            <h2 className="text-accent text-2xl p-3 bg-[#d0ffce] font-bold">
               Quick Contacts
             </h2>
             <form className=" w-full p-5">
               <div className="mb-3">
                 <label
                   htmlFor="name"
-                  className="leading-7 text-sm text-gray-600">
+                  className="leading-7 text-sm text-gray-600"
+                >
                   Name
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></input>
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                ></input>
               </div>
               <div className="mb-3">
                 <label
                   htmlFor="email"
-                  className="leading-7 text-sm text-gray-600">
+                  className="leading-7 text-sm text-gray-600"
+                >
                   Email
                 </label>
                 <input
@@ -274,16 +283,18 @@ const JobDetails = () => {
               <div className="mb-3">
                 <label
                   htmlFor="message"
-                  className="leading-7 text-sm text-gray-600">
+                  className="leading-7 text-sm text-gray-600"
+                >
                   Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                ></textarea>
               </div>
               <div className="mb-3">
-                <button className="btn text-white bg-primary hover:bg-accent rounded-none">
+                <button className="btn text-white bg-primary duration-700 hover:bg-accent rounded-none">
                   Send Message
                 </button>
               </div>

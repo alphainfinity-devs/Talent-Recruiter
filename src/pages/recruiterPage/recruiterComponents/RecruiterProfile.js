@@ -12,11 +12,11 @@ const RecruiterProfile = () => {
     console.log(data);
   };
   return (
-    <section className="py-10 w-full container mx-auto">
+    <section className="w-full container mx-auto">
       <div className="flex justify-center items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-[650px] bg-secondary p-5 md:p-10 shadow-lg"
+          className="w-full bg-secondary p-5 md:p-10 shadow-lg"
         >
           <div className="flex mb-6 gap-1">
             {/* .....first name input..... */}

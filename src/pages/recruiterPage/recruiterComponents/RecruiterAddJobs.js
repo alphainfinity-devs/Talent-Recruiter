@@ -28,45 +28,58 @@ const RecruiterAddJobs = () => {
     }
   }, [isError, isSuccess, reset]);
 
+const {register,formState: { errors },handleSubmit, reset} = useForm();
+const [postJob,{data,isSuccess,isError}] = usePostJobMutation()
+console.log(data);
+
+if (isSuccess) {
+  toast.success("Job posted successfully", {
+    toastId: "success",
+  });
+  
+}else if(isError){
+  toast.error("Something Went Wrong", {
+    toastId: "error",
+  });
+}
+
   return (
-    <section className="py-10 w-full container mx-auto mb-5">
+    <section className="w-full container mx-auto mb-5">
       <div className="flex justify-center items-center">
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          <form
-            onSubmit={handleSubmit((data) => {
-              postJob(data);
-            })}
-            className="w-[650px] bg-secondary p-5 md:p-10 shadow-lg">
-            {/* ........job title input filed......... */}
-            <div className="flex flex-wrap mb-4">
-              <div className="w-full">
-                <label className="block mb-2">Job Title*</label>
-                <input
-                  className="input input-bordered w-full rounded-none"
-                  type="text"
-                  placeholder="job title"
-                  {...register("title", {
-                    required: {
-                      value: true,
-                      message: "Job title is required",
-                    },
-                  })}
-                />
-                <label className="label p-[2px]">
-                  {errors.title?.type === "required" && (
-                    <span className="label-text-alt text-red-500">
-                      {errors.title.message}
-                    </span>
-                  )}
-                  {errors.title?.type === "pattern" && (
-                    <span className="label-text-alt text-red-500">
-                      {errors.title.message}
-                    </span>
-                  )}
-                </label>
-              </div>
+      {
+        isLoading ? <Spinner/> :
+        <form onSubmit={handleSubmit((data) => {
+          postJob(data);
+        })}
+        className="w-full bg-secondary p-5 md:p-10 shadow-lg"
+        >
+          {/* ........job title input filed......... */}
+          <div className="flex flex-wrap mb-4">
+            <div className="w-full">
+              <label className="block mb-2">Job Title*</label>
+              <input
+                className="input input-bordered w-full rounded-none"
+                type="text"
+                placeholder="job title"
+                {...register("title", {
+                  required: {
+                    value: true,
+                    message: "Job title is required",
+                  },
+                })}
+              />
+              <label className="label p-[2px]">
+                {errors.title?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.title.message}
+                  </span>
+                )}
+                {errors.title?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.title.message}
+                  </span>
+                )}
+              </label>
             </div>
 
             {/* .......job category and job type......... */}

@@ -60,7 +60,7 @@ function TeamMembers() {
           </p>
           <h1 className="text-2xl md:text-4xl font-bold">Meet Our Team</h1>
         </div>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {teamMembers.map((member) => (
             <TeamMember key={member._id} member={member} />
           ))}

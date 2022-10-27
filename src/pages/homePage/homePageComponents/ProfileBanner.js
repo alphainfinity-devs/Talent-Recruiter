@@ -2,7 +2,7 @@ import React from "react";
 
 const ProfileBanner = () => {
   return (
-    <section className="py-16 bg-[#F9FCFF]">
+    <section className="py-16 bg-secondary">
       <div className="grid lg:grid-cols-2 justify-center items-center px-5 gap-10 container mx-auto">
         {/*............prifile section image start.........*/}
         <div className="flex justify-start items-center sm:mb-5">
@@ -29,7 +29,7 @@ const ProfileBanner = () => {
               social and emotional traits; as well as the values and aspirations
               that drive them forward.
             </p>
-            <button className="btn rounded-none px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+            <button className="btn rounded-none px-4 md:px-7 duration-700 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
               Create Profile
             </button>
           </div>

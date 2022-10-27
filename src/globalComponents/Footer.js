@@ -21,8 +21,8 @@ const Footer = () => {
       <ScrollToTop
         smooth
         color="white"
-        width="20px"
-        height="30px"
+        width="25px"
+        height="25px"
         style={{
           backgroundColor: "tomato",
           display: "flex",
@@ -31,7 +31,7 @@ const Footer = () => {
         }}
       />
 
-      <div className="bg-[#d0ffce] py-16">
+      <div className="bg-[#F9FCFF] py-16">
         <div className="grid px-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 container mx-auto text-base-100">
           {/* .......footer info start........ */}
           <div>
@@ -68,23 +68,23 @@ const Footer = () => {
           <div>
             <h2 className="text-2xl font-bold text-primary">Job Categories</h2>
             <ul className="mt-5">
-              <li className="flex justify-start items-center text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start items-center text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="#">Softweer Enginner</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="#">Web Developer</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="#">UI/UX Designer</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="#">Content Writer</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="#">Web designer</Link>
               </li>
@@ -96,23 +96,23 @@ const Footer = () => {
           <div>
             <h2 className="text-2xl font-bold text-primary">Resources</h2>
             <ul className="mt-5">
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="#">How it work</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="#">Suport</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="#">Our Team</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="#">FAQ</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="#">Privacy & policy</Link>
               </li>
@@ -124,23 +124,23 @@ const Footer = () => {
           <div>
             <h2 className="text-2xl font-bold text-primary">Quick Links</h2>
             <ul className="mt-5">
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="/home">Home</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="/about">About Us</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="/services">Services</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="/blog">Blogs</Link>
               </li>
-              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-secondary">
+              <li className="flex justify-start text-neutral gap-1 mb-3 hover:text-accent">
                 <BiRightArrowAlt className="text-primary" />
                 <Link to="/contact">Contact</Link>
               </li>
@@ -185,9 +185,8 @@ const Footer = () => {
       {/* ......copyright section..... */}
       <div className="p-4 bg-[#222] text-base-100">
         <div className="flex justify-center items-center">
-          <p>
-            <small>Copyright © 2022 - All right reserved:</small>{" "}
-            teem-alpha-infinity
+          <p className="text-xs">
+            Copyright © 2022 - All right reserved: team-alpha-infinity
           </p>
         </div>
       </div>

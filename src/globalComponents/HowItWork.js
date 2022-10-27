@@ -10,8 +10,10 @@ const HowItWork = () => {
     <section>
       <div className="py-10 container mx-auto p-4">
         <div className="text-center">
-          <h1 className="text-3xl mb-3 font-bold text-primary">How It Works</h1>
-          <p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl mb-3 font-bold text-primary">
+            How Talent Recruiter Work
+          </h1>
+          <p className="text-sm font-bold py-1">
             TalentRecruiter is a job hunting platform where users can find the
             desired jobs.
           </p>
@@ -26,7 +28,7 @@ const HowItWork = () => {
                 you with the right freelancers find place best.
               </p>
               <div className="card-actions justify-center my-2">
-                <button className="btn rounded-none flex px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+                <button className="btn rounded-none duration-700 flex px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
                   <MdOutlineAppRegistration size={22} className="mr-1" /> Sing
                   Up Now
                 </button>
@@ -43,7 +45,7 @@ const HowItWork = () => {
                 you with the right freelancers find place best.
               </p>
               <div className="card-actions justify-center my-2">
-                <button className="btn rounded-none flex px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+                <button className="btn rounded-none flex duration-700 px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
                   <MdYoutubeSearchedFor size={22} className="mr-1" /> Search Now
                 </button>
               </div>
@@ -62,7 +64,7 @@ const HowItWork = () => {
                 you with the right freelancers find place best.
               </p>
               <div className="card-actions justify-center my-2">
-                <button className="btn rounded-none flex px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+                <button className="btn rounded-none flex px-4 md:px-7 duration-700 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
                   <TbBadge size={22} className="mr-1" /> Apply Now
                 </button>
               </div>

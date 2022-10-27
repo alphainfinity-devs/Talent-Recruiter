@@ -3,7 +3,7 @@ import { BsSearch } from "react-icons/bs";
 import searchImage from "../../../assets/images/search.png";
 const BrowseJobsBanner = () => {
   return (
-    <div className="bg-[#F9FCFF]">
+    <div className="bg-secondary">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 py-16 items-center container mx-auto px-5">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-accent mb-3 md:mb-5">
@@ -16,7 +16,7 @@ const BrowseJobsBanner = () => {
             The right job is out there.
           </p>
 
-          <button className="btn rounded-none flex itmes-center px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+          <button className="btn rounded-none duration-700 flex itmes-center px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
             <BsSearch className="mr-2" />
             SEARCH JOBS
           </button>

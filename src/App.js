@@ -87,16 +87,34 @@ const SearchPage = lazy(() => import("./pages/searchPage/SearchPage"));
 function App() {
   return (
     <>
-      <Navbar />
+      <Navbar /
       <Suspense
         fallback={
           <div className="flex justify-center mx-auto">
-            {/* Please don't remove it cause root level lazy loader */}
+  {/*======================== Please don't remove it cause root level lazy loader ========================*/}
             <InfinitySpin width="300" color="#4fa94d" />
           </div>
         }>
-        <Routes>
-          {/* admin dashboard start */}
+      <Routes>
+  {/*======================== admin dashboard start ======================== */}
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminRouteProtect>
+                <AdminPage />
+              </AdminRouteProtect>
+            </PrivateRoute>
+          }
+        >
+          <Route
+            index
+            element={
+              <AdminRouteProtect>
+                <AdminDashboard />
+              </AdminRouteProtect>
+            }
+          />
           <Route
             path="/admin"
             element={
@@ -138,11 +156,26 @@ function App() {
               path="admin-delete-category"
               element={<AdminDeleteCategory />}
             />
-            {/* admin dashboard end */}
           </Route>
-          {/* recruiter dashboard start */}
           <Route
-            path="/recruiter"
+            path="admin-delete-category"
+            element={<AdminDeleteCategory />}
+          />
+ {/*======================== admin dashboard end ========================*/}
+        </Route>
+ {/*======================== recruiter dashboard start ========================*/}
+        <Route
+          path="/recruiter"
+          element={
+            <PrivateRoute>
+              <RecruiterRouteProtect>
+                <RecruiterPage />
+              </RecruiterRouteProtect>
+            </PrivateRoute>
+          }
+        >
+          <Route
+            index
             element={
               <PrivateRoute>
                 <RecruiterRouteProtect>
@@ -199,8 +232,9 @@ function App() {
               }
             />
           </Route>
-          {/* recruiter dashboard end */}
-          {/* applicant dashboard start */}
+{/*======= recruiter dashboard end ========================*/}
+          
+{/* ======================== applicant dashboard start ======================== */}
           <Route
             path="/applicant"
             element={
@@ -230,22 +264,21 @@ function App() {
             <Route path="bookmark-job" element={<ApplicantSaveJob />} />
             <Route path="message" element={<ApplicantMessage />} />
           </Route>
-          {/* applicant dashboard end */}
+  {/* ======================== applicant dashboard end ======================== */}
 
-          {/* public Page routes start */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/jobs" element={<JobPage />} />
-          <Route path="/job/:id" element={<JobDetails />} />
-          <Route path="/reviews" element={<ReviewsPage />} />
-          <Route path="/blogs" element={<BlogsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/search" element={<SearchPage />} />
-
-          {/* public Page routes End */}
-
+        {/*======================== public Page routes start ========================*/}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/jobs" element={<JobPage />} />
+        <Route path="/job/:id" element={<JobDetails />} />
+        <Route path="/reviews" element={<ReviewsPage />} />
+        <Route path="/blogs" element={<BlogsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/search" element={<SearchPage />} />
+        {/* public Page routes End */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

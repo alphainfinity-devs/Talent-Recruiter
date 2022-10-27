@@ -60,11 +60,13 @@ const Categories = () => {
     },
   ];
   return (
-    <section className="py-16 bg-[#F9FCFF]">
+    <section className="py-16 bg-secondary">
       <div className="container mx-auto px-5">
         <div className="text-center mb-12">
-          <h2 className="text-3xl text-primary font-bold">Job Categories</h2>
-          <p className="text-natural">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl text-primary font-bold">
+            Browse Category
+          </h2>
+          <p className="text-natural text-sm font-bold py-1">
             Most popular categories of portal, sorted by popularity
           </p>
         </div>
