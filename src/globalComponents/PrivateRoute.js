@@ -7,19 +7,16 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
   if (authLoading) {
     return (
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-center">
         {/* <Spinner />; */}
         Loading...
       </div>
     );
   }
-  /*   if (error) {
-    toast.error(`error occurred ${error}`);
-  } */
-  if (!isAuthUser) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  } else {
+  if (isAuthUser) {
     return children;
+  } else {
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 };
 

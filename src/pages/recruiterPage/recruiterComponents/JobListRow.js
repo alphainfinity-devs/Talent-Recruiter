@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDeleteJobMutation } from "../../../features/requiter/recruiterApi";
 import { confirmAlert } from "react-confirm-alert"; // Import
@@ -13,18 +13,17 @@ const JobListRow = ({ job }) => {
   let link = `/recruiter/job/applicants/${job._id}`;
   let jobDetail = `/job/${job._id}`;
 
-  useEffect(() => {  
+  useEffect(() => {
     if (isSuccess) {
       toast.success("Delete Successful", {
         toastId: "success1",
       });
-    }else if (isError) {
+    } else if (isError) {
       toast.error("Delete Fail. Try Again", {
         toastId: "error2",
       });
     }
-  },[isSuccess,isError]);
-
+  }, [isSuccess, isError]);
 
   const handleDelete = (id) => {
     const deleteJobConfirm = () => deleteJob(id);
@@ -43,6 +42,7 @@ const JobListRow = ({ job }) => {
       ],
     });
   };
+  console.log(job.status);
   const handlePayment = (id) => {
     const paymentConfirm = () => navigate(`payment/${id}`);
     confirmAlert({
@@ -144,8 +144,13 @@ const JobListRow = ({ job }) => {
               </svg>
             </div>
             <div
-              onClick={() => handlePayment(job._id)}
-              className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+              aria-disabled={job.status === false ? false : true}
+              onClick={() =>
+                job.status === false ? null : handlePayment(job._id)
+              }
+              className={`${
+                job.status === false && "cursor-not-allowed"
+              } w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer`}>
               <SiAmazonpay size={20} />
             </div>
           </div>

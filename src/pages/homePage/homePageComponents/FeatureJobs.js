@@ -1,118 +1,38 @@
-import React from "react";
-import FeaturejobCart from "./FeaturejobCart";
-import { SiGoogletagmanager } from "react-icons/si";
+import React, { useState } from "react";
+import FeatureJobCart from "./FeatureJobCart";
+import { useGetFeatureJobsQuery } from "../../../features/featureJobsSlice/featureJobsSlice";
+import JobPlaceholder from "../../../utils/JobPlaceholder";
 
-const Featurejobs = () => {
-  const featurejobs = [
+const FeatureJobs = () => {
+  const [page, setPage] = useState(1);
+  const { isLoading, data, error } = useGetFeatureJobsQuery(
     {
-      _id: 1,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
+      page,
+      limit: 3,
     },
     {
-      _id: 2,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
+      refetchOnMountOrArgChange: true,
     },
-    {
-      _id: 3,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
-    },
-    {
-      _id: 4,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
-    },
-    {
-      _id: 5,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
-    },
-    {
-      _id: 6,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
-    },
-    {
-      _id: 7,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
-    },
-    {
-      _id: 8,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
-    },
-    {
-      _id: 9,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
-    },
-    {
-      _id: 10,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
-    },
-    {
-      _id: 11,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
-    },
-    {
-      _id: 12,
-      title: "UI/UX Designer",
-      website: "Example.com",
-      type: "Full Time",
-      salery: "$79k-$85k",
-      location: "Location 210-27 Quadra, Market Street, Victoria Canada",
-      icon: <SiGoogletagmanager />,
-    },
-  ];
+  );
+  console.log(page);
+  // decide what to show based on the state of the request
+  let content;
+  if (isLoading) {
+    content = <JobPlaceholder/>;
+  } else if (error) {
+    content = <div className="text-xl text-red-500 text-center">{error?.message}</div>;
+  } else if (data?.result?.length === 0) {
+    content = <div className="text-xl text-yellow-300 text-center">No feature jobs found</div>;
+  } else if (data?.result?.length > 0) {
+    content = (
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {data.result.map((job) => (
+          <FeatureJobCart key={job._id} job={job} />
+        ))}
+      </div>
+    );
+  }
+  // console.log(data);
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-5">
@@ -121,31 +41,43 @@ const Featurejobs = () => {
             Feature Jobs
           </h2>
           <p className="text-natural py-1 text-sm font-bold">
-            Hand-picked jobs featured depending on popularity and benifits
+            Hand-picked jobs featured depending on popularity and benefits
           </p>
         </div>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {featurejobs.map((job) => (
-            <FeaturejobCart key={job._id} job={job}></FeaturejobCart>
-          ))}
-        </div>
-
-        <div className="flex justify-center pt-16">
-          <div className="btn-group gap-1">
-            <button className="btn-primary border hover:marker:border-secondary btn-md text-white">
-              Prev
-            </button>
-            <button className="btn-primary border btn-md text-white">1</button>
-            <button className="btn-primary border btn-md text-white">2</button>
-            <button className="btn-primary border btn-md text-white">3</button>
-            <button className="btn-primary border btn-md text-white">
-              Next
-            </button>
+        {content}
+        {data?.total > 3 && (
+          <div className="flex justify-center pt-16">
+            <div className="btn-group gap-1">
+              <button
+                disabled={page === 1}
+                onClick={() => setPage((prev) => (prev > 1 ? prev - 1 : 1))}
+                className={`${
+                  page === 1 && "cursor-not-allowed"
+                } btn-primary border hover:marker:border-secondary btn-md text-white`}>
+                Prev
+              </button>
+              <button
+                disabled={data?.totalPage === page}
+                className={`${
+                  data?.totalPage === page && "cursor-not-allowed"
+                } btn-primary border btn-md text-white`}
+                onClick={() =>
+                  setPage((prev) =>
+                    prev <= 1
+                      ? data?.totalPage === prev
+                        ? data?.totalPage
+                        : prev + 1
+                      : 1,
+                  )
+                }>
+                Next
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
 };
 
-export default Featurejobs;
+export default FeatureJobs;

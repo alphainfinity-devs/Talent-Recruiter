@@ -1,19 +1,20 @@
 const User = require("../Models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const emails = require("../schemas/emails");
 
 //register a user
 exports.registerUser = async (req, res, next) => {
   try {
     const { name, email, role, password } = req.body;
     const existingUser = await User.findOne({ email: email });
-    console.log(existingUser);
     if (existingUser) {
       //if user already exists
       return res.status(400).json({ message: "User already exists" });
     } else {
       if (name && email && role && password) {
-        //if all fields are filled
+        //sent email table for marketing purpose
+        await emails.create({ email });
         //otherwise create a new user
         const hashedPassword = await bcrypt.hash(password, 10); //hashed password
         const user = new User({
@@ -66,9 +67,13 @@ exports.loginUser = async (req, res, next) => {
     return res.status(400).json({ message: "invalid email or password" });
   }
   console.log(existingUser);
-  const token = jwt.sign({ id: existingUser._id, email:existingUser.email }, process.env.JWT_SECRET_KEY, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+  const token = jwt.sign(
+    { id: existingUser._id, email: existingUser.email },
+    process.env.JWT_SECRET_KEY,
+    {
+      expiresIn: process.env.JWT_EXPIRE,
+    },
+  );
 
   console.log("Generated token\n", token);
 
@@ -91,7 +96,6 @@ exports.loginUser = async (req, res, next) => {
     token,
   });
 };
-
 
 //get user
 exports.getUser = async (req, res, next) => {

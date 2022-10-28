@@ -37,7 +37,7 @@ const getPosts = async (req, res, next) => {
     )
       .limit(limit ? limit : 0)
       .exec();
-    console.log(posts,"all posts");
+    // console.log(posts,"all posts");
     const count = await BlogPost.count();
     res.status(200).json({
       posts,

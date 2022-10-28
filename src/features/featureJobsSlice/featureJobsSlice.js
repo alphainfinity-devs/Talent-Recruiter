@@ -2,11 +2,11 @@ import { APIsSlice } from "../APIs/APIsSlice";
 const roleHeader = {
   role: "recruiter",
 };
-export const featureJobs = APIsSlice.injectEndpoints({
+export const featureJobsSlice = APIsSlice.injectEndpoints({
   endpoints: (builder) => ({
     getFeatureJobs: builder.query({
-      query: () => ({
-        url: `/api/feature/jobs`,
+      query: ({ page, limit }) => ({
+        url: `/api/feature/jobs?page=${page}&limit=${limit}`,
         method: "GET",
       }),
     }),
@@ -22,4 +22,4 @@ export const featureJobs = APIsSlice.injectEndpoints({
 });
 
 export const { useGetFeatureJobsQuery, useCreateFeatureJobsMutation } =
-  featureJobs;
+  featureJobsSlice;

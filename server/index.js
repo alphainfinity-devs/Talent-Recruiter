@@ -41,7 +41,7 @@ const createPayment = require("./routers/createPaymentRoute");
 // create all routes here
 app.use("/api/blogs", blogsRoute); //dynamic blog post
 app.use("/api/admin", roleAuthCheck, adminUsers); //admin user route
-app.use("/api/email-campaign", roleAuthCheck, emailCampaign); //for email campaign
+app.use("/api/email-campaign", emailCampaign); //for email campaign
 app.use("/api/user", userRoute); //for login and register
 app.use("/api/search", searchRoute); //for search result
 app.use("/api/jobs/", jobRoute);
