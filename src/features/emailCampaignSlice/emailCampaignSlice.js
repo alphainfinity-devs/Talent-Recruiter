@@ -2,7 +2,7 @@ import { APIsSlice } from "../APIs/APIsSlice";
 const roleHeader = {
   role: "admin",
 };
-export const emailCampaign = APIsSlice.injectEndpoints({
+export const emailCampaignSlice = APIsSlice.injectEndpoints({
   endpoints: (builder) => ({
     singleEmailSend: builder.mutation({
       query: (data) => ({
@@ -17,4 +17,4 @@ export const emailCampaign = APIsSlice.injectEndpoints({
   }),
 });
 
-export const { useSingleEmailSendMutation } = emailCampaign;
+export const { useSingleEmailSendMutation } = emailCampaignSlice;

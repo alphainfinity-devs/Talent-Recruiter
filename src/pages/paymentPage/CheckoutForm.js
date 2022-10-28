@@ -7,7 +7,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { ProgressBar } from "react-loader-spinner";
-import { useCreateFeatureJobsMutation } from "../../features/stripePayment copy/featureJobs";
+import { useCreateFeatureJobsMutation } from "../../features/featureJobsSlice/featureJobsSlice";
 
 export default function CheckoutForm() {
   const navigate = useNavigate();

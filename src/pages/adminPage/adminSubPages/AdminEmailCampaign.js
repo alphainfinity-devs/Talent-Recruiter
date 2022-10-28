@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSingleEmailSendMutation } from "../../../features/emailCampaign/emailCampaign";
+import { useSingleEmailSendMutation } from "../../../features/emailCampaignSlice/emailCampaignSlice";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
 const AdminEmailCampaign = () => {
