@@ -4,7 +4,6 @@ const featureJobsSchema = require("../schemas/featureJobsSchema");
 const getFeatureJobs = async (req, res, next) => {
   try {
     const { page, limit } = req.query;
-    console.log(page,limit,"page and limit");
     const result = await featureJobsSchema
       .find({})
       .populate("job")

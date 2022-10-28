@@ -45,7 +45,7 @@ const AdminBlogCard = ({ blog }) => {
       ],
       closeOnEscape: true,
       closeOnClickOutside: true,
-      ClassName: "bg-opacity-50 bg-gray-500",
+      className: "bg-opacity-50 bg-gray-500",
     });
   };
   return (

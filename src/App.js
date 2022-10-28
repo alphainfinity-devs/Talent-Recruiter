@@ -1,6 +1,9 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { InfinitySpin } from "react-loader-spinner";
+const EmailNewsLetter = lazy(() =>
+  import("./pages/emailNewsletter/EmailNewsLetter"),
+);
 const StripePayment = lazy(() => import("./pages/paymentPage/StripPayment"));
 const HomePage = lazy(() => import("./pages/homePage/HomePage"));
 const Footer = lazy(() => import("./globalComponents/Footer"));
@@ -256,6 +259,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/email-confirmation/:email" element={<EmailNewsLetter />} />
           {/* public Page routes End */}
           <Route path="*" element={<NotFound />} />
         </Routes>

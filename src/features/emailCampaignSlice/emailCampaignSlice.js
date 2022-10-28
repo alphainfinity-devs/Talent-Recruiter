@@ -14,7 +14,31 @@ export const emailCampaignSlice = APIsSlice.injectEndpoints({
         },
       }),
     }),
+    emailNewsLetterSent: builder.mutation({
+      query: ({ email, email_subject, email_body }) => ({
+        url: `/api/email-campaign/email-sent`,
+        method: "POST",
+        body: {
+          email,
+          email_subject,
+          email_body,
+        },
+      }),
+    }),
+    emailNewsLetterConfirm: builder.mutation({
+      query: ({ email }) => ({
+        url: `/api/email-campaign/email-confirmation`,
+        method: "POST",
+        body: {
+          email,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useSingleEmailSendMutation } = emailCampaignSlice;
+export const {
+  useSingleEmailSendMutation,
+  useEmailNewsLetterConfirmMutation,
+  useEmailNewsLetterSentMutation,
+} = emailCampaignSlice;
