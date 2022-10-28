@@ -21,6 +21,7 @@ export default function CheckoutForm() {
     { idLoading: isFJobLoading, isSuccess: isFJobSuccess, error: FJobError },
   ] = useCreateFeatureJobsMutation();
   useEffect(() => {
+    setMessage(null);
     if (!stripe) {
       return;
     }
@@ -49,6 +50,9 @@ export default function CheckoutForm() {
   }, [stripe]);
   useEffect(() => {
     if (!FJobError && isFJobSuccess) {
+      toast.success("Payment successful", {
+        toastId: "payment-successful",
+      });
       navigate("/recruiter/jobs");
     }
   }, [FJobError, isFJobSuccess, navigate]);
@@ -89,8 +93,8 @@ export default function CheckoutForm() {
         className="btn btn-primary mt-5">
         {isFJobLoading || isLoading ? (
           <ProgressBar
-            height="40"
-            width="80"
+            height="50"
+            width="120"
             ariaLabel="progress-bar-loading"
             borderColor="#F4442E"
             barColor="#51E5FF"

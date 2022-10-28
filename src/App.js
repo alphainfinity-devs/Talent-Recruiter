@@ -91,12 +91,12 @@ function App() {
       <Suspense
         fallback={
           <div className="flex justify-center mx-auto">
-  {/*======================== Please don't remove it cause root level lazy loader ========================*/}
+            {/*======================== Please don't remove it cause root level lazy loader ========================*/}
             <InfinitySpin width="300" color="#4fa94d" />
           </div>
         }>
-      <Routes>
-  {/*======================== admin dashboard start ======================== */}
+        <Routes>
+          {/*======================== admin dashboard start ======================== */}
           <Route
             path="/admin"
             element={
@@ -138,12 +138,12 @@ function App() {
               path="admin-delete-category"
               element={<AdminDeleteCategory />}
             />
-          </Route>  
- {/*======================== admin dashboard end ========================*/}
-       
- {/*======================== recruiter dashboard start ========================*/}
+          </Route>
+          {/*======================== admin dashboard end ========================*/}
+
+          {/*======================== recruiter dashboard start ========================*/}
           <Route
-          path="/recruiter"
+            path="/recruiter"
             element={
               <PrivateRoute>
                 <RecruiterRouteProtect>
@@ -162,47 +162,57 @@ function App() {
             <Route
               path="job/post"
               element={
-                <RecruiterRouteProtect>
-                  <RecruiterAddJobs />
-                </RecruiterRouteProtect>
+                <PrivateRoute>
+                  <RecruiterRouteProtect>
+                    <RecruiterAddJobs />
+                  </RecruiterRouteProtect>
+                </PrivateRoute>
               }
             />
             <Route
               path="jobs"
               element={
-                <RecruiterRouteProtect>
-                  <AppliedJobs />
-                </RecruiterRouteProtect>
+                <PrivateRoute>
+                  <RecruiterRouteProtect>
+                    <AppliedJobs />
+                  </RecruiterRouteProtect>
+                </PrivateRoute>
               }
             />
             <Route
               path="job/applicants/:id"
               element={
-                <RecruiterRouteProtect>
-                  <ApplicantList />
-                </RecruiterRouteProtect>
+                <PrivateRoute>
+                  <RecruiterRouteProtect>
+                    <ApplicantList />
+                  </RecruiterRouteProtect>
+                </PrivateRoute>
               }
             />
             <Route
               path="recruiter-profile"
               element={
-                <RecruiterRouteProtect>
-                  <RecruiterProfile />
-                </RecruiterRouteProtect>
+                <PrivateRoute>
+                  <RecruiterRouteProtect>
+                    <RecruiterProfile />
+                  </RecruiterRouteProtect>
+                </PrivateRoute>
               }
             />
             <Route
               path="jobs/payment/:id"
               element={
-                <RecruiterRouteProtect>
-                  <StripePayment />
-                </RecruiterRouteProtect>
+                <PrivateRoute>
+                  <RecruiterRouteProtect>
+                    <StripePayment />
+                  </RecruiterRouteProtect>
+                </PrivateRoute>
               }
             />
           </Route>
-{/*======= recruiter dashboard end ========================*/}
-          
-{/* ======================== applicant dashboard start ======================== */}
+          {/*======= recruiter dashboard end ========================*/}
+
+          {/* ======================== applicant dashboard start ======================== */}
           <Route
             path="/applicant"
             element={
@@ -232,21 +242,21 @@ function App() {
             <Route path="bookmark-job" element={<ApplicantSaveJob />} />
             <Route path="message" element={<ApplicantMessage />} />
           </Route>
-  {/* ======================== applicant dashboard end ======================== */}
+          {/* ======================== applicant dashboard end ======================== */}
 
-        {/*======================== public Page routes start ========================*/}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/jobs" element={<JobPage />} />
-        <Route path="/job/:id" element={<JobDetails />} />
-        <Route path="/reviews" element={<ReviewsPage />} />
-        <Route path="/blogs" element={<BlogsPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/search" element={<SearchPage />} />
-        {/* public Page routes End */}
+          {/*======================== public Page routes start ========================*/}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/jobs" element={<JobPage />} />
+          <Route path="/job/:id" element={<JobDetails />} />
+          <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/search" element={<SearchPage />} />
+          {/* public Page routes End */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

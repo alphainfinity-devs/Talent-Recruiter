@@ -9,15 +9,16 @@ const stripePromise = loadStripe(
 
 export default function StripePayment() {
   const [clientSecret, setClientSecret] = useState("");
-  const { isLoading, data, error } =
-  useStripePaymentInitQuery({ amount: 1000, currency: "usd" });
+  const { isLoading, data, error } = useStripePaymentInitQuery({
+    amount: 1000,
+    currency: "usd",
+  });
   useEffect(() => {
     if (data?.clientSecret) {
       setClientSecret(data.clientSecret);
     }
   }, [data?.clientSecret]);
 
-    console.log(data, "data");
   const appearance = {
     theme: "stripe",
   };
@@ -25,14 +26,31 @@ export default function StripePayment() {
     clientSecret,
     appearance,
   };
+  // decide what to render
+  let content;
+  if (isLoading) {
+    content = (
+      <div className="text-2xl animate-pulse bg-gray-300 text-center">
+        Loading...
+      </div>
+    );
+  } else if (error) {
+    content = (
+      <div className="text-xl text-red-500 text-center">
+        Error: {error?.message}
+      </div>
+    );
+  } else {
+    content = (
+      <>
+        {clientSecret && (
+          <Elements options={options} stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
+        )}
+      </>
+    );
+  }
 
-  return (
-    <div>
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
-      )}
-    </div>
-  );
+  return <>{content}</>;
 }

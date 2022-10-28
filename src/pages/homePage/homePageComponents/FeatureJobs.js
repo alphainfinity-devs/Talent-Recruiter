@@ -1,20 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import FeatureJobCart from "./FeatureJobCart";
 import { useGetFeatureJobsQuery } from "../../../features/featureJobsSlice/featureJobsSlice";
+import JobPlaceholder from "../../../utils/JobPlaceholder";
 
 const FeatureJobs = () => {
-  const { isLoading, data, error } = useGetFeatureJobsQuery({
-    page: 1,
-    limit: 3,
-  });
+  const [page, setPage] = useState(1);
+  const { isLoading, data, error } = useGetFeatureJobsQuery(
+    {
+      page,
+      limit: 3,
+    },
+    {
+      refetchOnMountOrArgChange: true,
+    },
+  );
+  console.log(page);
   // decide what to show based on the state of the request
   let content;
   if (isLoading) {
-    content = <div>Loading...</div>;
+    content = <JobPlaceholder/>;
   } else if (error) {
-    content = <div>{error?.message}</div>;
+    content = <div className="text-xl text-red-500 text-center">{error?.message}</div>;
   } else if (data?.result?.length === 0) {
-    content = <div>No feature jobs found</div>;
+    content = <div className="text-xl text-yellow-300 text-center">No feature jobs found</div>;
   } else if (data?.result?.length > 0) {
     content = (
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -24,7 +32,7 @@ const FeatureJobs = () => {
       </div>
     );
   }
-  console.log(data);
+  // console.log(data);
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-5">
@@ -40,10 +48,28 @@ const FeatureJobs = () => {
         {data?.total > 3 && (
           <div className="flex justify-center pt-16">
             <div className="btn-group gap-1">
-              <button className="btn-primary border hover:marker:border-secondary btn-md text-white">
+              <button
+                disabled={page === 1}
+                onClick={() => setPage((prev) => (prev > 1 ? prev - 1 : 1))}
+                className={`${
+                  page === 1 && "cursor-not-allowed"
+                } btn-primary border hover:marker:border-secondary btn-md text-white`}>
                 Prev
               </button>
-              <button className="btn-primary border btn-md text-white">
+              <button
+                disabled={data?.totalPage === page}
+                className={`${
+                  data?.totalPage === page && "cursor-not-allowed"
+                } btn-primary border btn-md text-white`}
+                onClick={() =>
+                  setPage((prev) =>
+                    prev <= 1
+                      ? data?.totalPage === prev
+                        ? data?.totalPage
+                        : prev + 1
+                      : 1,
+                  )
+                }>
                 Next
               </button>
             </div>

@@ -4,6 +4,7 @@ const featureJobsSchema = require("../schemas/featureJobsSchema");
 const getFeatureJobs = async (req, res, next) => {
   try {
     const { page, limit } = req.query;
+    console.log(page,limit,"page and limit");
     const result = await featureJobsSchema
       .find({})
       .populate("job")
@@ -11,8 +12,14 @@ const getFeatureJobs = async (req, res, next) => {
       .limit(limit ? limit : 0)
       .exec();
     const total = await featureJobsSchema.count();
-
-    res.status(200).json({ result, total, currentPage: page });
+    res
+      .status(200)
+      .json({
+        result,
+        total,
+        currentPage: +page,
+        totalPage: Math.ceil(total / limit),
+      });
   } catch (error) {
     console.log("from get feature job", error);
     next(error?.message);
