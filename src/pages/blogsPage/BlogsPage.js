@@ -1,16 +1,20 @@
 import React from "react";
 import PageTitleBanner from "../../globalComponents/PageTitleBanner";
-import Spinner from "../../utils/Spinner";
+import BlogPlaceholder from "../../utils/BlogPlaceholder";
 import { useGetBlogPostsQuery } from "../../features/blogPost/blogPostAPI";
 import BlogCart from "../homePage/homePageComponents/BlogCart";
 import Alert from "../../utils/Alert";
-import BlogPageBanner from "./blogsPageComponents/BlogPageBanner"
+import BlogPageBanner from "./blogsPageComponents/BlogPageBanner";
 
 const BlogsPage = () => {
-  const { data: getPosts, isLoading, error } = useGetBlogPostsQuery({ chunkLimit: 0, limit:0 },);
+  const {
+    data: getPosts,
+    isLoading,
+    error,
+  } = useGetBlogPostsQuery({ chunkLimit: 0, limit: 0 });
   // decide what to show based on the state
   let content = null;
-  if (isLoading) content = <Spinner />;
+  if (isLoading) content = <BlogPlaceholder />;
   if (error) content = <Alert alert="Something went wrong" />;
   if (getPosts)
     content = (
@@ -23,7 +27,7 @@ const BlogsPage = () => {
   return (
     <>
       <PageTitleBanner title="Blog Page" />
-      <BlogPageBanner/>
+      <BlogPageBanner />
       <div className="py-16 container mx-auto px-5">{content}</div>
     </>
   );

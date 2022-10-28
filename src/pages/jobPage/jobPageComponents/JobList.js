@@ -1,34 +1,32 @@
 import React from "react";
 import { useGetAllJobsQuery } from "../../../features/job/jobApi";
-import Spinner from "../../../utils/Spinner";
+import JobPlaceholder from "../../../utils/JobPlaceholder";
 import JobListCard from "./JobListCard";
 
 const JobList = () => {
-
   const {
     data: jobs,
-    isLoading
+    isLoading,
     // isSuccess,
     // isError,
     // error
-} = useGetAllJobsQuery('getJobs')
+  } = useGetAllJobsQuery("getJobs");
 
-console.log(jobs);
+  console.log(jobs);
 
   return (
     <section className="py-16">
       <div className="container mx-auto px-5">
-        {
-          isLoading ?  
-            <Spinner/>
-           :
-          (
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
-              { jobs?.Jobs.map((job) => <JobListCard key={job._id} job={job}/>) }
-            </div>
-          )
-        }
-        
+        {isLoading ? (
+          <JobPlaceholder />
+        ) : (
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
+            {jobs?.Jobs.map((job) => (
+              <JobListCard key={job._id} job={job} />
+            ))}
+          </div>
+        )}
+
         <div className="flex justify-center pt-16">
           <div className="btn-group gap-1">
             <button className="btn-primary active hover:marker:border-secondary btn-md text-white">

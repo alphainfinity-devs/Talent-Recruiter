@@ -2,7 +2,7 @@ import { useGetBlogPostsQuery } from "../../../features/blogPost/blogPostAPI";
 import BlogCart from "./BlogCart";
 import { FiExternalLink } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import Spinner from "../../../utils/Spinner";
+import BlogPlaceholder from "../../../utils/BlogPlaceholder";
 import Alert from "../../../utils/Alert";
 
 function Blogs() {
@@ -13,7 +13,7 @@ function Blogs() {
   } = useGetBlogPostsQuery({ chunkLimit: 0, limit: 3 });
   // decide what to show based on the state
   let content = null;
-  if (isLoading) content = <Spinner />;
+  if (isLoading) content = <BlogPlaceholder />;
   if (error) content = <Alert alert="Something went wrong" />;
   if (getPosts)
     content = (
