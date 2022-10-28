@@ -176,7 +176,7 @@ function App() {
               }
             />
             <Route
-              path="jobs/applicants/:id"
+              path="job/applicants/:id"
               element={
                 <RecruiterRouteProtect>
                   <ApplicantList />

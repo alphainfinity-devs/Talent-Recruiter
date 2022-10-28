@@ -4,7 +4,7 @@ import { useDoSearchQuery } from "../../features/search/searchApi";
 import SearchComponent from "../homePage/homePageComponents/SearchComponent";
 import JobListCard from "../jobPage/jobPageComponents/JobListCard";
 import PageTitleBanner from "../../globalComponents/PageTitleBanner";
-import Spinner from "../../utils/Spinner";
+import JobPlaceholder from "../../utils/JobPlaceholder";
 import Alert from "../../utils/Alert";
 
 const SearchPage = () => {
@@ -21,7 +21,7 @@ const SearchPage = () => {
   // decide what to render
   let content;
   if (isLoading) {
-    content = <Spinner />;
+    content = <JobPlaceholder />;
   } else if (error) {
     content = <Alert alert="Something went wrong" />;
   } else if (data?.searchResult?.length === 0) {

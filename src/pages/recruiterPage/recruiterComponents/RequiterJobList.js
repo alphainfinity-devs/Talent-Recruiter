@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetOwnJobListQuery } from "../../../features/requiter/requiterApi";
+import { useGetOwnJobListQuery } from "../../../features/requiter/recruiterApi";
 import TablePlaceholder from "../../../utils/TablePlaceholder";
 import JobListRow from "./JobListRow";
 
@@ -17,7 +17,7 @@ const RequiterJobList = () => {
         <td>There was an error occurred {error?.data?.errorMessage}</td>
       </tr>
     );
-  } else if (!isLoading && !error && jobs?.JobByRequiter?.length === 0) {
+  } else if (!isLoading && !error && jobs?.JobByRecruiter?.length === 0) {
     content = (
       <tr>
         <td className="flex items-center justify-center text-xl text-red-400 space-y-3">
@@ -25,8 +25,8 @@ const RequiterJobList = () => {
         </td>
       </tr>
     );
-  } else if (jobs?.JobByRequiter && !isLoading && !error) {
-    content = jobs.JobByRequiter.map((job) => (
+  } else if (jobs?.JobByRecruiter && !isLoading && !error) {
+    content = jobs.JobByRecruiter.map((job) => (
       <JobListRow key={job._id} job={job} />
     ));
   }
