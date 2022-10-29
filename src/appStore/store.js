@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { APIsSlice } from "../features/APIs/APIsSlice";
 import { applicantApi } from "../features/applicant/applicantApi";
+import applicantSlice from "../features/applicant/applicantSlice";
 import blogPostSlice from "../features/blogPost/blogPostSlice";
 import { JobsApi } from "../features/job/jobApi";
 import { recruiterApi } from "../features/requiter/recruiterApi";
@@ -12,7 +13,7 @@ export const store = configureStore({
     blogPost: blogPostSlice,
     auth: userAuthSlice,
     jobs:JobsApi,
-    applicant:applicantApi,
+    applicant:recruiterApi,
     recruiter:recruiterApi,
   },
   middleware: (getDefaultMiddleware) =>
