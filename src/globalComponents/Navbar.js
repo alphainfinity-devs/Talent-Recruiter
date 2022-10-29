@@ -34,16 +34,18 @@ const Navbar = () => {
     }
   };
   // navbar sticky to when scroll end
+  const [checkbox, setCheckbox] = useState(false);
+  const [adminCheckbox, setAdminCheckbox] = useState(false);
+  const { user, accessToken } = useSelector((state) => state.auth || {});
+  
+  // console.log(user?.role)
   // logged in checking
   useEffect(() => {
     const auth = JSON.parse(localStorage.getItem("auth"));
     dispatch(login({ user: auth?.user, token: auth?.token }));
   }, [dispatch, navigate]);
 
-  const [checkbox, setCheckbox] = useState(false);
-  const [adminCheckbox, setAdminCheckbox] = useState(false);
-  const { user, accessToken } = useSelector((state) => state.auth || {});
-  // console.log(user?.role)
+
 
   //active link
   let activeStyle = {
@@ -61,23 +63,32 @@ const Navbar = () => {
           </div>
           <div>
             <ul className="flex text-sm gap-2 md:gap-3 md:text-base font-bold">
-              <NavLink
-                to="/login"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                className="hover:text-primary flex items-center gap-1"
-              >
-                <BsFileEarmarkLockFill className="text-sm" />
-                Login
-              </NavLink>
-              /
-              <NavLink
-                to="/register"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                className="hover:text-primary flex items-center gap-1"
-              >
-                <FaUserAlt className="text-sm" />
-                Register
-              </NavLink>
+
+              {
+                user?.name ?
+                 <p>Wellcome {user?.name.toUpperCase()}</p> 
+                :
+                <>
+                  <NavLink
+                  to="/login"
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                  className="hover:text-primary flex items-center gap-1"
+                  >
+                  <BsFileEarmarkLockFill className="text-sm" />
+                  Login
+                  </NavLink>
+                  /
+                  <NavLink
+                  to="/register"
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                  className="hover:text-primary flex items-center gap-1"
+                  >
+                  <FaUserAlt className="text-sm" />
+                  Register
+                  </NavLink>
+                </>
+              }
+
             </ul>
           </div>
         </div>
