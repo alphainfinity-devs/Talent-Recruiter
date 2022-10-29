@@ -21,7 +21,7 @@ const JobDetails = () => {
   const [applyJob, {isSuccess: isApplySuccess, isError: isApplyError }] =useApplyJobMutation();
   const [bookMarkJob,{isSuccess: isBookmarkSuccess, isError: isBookmarkError}]=useBookMarkJobMutation();
   const { data:isFound } = useGetAppliedOrBookMarkedQuery(id);
-  console.log(isFound);
+
   const navigate = useNavigate();
   const handleApplyJob = (id) => {
     if (user?.role === `${process.env.REACT_APP_ROLE_APPLICANT}`) {
@@ -53,7 +53,7 @@ const JobDetails = () => {
       });
     }
   },[isBookmarkSuccess,isApplySuccess,isBookmarkError,isApplyError]);
-
+console.log('isFound',isFound);
   return (
     <section>
       <div className="flex flex-col md:flex-col lg:flex-row gap-8 container mx-auto px-5 py-16">
@@ -86,17 +86,17 @@ const JobDetails = () => {
 
                   {/* .........apply button and deadline....... */}
           
-                    <>
+                    <> 
                       <div className="flex justify-center  md:justify-end gap-1">
 
                         { 
-                          isApplySuccess ? 
-                            <button
-                                className="btn rounded-none text-white bg-primary hover:bg-accent" >
-                                Applied
-                            </button>
-                         :
-                         isFound?.isApplied>0 ?
+                        //   isApplySuccess ? 
+                        //     <button
+                        //         className="btn rounded-none text-white bg-primary hover:bg-accent" >
+                        //         Applied
+                        //     </button>
+                        //  :
+                         (isFound?.isApplied>0 && user?.name) || isApplySuccess ?
                           <button
                               className="btn rounded-none text-white bg-primary hover:bg-accent">
                               Applied
@@ -110,12 +110,12 @@ const JobDetails = () => {
                         }
                         {
           
-                        isBookmarkSuccess ? 
-                        <button
-                          className="btn rounded-none text-white bg-warning hover:bg-accent">
-                            Saved
-                        </button>  :
-                        isFound?.isBookmarked > 0 ?
+                        // isBookmarkSuccess ? 
+                        // <button
+                        //   className="btn rounded-none text-white bg-warning hover:bg-accent">
+                        //     Saved
+                        // </button>  :
+                        (isFound?.isBookmarked > 0  && user?.name) || isBookmarkSuccess ?
                         <button
                           className="btn rounded-none text-white bg-warning hover:bg-accent">
                             Saved
