@@ -4,12 +4,12 @@ import RecruiterSidebar from "./recruiterComponents/RecruiterSidebar";
 
 const RecruiterPage = () => {
   return (
-    <div className="drawer drawer-mobile border-t-1 border-accent">
+    <div className="drawer drawer-mobile border-t-2 border-accent">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content p-4">
         {/* mobile sidebar menu open */}
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary">
+        <div className="flex justify-between items-center py-2 px-5 container mx-auto">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">
             Recruiter Dashboard
           </h2>
           <label htmlFor="my-drawer-2" className="lg:hidden">
