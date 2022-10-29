@@ -280,16 +280,22 @@ const Navbar = () => {
                       style={({ isActive }) =>
                         isActive ? activeStyle : undefined
                       }
-                      className="btn btn-primary"
+                      className="btn btn-primary text-white"
                     >
                       Dashboard
                     </NavLink>
                   ) : (
                     <>
-                      <NavLink to="/login" className="btn btn-primary">
+                      <NavLink
+                        to="/login"
+                        className="btn btn-primary text-white"
+                      >
                         Login
                       </NavLink>
-                      <NavLink to="/register" className="btn btn-primary">
+                      <NavLink
+                        to="/register"
+                        className="btn btn-primary text-white"
+                      >
                         Register
                       </NavLink>
                     </>
