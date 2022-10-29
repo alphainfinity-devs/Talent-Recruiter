@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FeatureJobCart from "./FeatureJobCart";
+import FeatureJobCart from "./FeaturejobCart";
 import { useGetFeatureJobsQuery } from "../../../features/featureJobsSlice/featureJobsSlice";
 import JobPlaceholder from "../../../utils/JobPlaceholder";
 
@@ -12,17 +12,23 @@ const FeatureJobs = () => {
     },
     {
       refetchOnMountOrArgChange: true,
-    },
+    }
   );
   console.log(page);
   // decide what to show based on the state of the request
   let content;
   if (isLoading) {
-    content = <JobPlaceholder/>;
+    content = <JobPlaceholder />;
   } else if (error) {
-    content = <div className="text-xl text-red-500 text-center">{error?.message}</div>;
+    content = (
+      <div className="text-xl text-red-500 text-center">{error?.message}</div>
+    );
   } else if (data?.result?.length === 0) {
-    content = <div className="text-xl text-yellow-300 text-center">No feature jobs found</div>;
+    content = (
+      <div className="text-xl text-yellow-300 text-center">
+        No feature jobs found
+      </div>
+    );
   } else if (data?.result?.length > 0) {
     content = (
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -53,7 +59,8 @@ const FeatureJobs = () => {
                 onClick={() => setPage((prev) => (prev > 1 ? prev - 1 : 1))}
                 className={`${
                   page === 1 && "cursor-not-allowed"
-                } btn-primary border hover:marker:border-secondary btn-md text-white`}>
+                } btn-primary border hover:marker:border-secondary btn-md text-white`}
+              >
                 Prev
               </button>
               <button
@@ -67,9 +74,10 @@ const FeatureJobs = () => {
                       ? data?.totalPage === prev
                         ? data?.totalPage
                         : prev + 1
-                      : 1,
+                      : 1
                   )
-                }>
+                }
+              >
                 Next
               </button>
             </div>

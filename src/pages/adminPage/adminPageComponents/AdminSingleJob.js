@@ -48,7 +48,8 @@ const AdminSingleJob = ({ job }) => {
           <span
             className={`${
               data?.job?.status || status ? "badge-primary" : "bg-gray-300"
-            } badge opacity-75 badge-sm`}>
+            } badge opacity-75 badge-sm`}
+          >
             {data?.job?.status || status ? "Active" : "Pending"}
           </span>
         </td>
@@ -61,14 +62,15 @@ const AdminSingleJob = ({ job }) => {
                 width="50"
                 ariaLabel="blocks-loading"
                 wrapperStyle={{}}
-                wrapperClass="blocks-wrapper"
+                wrapperclassName="blocks-wrapper"
               />
             </div>
           ) : (
             <select
               onChange={(e) => setActionValue(e.target.value)}
               className="select select-ghost"
-              defaultValue={"defaultValue"}>
+              defaultValue={"defaultValue"}
+            >
               <option value="defaultValue">Select Action</option>
               <option value={"delete"} className="text-error cursor-pointer">
                 Delete

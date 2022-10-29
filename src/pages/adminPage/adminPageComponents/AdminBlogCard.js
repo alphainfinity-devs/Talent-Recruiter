@@ -82,19 +82,21 @@ const AdminBlogCard = ({ blog }) => {
                 ariaLabel="tail-spin-loading"
                 radius="5"
                 wrapperStyle={{}}
-                wrapperClass=""
+                wrapperclassName=""
                 visible={true}
               />
             ) : (
               <>
                 <NavLink
                   className="btn btn-success rounded mr-2"
-                  to={`/admin/admin-add-post/${_id}`}>
+                  to={`/admin/admin-add-post/${_id}`}
+                >
                   Edit
                 </NavLink>
                 <button
                   onClick={() => handleDeletePost(_id)}
-                  className="btn rounded ml-2">
+                  className="btn rounded ml-2"
+                >
                   Delete
                 </button>
               </>

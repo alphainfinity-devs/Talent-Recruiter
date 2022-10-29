@@ -35,13 +35,15 @@ const AdminDeleteCategory = () => {
           <progress
             className="progress h-12 bg-success w-full"
             value="100"
-            max="100"></progress>
+            max="100"
+          ></progress>
         </li>
         <li className="animate-pulse">
           <progress
             className="progress h-12 bg-success w-full"
             value="100"
-            max="100"></progress>
+            max="100"
+          ></progress>
         </li>
       </>
     );
@@ -62,14 +64,15 @@ const AdminDeleteCategory = () => {
           <button
             className="btn"
             disabled={deleteLoading}
-            onClick={() => deleteCategory(item._id)}>
+            onClick={() => deleteCategory(item._id)}
+          >
             {deleteLoading ? (
               <ProgressBar
                 height="40"
                 width="80"
                 ariaLabel="progress-bar-loading"
                 wrapperStyle={{}}
-                wrapperClass="progress-bar-wrapper"
+                wrapperclassName="progress-bar-wrapper"
                 borderColor="#F4442E"
                 barColor="#51E5FF"
               />

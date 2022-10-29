@@ -54,7 +54,8 @@ const Newsletter = () => {
               <button
                 disabled={isLoading}
                 type="submit"
-                className="bg-info font-bold px-2 md:px-10 duration-700 text-white border-2 border-white hover:bg-primary ">
+                className="bg-info font-bold px-2 md:px-10 duration-700 text-white border-2 border-white hover:bg-primary "
+              >
                 {isLoading ? (
                   <Dna
                     visible={true}
@@ -62,7 +63,7 @@ const Newsletter = () => {
                     width="120"
                     ariaLabel="dna-loading"
                     wrapperStyle={{}}
-                    wrapperClass="dna-wrapper"
+                    wrapperclassName="dna-wrapper"
                   />
                 ) : (
                   "Subscribe"

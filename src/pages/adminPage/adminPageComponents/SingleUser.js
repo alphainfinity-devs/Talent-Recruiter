@@ -29,7 +29,7 @@ const SingleUser = ({ user }) => {
   useEffect(() => {
     if (actionValue === "delete") {
       const isTrue = window.confirm(
-        "Are you sure you want to delete this user?",
+        "Are you sure you want to delete this user?"
       );
       console.log(isTrue);
       if (isTrue) {
@@ -64,7 +64,7 @@ const SingleUser = ({ user }) => {
         }`,
         {
           toastId: "success",
-        },
+        }
       );
       setActionValue("defaultValue");
       setCheck({ status: false, role: "" });
@@ -111,7 +111,8 @@ const SingleUser = ({ user }) => {
             <div className="flex justify-center items-center">
               <span
                 className="p-2 rounded-full border-2 border-primary"
-                onClick={() => setActionValue("")}>
+                onClick={() => setActionValue("")}
+              >
                 <ImCross className="cursor-pointer hover:text-secondary-focus" />
               </span>
               {isLoading ? (
@@ -121,7 +122,7 @@ const SingleUser = ({ user }) => {
                   width="40"
                   ariaLabel="blocks-loading"
                   wrapperStyle={{}}
-                  wrapperClass="blocks-wrapper"
+                  wrapperclassName="blocks-wrapper"
                   colors={[
                     "#e15b64",
                     "#f47e60",
@@ -169,14 +170,16 @@ const SingleUser = ({ user }) => {
               className={`${
                 role === "administrator" && "hidden"
               } select select-ghost`}
-              defaultValue={"defaultValue"}>
+              defaultValue={"defaultValue"}
+            >
               <option value={"defaultValue"}>Select Action</option>
               <option value={"delete"} className="text-error cursor-pointer">
                 Delete
               </option>
               <option
                 value={"warning"}
-                className="text-yellow-400 cursor-pointer">
+                className="text-yellow-400 cursor-pointer"
+              >
                 Warning
               </option>
               <option value={"edit"} className="text-success cursor-pointer">
