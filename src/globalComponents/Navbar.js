@@ -226,9 +226,19 @@ const Navbar = () => {
                     style={({ isActive }) =>
                       isActive ? activeStyle : undefined
                     }
-                    to="/"
+                    to="/home"
                   >
                     Home
+                  </NavLink>
+                </li>
+                <li className="font-bold">
+                  <NavLink
+                    to="/jobs"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Jobs
                   </NavLink>
                 </li>
                 <li className="font-bold">
@@ -241,16 +251,7 @@ const Navbar = () => {
                     About
                   </NavLink>
                 </li>
-                <li className="font-bold">
-                  <NavLink
-                    to="/reviews"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Reviews
-                  </NavLink>
-                </li>
+
                 <li className="font-bold">
                   <NavLink
                     to="/blogs"

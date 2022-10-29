@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FeatureJobCart from "./FeaturejobCart";
+import FeatureJobCart from "./FeatureJobCart";
 import { useGetFeatureJobsQuery } from "../../../features/featureJobsSlice/featureJobsSlice";
 import JobPlaceholder from "../../../utils/JobPlaceholder";
 
@@ -31,7 +31,7 @@ const FeatureJobs = () => {
     );
   } else if (data?.result?.length > 0) {
     content = (
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
         {data.result.map((job) => (
           <FeatureJobCart key={job._id} job={job} />
         ))}
