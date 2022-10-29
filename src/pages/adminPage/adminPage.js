@@ -1,18 +1,20 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import AdminSidebar from "./adminPageComponents/AdminSidebar";
+import PageTitle from "../../globalComponents/PageTitle";
 import AdminDashboard from "./adminSubPages/AdminDashboard";
 
 const AdminPage = () => {
   const location = useLocation().pathname;
   return (
     <>
+      <PageTitle title="Admin" />
       <div className="drawer drawer-mobile border-t-2 border-accent">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content p-4">
           {/* mobile sidebar menu open */}
-          <div className="flex justify-between items-center py-2 px-5 container mx-auto">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">
+          <div className="flex justify-between items-center py-2 container mx-auto">
+            <h2 className="text-[20px] md:text-2xl lg:text-3xl font-bold text-primary">
               Admin Dashboard
             </h2>
             <label htmlFor="my-drawer-2" className="lg:hidden">

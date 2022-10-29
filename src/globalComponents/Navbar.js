@@ -37,15 +37,13 @@ const Navbar = () => {
   const [checkbox, setCheckbox] = useState(false);
   const [adminCheckbox, setAdminCheckbox] = useState(false);
   const { user, accessToken } = useSelector((state) => state.auth || {});
-  
+
   // console.log(user?.role)
   // logged in checking
   useEffect(() => {
     const auth = JSON.parse(localStorage.getItem("auth"));
     dispatch(login({ user: auth?.user, token: auth?.token }));
   }, [dispatch, navigate]);
-
-
 
   //active link
   let activeStyle = {
@@ -63,32 +61,35 @@ const Navbar = () => {
           </div>
           <div>
             <ul className="flex text-sm gap-2 md:gap-3 md:text-base font-bold">
-
-              {
-                user?.name ?
-                 <p>Wellcome {user?.name.toUpperCase()}</p> 
-                :
+              {user?.name ? (
+                <p className="text-primary">
+                  Wellcome {user?.name.toUpperCase()}
+                </p>
+              ) : (
                 <>
                   <NavLink
-                  to="/login"
-                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                  className="hover:text-primary flex items-center gap-1"
+                    to="/login"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                    className="hover:text-primary flex items-center gap-1"
                   >
-                  <BsFileEarmarkLockFill className="text-sm" />
-                  Login
+                    <BsFileEarmarkLockFill className="text-sm" />
+                    Login
                   </NavLink>
                   /
                   <NavLink
-                  to="/register"
-                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                  className="hover:text-primary flex items-center gap-1"
+                    to="/register"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                    className="hover:text-primary flex items-center gap-1"
                   >
-                  <FaUserAlt className="text-sm" />
-                  Register
+                    <FaUserAlt className="text-sm" />
+                    Register
                   </NavLink>
                 </>
-              }
-
+              )}
             </ul>
           </div>
         </div>
@@ -99,19 +100,6 @@ const Navbar = () => {
         className={`w-full py-5 shadow-lg bg-white duration-700 ${stickyClass}`}
       >
         <div className="flex justify-between items-center container mx-auto px-5">
-          {/* any dashboard hamburger menu icon start */}
-          <label
-            htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
-            onClick={() => setAdminCheckbox(!adminCheckbox)}
-          >
-            {adminCheckbox ? (
-              <ImCross size={20} />
-            ) : (
-              <AiOutlineMenuUnfold size={20} />
-            )}
-          </label>
-          {/* any dashboard hamburger menu icon End */}
           {/*.......Website Logo........*/}
           <div>
             <NavLink
