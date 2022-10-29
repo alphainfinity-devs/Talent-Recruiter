@@ -1,4 +1,5 @@
 import { APIsSlice } from "../APIs/APIsSlice";
+import { isApplyOrBookmark } from "./applicantSlice";
 
 export const applicantApi = APIsSlice.injectEndpoints({
 
@@ -56,6 +57,14 @@ export const applicantApi = APIsSlice.injectEndpoints({
           url: `/api/applicant/applied-or-bookmarked/${id}`,
           method: "GET",
         };
+      },
+      async onQueryStarted(body, { dispatch, getState, queryFulfilled }) {
+        try {
+          const result = await queryFulfilled;
+          dispatch(isApplyOrBookmark(result.data));
+        } catch (error) {
+          console.log(error);
+        }
       },
       providesTags: ["Applicant"]
     }),
