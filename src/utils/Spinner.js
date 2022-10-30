@@ -12,7 +12,7 @@ const Spinner = () => {
           width={80}
           color="#3CCF56"
           wrapperStyle={{}}
-          wrapperClass=""
+          wrapperclassName=""
           visible={true}
           ariaLabel="oval-loading"
           secondaryColor="#4fa94d"

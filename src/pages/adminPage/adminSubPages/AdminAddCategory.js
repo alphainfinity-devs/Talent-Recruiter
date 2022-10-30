@@ -44,19 +44,20 @@ const AdminAddCategory = () => {
                 <button
                   disabled={isLoading}
                   type="submit"
-                  className={!isLoading ? "btn btn-primary" : undefined}>
+                  className={!isLoading ? "btn btn-primary" : undefined}
+                >
                   {isLoading ? (
                     <Comment
                       width={100}
                       height={40}
                       visible={true}
                       ariaLabel="comment-loading"
-                      wrapperClass="btn"
+                      wrapperclassName="btn"
                       color="#fff"
                       backgroundColor="#39a746"
                     />
                   ) : (
-                    <BsCheck2Circle size={25}/>
+                    <BsCheck2Circle size={25} />
                   )}
                 </button>
               </div>

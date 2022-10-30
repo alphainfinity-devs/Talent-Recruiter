@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import companyLogo from "../../../assets/images/companyLogo.png";
 
 const JobListCard = (job) => {
-  const { _id, title, website, salary, address, level, type } = job.job;
+  const { _id, title, company_link, salary, address, level, type } = job.job;
 
   const link = `/job/${_id}`;
 
@@ -17,7 +17,7 @@ const JobListCard = (job) => {
         </div>
         <div className="">
           <h2 className="font-bold text-xl">{title}</h2>
-          <p className="font-medium text-primary mb-2">{website}</p>
+          <p className="font-medium text-primary mb-2">{company_link}</p>
 
           <div className="flex justify-start items-center mb-2">
             <BsCurrencyDollar className="text-primary mr-2" />
