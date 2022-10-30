@@ -1,6 +1,8 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 import searchImage from "../../../assets/images/search.png";
+import { Link } from "react-router-dom";
+
 const BrowseJobsBanner = () => {
   return (
     <div className="bg-secondary">
