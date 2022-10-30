@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FeatureJobCart from "./FeaturejobCart";
+import FeatureJobCart from "./FeatureJobCart";
 import { useGetFeatureJobsQuery } from "../../../features/featureJobsSlice/featureJobsSlice";
 import JobPlaceholder from "../../../utils/JobPlaceholder";
 
