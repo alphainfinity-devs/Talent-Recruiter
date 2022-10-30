@@ -16,10 +16,13 @@ const BrowseJobsBanner = () => {
             The right job is out there.
           </p>
 
-          <button className="btn rounded-none duration-700 flex itmes-center px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+          <Link
+            to="#banner"
+            className="btn rounded-none duration-700 flex itmes-center px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2"
+          >
             <BsSearch className="mr-2" />
             SEARCH JOBS
-          </button>
+          </Link>
         </div>
 
         <div>

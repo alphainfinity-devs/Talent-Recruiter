@@ -11,7 +11,7 @@ const Banner = () => {
     setCount(1);
   }, [count]);
   return (
-    <section className="bg-[#d0ffce] py-16">
+    <section id="banner" className="bg-[#d0ffce] py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-4 container mx-auto px-5">
         {/*.......Banner info data start........*/}
         <div className="col-span-1 md:col-span-2">

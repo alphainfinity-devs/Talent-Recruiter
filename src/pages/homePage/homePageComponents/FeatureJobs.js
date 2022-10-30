@@ -8,7 +8,7 @@ const FeatureJobs = () => {
   const { isLoading, data, error } = useGetFeatureJobsQuery(
     {
       page,
-      limit: 3,
+      limit: 6,
     },
     {
       refetchOnMountOrArgChange: true,
@@ -51,7 +51,7 @@ const FeatureJobs = () => {
           </p>
         </div>
         {content}
-        {data?.total > 3 && (
+        {data?.total > 6 && (
           <div className="flex justify-center pt-16">
             <div className="btn-group gap-1">
               <button

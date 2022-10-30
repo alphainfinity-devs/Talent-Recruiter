@@ -4,6 +4,7 @@ import { MdOutlineAppRegistration, MdYoutubeSearchedFor } from "react-icons/md";
 import { FcSearch } from "react-icons/fc";
 import { HiOutlineBadgeCheck } from "react-icons/hi";
 import { TbBadge } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 const HowItWork = () => {
   return (
@@ -28,10 +29,13 @@ const HowItWork = () => {
                 you with the right freelancers find place best.
               </p>
               <div className="card-actions justify-center my-2">
-                <button className="btn rounded-none duration-700 flex px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+                <Link
+                  to="/register"
+                  className="btn rounded-none duration-700 flex px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2"
+                >
                   <MdOutlineAppRegistration size={22} className="mr-1" /> Sing
                   Up Now
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -45,9 +49,12 @@ const HowItWork = () => {
                 you with the right freelancers find place best.
               </p>
               <div className="card-actions justify-center my-2">
-                <button className="btn rounded-none flex duration-700 px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+                <Link
+                  to="/jobs"
+                  className="btn rounded-none flex duration-700 px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2"
+                >
                   <MdYoutubeSearchedFor size={22} className="mr-1" /> Search Now
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -64,9 +71,12 @@ const HowItWork = () => {
                 you with the right freelancers find place best.
               </p>
               <div className="card-actions justify-center my-2">
-                <button className="btn rounded-none flex px-4 md:px-7 duration-700 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+                <Link
+                  to="/jobs"
+                  className="btn rounded-none flex px-4 md:px-7 duration-700 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2"
+                >
                   <TbBadge size={22} className="mr-1" /> Apply Now
-                </button>
+                </Link>
               </div>
             </div>
           </div>
