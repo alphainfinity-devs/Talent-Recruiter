@@ -1,6 +1,8 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 import searchImage from "../../../assets/images/search.png";
+import { Link } from "react-router-dom";
+
 const BrowseJobsBanner = () => {
   return (
     <div className="bg-secondary">
@@ -16,10 +18,13 @@ const BrowseJobsBanner = () => {
             The right job is out there.
           </p>
 
-          <button className="btn rounded-none duration-700 flex itmes-center px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2">
+          <Link
+            to="/jobs"
+            className="btn w-[200px] rounded-none duration-700 flex itmes-center px-4 md:px-7 py-3 bg-primary hover:bg-transparent text-white border-primary hover:border-primary hover:text-primary font-bold border-2 hover:border-2"
+          >
             <BsSearch className="mr-2" />
             SEARCH JOBS
-          </button>
+          </Link>
         </div>
 
         <div>

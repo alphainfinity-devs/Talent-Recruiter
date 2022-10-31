@@ -3,7 +3,7 @@ import { GoPlug } from "react-icons/go";
 import { IoBookmarksOutline } from "react-icons/io5";
 import { MdPostAdd, MdDeleteSweep } from "react-icons/md";
 import { BsFillFileEarmarkPostFill } from "react-icons/bs";
-import {BiCategoryAlt} from "react-icons/bi";
+import { BiCategoryAlt } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../features/userAuth/userAuthSlice";
 import Avatar from "react-avatar";
@@ -84,7 +84,7 @@ export default function AdminSidebar() {
               </span>
             </NavLink>
 
-            <NavLink
+            {/* <NavLink
               to="admin-customize"
               className={(props) => {
                 return `${
@@ -96,7 +96,8 @@ export default function AdminSidebar() {
               <span className="ml-3 md:text-sm text-xs md:font-medium">
                 Customize
               </span>
-            </NavLink>
+            </NavLink> */}
+
             <NavLink
               to="admin-jobs"
               className={(props) => {
@@ -215,7 +216,8 @@ export default function AdminSidebar() {
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
                     viewBox="0 0 20 20"
-                    fill="currentColor">
+                    fill="currentColor"
+                  >
                     <path
                       fillRule="evenodd"
                       d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -232,7 +234,8 @@ export default function AdminSidebar() {
                     return `${
                       props.isActive && "bg-gray-300"
                     } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-                  }}>
+                  }}
+                >
                   <MdPostAdd size={20} className="opacity-75" />
                   <span className="md:ml-3 md:text-sm text-xs md:font-medium">
                     Add Category
@@ -244,8 +247,9 @@ export default function AdminSidebar() {
                     return `${
                       props.isActive && "bg-gray-300"
                     } flex items-center md:text-sm text-xs md:font-medium rounded-lg hover:bg-gray-100 px-4 py-2 text-gray-700`;
-                  }}>
-                 <MdDeleteSweep size={20} className="opacity-75"/>
+                  }}
+                >
+                  <MdDeleteSweep size={20} className="opacity-75" />
                   <span className="md:ml-3 md:text-sm text-xs md:font-medium">
                     Delete Category
                   </span>

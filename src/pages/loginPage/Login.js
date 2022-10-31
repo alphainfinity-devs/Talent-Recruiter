@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useLoginMutation } from "../../features/userAuth/userAuthAPI";
 import { toast } from "react-toastify";
+import LoginInfo from "./LoginInfo";
 const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,6 +37,8 @@ const Register = () => {
       <div className="flex py-8 sm:pt-16  px-2 justify-center items-center">
         <div className="card w-96 bg-base-100 shadow-xl rounded-none">
           <div className="card-body">
+            <LoginInfo />
+
             {/* ......social login button..... */}
             <div className="flex gap-2 mb-3">
               <button className="btn bg-[#C80911] border-[#C80911] rounded-none hover:border-[#C80911] border-2 text-white hover:text-[#C80911] w-[49%] hover:shadow-lg font-bold hover:bg-white">
